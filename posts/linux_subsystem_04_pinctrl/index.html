@@ -1,0 +1,197 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<title>（四）Linux 内核驱动 - Pinctrl子系统 - 程序小站</title><meta name=Description content="逸一时，误一世。"><meta property="og:title" content="（四）Linux 内核驱动 - Pinctrl子系统">
+<meta property="og:description" content="1. 概述 在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同S">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://example.org/posts/linux_subsystem_04_pinctrl/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2025-10-11T09:02:36+08:00">
+<meta property="article:modified_time" content="2025-10-11T09:02:36+08:00"><meta property="og:site_name" content="剪纸堆">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="（四）Linux 内核驱动 - Pinctrl子系统">
+<meta name=twitter:description content="1. 概述 在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同S">
+<meta name=application-name content="My cool site">
+<meta name=apple-mobile-web-app-title content="My cool site"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=http://example.org/posts/linux_subsystem_04_pinctrl/><link rel=prev href=http://example.org/posts/linux_subsystem_03_subsys_gpio/><link rel=next href=http://example.org/posts/linux_subsystem_05_initcall/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"（四）Linux 内核驱动 - Pinctrl子系统","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/linux_subsystem_04_pinctrl\/"},"genre":"posts","wordcount":1725,"url":"http:\/\/example.org\/posts\/linux_subsystem_04_pinctrl\/","datePublished":"2025-10-11T09:02:36+08:00","dateModified":"2025-10-11T09:02:36+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"TUXEDO"},"description":""}</script></head>
+<body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=程序小站>剪纸堆</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> 文章 </a><a class=menu-item href=/tags/> 标签 </a><a class=menu-item href=/categories/> 分类 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a></div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=程序小站>剪纸堆</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>标签</a><a class=menu-item href=/categories/ title>分类</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a></div>
+</div>
+</header><main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">（四）Linux 内核驱动 - Pinctrl子系统</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>TUXEDO</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2025-10-11>2025-10-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;1725 words&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;4 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static data-kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h4 id=1-概述><strong>1. 概述</strong></h4>
+<p>在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同SoC厂商的引脚配置，Linux内核提供了 <strong>pinctrl</strong> 子系统，用于管理引脚的复用、特性配置、GPIO等。</p>
+<h4 id=2-pinctrl子系统的主要功能><strong>2. Pinctrl子系统的主要功能</strong></h4>
+<ul>
+<li><strong>管理系统中的所有可控制的pin</strong>：在系统初始化时，pinctrl子系统会扫描所有引脚，并标识哪些引脚是可控的。</li>
+<li><strong>引脚复用（Multiplexing）</strong>：引脚可根据需要配置为不同的功能，例如SPI、I2C、GPIO等。pinctrl子系统通过复用引脚的功能管理这些引脚的不同状态。</li>
+<li><strong>电气特性配置</strong>：通过配置引脚的电气特性，如开启或关闭引脚的上下拉电阻、调整引脚的驱动能力等，确保硬件功能的稳定性。</li>
+</ul>
+<h4 id=3-核心概念><strong>3. 核心概念</strong></h4>
+<ul>
+<li>
+<p><strong>Function 和 Pin Group</strong>：</p>
+<ul>
+<li><strong>Function</strong> 表示一个硬件功能（例如，SPI、I2C）。在硬件设计中，可能有多个引脚可以实现同一个功能，通过复用控制将其引导到对应的引脚组（Pin Group）。</li>
+<li><strong>Pin Group</strong> 是一组物理引脚，这些引脚被映射到一个具体的硬件功能。在配置引脚时，必须指定相应的function和pin group，以保证功能的正常切换。</li>
+</ul>
+</li>
+<li>
+<p><strong>Pin Control State</strong>：每个设备可能处于多个状态（例如：default、sleep、idle等），每个状态对应不同的引脚配置（包括复用功能、电气特性等）。pinctrl子系统通过 <strong>pin control state</strong> 管理设备的不同工作状态。</p>
+</li>
+</ul>
+<h4 id=4-与gpio子系统的关系><strong>4. 与GPIO子系统的关系</strong></h4>
+<p>GPIO（General Purpose Input/Output）引脚在Linux中也由pinctrl子系统进行管理。每个引脚可能会被配置为多个功能之一，如GPIO、I2C、SPI等。当一个引脚已经被配置为某个功能（如GPIO），它就不能再被重新配置为其他功能。因此，pinctrl子系统确保每个引脚的配置是唯一且不冲突的。</p>
+<h4 id=5-与统一设备驱动模型的关系><strong>5. 与统一设备驱动模型的关系</strong></h4>
+<p>在Linux中，设备驱动的加载和设备节点的绑定通常会通过统一的设备驱动模型（UDM）来完成。在驱动加载的过程中，pinctrl子系统会在设备的 <strong>probe</strong> 函数之前对引脚进行初始化配置，确保引脚已经处于合适的工作状态。驱动可以通过 <strong>devm_pinctrl_get</strong> 获取pinctrl的句柄，并调用 <strong>pinctrl_select_state</strong> 来切换引脚的状态。</p>
+<h4 id=6-与设备树device-tree的关系><strong>6. 与设备树（Device Tree）的关系</strong></h4>
+<p>设备树中的配置决定了设备所需的引脚状态。在设备树文件中，通过 <code>pinctrl-names</code> 和 <code>pinctrl-X</code> 等属性定义了设备所需要的引脚配置。每个设备的驱动程序会根据设备树中的配置动态加载相应的引脚设置。</p>
+<p>例如，在设备树中，以下配置定义了不同的pin控制状态：</p>
+<pre tabindex=0><code class=language-dts data-lang=dts>pinctrl-names = &quot;sleep&quot;,&quot;default&quot;,&quot;idle&quot;;
+pinctrl-0 = &lt;&amp;state_sleep&gt;;
+pinctrl-1 = &lt;&amp;state_default&gt;;
+pinctrl-2 = &lt;&amp;state_idle&gt;;
+</code></pre><p>这些状态在驱动程序中被引用，允许驱动在不同的工作状态下配置引脚。</p>
+<h4 id=7-pinctrl与主控驱动的关系><strong>7. Pinctrl与主控驱动的关系</strong></h4>
+<p>主控驱动通过注册一个 <code>struct pinctrl_desc</code> 结构体，将主控的pinctrl硬件操作转换为符合Linux pinctrl子系统规范的结构。这个结构体包含了引脚控制器的详细信息，如引脚数量、控制操作函数、复用操作函数等。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=k>struct</span> <span class=n>pinctrl_desc</span> <span class=p>{</span>
+    <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>name</span><span class=p>;</span>
+    <span class=k>struct</span> <span class=n>pinctrl_pin_desc</span> <span class=k>const</span> <span class=o>*</span><span class=n>pins</span><span class=p>;</span>
+    <span class=kt>unsigned</span> <span class=kt>int</span> <span class=n>npins</span><span class=p>;</span>
+    <span class=k>const</span> <span class=k>struct</span> <span class=n>pinctrl_ops</span> <span class=o>*</span><span class=n>pctlops</span><span class=p>;</span>
+    <span class=k>const</span> <span class=k>struct</span> <span class=n>pinmux_ops</span> <span class=o>*</span><span class=n>pmxops</span><span class=p>;</span>
+    <span class=k>const</span> <span class=k>struct</span> <span class=n>pinconf_ops</span> <span class=o>*</span><span class=n>confops</span><span class=p>;</span>
+    <span class=k>struct</span> <span class=n>module</span> <span class=o>*</span><span class=n>owner</span><span class=p>;</span>
+<span class=p>};</span>
+</code></pre></div><h4 id=8-dts中的pinctrl配置><strong>8. DTS中的Pinctrl配置</strong></h4>
+<p>在设备树文件（DTS）中，<code>pinctrl</code>配置可以通过以下方式进行定义：</p>
+<pre tabindex=0><code class=language-dts data-lang=dts>pinctrl@e01b0000 {
+    compatible = &quot;actions,s700-pinctrl&quot;;
+    reg = &lt;0 0xe01b0000 0 0x1000&gt;;
+    pinctrl-names = &quot;default&quot;;
+    pinctrl-0 = &lt;&amp;state_default&gt;;
+};
+</code></pre><p>设备树中的每个节点定义了引脚的复用功能、状态、驱动配置等。通过 <code>pinctrl-names</code> 和 <code>pinctrl-X</code> 属性，设备树描述了设备的各种引脚状态及其配置。</p>
+<h4 id=9-实战示例动态切换i2c与gpio><strong>9. 实战示例：动态切换I2C与GPIO</strong></h4>
+<p>通过一个实战例子，展示了如何动态切换I2C与GPIO功能的配置：</p>
+<ul>
+<li>在设备树中，我们首先定义了两个pin状态：一个是I2C模式，另一个是GPIO模式。</li>
+</ul>
+<pre tabindex=0><code class=language-dts data-lang=dts>gpio_i2c_exchage {
+   compatible = &quot;gpio-i2c-exchage&quot;;
+   pinctrl-names = &quot;default&quot;, &quot;gpio&quot;;
+   pinctrl-0 = &lt;&amp;i2c0_function&gt;;
+   pinctrl-1 = &lt;&amp;i2c0_gpio&gt;;
+};
+
+i2c0_option {
+    i2c0_function: i2c0-function {
+        rockchip,pins = &lt;2 GPIO_D0 RK_FUNC_1 &amp;pcfg_pull_none_smt&gt;,
+                        &lt;2 GPIO_D1 RK_FUNC_1 &amp;pcfg_pull_none_smt&gt;;
+    };
+    i2c0_gpio: i2c0-gpio {
+        rockchip,pins = &lt;2 GPIO_D0 RK_FUNC_GPIO &amp;pcfg_pull_none_smt&gt;,
+                        &lt;2 GPIO_D1 RK_FUNC_GPIO &amp;pcfg_pull_none_smt&gt;;
+    };
+};
+</code></pre><ul>
+<li>在驱动代码中，通过 <code>pinctrl_select_state</code> 切换引脚状态。</li>
+</ul>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=kt>int</span> <span class=nf>biada_pinctrl_request_gpios</span><span class=p>(</span><span class=kt>int</span> <span class=n>state</span><span class=p>)</span> <span class=p>{</span>
+    <span class=kt>int</span> <span class=n>result</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=k>if</span><span class=p>(</span><span class=n>state</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+        <span class=n>result</span> <span class=o>=</span> <span class=n>pinctrl_select_state</span><span class=p>(</span><span class=n>i2c0_pinctrl</span><span class=p>,</span> <span class=n>i2c0_default</span><span class=p>);</span>
+    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+        <span class=n>result</span> <span class=o>=</span> <span class=n>pinctrl_select_state</span><span class=p>(</span><span class=n>i2c0_pinctrl</span><span class=p>,</span> <span class=n>i2c0_gpio</span><span class=p>);</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=n>result</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div><ul>
+<li>通过这种方式，可以在运行时切换引脚的功能，例如从I2C模式切换到GPIO模式，或者反之。</li>
+</ul>
+<h4 id=10-总结><strong>10. 总结</strong></h4>
+<p>Linux的 <strong>pinctrl</strong> 子系统提供了一种统一、灵活的方式来管理和配置SoC中的引脚功能与电气特性。通过结合设备树、内核驱动和GPIO子系统，pinctrl子系统不仅能够支持引脚的复用和功能切换，还能够根据硬件需求进行动态配置。在开发过程中，合理使用设备树配置和pinctrl接口，能够显著提高硬件资源的利用率和系统的可配置性。</p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2025-10-11</span>
+</div></div>
+<div class=post-info-line>
+<div class=post-info-md></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=http://example.org/posts/linux_subsystem_04_pinctrl/ data-title="（四）Linux 内核驱动 - Pinctrl子系统"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=http://example.org/posts/linux_subsystem_04_pinctrl/ data-title="（四）Linux 内核驱动 - Pinctrl子系统"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=http://example.org/posts/linux_subsystem_04_pinctrl/ data-title="（四）Linux 内核驱动 - Pinctrl子系统"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/posts/linux_subsystem_03_subsys_gpio/ class=prev rel=prev title="（三）Linux 内核驱动 - GPIO子系统"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>（三）Linux 内核驱动 - GPIO子系统</a>
+<a href=/posts/linux_subsystem_05_initcall/ class=next rel=next title="（五）Linux 内核驱动 - InitCall机制">（五）Linux 内核驱动 - InitCall机制<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
+</div>
+</article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>TUXEDO</a></span></div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js></script>
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js></script>
+<script type=text/javascript>L2Dwidget.init({model:{scale:1,hHeadPos:.5,vHeadPos:.618,jsonPath:'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko/assets/wanko.model.json'},display:{superSample:1,width:400,height:600,position:'right',hOffset:0,vOffset:0},mobile:{show:!0,scale:1,motion:!0},react:{opacityDefault:1,opacityOnHover:1}})</script></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw" aria-hidden=true></i>
+</a>
+</div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:32},comment:{}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>

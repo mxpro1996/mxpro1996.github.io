@@ -1,0 +1,147 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<title>（零）Linux内核驱动 - 资料推荐 - 程序小站</title><meta name=Description content="逸一时，误一世。"><meta property="og:title" content="（零）Linux内核驱动 - 资料推荐">
+<meta property="og:description" content="驱动开发 《Linux设备驱动开发_（法）约翰·马迪厄（John Madieu）》 《Linux设备驱动开发详解_宋宝华》 《Android驱动开发">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://example.org/posts/booklist/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2025-10-01T08:07:25+08:00">
+<meta property="article:modified_time" content="2025-10-01T08:07:25+08:00"><meta property="og:site_name" content="剪纸堆">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="（零）Linux内核驱动 - 资料推荐">
+<meta name=twitter:description content="驱动开发 《Linux设备驱动开发_（法）约翰·马迪厄（John Madieu）》 《Linux设备驱动开发详解_宋宝华》 《Android驱动开发">
+<meta name=application-name content="My cool site">
+<meta name=apple-mobile-web-app-title content="My cool site"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=http://example.org/posts/booklist/><link rel=prev href=http://example.org/posts/smart_ptr/><link rel=next href=http://example.org/posts/linux_subsystem_01_common_model/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"（零）Linux内核驱动 - 资料推荐","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/booklist\/"},"genre":"posts","wordcount":470,"url":"http:\/\/example.org\/posts\/booklist\/","datePublished":"2025-10-01T08:07:25+08:00","dateModified":"2025-10-01T08:07:25+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"TUXEDO"},"description":""}</script></head>
+<body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=程序小站>剪纸堆</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> 文章 </a><a class=menu-item href=/tags/> 标签 </a><a class=menu-item href=/categories/> 分类 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a></div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=程序小站>剪纸堆</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>标签</a><a class=menu-item href=/categories/ title>分类</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a></div>
+</div>
+</header><main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">（零）Linux内核驱动 - 资料推荐</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>TUXEDO</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2025-10-01>2025-10-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;470 words&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;One minute&nbsp;</div>
+</div><div class="details toc" id=toc-static data-kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#驱动开发>驱动开发</a></li>
+<li><a href=#内核扫盲>内核扫盲</a></li>
+<li><a href=#源代码文档检索>源代码/文档检索</a></li>
+<li><a href=#分层模型>分层模型</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h3 id=驱动开发>驱动开发</h3>
+<ol>
+<li>《Linux设备驱动开发_（法）约翰·马迪厄（John Madieu）》</li>
+<li>《Linux设备驱动开发详解_宋宝华》</li>
+<li>《Android驱动开发权威指南_杨柳》</li>
+</ol>
+<hr>
+<h3 id=内核扫盲>内核扫盲</h3>
+<ol>
+<li>《Linux内核深度解析 基于ARM64架构的Linux 4.x内核_余华兵》</li>
+<li>《从零开始写Linux内核 基于0.12_海纳》</li>
+</ol>
+<hr>
+<h3 id=源代码文档检索>源代码/文档检索</h3>
+<ol>
+<li><a href=https://elixir.bootlin.com target=_blank rel="noopener noreffer">Bootlin 在线看</a></li>
+<li><a href=https://www.kernel.org/doc/html/latest/index.html target=_blank rel="noopener noreffer">Linux_官方文档</a></li>
+<li><a href=https://www.devicetree.org/specifications/ target=_blank rel="noopener noreffer">DTS设备树_官方白皮书</a></li>
+</ol>
+<hr>
+<h3 id=分层模型>分层模型</h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown>/real_kernel (实际内核体)
+    /kernel        (内核核心功能：调度、时钟、系统调用等)
+    /mm            (内存管理：虚拟内存、页表管理、内存分配等)
+    /ipc           (进程间通信：信号量、消息队列、共享内存等)
+    /init          (系统初始化：内核环境准备、启动过程)
+-----------------------------
+/resource_core （系统资源抽象，主体Core层）
+    /fs             (文件系统：ext4、Btrfs、NTFS 等)
+    /block          (块设备：磁盘、存储设备等)
+    /net            (网络协议栈：TCP/IP、IPv6、路由等)
+    /crypto         (加密与解密支持)
+    /sched          (调度器：CPU 调度、负载均衡等)
+-----------------------------
+/drivers （驱动实化具体资源，常见接口也有core封装的协议栈）
+    /drivers        (硬件驱动：网络、存储、音频、显示等设备驱动)
+    /arch           (特定硬件架构支持：ARM、x86等)
+    /dts            (设备树：硬件资源配置)
+
+</code></pre></div></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2025-10-01</span>
+</div></div>
+<div class=post-info-line>
+<div class=post-info-md></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=http://example.org/posts/booklist/ data-title="（零）Linux内核驱动 - 资料推荐"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=http://example.org/posts/booklist/ data-title="（零）Linux内核驱动 - 资料推荐"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=http://example.org/posts/booklist/ data-title="（零）Linux内核驱动 - 资料推荐"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/posts/smart_ptr/ class=prev rel=prev title="C++ 智能指针与 Q&A"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>C++ 智能指针与 Q&A</a>
+<a href=/posts/linux_subsystem_01_common_model/ class=next rel=next title="（一）Linux 内核驱动 - 统一驱动模型">（一）Linux 内核驱动 - 统一驱动模型<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
+</div>
+</article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>TUXEDO</a></span></div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js></script>
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js></script>
+<script type=text/javascript>L2Dwidget.init({model:{scale:1,hHeadPos:.5,vHeadPos:.618,jsonPath:'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko/assets/wanko.model.json'},display:{superSample:1,width:400,height:600,position:'right',hOffset:0,vOffset:0},mobile:{show:!0,scale:1,motion:!0},react:{opacityDefault:1,opacityOnHover:1}})</script></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw" aria-hidden=true></i>
+</a>
+</div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:32},comment:{}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>

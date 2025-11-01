@@ -1,0 +1,381 @@
+<!doctype html><html lang=zh-cn>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<title>[Linux] 灵异集合 - 程序小站</title><meta name=Description content="逸一时，误一世。"><meta property="og:title" content="[Linux] 灵异集合">
+<meta property="og:description" content="1. [VFS] dd命令的诡异现象 起因： 使用dd(conv=fdatasync)写入启动SD卡时，总是发现没有生效，以为dd命令存在缺陷。 解析： 当sd卡">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://example.org/posts/1107/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2024-10-17T11:07:25+08:00">
+<meta property="article:modified_time" content="2024-10-17T11:07:25+08:00"><meta property="og:site_name" content="剪纸堆">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="[Linux] 灵异集合">
+<meta name=twitter:description content="1. [VFS] dd命令的诡异现象 起因： 使用dd(conv=fdatasync)写入启动SD卡时，总是发现没有生效，以为dd命令存在缺陷。 解析： 当sd卡">
+<meta name=application-name content="My cool site">
+<meta name=apple-mobile-web-app-title content="My cool site"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=http://example.org/posts/1107/><link rel=prev href=http://example.org/posts/1017/><link rel=next href=http://example.org/posts/1126/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"[Linux] 灵异集合","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/1107\/"},"genre":"posts","wordcount":3175,"url":"http:\/\/example.org\/posts\/1107\/","datePublished":"2024-10-17T11:07:25+08:00","dateModified":"2024-10-17T11:07:25+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"TUXEDO"},"description":""}</script></head>
+<body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=程序小站>剪纸堆</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> 文章 </a><a class=menu-item href=/tags/> 标签 </a><a class=menu-item href=/categories/> 分类 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a></div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title=程序小站>剪纸堆</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>标签</a><a class=menu-item href=/categories/ title>分类</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a></div>
+</div>
+</header><main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[Linux] 灵异集合</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>TUXEDO</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-10-17>2024-10-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;3175 words&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;7 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static data-kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#1-vfs-dd命令的诡异现象>1. [VFS] dd命令的诡异现象</a>
+<ul>
+<li><a href=#起因>起因：</a></li>
+<li><a href=#解析>解析：</a></li>
+<li><a href=#补充>补充：</a></li>
+</ul>
+</li>
+<li><a href=#2-gpt-rootpartuuidxxxxxxxxxxxxx>2. [GPT] root=PARTUUID=xxxxxxxxxxxxx</a>
+<ul>
+<li><a href=#起因-1>起因：</a></li>
+<li><a href=#解析-1>解析：</a></li>
+<li><a href=#补充-1>补充：</a></li>
+</ul>
+</li>
+<li><a href=#3-uboot-可以修改bootcmd来决定默认启动方式>3. Uboot 可以修改bootcmd来决定默认启动方式</a></li>
+<li><a href=#4-ifconfig-可以启动列表中没录入的net设备sysclassnet>4. ifconfig 可以启动列表中没录入的net设备(/sys/class/net)</a>
+<ul>
+<li><a href=#补充-2>补充：</a></li>
+</ul>
+</li>
+<li><a href=#5-st-display_controller-apply-config-failed>5. [ST] display_controller apply config failed</a>
+<ul>
+<li><a href=#起因-2>起因：</a></li>
+<li><a href=#解析-2>解析：</a></li>
+<li><a href=#补充-3>补充：</a></li>
+</ul>
+</li>
+<li><a href=#6-nfs-rootfs挂载与initrd互斥>6. [NFS] rootfs挂载与initrd互斥</a>
+<ul>
+<li><a href=#起因-3>起因：</a></li>
+<li><a href=#解析-3>解析：</a></li>
+<li><a href=#补充cmdline>补充(cmdline)：</a></li>
+</ul>
+</li>
+<li><a href=#7-alsa-开发板声卡无声驱动和dts正常>7. [ALSA] 开发板声卡无声，驱动和DTS正常</a>
+<ul>
+<li><a href=#起因-4>起因：</a></li>
+<li><a href=#解析-4>解析：</a></li>
+<li><a href=#补充-4>补充：</a></li>
+</ul>
+</li>
+<li><a href=#8-btwlan-ap6212-bcm网卡蓝牙模块加载>8. [BT&Wlan] AP6212 BCM网卡/蓝牙模块加载</a>
+<ul>
+<li><a href=#起因-5>起因：</a></li>
+<li><a href=#解析-5>解析：</a></li>
+<li><a href=#补充-5>补充：</a></li>
+</ul>
+</li>
+<li><a href=#9-在win32下交叉编译qt-663失败>9. 在Win32下交叉编译QT-6.6.3失败</a>
+<ul>
+<li><a href=#起因-6>起因：</a></li>
+<li><a href=#暂时解法>暂时解法：</a></li>
+</ul>
+</li>
+<li><a href=#10-git-windows突然不再读取密钥>10. git-windows突然不再读取密钥</a>
+<ul>
+<li><a href=#起因-7>起因：</a></li>
+<li><a href=#解法>解法：</a></li>
+</ul>
+</li>
+<li><a href=#10-uboot不启动boot分区>10. uboot不启动boot分区</a>
+<ul>
+<li><a href=#起因-8>起因：</a></li>
+<li><a href=#解法-1>解法：</a></li>
+</ul>
+</li>
+<li><a href=#11-gpio_cdev-gpiod-2x不适配54内核>11. [GPIO_CDEV] gpiod-2.x不适配5.4内核</a>
+<ul>
+<li><a href=#起因-9>起因：</a></li>
+<li><a href=#解法-2>解法：</a></li>
+</ul>
+</li>
+<li><a href=#12-gpio_cdev-编译autogensh报错undefined_macro>12. [GPIO_CDEV] 编译autogen.sh报错undefined_macro</a>
+<ul>
+<li><a href=#现象>现象：</a></li>
+<li><a href=#解法-3>解法：</a></li>
+</ul>
+</li>
+<li><a href=#13-unix-serial-发送和接收的串口数据为全0>13. [Unix-Serial] 发送和接收的串口数据为全0</a>
+<ul>
+<li><a href=#现象-1>现象：</a></li>
+<li><a href=#附录>附录：</a></li>
+</ul>
+</li>
+<li><a href=#14-input-evdev-ioctl-finoread无法获得未读数据量>14. [Input-EVDEV] ioctl FINOREAD无法获得未读数据量</a>
+<ul>
+<li><a href=#解法-4>解法：</a></li>
+</ul>
+</li>
+<li><a href=#15-qt-q_property对变量的两种联系>15. [QT] Q_PROPERTY对变量的两种联系</a>
+<ul>
+<li><a href=#解法-5>解法：</a></li>
+</ul>
+</li>
+<li><a href=#16-qt-基于metacall>16. [QT] 基于metaCall</a>
+<ul>
+<li><a href=#解法-6>解法：</a></li>
+</ul>
+</li>
+<li><a href=#17-flash-ubi-fs文件系统流程>17. [Flash] UBI-FS文件系统流程</a>
+<ul>
+<li><a href=#原理>原理：</a></li>
+<li><a href=#解法-7>解法：</a></li>
+</ul>
+</li>
+<li><a href=#19-rfid-rc522寻卡失败>19. [RFID] RC522寻卡失败</a>
+<ul>
+<li><a href=#解法-8>解法：</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=1-vfs-dd命令的诡异现象>1. [VFS] dd命令的诡异现象</h2>
+<h3 id=起因>起因：</h3>
+<p>使用dd(conv=fdatasync)写入启动SD卡时，总是发现没有生效，以为dd命令存在缺陷。</p>
+<h3 id=解析>解析：</h3>
+<p>当sd卡没有插入时,dd of=/dev/sda1会创建一个同名文件，这个文件会阻碍实际块设备分区文件的建立。</p>
+<h3 id=补充>补充：</h3>
+<p>出于VFS的一切皆文件性质，当对设备操作无效时，考虑文件系统的限制规则，比如“同名文件”，一定要确定操作的是文件还是设备文件。</p>
+<h2 id=2-gpt-rootpartuuidxxxxxxxxxxxxx>2. [GPT] root=PARTUUID=xxxxxxxxxxxxx</h2>
+<h3 id=起因-1>起因：</h3>
+<p>cmdline里对rootfs进行硬编码ID，由于sd卡启动的任意性，怀疑这个partUUID的来源</p>
+<h3 id=解析-1>解析：</h3>
+<p>怀疑是正确的，ST官方确实硬编码了rootfs uuid，因此当分区表发生变化时，这种匹配是不可靠的，应该为root=/dev/mmcblk0p1这种形式，比起在卡烧录和emmc烧录时规定uuid要灵活很多。</p>
+<h3 id=补充-1>补充：</h3>
+<p>deadline可以指定内核调度模式</p>
+<h2 id=3-uboot-可以修改bootcmd来决定默认启动方式>3. Uboot 可以修改bootcmd来决定默认启动方式</h2>
+<h2 id=4-ifconfig-可以启动列表中没录入的net设备sysclassnet>4. ifconfig 可以启动列表中没录入的net设备(/sys/class/net)</h2>
+<h3 id=补充-2>补充：</h3>
+<p>其实一般用systemctl或者init.d的计划任务</p>
+<h2 id=5-st-display_controller-apply-config-failed>5. [ST] display_controller apply config failed</h2>
+<h3 id=起因-2>起因：</h3>
+<p>在移植ltdc到hdmi和rgb-lcd时触发</p>
+<h3 id=解析-2>解析：</h3>
+<p>fs-mp1a应该使用"stm32mp15xxaa-pinctrl.dtsi"，默认的&rsquo;ac&rsquo;变体必然导致这个pinctrl复用错误。同理，应该ltdc使用b组pinctrl复用IO组。</p>
+<h3 id=补充-3>补充：</h3>
+<p>注意单复数的区分，如果pwm-cells写成pwm-cell，最后会导致pwm节点寻找不到。<br>
+TFTP-PXE 可以无盘引导uboot+kernel</p>
+<h2 id=6-nfs-rootfs挂载与initrd互斥>6. [NFS] rootfs挂载与initrd互斥</h2>
+<h3 id=起因-3>起因：</h3>
+<p>在nfs启动rootfs时出现:</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=o>[</span>    8.373114<span class=o>]</span> Run /init as init process
+Starting version 244.3+
+root <span class=s1>&#39;/dev/nfs&#39;</span> doesn<span class=err>&#39;</span>t exist or does not contain a /dev.
+</code></pre></div><h3 id=解析-3>解析：</h3>
+<p>尝试NFS远程挂载rootfs时，不应该在UBOOT启动中追加INITRD，附带的精简版init进程无法精确找到nfs挂载的文件。</p>
+<h3 id=补充cmdline>补充(cmdline)：</h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=nv>root</span><span class=o>=</span>/dev/nfs rw <span class=nv>nfsroot</span><span class=o>=</span>192.168.10.20:/share/rootfs,tcp,vers<span class=o>=</span><span class=m>4</span> <span class=nv>ip</span><span class=o>=</span>192.168.10.21 rootwait earlyprintk
+</code></pre></div><h2 id=7-alsa-开发板声卡无声驱动和dts正常>7. [ALSA] 开发板声卡无声，驱动和DTS正常</h2>
+<h3 id=起因-4>起因：</h3>
+<p>在内核完成声卡移植后，调用aplay播放音频无声。</p>
+<h3 id=解析-4>解析：</h3>
+<p>当使用ALSA架构时候，PCM声源有两个来源（DSP/Direct），其中DSP是mixer混音工作的基础，如果不走dsp声音直出但是不可调，走DSP时必须先打开音频开关，否则静音。</p>
+<h3 id=补充-4>补充：</h3>
+<p>路径选择看sget &lsquo;DAC Mux&rsquo;选项，可选dsp或者直出Direct。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=nv>numid</span><span class=o>=</span>2,iface<span class=o>=</span>MIXER,name<span class=o>=</span><span class=s1>&#39;PCM Playback Switch&#39;</span>
+  <span class=p>;</span> <span class=nv>type</span><span class=o>=</span>BOOLEAN,access<span class=o>=</span>rw------,values<span class=o>=</span><span class=m>2</span>
+  : <span class=nv>values</span><span class=o>=</span>on,on
+<span class=nv>numid</span><span class=o>=</span>1,iface<span class=o>=</span>MIXER,name<span class=o>=</span><span class=s1>&#39;PCM Playback Volume&#39;</span>
+  <span class=p>;</span> <span class=nv>type</span><span class=o>=</span>INTEGER,access<span class=o>=</span>rw---R--,values<span class=o>=</span>2,min<span class=o>=</span>0,max<span class=o>=</span>127,step<span class=o>=</span><span class=m>0</span>
+  : <span class=nv>values</span><span class=o>=</span>54,54
+  <span class=p>|</span> dBscale-min<span class=o>=</span>-51.50dB,step<span class=o>=</span>0.50dB,mute<span class=o>=</span><span class=m>0</span>
+amixer cset <span class=nv>name</span><span class=o>=</span><span class=s1>&#39;PCM Playback Switch&#39;</span> <span class=s1>&#39;on&#39;</span>,<span class=s1>&#39;on&#39;</span>
+<span class=c1># 开启dsp-PCM</span>
+amixer cset <span class=nv>name</span><span class=o>=</span><span class=s1>&#39;PCM Playback Volume&#39;</span> <span class=s1>&#39;63&#39;</span>,<span class=s1>&#39;63&#39;</span>
+<span class=c1># 设定音量</span>
+amixer cset <span class=nv>name</span><span class=o>=</span><span class=s1>&#39;Analog Playback Volume&#39;</span> <span class=s1>&#39;204&#39;</span>,<span class=s1>&#39;204&#39;</span>
+amixer cset <span class=nv>name</span><span class=o>=</span><span class=s1>&#39;PCM channel mixer&#39;</span> <span class=s1>&#39;L R&#39;</span>
+</code></pre></div><h2 id=8-btwlan-ap6212-bcm网卡蓝牙模块加载>8. [BT&Wlan] AP6212 BCM网卡/蓝牙模块加载</h2>
+<h3 id=起因-5>起因：</h3>
+<p>单独内核编译的内建驱动，无法唤起网卡工作</p>
+<h3 id=解析-5>解析：</h3>
+<p>该网卡的工作依赖固件加载，而加载的逻辑整合在brcmctl等等模块中，虽然也有用户态手动加载固件的官方工具，但不如直接触发modprobe加载/lib/modules目录直接，模块则直接访问/lib/firmware读取固件。</p>
+<h3 id=补充-5>补充：</h3>
+<p>用到的包：Bluez(HCI面向串口蓝牙)，Wpa_supplicant</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=o>[</span>root@buildroot<span class=o>]</span>:~# wpa_passphrase <span class=s2>&#34;你的 WiFi SSID&#34;</span> &gt; wifi.conf
+<span class=o>[</span>root@buildroot<span class=o>]</span>:~# wpa_supplicant -B -c wifi.conf -i wlan0
+<span class=o>[</span>root@buildroot<span class=o>]</span>:~# udhcpc -i wlan0 -b <span class=c1># 必须广播DHCP形式，否则死机</span>
+<span class=o>[</span>root@buildroot<span class=o>]</span>:~# <span class=nb>echo</span> <span class=s2>&#34;nameserver 114.114.114.114&#34;</span> &gt; /etc/resolv.conf
+<span class=o>[</span>root@buildroot<span class=o>]</span>:~# <span class=nb>echo</span> <span class=s2>&#34;nameserver 8.8.8.8&#34;</span> &gt;&gt; /etc/resolv.conf
+~# ping 360.com
+
+<span class=c1># Or</span>
+<span class=c1># Prepare WPA Structure at conf</span>
+wpa_supplicant -Dnl80211 -iwlan0 -c/etc/wpa_supplicant.conf
+<span class=c1># WPA_CLI(optional)</span>
+wpa_cli -i wlan0 
+scan
+scan_result
+list_network
+<span class=nb>enable</span> network <span class=m>0</span>
+</code></pre></div><h2 id=9-在win32下交叉编译qt-663失败>9. 在Win32下交叉编译QT-6.6.3失败</h2>
+<h3 id=起因-6>起因：</h3>
+<p>缺乏合适可用的工具链，Linaro-7.5.0过旧（不具有charconv），ARM-9.2 10.2 11.2这些连bits/types/__FILE目录都无法定位，头文件包含存在严重问题。</p>
+<h3 id=暂时解法>暂时解法：</h3>
+<p>降级QT-5.14.2配合GCC-7.5.0进行win32下依赖库预编译，出自制工具链外暂无其他良解。</p>
+<h2 id=10-git-windows突然不再读取密钥>10. git-windows突然不再读取密钥</h2>
+<h3 id=起因-7>起因：</h3>
+<p>安装Cadence-Allegro会破坏用户的HOME环境变量，指向"C:\Users\Username\SPB_Data"</p>
+<h3 id=解法>解法：</h3>
+<p>删除多余的SPB_Data这一级目录，仍然不行就在.ssh的config文件中追加：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>Host github.com
+Hostname ssh.github.com
+Port <span class=m>443</span>
+IdentityFile <span class=o>{</span>path of your rsa-key<span class=o>}</span>
+</code></pre></div><h2 id=10-uboot不启动boot分区>10. uboot不启动boot分区</h2>
+<h3 id=起因-8>起因：</h3>
+<p>在pxeboot无盘启动时，会修改pxelinux.cfg为目录名，mac地址为设备配置文件名。转换成烧录镜像时候必须修改配置文件布置。</p>
+<h3 id=解法-1>解法：</h3>
+<p>在uboot本地启动时，会执行boot.scr.uimg里的脚本，官方采用这个脚本指定{boardname}_extlinux.conf，对于fsmp1a来说boardname=&lsquo;stm32mp157a-fsmp1a&rsquo;。但我们暂时不需要自定义，采用默认mmc0/1_extlinux路径extlinux.conf引导配置即可。</p>
+<h2 id=11-gpio_cdev-gpiod-2x不适配54内核>11. [GPIO_CDEV] gpiod-2.x不适配5.4内核</h2>
+<h3 id=起因-9>起因：</h3>
+<p>V2-API的支持要在5.10内核左右</p>
+<h3 id=解法-2>解法：</h3>
+<p>使用1.6.2版本参与编译，或者升级移植内核。</p>
+<h2 id=12-gpio_cdev-编译autogensh报错undefined_macro>12. [GPIO_CDEV] 编译autogen.sh报错undefined_macro</h2>
+<h3 id=现象>现象：</h3>
+<p>configure.ac:183: error: possibly undefined macro: AC_LANG_PUSH <br>
+configure.ac:185: error: possibly undefined macro: AC_LANG_POP</p>
+<h3 id=解法-3>解法：</h3>
+<p>sudo apt install automake libtool m4 autoconf pkg-config</p>
+<h2 id=13-unix-serial-发送和接收的串口数据为全0>13. [Unix-Serial] 发送和接收的串口数据为全0</h2>
+<h3 id=现象-1>现象：</h3>
+<p>波特率不对导致的问题，如果不cfsetispeed()修改，则采用默认9600。</p>
+<h3 id=附录>附录：</h3>
+<p>注意排除QT存在多个构建目录的情况，禁用shallow build，分离应用/界面逻辑调试。<br>
+open serial -> fcntl(O_RDWR) -> termios -> tcgetattr/tcsetattr</p>
+<h2 id=14-input-evdev-ioctl-finoread无法获得未读数据量>14. [Input-EVDEV] ioctl FINOREAD无法获得未读数据量</h2>
+<h3 id=解法-4>解法：</h3>
+<p>这种方式专属于流式设备，如socket网络和tty串口控制台。Input设备及其核心core层可能未实现该ioctl。</p>
+<h2 id=15-qt-q_property对变量的两种联系>15. [QT] Q_PROPERTY对变量的两种联系</h2>
+<h3 id=解法-5>解法：</h3>
+<ol>
+<li>READ/WRITE指定访问方法</li>
+<li>MEMBER声明直接关联变量 (自动发送信号) <br>
+其中1定位尴尬，不指定WRITE时无法访问变量，指定时系统无法重写该方法，只能手动发射。<br>
+2因为直接由系统生成Get/Set，所以可以搭配NOTIFY实现改变时的信号发射 <br>
+且必须使用SetProperty/Property来代行访问，才能产生信号。</li>
+</ol>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=err>网上查阅发现这么一个说法：这里仅是告诉元对象系统</span> <span class=n>mask</span> <span class=err>属性改变时会发出</span> <span class=n>maskChanged</span> <span class=err>信号，但是它不是实现，具体的实现需要我们自己来完成，我们还是需要在类内相关方法下添加</span> <span class=n>emit</span> <span class=err>进行信号发送，</span><span class=n>Qt这个设计很迷</span><span class=err>。</span>
+<span class=err>如：</span>
+<span class=kt>void</span> <span class=n>MyPropertyClass</span><span class=o>::</span><span class=n>setMask</span><span class=p>(</span><span class=n>QString</span> <span class=n>strMaskNum</span><span class=p>)</span>
+<span class=p>{</span>
+    <span class=n>m_mask</span> <span class=o>=</span> <span class=n>strMaskNum</span><span class=p>;</span>
+    <span class=n>emit</span> <span class=nf>maskChangedXH</span><span class=p>(</span><span class=n>m_mask</span><span class=p>);</span>
+<span class=p>}</span>
+<span class=err>也就是说，以下两段代码起到的效果是完全一样的，不管你加不加，这个信号都需要你自己</span> <span class=n>emit</span> <span class=err>：</span>
+<span class=n>Q_PROPERTY</span><span class=p>(</span><span class=n>QString</span> <span class=n>mask</span> <span class=n>READ</span> <span class=n>getmask</span> <span class=n>WRITE</span> <span class=n>setMask</span> <span class=n>NOTIFY</span> <span class=n>maskChanged</span><span class=p>)</span>        <span class=c1>//有 NOTIFY maskChanged
+</span><span class=c1></span><span class=n>Q_PROPERTY</span><span class=p>(</span><span class=n>QString</span> <span class=n>mask</span> <span class=n>READ</span> <span class=n>getmask</span> <span class=n>WRITE</span> <span class=n>setMask</span><span class=p>)</span>    　　　　　　　　　　　　　　<span class=c1>//没有 NOTIFY maskChanged
+</span><span class=c1></span>
+<span class=err>例外：</span>
+<span class=err>但以下方法这个信号是会自动发出的，不用你添加相关的</span> <span class=n>emit</span> <span class=err>信号也会发出：</span>
+<span class=n>Q_PROPERTY</span><span class=p>(</span><span class=n>QString</span> <span class=n>mask</span> <span class=n>MEMBER</span> <span class=n>m_mask</span> <span class=n>NOTIFY</span> <span class=n>maskChanged</span><span class=p>)</span>
+<span class=err>使用</span> <span class=n>MEMBER</span> <span class=err>注册后，当</span> <span class=n>mask</span> <span class=err>发生改变，将会发出</span> <span class=n>maskChanged</span> <span class=err>信号</span>
+<span class=n>MEMBER含义为</span><span class=err>：如果一个属性不需要</span> <span class=n>READ</span> <span class=err>，但又想使用属性系统，可以使用</span><span class=n>MEMBER来注册</span><span class=err>，</span><span class=n>MEMBER后面是成员变量的名字</span><span class=err>；</span>
+</code></pre></div><h2 id=16-qt-基于metacall>16. [QT] 基于metaCall</h2>
+<h3 id=解法-6>解法：</h3>
+<p>signal声明实际上对应moc代码：</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=c1>// SIGNAL 0
+</span><span class=c1></span><span class=kt>void</span> <span class=n>MXObject</span><span class=o>::</span><span class=n>ageChanged</span><span class=p>(</span><span class=kt>int</span> <span class=n>_t1</span><span class=p>)</span>
+<span class=p>{</span>
+    <span class=kt>void</span> <span class=o>*</span><span class=n>_a</span><span class=p>[]</span> <span class=o>=</span> <span class=p>{</span> <span class=n>nullptr</span><span class=p>,</span> <span class=n>const_cast</span><span class=o>&lt;</span><span class=kt>void</span><span class=o>*&gt;</span><span class=p>(</span><span class=n>reinterpret_cast</span><span class=o>&lt;</span><span class=k>const</span> <span class=kt>void</span><span class=o>*&gt;</span><span class=p>(</span><span class=n>std</span><span class=o>::</span><span class=n>addressof</span><span class=p>(</span><span class=n>_t1</span><span class=p>)))</span> <span class=p>};</span>
+    <span class=n>QMetaObject</span><span class=o>::</span><span class=n>activate</span><span class=p>(</span><span class=n>this</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>staticMetaObject</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>_a</span><span class=p>);</span>
+<span class=p>}</span>
+<span class=n>HashMap</span><span class=p>(</span><span class=n>SLOT</span><span class=p>,</span><span class=n>SIGNAL</span><span class=p>)</span> <span class=n>connectionList</span> <span class=err>连接关系表</span>
+<span class=err>所谓</span><span class=n>SLOT和signal的匹配</span><span class=err>，其实由元数据查找</span><span class=n>sender的signal</span> <span class=n>id</span><span class=err>，将可能附带的形参一起带给</span><span class=n>receiver的SLOT函数执行</span><span class=err>，也即是</span><span class=n>metacall</span><span class=p>(</span><span class=n>SLOT</span><span class=p>())</span><span class=err>。</span>
+</code></pre></div><h2 id=17-flash-ubi-fs文件系统流程>17. [Flash] UBI-FS文件系统流程</h2>
+<h3 id=原理>原理：</h3>
+<p> ubi是一种flash文件系统，基于mtd（Memory Technology Device)，mtd负责实际管理nor/nand flash芯片时序，向fs文件上层抽象出mtd0 mtdblock0，字符设备和块设备，其中块设备不含ioctl。</p>
+<h3 id=解法-7>解法：</h3>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=c1># 首先，在cmdline追加mtd分区情况</span>
+<span class=c1># 其次，格式化mtd3分区</span>
+ubiformat -y -d <span class=m>3</span>
+<span class=c1># 然后，映射mtd3到ubi3文件设备</span>
+ubiattach /dev/ubi_ctrl -m <span class=m>3</span> -d <span class=m>3</span>
+<span class=c1># 在ubi3上新建卷(Volume 0，ubi3_0)</span>
+ubimkvol -m <span class=m>3</span> -n <span class=m>0</span>
+<span class=c1># (可选）ubirmvol可以删除卷</span>
+<span class=c1># 挂载ubi3_0</span>
+mount -t ubifs /dev/ubi3_0 /mnt/nor
+</code></pre></div><h2 id=19-rfid-rc522寻卡失败>19. [RFID] RC522寻卡失败</h2>
+<h3 id=解法-8>解法：</h3>
+<p> 检查复位引脚是否连接，以及user/kernel space拷贝的长度是否合法。</p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2024-10-17</span>
+</div></div>
+<div class=post-info-line>
+<div class=post-info-md></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=http://example.org/posts/1107/ data-title="[Linux] 灵异集合"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=http://example.org/posts/1107/ data-title="[Linux] 灵异集合"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=http://example.org/posts/1107/ data-title="[Linux] 灵异集合"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/posts/1017/ class=prev rel=prev title="DMA 双缓存模式释疑"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>DMA 双缓存模式释疑</a>
+<a href=/posts/1126/ class=next rel=next title="[Cadence] 学习笔记录入">[Cadence] 学习笔记录入<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
+</div>
+</article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>TUXEDO</a></span></div>
+</div>
+</footer>
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js></script>
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js></script>
+<script type=text/javascript>L2Dwidget.init({model:{scale:1,hHeadPos:.5,vHeadPos:.618,jsonPath:'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko/assets/wanko.model.json'},display:{superSample:1,width:400,height:600,position:'right',hOffset:0,vOffset:0},mobile:{show:!0,scale:1,motion:!0},react:{opacityDefault:1,opacityOnHover:1}})</script></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw" aria-hidden=true></i>
+</a>
+</div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:32},comment:{}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
