@@ -1,260 +1,313 @@
-<!doctype html><html lang=zh-cn>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=robots content="noodp">
-<title>Adobe AIR SQL Database Extract - 程序小站</title><meta name=Description content="逸一时，误一世。"><meta property="og:title" content="Adobe AIR SQL Database Extract">
-<meta property="og:description" content="Adobe AIR SQL解密数据库程序，基于Flash CS6。 import flash.filesystem.*; import flash.data.*; // for sel Input database var db:File = File.documentsDirectory; function FileSelected_Callback(event:Event):void { Label_1.text=db.nativePath; } var clickSelIn:Function=function(){ function selectDataFile(root:File):void { var dbFilter:FileFilter = new FileFilter(&#34;SQL Database&#34;, &#34;*.db;*.dat&#34;); root.browseForOpen(&#34;SQL Database Choose&#34;, [dbFilter]); root.addEventListener(Event.SELECT, FileSelected_Callback); } selectDataFile(db); } But_SelIn.addEventListener(&#34;click&#34;,clickSelIn); // for sel OutPut Path var">
-<meta property="og:type" content="article">
-<meta property="og:url" content="http://example.org/posts/first_post/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2024-04-25T13:45:31+08:00">
-<meta property="article:modified_time" content="2024-04-25T13:45:31+08:00"><meta property="og:site_name" content="剪纸堆">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Adobe AIR SQL Database Extract">
-<meta name=twitter:description content="Adobe AIR SQL解密数据库程序，基于Flash CS6。 import flash.filesystem.*; import flash.data.*; // for sel Input database var db:File = File.documentsDirectory; function FileSelected_Callback(event:Event):void { Label_1.text=db.nativePath; } var clickSelIn:Function=function(){ function selectDataFile(root:File):void { var dbFilter:FileFilter = new FileFilter(&#34;SQL Database&#34;, &#34;*.db;*.dat&#34;); root.browseForOpen(&#34;SQL Database Choose&#34;, [dbFilter]); root.addEventListener(Event.SELECT, FileSelected_Callback); } selectDataFile(db); } But_SelIn.addEventListener(&#34;click&#34;,clickSelIn); // for sel OutPut Path var">
-<meta name=application-name content="My cool site">
-<meta name=apple-mobile-web-app-title content="My cool site"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=http://example.org/posts/first_post/><link rel=next href=http://example.org/posts/0529/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
-<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Adobe AIR SQL Database Extract","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/example.org\/posts\/first_post\/"},"genre":"posts","wordcount":441,"url":"http:\/\/example.org\/posts\/first_post\/","datePublished":"2024-04-25T13:45:31+08:00","dateModified":"2024-04-25T13:45:31+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"TUXEDO"},"description":""}</script></head>
-<body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
-<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
-<div class=header-wrapper>
-<div class=header-title>
-<a href=/ title=程序小站>剪纸堆</a>
-</div>
-<div class=menu>
-<div class=menu-inner><a class=menu-item href=/posts/> 文章 </a><a class=menu-item href=/tags/> 标签 </a><a class=menu-item href=/categories/> 分类 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
-</a></div>
-</div>
-</div>
-</header><header class=mobile id=header-mobile>
-<div class=header-container>
-<div class=header-wrapper>
-<div class=header-title>
-<a href=/ title=程序小站>剪纸堆</a>
-</div>
-<div class=menu-toggle id=menu-toggle-mobile>
-<span></span><span></span><span></span>
-</div>
-</div>
-<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>标签</a><a class=menu-item href=/categories/ title>分类</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
-</a></div>
-</div>
-</header><main class=main>
-<div class=container><div class=toc id=toc-auto>
-<h2 class=toc-title>Contents</h2>
-<div class=toc-content id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Adobe AIR SQL Database Extract</h1><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>TUXEDO</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-04-25>2024-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;441 words&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;One minute&nbsp;</div>
-</div><div class="details toc" id=toc-static data-kept>
-<div class="details-summary toc-title">
-<span>Contents</span>
-<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span>
-</div>
-<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents></nav></div>
-</div><div class=content id=content><p>Adobe AIR SQL解密数据库程序，基于Flash CS6。</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import</span> <span class=nn>flash.filesystem.*</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>flash.data.*</span><span class=o>;</span>
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Adobe AIR SQL Database Extract - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:title" content="Adobe AIR SQL Database Extract" />
+<meta property="og:description" content="Adobe AIR SQL解密数据库程序，基于Flash CS6。 import flash.filesystem.*; import flash.data.*; // for sel Input database var db:File = File.documentsDirectory; function FileSelected_Callback(event:Event):void { Label_1.text=db.nativePath; } var clickSelIn:Function=function(){ function selectDataFile(root:File):void { var dbFilter:FileFilter = new FileFilter(&#34;SQL Database&#34;, &#34;*.db;*.dat&#34;); root.browseForOpen(&#34;SQL Database Choose&#34;, [dbFilter]); root.addEventListener(Event.SELECT, FileSelected_Callback); } selectDataFile(db); } But_SelIn.addEventListener(&#34;click&#34;,clickSelIn); // for sel OutPut Path var" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/first_post/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-04-25T13:45:31+08:00" />
+<meta property="article:modified_time" content="2024-04-25T13:45:31+08:00" /><meta property="og:site_name" content="剪纸堆" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Adobe AIR SQL Database Extract"/>
+<meta name="twitter:description" content="Adobe AIR SQL解密数据库程序，基于Flash CS6。 import flash.filesystem.*; import flash.data.*; // for sel Input database var db:File = File.documentsDirectory; function FileSelected_Callback(event:Event):void { Label_1.text=db.nativePath; } var clickSelIn:Function=function(){ function selectDataFile(root:File):void { var dbFilter:FileFilter = new FileFilter(&#34;SQL Database&#34;, &#34;*.db;*.dat&#34;); root.browseForOpen(&#34;SQL Database Choose&#34;, [dbFilter]); root.addEventListener(Event.SELECT, FileSelected_Callback); } selectDataFile(db); } But_SelIn.addEventListener(&#34;click&#34;,clickSelIn); // for sel OutPut Path var"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/first_post/" /><link rel="next" href="http://example.org/posts/0529/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Adobe AIR SQL Database Extract",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/first_post\/"
+        },"genre": "posts","wordcount":  441 ,
+        "url": "http:\/\/example.org\/posts\/first_post\/","datePublished": "2024-04-25T13:45:31+08:00","dateModified": "2024-04-25T13:45:31+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "TUXEDO"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="程序小站">剪纸堆</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="程序小站">剪纸堆</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Adobe AIR SQL Database Extract</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-25">2024-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;441 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p>Adobe AIR SQL解密数据库程序，基于Flash CS6。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">flash.filesystem.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">flash.data.*</span><span class="o">;</span>
 
 
-<span class=c1>// for sel Input database
-</span><span class=c1></span><span class=n>var</span> <span class=n>db</span><span class=o>:</span><span class=n>File</span> <span class=o>=</span> <span class=n>File</span><span class=o>.</span><span class=na>documentsDirectory</span><span class=o>;</span>
-<span class=n>function</span> <span class=nf>FileSelected_Callback</span><span class=o>(</span><span class=n>event</span><span class=o>:</span><span class=n>Event</span><span class=o>):</span><span class=kt>void</span>
-<span class=o>{</span>
-	<span class=n>Label_1</span><span class=o>.</span><span class=na>text</span><span class=o>=</span><span class=n>db</span><span class=o>.</span><span class=na>nativePath</span><span class=o>;</span>
-<span class=o>}</span>
+<span class="c1">// for sel Input database
+</span><span class="c1"></span><span class="n">var</span> <span class="n">db</span><span class="o">:</span><span class="n">File</span> <span class="o">=</span> <span class="n">File</span><span class="o">.</span><span class="na">documentsDirectory</span><span class="o">;</span>
+<span class="n">function</span> <span class="nf">FileSelected_Callback</span><span class="o">(</span><span class="n">event</span><span class="o">:</span><span class="n">Event</span><span class="o">):</span><span class="kt">void</span>
+<span class="o">{</span>
+	<span class="n">Label_1</span><span class="o">.</span><span class="na">text</span><span class="o">=</span><span class="n">db</span><span class="o">.</span><span class="na">nativePath</span><span class="o">;</span>
+<span class="o">}</span>
 
-<span class=n>var</span> <span class=n>clickSelIn</span><span class=o>:</span><span class=n>Function</span><span class=o>=</span><span class=n>function</span><span class=o>(){</span>
-	<span class=n>function</span> <span class=nf>selectDataFile</span><span class=o>(</span><span class=n>root</span><span class=o>:</span><span class=n>File</span><span class=o>):</span><span class=kt>void</span>
-	<span class=o>{</span>
- 		<span class=n>var</span> <span class=n>dbFilter</span><span class=o>:</span><span class=n>FileFilter</span> <span class=o>=</span> <span class=k>new</span> <span class=n>FileFilter</span><span class=o>(</span><span class=s>&#34;SQL Database&#34;</span><span class=o>,</span> <span class=s>&#34;*.db;*.dat&#34;</span><span class=o>);</span>
- 		<span class=n>root</span><span class=o>.</span><span class=na>browseForOpen</span><span class=o>(</span><span class=s>&#34;SQL Database Choose&#34;</span><span class=o>,</span> <span class=o>[</span><span class=n>dbFilter</span><span class=o>]);</span>
-    	<span class=n>root</span><span class=o>.</span><span class=na>addEventListener</span><span class=o>(</span><span class=n>Event</span><span class=o>.</span><span class=na>SELECT</span><span class=o>,</span> <span class=n>FileSelected_Callback</span><span class=o>);</span>
-	<span class=o>}</span>
-	<span class=n>selectDataFile</span><span class=o>(</span><span class=n>db</span><span class=o>);</span>
-<span class=o>}</span>
-<span class=n>But_SelIn</span><span class=o>.</span><span class=na>addEventListener</span><span class=o>(</span><span class=s>&#34;click&#34;</span><span class=o>,</span><span class=n>clickSelIn</span><span class=o>);</span>
-
-
-
-<span class=c1>// for sel OutPut Path
-</span><span class=c1></span><span class=n>var</span> <span class=n>out_path</span><span class=o>:</span><span class=n>File</span> <span class=o>=</span> <span class=n>File</span><span class=o>.</span><span class=na>documentsDirectory</span><span class=o>;</span>
-<span class=n>function</span> <span class=nf>PathSelected_Callback</span><span class=o>(</span><span class=n>event</span><span class=o>:</span><span class=n>Event</span><span class=o>):</span><span class=kt>void</span>
-<span class=o>{</span>
-	<span class=n>Label_2</span><span class=o>.</span><span class=na>text</span><span class=o>=</span><span class=n>out_path</span><span class=o>.</span><span class=na>nativePath</span><span class=o>;</span>
-<span class=o>}</span>
-
-<span class=n>var</span> <span class=n>clickSelOut</span><span class=o>:</span><span class=n>Function</span><span class=o>=</span><span class=n>function</span><span class=o>(){</span>
- 	<span class=n>out_path</span><span class=o>.</span><span class=na>browseForDirectory</span><span class=o>(</span><span class=s>&#34;Output Directory&#34;</span><span class=o>);</span>
-    <span class=n>out_path</span><span class=o>.</span><span class=na>addEventListener</span><span class=o>(</span><span class=n>Event</span><span class=o>.</span><span class=na>SELECT</span><span class=o>,</span> <span class=n>PathSelected_Callback</span><span class=o>);</span>
-<span class=o>}</span>
-<span class=n>But_SelOut</span><span class=o>.</span><span class=na>addEventListener</span><span class=o>(</span><span class=s>&#34;click&#34;</span><span class=o>,</span><span class=n>clickSelOut</span><span class=o>);</span>
-
-
-
-<span class=n>var</span> <span class=n>tableName</span><span class=o>:</span><span class=n>String</span><span class=o>;</span>
-<span class=kd>const</span> <span class=n>dbKey</span><span class=o>:</span><span class=n>ByteArray</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ByteArray</span><span class=o>();</span>
-<span class=n>tableName</span> <span class=o>=</span> <span class=s>&#34;scenariotbl&#34;</span><span class=o>;</span> <span class=c1>// DB name, TBD
-</span><span class=c1></span><span class=n>dbKey</span><span class=o>.</span><span class=na>writeUTFBytes</span><span class=o>(</span><span class=s>&#34;Egroj38D9fUNkkgB&#34;</span><span class=o>);</span> <span class=c1>// DB Key
-</span><span class=c1></span><span class=n>function</span> <span class=nf>Connect_Database</span><span class=o>(</span><span class=n>conn</span><span class=o>:</span><span class=n>SQLConnection</span><span class=o>):</span><span class=kt>void</span>
-<span class=o>{</span>
-	<span class=k>try</span> <span class=o>{</span> 
-          <span class=n>conn</span><span class=o>.</span><span class=na>open</span><span class=o>(</span><span class=n>db</span><span class=o>,</span> <span class=n>SQLMode</span><span class=o>.</span><span class=na>UPDATE</span><span class=o>,</span> <span class=kc>false</span><span class=o>,</span> <span class=n>1024</span><span class=o>,</span> <span class=n>dbKey</span><span class=o>);</span> 
-          <span class=n>trace</span><span class=o>(</span><span class=s>&#34;the database was created successfully&#34;</span><span class=o>);</span> 
-    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>error</span><span class=o>:</span><span class=n>SQLError</span><span class=o>)</span> <span class=o>{</span> 
-      	<span class=k>if</span> <span class=o>(</span><span class=n>error</span><span class=o>.</span><span class=na>errorID</span> <span class=o>==</span> <span class=n>3138</span><span class=o>)</span> <span class=o>{</span> 
-      	  <span class=n>trace</span><span class=o>(</span><span class=s>&#34;Incorrect encryption key&#34;</span><span class=o>);</span> 
-     	 <span class=o>}</span> <span class=k>else</span><span class=o>{</span> 
-     	    <span class=n>trace</span><span class=o>(</span><span class=s>&#34;Error message:&#34;</span><span class=o>,</span> <span class=n>error</span><span class=o>.</span><span class=na>message</span><span class=o>);</span> 
-     	    <span class=n>trace</span><span class=o>(</span><span class=s>&#34;Details:&#34;</span><span class=o>,</span> <span class=n>error</span><span class=o>.</span><span class=na>details</span><span class=o>);</span> 
-    	 <span class=o>}</span> 
-    <span class=o>}</span>
-<span class=o>}</span>
-
-<span class=n>function</span> <span class=nf>SQL_Execute</span><span class=o>(</span><span class=n>conn</span><span class=o>:</span><span class=n>SQLConnection</span><span class=o>,</span> <span class=n>sqlStr</span><span class=o>:</span><span class=n>String</span><span class=o>):</span><span class=n>SQLResult</span>
-<span class=o>{</span>
-    <span class=n>var</span> <span class=n>sqlRes</span><span class=o>:</span><span class=n>SQLResult</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
-    <span class=n>var</span> <span class=n>sqlStatement</span><span class=o>:</span><span class=n>SQLStatement</span> <span class=o>=</span> <span class=k>new</span> <span class=n>SQLStatement</span><span class=o>();</span>
-    <span class=n>sqlStatement</span><span class=o>.</span><span class=na>sqlConnection</span> <span class=o>=</span> <span class=n>conn</span><span class=o>;</span>
-    <span class=k>try</span><span class=o>{</span>
-       <span class=n>sqlStatement</span><span class=o>.</span><span class=na>text</span> <span class=o>=</span> <span class=n>sqlStr</span><span class=o>;</span>
-       <span class=n>sqlStatement</span><span class=o>.</span><span class=na>execute</span><span class=o>();</span>
-       <span class=n>sqlRes</span> <span class=o>=</span> <span class=n>sqlStatement</span><span class=o>.</span><span class=na>getResult</span><span class=o>();</span>
-	   <span class=k>return</span> <span class=n>sqlRes</span><span class=o>;</span>
-    <span class=o>}</span><span class=k>catch</span><span class=o>(</span><span class=n>e</span><span class=o>:*){</span>
-       <span class=n>trace</span><span class=o>(</span><span class=s>&#34;SQL Command execute error&#34;</span><span class=o>);</span>
-    <span class=o>}</span>
-	<span class=k>return</span> <span class=kc>null</span><span class=o>;</span>
-<span class=o>}</span>
+<span class="n">var</span> <span class="n">clickSelIn</span><span class="o">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="o">(){</span>
+	<span class="n">function</span> <span class="nf">selectDataFile</span><span class="o">(</span><span class="n">root</span><span class="o">:</span><span class="n">File</span><span class="o">):</span><span class="kt">void</span>
+	<span class="o">{</span>
+ 		<span class="n">var</span> <span class="n">dbFilter</span><span class="o">:</span><span class="n">FileFilter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileFilter</span><span class="o">(</span><span class="s">&#34;SQL Database&#34;</span><span class="o">,</span> <span class="s">&#34;*.db;*.dat&#34;</span><span class="o">);</span>
+ 		<span class="n">root</span><span class="o">.</span><span class="na">browseForOpen</span><span class="o">(</span><span class="s">&#34;SQL Database Choose&#34;</span><span class="o">,</span> <span class="o">[</span><span class="n">dbFilter</span><span class="o">]);</span>
+    	<span class="n">root</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">Event</span><span class="o">.</span><span class="na">SELECT</span><span class="o">,</span> <span class="n">FileSelected_Callback</span><span class="o">);</span>
+	<span class="o">}</span>
+	<span class="n">selectDataFile</span><span class="o">(</span><span class="n">db</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">But_SelIn</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="s">&#34;click&#34;</span><span class="o">,</span><span class="n">clickSelIn</span><span class="o">);</span>
 
 
 
-<span class=c1>// for extractor
-</span><span class=c1></span><span class=n>var</span> <span class=n>clickExtract</span><span class=o>:</span><span class=n>Function</span><span class=o>=</span><span class=n>function</span><span class=o>(){</span>
-	<span class=n>Fin_01</span><span class=o>.</span><span class=na>text</span><span class=o>=</span><span class=s>&#34;&#34;</span><span class=o>;</span>
-	<span class=k>if</span><span class=o>(</span><span class=n>Label_1</span><span class=o>.</span><span class=na>text</span><span class=o>!=</span><span class=s>&#34;&#34;</span> <span class=o>&amp;&amp;</span> <span class=n>Label_2</span><span class=o>.</span><span class=na>text</span><span class=o>!=</span><span class=s>&#34;&#34;</span><span class=o>){</span>
-		 <span class=n>trace</span><span class=o>(</span><span class=s>&#34;Start the extractor process&#34;</span><span class=o>);</span>
-		 <span class=n>var</span> <span class=n>conn</span><span class=o>:</span><span class=n>SQLConnection</span> <span class=o>=</span> <span class=k>new</span> <span class=n>SQLConnection</span><span class=o>();</span>
-		 <span class=n>Connect_Database</span><span class=o>(</span><span class=n>conn</span><span class=o>);</span>
-		 <span class=n>var</span> <span class=n>sqlRes</span><span class=o>:</span><span class=n>SQLResult</span> <span class=o>=</span> <span class=n>SQL_Execute</span><span class=o>(</span><span class=n>conn</span><span class=o>,</span><span class=s>&#34;SELECT * from &#34;</span><span class=o>+</span><span class=n>tableName</span><span class=o>);</span>
+<span class="c1">// for sel OutPut Path
+</span><span class="c1"></span><span class="n">var</span> <span class="n">out_path</span><span class="o">:</span><span class="n">File</span> <span class="o">=</span> <span class="n">File</span><span class="o">.</span><span class="na">documentsDirectory</span><span class="o">;</span>
+<span class="n">function</span> <span class="nf">PathSelected_Callback</span><span class="o">(</span><span class="n">event</span><span class="o">:</span><span class="n">Event</span><span class="o">):</span><span class="kt">void</span>
+<span class="o">{</span>
+	<span class="n">Label_2</span><span class="o">.</span><span class="na">text</span><span class="o">=</span><span class="n">out_path</span><span class="o">.</span><span class="na">nativePath</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="n">var</span> <span class="n">clickSelOut</span><span class="o">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="o">(){</span>
+ 	<span class="n">out_path</span><span class="o">.</span><span class="na">browseForDirectory</span><span class="o">(</span><span class="s">&#34;Output Directory&#34;</span><span class="o">);</span>
+    <span class="n">out_path</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">Event</span><span class="o">.</span><span class="na">SELECT</span><span class="o">,</span> <span class="n">PathSelected_Callback</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">But_SelOut</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="s">&#34;click&#34;</span><span class="o">,</span><span class="n">clickSelOut</span><span class="o">);</span>
+
+
+
+<span class="n">var</span> <span class="n">tableName</span><span class="o">:</span><span class="n">String</span><span class="o">;</span>
+<span class="kd">const</span> <span class="n">dbKey</span><span class="o">:</span><span class="n">ByteArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArray</span><span class="o">();</span>
+<span class="n">tableName</span> <span class="o">=</span> <span class="s">&#34;scenariotbl&#34;</span><span class="o">;</span> <span class="c1">// DB name, TBD
+</span><span class="c1"></span><span class="n">dbKey</span><span class="o">.</span><span class="na">writeUTFBytes</span><span class="o">(</span><span class="s">&#34;Egroj38D9fUNkkgB&#34;</span><span class="o">);</span> <span class="c1">// DB Key
+</span><span class="c1"></span><span class="n">function</span> <span class="nf">Connect_Database</span><span class="o">(</span><span class="n">conn</span><span class="o">:</span><span class="n">SQLConnection</span><span class="o">):</span><span class="kt">void</span>
+<span class="o">{</span>
+	<span class="k">try</span> <span class="o">{</span> 
+          <span class="n">conn</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">db</span><span class="o">,</span> <span class="n">SQLMode</span><span class="o">.</span><span class="na">UPDATE</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="n">1024</span><span class="o">,</span> <span class="n">dbKey</span><span class="o">);</span> 
+          <span class="n">trace</span><span class="o">(</span><span class="s">&#34;the database was created successfully&#34;</span><span class="o">);</span> 
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">error</span><span class="o">:</span><span class="n">SQLError</span><span class="o">)</span> <span class="o">{</span> 
+      	<span class="k">if</span> <span class="o">(</span><span class="n">error</span><span class="o">.</span><span class="na">errorID</span> <span class="o">==</span> <span class="n">3138</span><span class="o">)</span> <span class="o">{</span> 
+      	  <span class="n">trace</span><span class="o">(</span><span class="s">&#34;Incorrect encryption key&#34;</span><span class="o">);</span> 
+     	 <span class="o">}</span> <span class="k">else</span><span class="o">{</span> 
+     	    <span class="n">trace</span><span class="o">(</span><span class="s">&#34;Error message:&#34;</span><span class="o">,</span> <span class="n">error</span><span class="o">.</span><span class="na">message</span><span class="o">);</span> 
+     	    <span class="n">trace</span><span class="o">(</span><span class="s">&#34;Details:&#34;</span><span class="o">,</span> <span class="n">error</span><span class="o">.</span><span class="na">details</span><span class="o">);</span> 
+    	 <span class="o">}</span> 
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">function</span> <span class="nf">SQL_Execute</span><span class="o">(</span><span class="n">conn</span><span class="o">:</span><span class="n">SQLConnection</span><span class="o">,</span> <span class="n">sqlStr</span><span class="o">:</span><span class="n">String</span><span class="o">):</span><span class="n">SQLResult</span>
+<span class="o">{</span>
+    <span class="n">var</span> <span class="n">sqlRes</span><span class="o">:</span><span class="n">SQLResult</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="n">var</span> <span class="n">sqlStatement</span><span class="o">:</span><span class="n">SQLStatement</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLStatement</span><span class="o">();</span>
+    <span class="n">sqlStatement</span><span class="o">.</span><span class="na">sqlConnection</span> <span class="o">=</span> <span class="n">conn</span><span class="o">;</span>
+    <span class="k">try</span><span class="o">{</span>
+       <span class="n">sqlStatement</span><span class="o">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">sqlStr</span><span class="o">;</span>
+       <span class="n">sqlStatement</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+       <span class="n">sqlRes</span> <span class="o">=</span> <span class="n">sqlStatement</span><span class="o">.</span><span class="na">getResult</span><span class="o">();</span>
+	   <span class="k">return</span> <span class="n">sqlRes</span><span class="o">;</span>
+    <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">e</span><span class="o">:*){</span>
+       <span class="n">trace</span><span class="o">(</span><span class="s">&#34;SQL Command execute error&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+	<span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">}</span>
+
+
+
+<span class="c1">// for extractor
+</span><span class="c1"></span><span class="n">var</span> <span class="n">clickExtract</span><span class="o">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="o">(){</span>
+	<span class="n">Fin_01</span><span class="o">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="o">;</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">Label_1</span><span class="o">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span> <span class="o">&amp;&amp;</span> <span class="n">Label_2</span><span class="o">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span><span class="o">){</span>
+		 <span class="n">trace</span><span class="o">(</span><span class="s">&#34;Start the extractor process&#34;</span><span class="o">);</span>
+		 <span class="n">var</span> <span class="n">conn</span><span class="o">:</span><span class="n">SQLConnection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLConnection</span><span class="o">();</span>
+		 <span class="n">Connect_Database</span><span class="o">(</span><span class="n">conn</span><span class="o">);</span>
+		 <span class="n">var</span> <span class="n">sqlRes</span><span class="o">:</span><span class="n">SQLResult</span> <span class="o">=</span> <span class="n">SQL_Execute</span><span class="o">(</span><span class="n">conn</span><span class="o">,</span><span class="s">&#34;SELECT * from &#34;</span><span class="o">+</span><span class="n">tableName</span><span class="o">);</span>
 		 
-         <span class=n>var</span> <span class=n>texts</span><span class=o>:</span><span class=n>Vector</span><span class=o>.&lt;*&gt;</span> <span class=o>=</span> <span class=n>Vector</span><span class=o>.&lt;*&gt;(</span><span class=n>sqlRes</span><span class=o>.</span><span class=na>data</span><span class=o>);</span>
-         <span class=k>for</span> <span class=o>(</span><span class=n>var</span> <span class=n>i</span><span class=o>:</span><span class=kt>int</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>texts</span><span class=o>.</span><span class=na>length</span><span class=o>;</span> <span class=n>i</span><span class=o>++)</span> <span class=o>{</span> 
-            <span class=n>var</span> <span class=n>file</span><span class=o>:</span><span class=n>File</span> <span class=o>=</span> <span class=n>out_path</span><span class=o>.</span><span class=na>resolvePath</span><span class=o>(</span><span class=n>texts</span><span class=o>[</span><span class=n>i</span><span class=o>].</span><span class=na>id</span><span class=o>+</span><span class=s>&#34;.xml&#34;</span><span class=o>);</span>
-            <span class=n>var</span> <span class=n>fileStream</span><span class=o>:</span><span class=n>FileStream</span> <span class=o>=</span> <span class=k>new</span> <span class=n>FileStream</span><span class=o>();</span> 
-            <span class=n>fileStream</span><span class=o>.</span><span class=na>open</span><span class=o>(</span><span class=n>file</span><span class=o>,</span> <span class=n>FileMode</span><span class=o>.</span><span class=na>WRITE</span><span class=o>);</span>
-            <span class=n>fileStream</span><span class=o>.</span><span class=na>writeUTFBytes</span><span class=o>(</span><span class=n>texts</span><span class=o>[</span><span class=n>i</span><span class=o>].</span><span class=na>data</span><span class=o>);</span>
-            <span class=n>trace</span><span class=o>(</span><span class=s>&#34;Output to &#34;</span><span class=o>+</span><span class=n>texts</span><span class=o>[</span><span class=n>i</span><span class=o>].</span><span class=na>id</span><span class=o>+</span><span class=s>&#34;.xml&#34;</span><span class=o>);</span>
-            <span class=n>fileStream</span><span class=o>.</span><span class=na>close</span><span class=o>();</span>
-         <span class=o>}</span>
-         <span class=n>trace</span><span class=o>(</span><span class=s>&#34;All is well, application is shutting down.&#34;</span><span class=o>)</span>
-		 <span class=n>Fin_01</span><span class=o>.</span><span class=na>text</span><span class=o>=</span><span class=s>&#34;解包完成&#34;</span><span class=o>;</span>
-	<span class=o>}</span><span class=k>else</span><span class=o>{</span>
-		<span class=n>trace</span><span class=o>(</span><span class=s>&#34;Missing parameters&#34;</span><span class=o>);</span>
-	<span class=o>}</span>
-<span class=o>}</span>
-<span class=n>But_Extract</span><span class=o>.</span><span class=na>addEventListener</span><span class=o>(</span><span class=s>&#34;click&#34;</span><span class=o>,</span><span class=n>clickExtract</span><span class=o>);</span>
+         <span class="n">var</span> <span class="n">texts</span><span class="o">:</span><span class="n">Vector</span><span class="o">.&lt;*&gt;</span> <span class="o">=</span> <span class="n">Vector</span><span class="o">.&lt;*&gt;(</span><span class="n">sqlRes</span><span class="o">.</span><span class="na">data</span><span class="o">);</span>
+         <span class="k">for</span> <span class="o">(</span><span class="n">var</span> <span class="n">i</span><span class="o">:</span><span class="kt">int</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">texts</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> 
+            <span class="n">var</span> <span class="n">file</span><span class="o">:</span><span class="n">File</span> <span class="o">=</span> <span class="n">out_path</span><span class="o">.</span><span class="na">resolvePath</span><span class="o">(</span><span class="n">texts</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">id</span><span class="o">+</span><span class="s">&#34;.xml&#34;</span><span class="o">);</span>
+            <span class="n">var</span> <span class="n">fileStream</span><span class="o">:</span><span class="n">FileStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileStream</span><span class="o">();</span> 
+            <span class="n">fileStream</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">file</span><span class="o">,</span> <span class="n">FileMode</span><span class="o">.</span><span class="na">WRITE</span><span class="o">);</span>
+            <span class="n">fileStream</span><span class="o">.</span><span class="na">writeUTFBytes</span><span class="o">(</span><span class="n">texts</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">data</span><span class="o">);</span>
+            <span class="n">trace</span><span class="o">(</span><span class="s">&#34;Output to &#34;</span><span class="o">+</span><span class="n">texts</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">id</span><span class="o">+</span><span class="s">&#34;.xml&#34;</span><span class="o">);</span>
+            <span class="n">fileStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+         <span class="o">}</span>
+         <span class="n">trace</span><span class="o">(</span><span class="s">&#34;All is well, application is shutting down.&#34;</span><span class="o">)</span>
+		 <span class="n">Fin_01</span><span class="o">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;解包完成&#34;</span><span class="o">;</span>
+	<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+		<span class="n">trace</span><span class="o">(</span><span class="s">&#34;Missing parameters&#34;</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+<span class="n">But_Extract</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="s">&#34;click&#34;</span><span class="o">,</span><span class="n">clickExtract</span><span class="o">);</span>
 
 
 
 
-<span class=c1>// for editor
-</span><span class=c1></span><span class=n>var</span> <span class=n>rival</span><span class=o>:</span><span class=n>File</span> <span class=o>=</span> <span class=n>File</span><span class=o>.</span><span class=na>documentsDirectory</span><span class=o>;</span>
-<span class=n>function</span> <span class=nf>RivalSelected_Callback</span><span class=o>(</span><span class=n>event</span><span class=o>:</span><span class=n>Event</span><span class=o>):</span><span class=kt>void</span>
-<span class=o>{</span>
-	<span class=n>Label_3</span><span class=o>.</span><span class=na>text</span><span class=o>=</span><span class=n>rival</span><span class=o>.</span><span class=na>nativePath</span><span class=o>;</span>
-<span class=o>}</span>
+<span class="c1">// for editor
+</span><span class="c1"></span><span class="n">var</span> <span class="n">rival</span><span class="o">:</span><span class="n">File</span> <span class="o">=</span> <span class="n">File</span><span class="o">.</span><span class="na">documentsDirectory</span><span class="o">;</span>
+<span class="n">function</span> <span class="nf">RivalSelected_Callback</span><span class="o">(</span><span class="n">event</span><span class="o">:</span><span class="n">Event</span><span class="o">):</span><span class="kt">void</span>
+<span class="o">{</span>
+	<span class="n">Label_3</span><span class="o">.</span><span class="na">text</span><span class="o">=</span><span class="n">rival</span><span class="o">.</span><span class="na">nativePath</span><span class="o">;</span>
+<span class="o">}</span>
 
-<span class=n>var</span> <span class=n>clickSelNew</span><span class=o>:</span><span class=n>Function</span><span class=o>=</span><span class=n>function</span><span class=o>(){</span>
-	<span class=n>function</span> <span class=nf>selectDataFile</span><span class=o>(</span><span class=n>root</span><span class=o>:</span><span class=n>File</span><span class=o>):</span><span class=kt>void</span>
-	<span class=o>{</span>
- 		<span class=n>var</span> <span class=n>dbFilter</span><span class=o>:</span><span class=n>FileFilter</span> <span class=o>=</span> <span class=k>new</span> <span class=n>FileFilter</span><span class=o>(</span><span class=s>&#34;XML Document&#34;</span><span class=o>,</span> <span class=s>&#34;*.xml&#34;</span><span class=o>);</span>
- 		<span class=n>root</span><span class=o>.</span><span class=na>browseForOpen</span><span class=o>(</span><span class=s>&#34;XML Text Insert&#34;</span><span class=o>,</span> <span class=o>[</span><span class=n>dbFilter</span><span class=o>]);</span>
-    	<span class=n>root</span><span class=o>.</span><span class=na>addEventListener</span><span class=o>(</span><span class=n>Event</span><span class=o>.</span><span class=na>SELECT</span><span class=o>,</span> <span class=n>RivalSelected_Callback</span><span class=o>);</span>
-	<span class=o>}</span>
-	<span class=n>selectDataFile</span><span class=o>(</span><span class=n>rival</span><span class=o>);</span>
-<span class=o>}</span>
-<span class=n>But_SelNew</span><span class=o>.</span><span class=na>addEventListener</span><span class=o>(</span><span class=s>&#34;click&#34;</span><span class=o>,</span><span class=n>clickSelNew</span><span class=o>);</span>
+<span class="n">var</span> <span class="n">clickSelNew</span><span class="o">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="o">(){</span>
+	<span class="n">function</span> <span class="nf">selectDataFile</span><span class="o">(</span><span class="n">root</span><span class="o">:</span><span class="n">File</span><span class="o">):</span><span class="kt">void</span>
+	<span class="o">{</span>
+ 		<span class="n">var</span> <span class="n">dbFilter</span><span class="o">:</span><span class="n">FileFilter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileFilter</span><span class="o">(</span><span class="s">&#34;XML Document&#34;</span><span class="o">,</span> <span class="s">&#34;*.xml&#34;</span><span class="o">);</span>
+ 		<span class="n">root</span><span class="o">.</span><span class="na">browseForOpen</span><span class="o">(</span><span class="s">&#34;XML Text Insert&#34;</span><span class="o">,</span> <span class="o">[</span><span class="n">dbFilter</span><span class="o">]);</span>
+    	<span class="n">root</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="n">Event</span><span class="o">.</span><span class="na">SELECT</span><span class="o">,</span> <span class="n">RivalSelected_Callback</span><span class="o">);</span>
+	<span class="o">}</span>
+	<span class="n">selectDataFile</span><span class="o">(</span><span class="n">rival</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="n">But_SelNew</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="s">&#34;click&#34;</span><span class="o">,</span><span class="n">clickSelNew</span><span class="o">);</span>
 
-<span class=n>var</span> <span class=n>clickApply</span><span class=o>:</span><span class=n>Function</span><span class=o>=</span><span class=n>function</span><span class=o>(){</span>
-	<span class=n>Fin_02</span><span class=o>.</span><span class=na>text</span><span class=o>=</span><span class=s>&#34;&#34;</span><span class=o>;</span>
-	<span class=k>if</span><span class=o>(</span><span class=n>Label_1</span><span class=o>.</span><span class=na>text</span><span class=o>!=</span><span class=s>&#34;&#34;</span> <span class=o>&amp;&amp;</span> <span class=n>Label_3</span><span class=o>.</span><span class=na>text</span><span class=o>!=</span><span class=s>&#34;&#34;</span><span class=o>){</span>
-		 <span class=n>trace</span><span class=o>(</span><span class=s>&#34;Start the replacer process&#34;</span><span class=o>);</span>
-		 <span class=n>var</span> <span class=n>xml_id</span><span class=o>:</span><span class=n>String</span> <span class=o>=</span> <span class=n>rival</span><span class=o>.</span><span class=na>name</span><span class=o>.</span><span class=na>split</span><span class=o>(</span><span class=s>&#34;.&#34;</span><span class=o>)[</span><span class=n>0</span><span class=o>];</span>
-		 <span class=c1>// trace(xml_id);
-</span><span class=c1></span>		 <span class=n>var</span> <span class=n>conn</span><span class=o>:</span><span class=n>SQLConnection</span> <span class=o>=</span> <span class=k>new</span> <span class=n>SQLConnection</span><span class=o>();</span>
-		 <span class=n>Connect_Database</span><span class=o>(</span><span class=n>conn</span><span class=o>);</span>
+<span class="n">var</span> <span class="n">clickApply</span><span class="o">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="o">(){</span>
+	<span class="n">Fin_02</span><span class="o">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="o">;</span>
+	<span class="k">if</span><span class="o">(</span><span class="n">Label_1</span><span class="o">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span> <span class="o">&amp;&amp;</span> <span class="n">Label_3</span><span class="o">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span><span class="o">){</span>
+		 <span class="n">trace</span><span class="o">(</span><span class="s">&#34;Start the replacer process&#34;</span><span class="o">);</span>
+		 <span class="n">var</span> <span class="n">xml_id</span><span class="o">:</span><span class="n">String</span> <span class="o">=</span> <span class="n">rival</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;.&#34;</span><span class="o">)[</span><span class="n">0</span><span class="o">];</span>
+		 <span class="c1">// trace(xml_id);
+</span><span class="c1"></span>		 <span class="n">var</span> <span class="n">conn</span><span class="o">:</span><span class="n">SQLConnection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLConnection</span><span class="o">();</span>
+		 <span class="n">Connect_Database</span><span class="o">(</span><span class="n">conn</span><span class="o">);</span>
 		 
-		 <span class=n>var</span> <span class=n>sqlRes</span><span class=o>:</span><span class=n>SQLResult</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
-    	 <span class=n>var</span> <span class=n>sqlStatement</span><span class=o>:</span><span class=n>SQLStatement</span> <span class=o>=</span> <span class=k>new</span> <span class=n>SQLStatement</span><span class=o>();</span>
-		 <span class=n>var</span> <span class=n>sqlStr</span><span class=o>:</span><span class=n>String</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
-		 <span class=n>sqlStatement</span><span class=o>.</span><span class=na>sqlConnection</span> <span class=o>=</span> <span class=n>conn</span><span class=o>;</span>
-		 <span class=n>sqlStr</span> <span class=o>=</span> <span class=s>&#34;UPDATE &#34;</span> <span class=o>+</span> <span class=n>tableName</span><span class=o>+</span><span class=s>&#34; SET data=:data WHERE id=:id&#34;</span><span class=o>;</span>
-		 <span class=n>sqlStatement</span><span class=o>.</span><span class=na>text</span> <span class=o>=</span> <span class=n>sqlStr</span><span class=o>;</span>
-         <span class=n>sqlStatement</span><span class=o>.</span><span class=na>parameters</span><span class=o>[</span><span class=s>&#34;:id&#34;</span><span class=o>]</span> <span class=o>=</span> <span class=n>xml_id</span><span class=o>;</span> <span class=c1>// the xml name
-</span><span class=c1></span>		 
-		 <span class=n>var</span> <span class=n>XMLContent</span><span class=o>:</span><span class=n>ByteArray</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ByteArray</span><span class=o>();</span>
-		 <span class=n>var</span> <span class=n>fileStream</span><span class=o>:</span><span class=n>FileStream</span> <span class=o>=</span> <span class=k>new</span> <span class=n>FileStream</span><span class=o>();</span> 
-         <span class=n>fileStream</span><span class=o>.</span><span class=na>open</span><span class=o>(</span><span class=n>rival</span><span class=o>,</span> <span class=n>FileMode</span><span class=o>.</span><span class=na>READ</span><span class=o>);</span>
-		 <span class=n>XMLContent</span> <span class=o>=</span> <span class=n>fileStream</span><span class=o>.</span><span class=na>readUTFBytes</span><span class=o>(</span><span class=n>rival</span><span class=o>.</span><span class=na>size</span><span class=o>);</span>
-         <span class=n>fileStream</span><span class=o>.</span><span class=na>close</span><span class=o>();</span>
-		 <span class=n>sqlStatement</span><span class=o>.</span><span class=na>parameters</span><span class=o>[</span><span class=s>&#34;:data&#34;</span><span class=o>]</span> <span class=o>=</span> <span class=n>XMLContent</span><span class=o>;</span> <span class=c1>// the byteArray for fileContent
-</span><span class=c1></span>		 
-		 <span class=k>try</span><span class=o>{</span>
-      		 <span class=n>sqlStatement</span><span class=o>.</span><span class=na>execute</span><span class=o>();</span>
-      		 <span class=n>sqlRes</span> <span class=o>=</span> <span class=n>sqlStatement</span><span class=o>.</span><span class=na>getResult</span><span class=o>();</span>
-			 <span class=n>conn</span><span class=o>.</span><span class=na>close</span><span class=o>();</span>
-   		 <span class=o>}</span><span class=k>catch</span><span class=o>(</span><span class=n>e</span><span class=o>:*){</span>
-    		   <span class=n>trace</span><span class=o>(</span><span class=s>&#34;SQL Command execute error&#34;</span><span class=o>);</span>
-   		 <span class=o>}</span>
+		 <span class="n">var</span> <span class="n">sqlRes</span><span class="o">:</span><span class="n">SQLResult</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    	 <span class="n">var</span> <span class="n">sqlStatement</span><span class="o">:</span><span class="n">SQLStatement</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SQLStatement</span><span class="o">();</span>
+		 <span class="n">var</span> <span class="n">sqlStr</span><span class="o">:</span><span class="n">String</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+		 <span class="n">sqlStatement</span><span class="o">.</span><span class="na">sqlConnection</span> <span class="o">=</span> <span class="n">conn</span><span class="o">;</span>
+		 <span class="n">sqlStr</span> <span class="o">=</span> <span class="s">&#34;UPDATE &#34;</span> <span class="o">+</span> <span class="n">tableName</span><span class="o">+</span><span class="s">&#34; SET data=:data WHERE id=:id&#34;</span><span class="o">;</span>
+		 <span class="n">sqlStatement</span><span class="o">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">sqlStr</span><span class="o">;</span>
+         <span class="n">sqlStatement</span><span class="o">.</span><span class="na">parameters</span><span class="o">[</span><span class="s">&#34;:id&#34;</span><span class="o">]</span> <span class="o">=</span> <span class="n">xml_id</span><span class="o">;</span> <span class="c1">// the xml name
+</span><span class="c1"></span>		 
+		 <span class="n">var</span> <span class="n">XMLContent</span><span class="o">:</span><span class="n">ByteArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArray</span><span class="o">();</span>
+		 <span class="n">var</span> <span class="n">fileStream</span><span class="o">:</span><span class="n">FileStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileStream</span><span class="o">();</span> 
+         <span class="n">fileStream</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">rival</span><span class="o">,</span> <span class="n">FileMode</span><span class="o">.</span><span class="na">READ</span><span class="o">);</span>
+		 <span class="n">XMLContent</span> <span class="o">=</span> <span class="n">fileStream</span><span class="o">.</span><span class="na">readUTFBytes</span><span class="o">(</span><span class="n">rival</span><span class="o">.</span><span class="na">size</span><span class="o">);</span>
+         <span class="n">fileStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+		 <span class="n">sqlStatement</span><span class="o">.</span><span class="na">parameters</span><span class="o">[</span><span class="s">&#34;:data&#34;</span><span class="o">]</span> <span class="o">=</span> <span class="n">XMLContent</span><span class="o">;</span> <span class="c1">// the byteArray for fileContent
+</span><span class="c1"></span>		 
+		 <span class="k">try</span><span class="o">{</span>
+      		 <span class="n">sqlStatement</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+      		 <span class="n">sqlRes</span> <span class="o">=</span> <span class="n">sqlStatement</span><span class="o">.</span><span class="na">getResult</span><span class="o">();</span>
+			 <span class="n">conn</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+   		 <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">e</span><span class="o">:*){</span>
+    		   <span class="n">trace</span><span class="o">(</span><span class="s">&#34;SQL Command execute error&#34;</span><span class="o">);</span>
+   		 <span class="o">}</span>
 		 
-		 <span class=n>trace</span><span class=o>(</span><span class=s>&#34;All is well, application is shutting down.&#34;</span><span class=o>)</span>
-		 <span class=n>Fin_02</span><span class=o>.</span><span class=na>text</span><span class=o>=</span><span class=s>&#34;替换完成&#34;</span><span class=o>;</span>
-	<span class=o>}</span><span class=k>else</span><span class=o>{</span>
-		<span class=n>trace</span><span class=o>(</span><span class=s>&#34;Missing parameters&#34;</span><span class=o>);</span>
-	<span class=o>}</span>
-<span class=o>}</span>
-<span class=n>But_Apply</span><span class=o>.</span><span class=na>addEventListener</span><span class=o>(</span><span class=s>&#34;click&#34;</span><span class=o>,</span><span class=n>clickApply</span><span class=o>);</span>
-</code></pre></div></div><div class=post-footer id=post-footer>
-<div class=post-info>
-<div class=post-info-line>
-<div class=post-info-mod>
-<span>Updated on 2024-04-25</span>
-</div></div>
-<div class=post-info-line>
-<div class=post-info-md></div>
-<div class=post-info-share>
-<span><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=http://example.org/posts/first_post/ data-title="Adobe AIR SQL Database Extract"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=http://example.org/posts/first_post/ data-title="Adobe AIR SQL Database Extract"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=http://example.org/posts/first_post/ data-title="Adobe AIR SQL Database Extract"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span>
-</div>
-</div>
-</div>
-<div class=post-info-more>
-<section class=post-tags></section>
-<section>
-<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
-</section>
-</div>
-<div class=post-nav>
-<a href=/posts/0529/ class=next rel=next title=蓝桥杯嵌入式第十四届国赛实现>蓝桥杯嵌入式第十四届国赛实现<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
+		 <span class="n">trace</span><span class="o">(</span><span class="s">&#34;All is well, application is shutting down.&#34;</span><span class="o">)</span>
+		 <span class="n">Fin_02</span><span class="o">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;替换完成&#34;</span><span class="o">;</span>
+	<span class="o">}</span><span class="k">else</span><span class="o">{</span>
+		<span class="n">trace</span><span class="o">(</span><span class="s">&#34;Missing parameters&#34;</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+<span class="n">But_Apply</span><span class="o">.</span><span class="na">addEventListener</span><span class="o">(</span><span class="s">&#34;click&#34;</span><span class="o">,</span><span class="n">clickApply</span><span class="o">);</span>
+</code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/first_post/" data-title="Adobe AIR SQL Database Extract"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://example.org/posts/first_post/" data-title="Adobe AIR SQL Database Extract"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/posts/first_post/" data-title="Adobe AIR SQL Database Extract"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/posts/0529/" class="next" rel="next" title="蓝桥杯嵌入式第十四届国赛实现">蓝桥杯嵌入式第十四届国赛实现<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
-</main><footer class=footer>
-<div class=footer-container><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>TUXEDO</a></span></div>
-</div>
-</footer>
-<script type=text/javascript src=https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js></script>
-<script type=text/javascript src=https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js></script>
-<script type=text/javascript>L2Dwidget.init({model:{scale:1,hHeadPos:.5,vHeadPos:.618,jsonPath:'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko/assets/wanko.model.json'},display:{superSample:1,width:400,height:600,position:'right',hOffset:0,vOffset:0},mobile:{show:!0,scale:1,motion:!0},react:{opacityDefault:1,opacityOnHover:1}})</script></div>
-<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
-<i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
-</a><a href=# id=view-comments class=fixed-button title="View Comments">
-<i class="fas fa-comment fa-fw" aria-hidden=true></i>
-</a>
-</div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:32},comment:{}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        </div>
+    </footer>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko/assets/wanko.model.json',       
+        },
+        display: {
+            superSample: 1,     
+            width: 400,         
+            height: 600,        
+            position: 'right',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: true,         
+            scale: 1,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":32},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

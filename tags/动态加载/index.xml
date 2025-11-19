@@ -1,1 +1,16 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>动态加载 - Tag - 程序小站</title><link>http://example.org/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/</link><description>动态加载 - Tag - 程序小站</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor><webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://example.org/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/" rel="self" type="application/rss+xml"/><item><title>[转] C语言动态加载共享库详解</title><link>http://example.org/posts/cpp_runtime_lib_dlopen/</link><pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate><author>TUXEDO</author><guid>http://example.org/posts/cpp_runtime_lib_dlopen/</guid><description>概述 &amp;lt;dlfcn.h&amp;gt; 是 C 标准库中用于动态加载共享库的头文件，主要用于在运行时加载共享库（如 .so 文件或 .dll 文件），获取符号地址并调用其中的函数。 核心函数 函数 说明</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>动态加载 - Tag - 程序小站</title>
+        <link>http://example.org/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/</link>
+        <description>动态加载 - Tag - 程序小站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
+            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/" rel="self" type="application/rss+xml" /><item>
+    <title>[转] C语言动态加载共享库详解</title>
+    <link>http://example.org/posts/cpp_runtime_lib_dlopen/</link>
+    <pubDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/cpp_runtime_lib_dlopen/</guid>
+    <description><![CDATA[概述 &lt;dlfcn.h&gt; 是 C 标准库中用于动态加载共享库的头文件，主要用于在运行时加载共享库（如 .so 文件或 .dll 文件），获取符号地址并调用其中的函数。 核心函数 函数 说明]]></description>
+</item>
+</channel>
+</rss>

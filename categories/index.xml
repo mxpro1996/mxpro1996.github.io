@@ -1,1 +1,40 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Categories - Category - 程序小站</title><link>http://example.org/categories/</link><description>Categories - Category - 程序小站</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor><webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://example.org/categories/" rel="self" type="application/rss+xml"/><item><title>编程语言</title><link>http://example.org/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link><pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate><author>TUXEDO</author><guid>http://example.org/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</guid><description></description></item><item><title>C++</title><link>http://example.org/categories/c++/</link><pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate><author>TUXEDO</author><guid>http://example.org/categories/c++/</guid><description></description></item><item><title>RAII</title><link>http://example.org/categories/raii/</link><pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate><author>TUXEDO</author><guid>http://example.org/categories/raii/</guid><description></description></item><item><title>智能指针</title><link>http://example.org/categories/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link><pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate><author>TUXEDO</author><guid>http://example.org/categories/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid><description></description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Categories - Category - 程序小站</title>
+        <link>http://example.org/categories/</link>
+        <description>Categories - Category - 程序小站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
+            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>编程语言</title>
+    <link>http://example.org/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link>
+    <pubDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>C&#43;&#43;</title>
+    <link>http://example.org/categories/c&#43;&#43;/</link>
+    <pubDate>Wed, 01 Oct 2025 00:00:00 &#43;0000</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/categories/c&#43;&#43;/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>RAII</title>
+    <link>http://example.org/categories/raii/</link>
+    <pubDate>Wed, 01 Oct 2025 00:00:00 &#43;0000</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/categories/raii/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>智能指针</title>
+    <link>http://example.org/categories/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
+    <pubDate>Wed, 01 Oct 2025 00:00:00 &#43;0000</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/categories/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

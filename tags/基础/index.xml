@@ -1,1 +1,16 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>基础 - Tag - 程序小站</title><link>http://example.org/tags/%E5%9F%BA%E7%A1%80/</link><description>基础 - Tag - 程序小站</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor><webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Fri, 17 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://example.org/tags/%E5%9F%BA%E7%A1%80/" rel="self" type="application/rss+xml"/><item><title>Linux 文件权限位介绍</title><link>http://example.org/posts/linux_perms/</link><pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate><author>TUXEDO</author><guid>http://example.org/posts/linux_perms/</guid><description>1. Linux文件权限概述 2. 权限位的组成 Linux文件权限位通常由10个字符组成，格式如下： -rwxr-xr-x 这10个字符可以分解为以下部分： 第一个字符：文件</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>基础 - Tag - 程序小站</title>
+        <link>http://example.org/tags/%E5%9F%BA%E7%A1%80/</link>
+        <description>基础 - Tag - 程序小站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
+            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Fri, 17 Oct 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/%E5%9F%BA%E7%A1%80/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux 文件权限位介绍</title>
+    <link>http://example.org/posts/linux_perms/</link>
+    <pubDate>Fri, 17 Oct 2025 00:00:00 &#43;0000</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/linux_perms/</guid>
+    <description><![CDATA[1. Linux文件权限概述 2. 权限位的组成 Linux文件权限位通常由10个字符组成，格式如下： -rwxr-xr-x 这10个字符可以分解为以下部分： 第一个字符：文件]]></description>
+</item>
+</channel>
+</rss>

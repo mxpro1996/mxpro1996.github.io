@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>第十五届预测点 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:title" content="第十五届预测点" />
+<meta property="og:description" content="1. 双击按键 void scanKeyUseStructAndTime(void) { static struct keyState _key[4]; //获取按键的最新状态 _key[0].keyState = HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_0); _key[1].keyState = HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_1); _key[2].keyState = HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_2); _key[3].keyState = HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0); //处理按键的最新状态 for(int i=0;i&lt;4;i&#43;&#43;){ switch (_key[i].judgeSate){ //按键第一次按下 case 0: if(_key[i].keyState == 0){ //跳转按键" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/0531/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-31T14:26:08+08:00" />
+<meta property="article:modified_time" content="2024-05-31T14:26:08+08:00" /><meta property="og:site_name" content="剪纸堆" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="第十五届预测点"/>
+<meta name="twitter:description" content="1. 双击按键 void scanKeyUseStructAndTime(void) { static struct keyState _key[4]; //获取按键的最新状态 _key[0].keyState = HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_0); _key[1].keyState = HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_1); _key[2].keyState = HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_2); _key[3].keyState = HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0); //处理按键的最新状态 for(int i=0;i&lt;4;i&#43;&#43;){ switch (_key[i].judgeSate){ //按键第一次按下 case 0: if(_key[i].keyState == 0){ //跳转按键"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/0531/" /><link rel="prev" href="http://example.org/posts/0529/" /><link rel="next" href="http://example.org/posts/esp8266/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "第十五届预测点",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/0531\/"
+        },"genre": "posts","wordcount":  511 ,
+        "url": "http:\/\/example.org\/posts\/0531\/","datePublished": "2024-05-31T14:26:08+08:00","dateModified": "2024-05-31T14:26:08+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "TUXEDO"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="程序小站">剪纸堆</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="程序小站">剪纸堆</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">第十五届预测点</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-31">2024-05-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;511 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><h1 id="1-双击按键">1. 双击按键</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">scanKeyUseStructAndTime</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">static</span> <span class="k">struct</span> <span class="n">keyState</span> <span class="n">_key</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+	
+	<span class="c1">//获取按键的最新状态
+</span><span class="c1"></span>	<span class="n">_key</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">keyState</span> <span class="o">=</span> <span class="n">HAL_GPIO_ReadPin</span><span class="p">(</span><span class="n">GPIOB</span><span class="p">,</span><span class="n">GPIO_PIN_0</span><span class="p">);</span>
+	<span class="n">_key</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">keyState</span> <span class="o">=</span> <span class="n">HAL_GPIO_ReadPin</span><span class="p">(</span><span class="n">GPIOB</span><span class="p">,</span><span class="n">GPIO_PIN_1</span><span class="p">);</span>
+	<span class="n">_key</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">keyState</span> <span class="o">=</span> <span class="n">HAL_GPIO_ReadPin</span><span class="p">(</span><span class="n">GPIOB</span><span class="p">,</span><span class="n">GPIO_PIN_2</span><span class="p">);</span>
+	<span class="n">_key</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">keyState</span> <span class="o">=</span> <span class="n">HAL_GPIO_ReadPin</span><span class="p">(</span><span class="n">GPIOA</span><span class="p">,</span><span class="n">GPIO_PIN_0</span><span class="p">);</span>
+	
+	<span class="c1">//处理按键的最新状态
+</span><span class="c1"></span>	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+		<span class="k">switch</span> <span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span><span class="p">){</span>
+			<span class="c1">//按键第一次按下
+</span><span class="c1"></span>			<span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+				<span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+					<span class="c1">//跳转按键的状态
+</span><span class="c1"></span>					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+					<span class="c1">//清空按键时间
+</span><span class="c1"></span>					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyTime</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="k">break</span><span class="p">;</span>
+			<span class="c1">//按键第二次按下 两次相隔10ms可以起到消抖作用	
+</span><span class="c1"></span>			<span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+				<span class="c1">//按键再次按下 跳转按键状态
+</span><span class="c1"></span>				<span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+				<span class="c1">//上一次按键按下是抖动按下 属于无效状态 应该退回最开始的状态
+</span><span class="c1"></span>				<span class="k">else</span> 
+					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+				<span class="k">break</span><span class="p">;</span>
+			<span class="c1">//确定按键按下后的处理过程
+</span><span class="c1"></span>			<span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+				<span class="c1">//等待松开过程,且非长按键
+</span><span class="c1"></span>				<span class="k">if</span><span class="p">((</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyState</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyTime</span><span class="o">&lt;</span><span class="mi">30</span><span class="p">){</span>	
+					<span class="c1">//可能双击按键的第一次，进入计时
+</span><span class="c1"></span>					<span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+						<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+						<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+					<span class="p">}</span>
+					<span class="c1">//在计时范围内又按了一次
+</span><span class="c1"></span>					<span class="k">else</span><span class="p">{</span>
+						<span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleFlag</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="c1">//双击情况
+</span><span class="c1"></span>						<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+					<span class="p">}</span>
+					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+				<span class="p">}</span>
+				<span class="c1">//松开且是长按键
+</span><span class="c1"></span>				<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyState</span><span class="o">==</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyTime</span><span class="o">&gt;=</span><span class="mi">30</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+					<span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">longFlag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+				
+				<span class="p">}</span>
+				<span class="c1">//按下 且为长按键
+</span><span class="c1"></span>				<span class="k">else</span> 
+					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyTime</span><span class="o">++</span><span class="p">;</span>
+				<span class="k">break</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="c1">//按键单次按下
+</span><span class="c1"></span>		<span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTime</span> <span class="o">&gt;=</span> <span class="mi">25</span><span class="p">)</span> <span class="p">{</span>
+			<span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="c1">//按键双击 双击计时
+</span><span class="c1"></span>		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+			<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTime</span><span class="o">++</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h1 id="2-串口不定长两种方法">2. 串口不定长（两种方法）</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="c1">// RXNE+IDLE or DMA+IDLE
+</span><span class="c1"></span><span class="kt">uint8_t</span> <span class="n">RxBuffer</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+<span class="n">__IO</span> <span class="kt">uint8_t</span> <span class="n">RxCounter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint8_t</span> <span class="n">Rx_Temp</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">USER_UART_IDLECallback</span><span class="p">(</span><span class="n">UART_HandleTypeDef</span> <span class="o">*</span><span class="n">huart</span><span class="p">);</span>
+
+<span class="cm">/* Init
+</span><span class="cm">	__HAL_UART_ENABLE_IT(&amp;huart1,UART_IT_IDLE);
+</span><span class="cm">	HAL_UART_Receive_IT(&amp;huart1,(uint8_t*)&amp;Rx_Temp,1);
+</span><span class="cm">	printf(&#34;HELLO WORLD!!\r\n&#34;);
+</span><span class="cm">*/</span>
+
+<span class="kt">void</span> <span class="nf">HAL_UART_RxCpltCallback</span><span class="p">(</span><span class="n">UART_HandleTypeDef</span> <span class="o">*</span><span class="n">huart</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">huart</span><span class="o">-&gt;</span><span class="n">Instance</span> <span class="o">==</span> <span class="n">USART1</span><span class="p">){</span>
+		<span class="n">RxBuffer</span><span class="p">[</span><span class="n">RxCounter</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rx_Temp</span><span class="p">;</span>
+		<span class="n">HAL_UART_Receive_IT</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart1</span><span class="p">,(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">Rx_Temp</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+		<span class="c1">// 记得这里一定要重新使能串口接收中断
+</span><span class="c1"></span>	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">USER_UART_IDLECallback</span><span class="p">(</span><span class="n">UART_HandleTypeDef</span> <span class="o">*</span><span class="n">huart</span><span class="p">){</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">huart</span><span class="o">-&gt;</span><span class="n">Instance</span> <span class="o">==</span> <span class="n">USART1</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">RESET</span> <span class="o">!=</span> <span class="n">__HAL_UART_GET_FLAG</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart1</span><span class="p">,</span> <span class="n">UART_FLAG_IDLE</span><span class="p">)){</span>
+			<span class="n">USART1</span><span class="o">-&gt;</span><span class="n">RDR</span><span class="p">;</span>	<span class="c1">// 必须要读取数据寄存器，否则不能清除标志
+</span><span class="c1"></span>			<span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">RxBuffer</span><span class="p">);</span> <span class="c1">// 将接收发送回去
+</span><span class="c1"></span>			<span class="n">__HAL_UART_CLEAR_IDLEFLAG</span><span class="p">(</span><span class="n">huart</span><span class="p">);</span> <span class="c1">// 清中断标志
+</span><span class="c1"></span>		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">fputc</span><span class="p">(</span><span class="kt">int</span> <span class="n">ch</span><span class="p">,</span> <span class="n">FILE</span> <span class="o">*</span><span class="n">f</span><span class="p">){</span>
+	<span class="n">HAL_UART_Transmit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart1</span><span class="p">,</span> <span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">ch</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">);</span>
+  	<span class="k">return</span> <span class="n">ch</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// DMA is optional
+</span></code></pre></div><h1 id="3-可编程电阻mcp4017">3. 可编程电阻（MCP4017）</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="c1">// 0x5f,0x5e
+</span><span class="c1"></span><span class="kt">void</span> <span class="nf">ADC_Process</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">u16</span> <span class="n">adc1_val</span><span class="p">,</span><span class="n">adc2_val</span><span class="p">;</span>
+	<span class="kt">float</span> <span class="n">volt_r37</span><span class="p">,</span><span class="n">volt_r38</span><span class="p">,</span><span class="n">volt_mcp</span><span class="p">;</span>
+
+	<span class="n">HAL_ADC_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc1</span><span class="p">);</span>
+	<span class="n">volt_mcp</span><span class="o">=</span><span class="n">HAL_ADC_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc1</span><span class="p">)</span><span class="o">/</span><span class="mf">4096.0f</span><span class="o">*</span><span class="mf">3.3f</span><span class="p">;</span>
+	
+	<span class="n">HAL_ADC_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc1</span><span class="p">);</span>
+	<span class="n">adc1_val</span><span class="o">=</span><span class="n">HAL_ADC_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc1</span><span class="p">);</span>
+	<span class="n">volt_r38</span><span class="o">=</span><span class="n">adc1_val</span><span class="o">/</span><span class="mf">4096.0f</span><span class="o">*</span><span class="mf">3.3f</span><span class="p">;</span>
+
+	<span class="n">HAL_ADC_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc2</span><span class="p">);</span>
+	<span class="n">adc2_val</span><span class="o">=</span><span class="n">HAL_ADC_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc2</span><span class="p">);</span>
+	<span class="n">volt_r37</span><span class="o">=</span><span class="n">adc1_val</span><span class="o">/</span><span class="mf">4096.0f</span><span class="o">*</span><span class="mf">3.3f</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-31</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/0531/" data-title="第十五届预测点"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://example.org/posts/0531/" data-title="第十五届预测点"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/posts/0531/" data-title="第十五届预测点"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/0529/" class="prev" rel="prev" title="蓝桥杯嵌入式第十四届国赛实现"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>蓝桥杯嵌入式第十四届国赛实现</a>
+            <a href="/posts/esp8266/" class="next" rel="next" title="[HAL] STM32 RXNE 接替Receive_IT">[HAL] STM32 RXNE 接替Receive_IT<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        </div>
+    </footer>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko/assets/wanko.model.json',       
+        },
+        display: {
+            superSample: 1,     
+            width: 400,         
+            height: 600,        
+            position: 'right',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: true,         
+            scale: 1,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":32},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

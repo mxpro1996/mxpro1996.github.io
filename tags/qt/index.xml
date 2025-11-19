@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>qt - Tag - 程序小站</title>
+        <link>http://example.org/tags/qt/</link>
+        <description>qt - Tag - 程序小站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
+            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/qt/" rel="self" type="application/rss+xml" /><item>
+    <title>[QT] 手势识别 - 层次笔记</title>
+    <link>http://example.org/posts/qt_gesture_flowchart/</link>
+    <pubDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/qt_gesture_flowchart/</guid>
+    <description><![CDATA[初始化层 职责: 注册手势类型，启用触摸事件支持 代码片段: // 在构造函数中注册需要的手势类型 grabGesture(Qt::PinchGesture); // 捏合缩放手势 grabGesture(Qt::PanGesture); // 平移拖动手势 grabGesture(Qt::SwipeGesture); // 滑动手势 grabGesture(Qt::TapGesture); // 点击手]]></description>
+</item>
+</channel>
+</rss>

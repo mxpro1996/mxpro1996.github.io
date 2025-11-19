@@ -1,1 +1,90 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>程序小站</title><link>http://example.org/</link><description>逸一时，误一世。</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor><webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml"/><item><title>[转] C语言动态加载共享库详解</title><link>http://example.org/posts/cpp_runtime_lib_dlopen/</link><pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate><author>TUXEDO</author><guid>http://example.org/posts/cpp_runtime_lib_dlopen/</guid><description>概述 &amp;lt;dlfcn.h&amp;gt; 是 C 标准库中用于动态加载共享库的头文件，主要用于在运行时加载共享库（如 .so 文件或 .dll 文件），获取符号地址并调用其中的函数。 核心函数 函数 说明</description></item><item><title>Linux 文件权限位介绍</title><link>http://example.org/posts/linux_perms/</link><pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate><author>TUXEDO</author><guid>http://example.org/posts/linux_perms/</guid><description>1. Linux文件权限概述 2. 权限位的组成 Linux文件权限位通常由10个字符组成，格式如下： -rwxr-xr-x 这10个字符可以分解为以下部分： 第一个字符：文件</description></item><item><title>（五）Linux 内核驱动 - InitCall机制</title><link>http://example.org/posts/linux_subsystem_05_initcall/</link><pubDate>Sun, 12 Oct 2025 09:02:36 +0800</pubDate><author>TUXEDO</author><guid>http://example.org/posts/linux_subsystem_05_initcall/</guid><description>1. initcall机制的起源与背景 当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插</description></item><item><title>（四）Linux 内核驱动 - Pinctrl子系统</title><link>http://example.org/posts/linux_subsystem_04_pinctrl/</link><pubDate>Sat, 11 Oct 2025 09:02:36 +0800</pubDate><author>TUXEDO</author><guid>http://example.org/posts/linux_subsystem_04_pinctrl/</guid><description>1. 概述 在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同S</description></item><item><title>（三）Linux 内核驱动 - GPIO子系统</title><link>http://example.org/posts/linux_subsystem_03_subsys_gpio/</link><pubDate>Wed, 01 Oct 2025 09:02:36 +0800</pubDate><author>TUXEDO</author><guid>http://example.org/posts/linux_subsystem_03_subsys_gpio/</guid><description>TBD</description></item><item><title>（二）Linux 内核驱动 - 核心层core与IP控制器抽象</title><link>http://example.org/posts/linux_subsystem_02_core_controller/</link><pubDate>Wed, 01 Oct 2025 09:00:36 +0800</pubDate><author>TUXEDO</author><guid>http://example.org/posts/linux_subsystem_02_core_controller/</guid><description>TBD</description></item><item><title>（一）Linux 内核驱动 - 统一驱动模型</title><link>http://example.org/posts/linux_subsystem_01_common_model/</link><pubDate>Wed, 01 Oct 2025 08:58:36 +0800</pubDate><author>TUXEDO</author><guid>http://example.org/posts/linux_subsystem_01_common_model/</guid><description>TBD</description></item><item><title>（零）Linux内核驱动 - 资料推荐</title><link>http://example.org/posts/booklist/</link><pubDate>Wed, 01 Oct 2025 08:07:25 +0800</pubDate><author>TUXEDO</author><guid>http://example.org/posts/booklist/</guid><description>驱动开发 《Linux设备驱动开发_（法）约翰·马迪厄（John Madieu）》 《Linux设备驱动开发详解_宋宝华》 《Android驱动开发</description></item><item><title>C++ 智能指针与 Q&amp;A</title><link>http://example.org/posts/smart_ptr/</link><pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate><author>TUXEDO</author><guid>http://example.org/posts/smart_ptr/</guid><description>前言 在现代 C++ 中，智能指针是管理动态资源（new 分配的堆对象）的利器。它们遵循 RAII 原则：资源的生存期绑定句柄（对象），句柄析构时自动释放资源。 下</description></item><item><title>Linux IPC&amp;Shell编程笔记</title><link>http://example.org/posts/linux_ipc_shell/</link><pubDate>Wed, 01 Oct 2025 05:28:36 +0800</pubDate><author>TUXEDO</author><guid>http://example.org/posts/linux_ipc_shell/</guid><description>1. Linux多进程 管道 + 信号 + 信号量 + 共享内存 + 消息队列 注意，无名容器只有父子进程之间，exec后子不受父进程完全控制。 守护进程：setsi</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>程序小站</title>
+        <link>http://example.org/</link>
+        <description>逸一时，误一世。</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
+            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</lastBuildDate>
+            <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>[QT] 手势识别 - 层次笔记</title>
+    <link>http://example.org/posts/qt_gesture_flowchart/</link>
+    <pubDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/qt_gesture_flowchart/</guid>
+    <description><![CDATA[初始化层 职责: 注册手势类型，启用触摸事件支持 代码片段: // 在构造函数中注册需要的手势类型 grabGesture(Qt::PinchGesture); // 捏合缩放手势 grabGesture(Qt::PanGesture); // 平移拖动手势 grabGesture(Qt::SwipeGesture); // 滑动手势 grabGesture(Qt::TapGesture); // 点击手]]></description>
+</item>
+<item>
+    <title>基于TTS&amp;RVC / SVC的AI歌唱模型日程</title>
+    <link>http://example.org/posts/1108_new_ai_calendar/</link>
+    <pubDate>Sat, 08 Nov 2025 08:07:25 &#43;0800</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/1108_new_ai_calendar/</guid>
+    <description><![CDATA[收集会话素材 训练TTS模型 TTS推理歌词稿 调音制作歌唱数据集（实际把握导向） 投入SVC/RVC训练 获得成品模型]]></description>
+</item>
+<item>
+    <title>[转] C语言动态加载共享库详解</title>
+    <link>http://example.org/posts/cpp_runtime_lib_dlopen/</link>
+    <pubDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/cpp_runtime_lib_dlopen/</guid>
+    <description><![CDATA[概述 &lt;dlfcn.h&gt; 是 C 标准库中用于动态加载共享库的头文件，主要用于在运行时加载共享库（如 .so 文件或 .dll 文件），获取符号地址并调用其中的函数。 核心函数 函数 说明]]></description>
+</item>
+<item>
+    <title>Linux 文件权限位介绍</title>
+    <link>http://example.org/posts/linux_perms/</link>
+    <pubDate>Fri, 17 Oct 2025 00:00:00 &#43;0000</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/linux_perms/</guid>
+    <description><![CDATA[1. Linux文件权限概述 2. 权限位的组成 Linux文件权限位通常由10个字符组成，格式如下： -rwxr-xr-x 这10个字符可以分解为以下部分： 第一个字符：文件]]></description>
+</item>
+<item>
+    <title>[转]（五）Linux 内核驱动 - InitCall机制</title>
+    <link>http://example.org/posts/linux_subsystem_05_initcall/</link>
+    <pubDate>Sun, 12 Oct 2025 09:02:36 &#43;0800</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/linux_subsystem_05_initcall/</guid>
+    <description><![CDATA[1. initcall机制的起源与背景 当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插]]></description>
+</item>
+<item>
+    <title>（四）Linux 内核驱动 - Pinctrl子系统</title>
+    <link>http://example.org/posts/linux_subsystem_04_pinctrl/</link>
+    <pubDate>Sat, 11 Oct 2025 09:02:36 &#43;0800</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/linux_subsystem_04_pinctrl/</guid>
+    <description><![CDATA[1. 概述 在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同S]]></description>
+</item>
+<item>
+    <title>（三）Linux 内核驱动 - GPIO子系统</title>
+    <link>http://example.org/posts/linux_subsystem_03_subsys_gpio/</link>
+    <pubDate>Wed, 01 Oct 2025 09:02:36 &#43;0800</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/linux_subsystem_03_subsys_gpio/</guid>
+    <description><![CDATA[TBD]]></description>
+</item>
+<item>
+    <title>（二）Linux 内核驱动 - 核心层core与IP控制器抽象</title>
+    <link>http://example.org/posts/linux_subsystem_02_core_controller/</link>
+    <pubDate>Wed, 01 Oct 2025 09:00:36 &#43;0800</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/linux_subsystem_02_core_controller/</guid>
+    <description><![CDATA[TBD]]></description>
+</item>
+<item>
+    <title>（一）Linux 内核驱动 - 统一驱动模型</title>
+    <link>http://example.org/posts/linux_subsystem_01_common_model/</link>
+    <pubDate>Wed, 01 Oct 2025 08:58:36 &#43;0800</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/linux_subsystem_01_common_model/</guid>
+    <description><![CDATA[TBD]]></description>
+</item>
+<item>
+    <title>（零）Linux内核驱动 - 资料推荐</title>
+    <link>http://example.org/posts/booklist/</link>
+    <pubDate>Wed, 01 Oct 2025 08:07:25 &#43;0800</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/booklist/</guid>
+    <description><![CDATA[驱动开发 《Linux设备驱动开发_（法）约翰·马迪厄（John Madieu）》 《Linux设备驱动开发详解_宋宝华》 《Android驱动开发]]></description>
+</item>
+</channel>
+</rss>

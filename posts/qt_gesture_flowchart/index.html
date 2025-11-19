@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[QT] 手势识别 - 层次笔记 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:title" content="[QT] 手势识别 - 层次笔记" />
+<meta property="og:description" content="初始化层 职责: 注册手势类型，启用触摸事件支持 代码片段: // 在构造函数中注册需要的手势类型 grabGesture(Qt::PinchGesture); // 捏合缩放手势 grabGesture(Qt::PanGesture); // 平移拖动手势 grabGesture(Qt::SwipeGesture); // 滑动手势 grabGesture(Qt::TapGesture); // 点击手" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/qt_gesture_flowchart/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-11-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2025-11-18T00:00:00+00:00" /><meta property="og:site_name" content="剪纸堆" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[QT] 手势识别 - 层次笔记"/>
+<meta name="twitter:description" content="初始化层 职责: 注册手势类型，启用触摸事件支持 代码片段: // 在构造函数中注册需要的手势类型 grabGesture(Qt::PinchGesture); // 捏合缩放手势 grabGesture(Qt::PanGesture); // 平移拖动手势 grabGesture(Qt::SwipeGesture); // 滑动手势 grabGesture(Qt::TapGesture); // 点击手"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/qt_gesture_flowchart/" /><link rel="prev" href="http://example.org/posts/1108_new_ai_calendar/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[QT] 手势识别 - 层次笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/qt_gesture_flowchart\/"
+        },"genre": "posts","keywords": "qt, 手势识别, 框架","wordcount":  739 ,
+        "url": "http:\/\/example.org\/posts\/qt_gesture_flowchart\/","datePublished": "2025-11-18T00:00:00+00:00","dateModified": "2025-11-18T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "TUXEDO"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="程序小站">剪纸堆</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="程序小站">剪纸堆</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[QT] 手势识别 - 层次笔记</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-11-18">2025-11-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;739 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#初始化层">初始化层</a></li>
+    <li><a href="#事件拦截层">事件拦截层</a></li>
+    <li><a href="#手势分发层">手势分发层</a></li>
+    <li><a href="#状态管理层">状态管理层</a></li>
+    <li><a href="#变换计算层">变换计算层</a></li>
+    <li><a href="#业务响应层">业务响应层</a></li>
+    <li><a href="#渲染更新层">渲染更新层</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="初始化层">初始化层</h2>
+<p><strong>职责</strong>: 注册手势类型，启用触摸事件支持</p>
+<p><strong>代码片段</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// 在构造函数中注册需要的手势类型
+</span><span class="c1"></span><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PinchGesture</span><span class="p">);</span>    <span class="c1">// 捏合缩放手势
+</span><span class="c1"></span><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PanGesture</span><span class="p">);</span>      <span class="c1">// 平移拖动手势  
+</span><span class="c1"></span><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">SwipeGesture</span><span class="p">);</span>    <span class="c1">// 滑动手势
+</span><span class="c1"></span><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">TapGesture</span><span class="p">);</span>      <span class="c1">// 点击手势
+</span><span class="c1"></span><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_AcceptTouchEvents</span><span class="p">);</span>  <span class="c1">// 启用触摸事件
+</span></code></pre></div><h2 id="事件拦截层">事件拦截层</h2>
+<p><strong>职责</strong>: 识别并路由手势事件到专用处理器</p>
+<p><strong>代码片段</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">event</span><span class="p">(</span><span class="n">QEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="o">-&gt;</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QEvent</span><span class="o">::</span><span class="n">Gesture</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">gestureEvent</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">QGestureEvent</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">event</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">QWidget</span><span class="o">::</span><span class="n">event</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="手势分发层">手势分发层</h2>
+<p><strong>职责</strong>: 按手势类型分发到对应的具体处理器</p>
+<p><strong>代码片段</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">bool</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">gestureEvent</span><span class="p">(</span><span class="n">QGestureEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">QGesture</span> <span class="o">*</span><span class="n">pinchGesture</span> <span class="o">=</span> <span class="n">event</span><span class="o">-&gt;</span><span class="n">gesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PinchGesture</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">processPinchGesture</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">QPinchGesture</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pinchGesture</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">QGesture</span> <span class="o">*</span><span class="n">panGesture</span> <span class="o">=</span> <span class="n">event</span><span class="o">-&gt;</span><span class="n">gesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PanGesture</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">processPanGesture</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">QPanGesture</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">panGesture</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">QGesture</span> <span class="o">*</span><span class="n">swipeGesture</span> <span class="o">=</span> <span class="n">event</span><span class="o">-&gt;</span><span class="n">gesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">SwipeGesture</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">processSwipeGesture</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">QSwipeGesture</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">swipeGesture</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="状态管理层">状态管理层</h2>
+<p><strong>职责</strong>: 管理手势的生命周期状态，处理不同阶段逻辑</p>
+<p><strong>代码片段</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">processPinchGesture</span><span class="p">(</span><span class="n">QPinchGesture</span> <span class="o">*</span><span class="n">gesture</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="k">switch</span><span class="p">(</span><span class="n">gesture</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">Qt</span><span class="o">::</span><span class="nl">GestureStarted</span><span class="p">:</span>
+        <span class="c1">// 记录初始状态，准备开始手势
+</span><span class="c1"></span>        <span class="n">m_initialScaleFactor</span> <span class="o">=</span> <span class="n">m_currentScaleFactor</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">Qt</span><span class="o">::</span><span class="nl">GestureUpdated</span><span class="p">:</span>
+        <span class="c1">// 处理手势进行中的增量变化
+</span><span class="c1"></span>        <span class="n">m_tempScaleFactor</span> <span class="o">=</span> <span class="n">m_initialScaleFactor</span> <span class="o">*</span> <span class="n">gesture</span><span class="o">-&gt;</span><span class="n">totalScaleFactor</span><span class="p">();</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">Qt</span><span class="o">::</span><span class="nl">GestureFinished</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">Qt</span><span class="o">::</span><span class="nl">GestureCanceled</span><span class="p">:</span>
+        <span class="c1">// 应用最终状态，清理临时数据
+</span><span class="c1"></span>        <span class="n">m_currentScaleFactor</span> <span class="o">=</span> <span class="n">m_tempScaleFactor</span><span class="p">;</span>
+        <span class="n">m_tempScaleFactor</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="变换计算层">变换计算层</h2>
+<p><strong>职责</strong>: 计算几何变换参数，处理边界限制</p>
+<p><strong>代码片段</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">calculateTransform</span><span class="p">()</span> 
+<span class="p">{</span>
+    <span class="c1">// 缩放计算
+</span><span class="c1"></span>    <span class="n">qreal</span> <span class="n">scaleFactor</span> <span class="o">=</span> <span class="n">gesture</span><span class="o">-&gt;</span><span class="n">totalScaleFactor</span><span class="p">();</span>
+    <span class="n">m_currentScale</span> <span class="o">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+    
+    <span class="c1">// 平移计算
+</span><span class="c1"></span>    <span class="n">QPointF</span> <span class="n">delta</span> <span class="o">=</span> <span class="n">gesture</span><span class="o">-&gt;</span><span class="n">delta</span><span class="p">();</span>
+    <span class="n">m_contentOffset</span> <span class="o">+=</span> <span class="n">delta</span><span class="p">;</span>
+    
+    <span class="c1">// 边界限制
+</span><span class="c1"></span>    <span class="n">qreal</span> <span class="n">maxOffsetX</span> <span class="o">=</span> <span class="n">calculateMaxOffsetX</span><span class="p">();</span>
+    <span class="n">qreal</span> <span class="n">maxOffsetY</span> <span class="o">=</span> <span class="n">calculateMaxOffsetY</span><span class="p">();</span>
+    <span class="n">m_contentOffset</span><span class="p">.</span><span class="n">setX</span><span class="p">(</span><span class="n">qMin</span><span class="p">(</span><span class="n">maxOffsetX</span><span class="p">,</span> <span class="n">qMax</span><span class="p">(</span><span class="o">-</span><span class="n">maxOffsetX</span><span class="p">,</span> <span class="n">m_contentOffset</span><span class="p">.</span><span class="n">x</span><span class="p">())));</span>
+    <span class="n">m_contentOffset</span><span class="p">.</span><span class="n">setY</span><span class="p">(</span><span class="n">qMin</span><span class="p">(</span><span class="n">maxOffsetY</span><span class="p">,</span> <span class="n">qMax</span><span class="p">(</span><span class="o">-</span><span class="n">maxOffsetY</span><span class="p">,</span> <span class="n">m_contentOffset</span><span class="p">.</span><span class="n">y</span><span class="p">())));</span>
+    
+    <span class="c1">// 缩放范围限制
+</span><span class="c1"></span>    <span class="n">m_currentScale</span> <span class="o">=</span> <span class="n">qMax</span><span class="p">(</span><span class="n">m_minScale</span><span class="p">,</span> <span class="n">qMin</span><span class="p">(</span><span class="n">m_maxScale</span><span class="p">,</span> <span class="n">m_currentScale</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="业务响应层">业务响应层</h2>
+<p><strong>职责</strong>: 将手势操作映射到具体的业务逻辑</p>
+<p><strong>代码片段</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">onPinchGestureTriggered</span><span class="p">(</span><span class="n">qreal</span> <span class="n">scaleFactor</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="c1">// 更新视图缩放
+</span><span class="c1"></span>    <span class="n">zoomViewport</span><span class="p">(</span><span class="n">scaleFactor</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">onPanGestureTriggered</span><span class="p">(</span><span class="k">const</span> <span class="n">QPointF</span> <span class="o">&amp;</span><span class="n">delta</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="c1">// 移动内容位置
+</span><span class="c1"></span>    <span class="n">scrollContent</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">onSwipeGestureTriggered</span><span class="p">(</span><span class="n">QSwipeGesture</span><span class="o">::</span><span class="n">SwipeDirection</span> <span class="n">direction</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="c1">// 翻页导航
+</span><span class="c1"></span>    <span class="k">switch</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">QSwipeGesture</span><span class="o">::</span><span class="nl">Left</span><span class="p">:</span>
+        <span class="n">navigateToNextPage</span><span class="p">();</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">QSwipeGesture</span><span class="o">::</span><span class="nl">Right</span><span class="p">:</span>
+        <span class="n">navigateToPreviousPage</span><span class="p">();</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">QSwipeGesture</span><span class="o">::</span><span class="nl">Up</span><span class="p">:</span>
+        <span class="n">scrollUp</span><span class="p">();</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">QSwipeGesture</span><span class="o">::</span><span class="nl">Down</span><span class="p">:</span>
+        <span class="n">scrollDown</span><span class="p">();</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="渲染更新层">渲染更新层</h2>
+<p><strong>职责</strong>: 更新界面显示，应用变换效果 (<strong>每个Widget的实际画板投影，就靠paint回调</strong>)</p>
+<p><strong>代码片段</strong>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">updateDisplay</span><span class="p">()</span> 
+<span class="p">{</span>
+    <span class="c1">// 触发重绘
+</span><span class="c1"></span>    <span class="n">update</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">paintEvent</span><span class="p">(</span><span class="n">QPaintEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="n">QPainter</span> <span class="nf">painter</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    
+    <span class="c1">// 应用变换矩阵
+</span><span class="c1"></span>    <span class="n">painter</span><span class="p">.</span><span class="n">translate</span><span class="p">(</span><span class="n">m_contentOffset</span><span class="p">);</span>
+    <span class="n">painter</span><span class="p">.</span><span class="n">scale</span><span class="p">(</span><span class="n">m_currentScale</span><span class="p">,</span> <span class="n">m_currentScale</span><span class="p">);</span>
+    
+    <span class="c1">// 绘制内容
+</span><span class="c1"></span>    <span class="n">drawContent</span><span class="p">(</span><span class="n">painter</span><span class="p">);</span>
+    
+    <span class="c1">// 可选：绘制调试信息
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">m_showDebugInfo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">drawGestureDebugInfo</span><span class="p">(</span><span class="n">painter</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="总结">总结</h2>
+<p>Qt手势识别框架采用分层架构设计，每层职责明确：</p>
+<ul>
+<li><strong>初始化层</strong>: 基础配置，注册手势支持</li>
+<li><strong>事件拦截层</strong>: 事件过滤和初步路由</li>
+<li><strong>手势分发层</strong>: 精确分发到对应处理器</li>
+<li><strong>状态管理层</strong>: 生命周期状态控制</li>
+<li><strong>变换计算层</strong>: 几何参数计算和边界处理</li>
+<li><strong>业务响应层</strong>: 手势到业务逻辑的映射</li>
+<li><strong>渲染更新层</strong>: 视觉反馈和界面更新</li>
+</ul>
+<p>这种分层设计使得手势处理逻辑清晰，便于维护和扩展，可以根据需要灵活调整各层的实现细节。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-11-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/qt_gesture_flowchart/" data-title="[QT] 手势识别 - 层次笔记"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://example.org/posts/qt_gesture_flowchart/" data-title="[QT] 手势识别 - 层次笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/posts/qt_gesture_flowchart/" data-title="[QT] 手势识别 - 层次笔记"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/qt/">qt</a>,&nbsp;<a href="/tags/%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB/">手势识别</a>,&nbsp;<a href="/tags/%E6%A1%86%E6%9E%B6/">框架</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/1108_new_ai_calendar/" class="prev" rel="prev" title="基于TTS&amp;RVC / SVC的AI歌唱模型日程"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>基于TTS&RVC / SVC的AI歌唱模型日程</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        </div>
+    </footer>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko/assets/wanko.model.json',       
+        },
+        display: {
+            superSample: 1,     
+            width: 400,         
+            height: 600,        
+            position: 'right',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: true,         
+            scale: 1,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":32},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

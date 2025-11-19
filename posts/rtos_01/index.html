@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>RTOS 批判会 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:title" content="RTOS 批判会" />
+<meta property="og:description" content="核心分块 TCB (持有任务要素，以及静态任务栈及指针) Dual-LinkedList (环双向链表的O(1)增删) SVC/PendSVC (恢复与保护任务栈，切换PSP，内核/用户保护) IDLE （空闲延时" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/rtos_01/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-10-10T20:24:58+08:00" />
+<meta property="article:modified_time" content="2024-10-10T20:24:58+08:00" /><meta property="og:site_name" content="剪纸堆" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="RTOS 批判会"/>
+<meta name="twitter:description" content="核心分块 TCB (持有任务要素，以及静态任务栈及指针) Dual-LinkedList (环双向链表的O(1)增删) SVC/PendSVC (恢复与保护任务栈，切换PSP，内核/用户保护) IDLE （空闲延时"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/rtos_01/" /><link rel="prev" href="http://example.org/posts/0708/" /><link rel="next" href="http://example.org/posts/1010/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "RTOS 批判会",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/rtos_01\/"
+        },"genre": "posts","wordcount":  1502 ,
+        "url": "http:\/\/example.org\/posts\/rtos_01\/","datePublished": "2024-10-10T20:24:58+08:00","dateModified": "2024-10-10T20:24:58+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "TUXEDO"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="程序小站">剪纸堆</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="程序小站">剪纸堆</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">RTOS 批判会</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-10-10">2024-10-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1502 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#核心分块">核心分块</a></li>
+    <li><a href="#注意事项">注意事项</a></li>
+    <li><a href="#os的疑难">OS的疑难</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#cm3保护现场">CM3保护现场</a></li>
+    <li><a href="#经典失误">经典失误：</a></li>
+    <li><a href="#freertos缺陷">FREERTOS缺陷</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="核心分块">核心分块</h2>
+<ol start="0">
+<li>TCB (持有任务要素，以及静态任务栈及指针)</li>
+<li>Dual-LinkedList (环双向链表的O(1)增删)</li>
+<li>SVC/PendSVC (恢复与保护任务栈，切换PSP，内核/用户保护)</li>
+<li>IDLE （空闲延时/让渡使用权/时基轮询唤醒）</li>
+<li>Critical（临界段，中断开关，分ISR内外可否嵌套）</li>
+<li>Priority（空闲最低，调度/插入就绪链表[优先级]）</li>
+<li>DelayLists（延时挂起，按唤醒早晚排队，NextTick一次性唤醒）</li>
+<li>TickPiece（时间片，同优先级各个任务轮转）</li>
+</ol>
+<h2 id="注意事项">注意事项</h2>
+<p>避免进程被饿死：</p>
+<ol>
+<li>合理设置优先级</li>
+<li>使用时间片轮转机制</li>
+<li>使用信号量或互斥量</li>
+<li>使用时间片轮转调度算法</li>
+</ol>
+<h2 id="os的疑难">OS的疑难</h2>
+<h4 id="tos为什么不指向stackbufdepth">TOS为什么不指向StackBuf+Depth？</h4>
+<p>解答：TOS在这稳健认为push后自减留出足够的位置存储变量即可，对于pop则采取取后自增的模式。</p>
+<h4 id="为什么在初始化任务栈时cm3移植要先自减tos然后才赋值">为什么在初始化任务栈时，CM3移植要先自减TOS然后才赋值？</h4>
+<p>解：这是RTOS的泛设计，在UCOS中这个*(uint32_t*)(&ndash;pxTopOfStack)需要先把TOS+1达到上限边缘值;只要能够实现现场的保护和恢复,毕竟RTOS为了有效性已经8字节对齐且Depth-1，在此处再自减过于浪费空间。</p>
+<h4 id="能不能连1都不减去">能不能连1都不减去？</h4>
+<p>解：push是减后存问题不大，但对空栈，读后增的pop会被影响；栈sp过界无效。
+其实基本设计思想是，[sp]必须指向有效的栈内容。而且由于8字节必要对齐，
+出现空缺（对齐代价）也是移植侧较大几率遇到的。</p>
+<h4 id="vtaskdelayuntil到底区别在哪">vTaskDelayUntil()到底区别在哪？</h4>
+<p>解：其实首要区别体现在传参上，vTaskDelay会以当前时间点为起始，而until则以上一次唤醒时间（形参传入）为起点，从起点出计算下次唤醒时间nextWakeTime，对prev_wake, curTick, next_wake三元有效性进行判断，裁决本次delay的合理性，在加入延时列表操作上类似（除起点外）。合理情况分别是：curTick和next_wake一起溢出，都不溢出，以及next_wake溢出。</p>
+<h2 id="cm3保护现场">CM3保护现场</h2>
+<ul>
+<li>参数传递：R0-R3</li>
+<li>返回值：R0</li>
+<li>调用者保护：LR,R0-R3,R12,XPSR</li>
+<li>被调保护：R4-R11 (返回前恢复，进出栈)</li>
+<li>常见组合：push {lr}; pop {pc};</li>
+<li>栈的结构：返回地址LR + 备份当前域用到的R4-R11 + 栈上变量</li>
+<li>变量开辟：堆栈sp先按需递减，逐个mov放入栈中</li>
+<li>中断二级LR： <br>
+(1) EXC_RETURN，标识返回时要选择的堆栈指针和处理器模式<br>
+(2) 触发中断调用处理函数前的原函数地址FUNC_LR
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/rtos_01_exreturn.png"
+        data-srcset="/images/rtos_01_exreturn.png, /images/rtos_01_exreturn.png 1.5x, /images/rtos_01_exreturn.png 2x"
+        data-sizes="auto"
+        alt="/images/rtos_01_exreturn.png"
+        title="/images/rtos_01_exreturn.png" /></li>
+</ul>
+<h2 id="经典失误">经典失误：</h2>
+<ol>
+<li>卡在Hard_Fault：
+检查是否内存越界（索引/容器的自增自减操作），或是循环的终止条件错误</li>
+<li>卡在Default_Handler
+检查是否未定义对应中断处理函数（可能为函数名/宏对应错误）</li>
+<li>调度失序
+检查是否混用HEAD_ENTRY和NEXT_ENTRY这些具有后效性的函数/宏</li>
+<li>任务饿死（完全不切换）
+检查越界访问（NULL/不存在的结构体段) 和代码逻辑</li>
+</ol>
+<h2 id="freertos缺陷">FREERTOS缺陷</h2>
+<p>RTOS = RT + OS，但事实上RT并不指代提供的延时delay函数，经过理论推导，这些RT实时函数都具有太重负担，比如vTaskDelay()，这个函数在保护加入延时队列操作时，会挂起调度器（时间tick停顿，记录pendtick），虽然解除调度锁后提供循环补充tick可以减小滑动，但其实锁时期这一段时间必然计入了待唤醒任务之中，推迟了绝对执行时间。<br>
+虽然不足us，但是多次频繁调用理论上会累积误差，从us -&gt; ms级别。 <br>
+建议：使用硬件定时器+TaskSuspend+TaskResume可以实现高精度实时，此时OS作为系统切换任务的库函数（基底），也就是说RT机制并不理论完备，但是非频繁状态可以采用。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-10-10</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/rtos_01/" data-title="RTOS 批判会"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://example.org/posts/rtos_01/" data-title="RTOS 批判会"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/posts/rtos_01/" data-title="RTOS 批判会"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/0708/" class="prev" rel="prev" title="STM32笔记与教训 (尽信书，不如无书)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>STM32笔记与教训 (尽信书，不如无书)</a>
+            <a href="/posts/1010/" class="next" rel="next" title="使用SSL_TCP通过禁止ssh进出的局域网">使用SSL_TCP通过禁止ssh进出的局域网<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        </div>
+    </footer>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko/assets/wanko.model.json',       
+        },
+        display: {
+            superSample: 1,     
+            width: 400,         
+            height: 600,        
+            position: 'right',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: true,         
+            scale: 1,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":32},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

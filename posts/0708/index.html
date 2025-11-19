@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>STM32笔记与教训 (尽信书，不如无书) - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:title" content="STM32笔记与教训 (尽信书，不如无书)" />
+<meta property="og:description" content="1. TBD DualDMA &#43; RTOS/LVGL/LWIP RFID/CAN/TLSF Player &#43; AI/Watch Linux/OpenCV &#43; QT/Slint PCB1 (F1C200S &#43; RV1103) PCB2 (LT8619C &#43; LT6911) PCB3 (Sunxi-A13/RK3399) RaspPico (mpy) &#43; ESP32 SquareLine / ARM2D MQTT &#43; cJSON IWDG &#43; WWDG &#43; BKP REGs PWR &#43; WKUP (Sleep/Stop/Standby) ADC/DAC (TRGO/MultiADC/Chans) Flash &#43; EPROM SDIO &#43; USB Bulk(Block W/R) FATFS &#43; W25Q128/SDCard/UDisk UDisk &#43; USBHost_Process Key/Mouse USB-HID Device U8G2 &#43; OLED(Page/Seg) &#43; BMP/GIF I2C/DCMI (RGB565, not JPEG)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/0708/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-07-08T10:28:36+08:00" />
+<meta property="article:modified_time" content="2024-07-08T10:28:36+08:00" /><meta property="og:site_name" content="剪纸堆" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="STM32笔记与教训 (尽信书，不如无书)"/>
+<meta name="twitter:description" content="1. TBD DualDMA &#43; RTOS/LVGL/LWIP RFID/CAN/TLSF Player &#43; AI/Watch Linux/OpenCV &#43; QT/Slint PCB1 (F1C200S &#43; RV1103) PCB2 (LT8619C &#43; LT6911) PCB3 (Sunxi-A13/RK3399) RaspPico (mpy) &#43; ESP32 SquareLine / ARM2D MQTT &#43; cJSON IWDG &#43; WWDG &#43; BKP REGs PWR &#43; WKUP (Sleep/Stop/Standby) ADC/DAC (TRGO/MultiADC/Chans) Flash &#43; EPROM SDIO &#43; USB Bulk(Block W/R) FATFS &#43; W25Q128/SDCard/UDisk UDisk &#43; USBHost_Process Key/Mouse USB-HID Device U8G2 &#43; OLED(Page/Seg) &#43; BMP/GIF I2C/DCMI (RGB565, not JPEG)"/>
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/0708/" /><link rel="prev" href="http://example.org/posts/0627/" /><link rel="next" href="http://example.org/posts/rtos_01/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "STM32笔记与教训 (尽信书，不如无书)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/0708\/"
+        },"genre": "posts","wordcount":  2822 ,
+        "url": "http:\/\/example.org\/posts\/0708\/","datePublished": "2024-07-08T10:28:36+08:00","dateModified": "2024-07-08T10:28:36+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "TUXEDO"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="程序小站">剪纸堆</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="程序小站">剪纸堆</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">STM32笔记与教训 (尽信书，不如无书)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-08">2024-07-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2822 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-tbd">1. TBD</a></li>
+    <li><a href="#2-hal库的坑">2. HAL库的坑</a></li>
+    <li><a href="#3-exflash相关">3. ExFlash相关</a></li>
+    <li><a href="#4-fatfs避坑">4. FATFS避坑</a></li>
+    <li><a href="#5-usb_massstorage">5. USB_MassStorage</a></li>
+    <li><a href="#6-ssd1306-oled相关">6. SSD1306 OLED相关</a></li>
+    <li><a href="#7-有关i2s缓冲区组包端序">7. 有关I2S缓冲区组包端序</a></li>
+    <li><a href="#8-dma双重缓冲区乒乓缓存避免取和存对冲">8. DMA双重缓冲区（乒乓缓存，避免取和存对冲）</a></li>
+    <li><a href="#9-linux多进程">9. Linux多进程</a></li>
+    <li><a href="#10-fsmc-nbl10-奇偶地址">10. FSMC-NBL[1:0] 奇偶地址</a></li>
+    <li><a href="#11-shell脚本">11. Shell脚本</a></li>
+    <li><a href="#12-arm汇编">12. ARM汇编</a></li>
+    <li><a href="#13-rcc外部晶振的必要性">13. RCC外部晶振的必要性</a></li>
+    <li><a href="#14-mpu6050移植流程">14. MPU6050移植流程</a></li>
+    <li><a href="#15-结构体变量存放位置">15. 结构体/变量存放位置</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1-tbd">1. TBD</h2>
+<ul>
+<li><i class="far fa-square fa-fw" aria-hidden="true"></i> DualDMA + RTOS/LVGL/LWIP</li>
+<li><i class="far fa-square fa-fw" aria-hidden="true"></i> RFID/CAN/TLSF</li>
+<li><i class="far fa-square fa-fw" aria-hidden="true"></i> Player + AI/Watch</li>
+<li><i class="far fa-square fa-fw" aria-hidden="true"></i> Linux/OpenCV + QT/Slint</li>
+<li><i class="far fa-square fa-fw" aria-hidden="true"></i> PCB1 (F1C200S + RV1103)</li>
+<li><i class="far fa-square fa-fw" aria-hidden="true"></i> PCB2 (LT8619C + LT6911)</li>
+<li><i class="far fa-square fa-fw" aria-hidden="true"></i> PCB3 (Sunxi-A13/RK3399)</li>
+<li><i class="far fa-square fa-fw" aria-hidden="true"></i> RaspPico (mpy) + ESP32</li>
+</ul>
+<hr>
+<ul>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> SquareLine / ARM2D</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> MQTT + cJSON</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> IWDG + WWDG + BKP REGs</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> PWR + WKUP (Sleep/Stop/Standby)</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> ADC/DAC (TRGO/MultiADC/Chans)</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> Flash + EPROM</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> SDIO + USB Bulk(Block W/R)</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> FATFS + W25Q128/SDCard/UDisk</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> UDisk + USBHost_Process</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> Key/Mouse USB-HID Device</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> U8G2 + OLED(Page/Seg) + BMP/GIF</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> I2C/DCMI (RGB565, not JPEG)</li>
+<li><i class="far fa-check-square fa-fw" aria-hidden="true"></i> GD25Q512（64KByte) + NES_F407</li>
+</ul>
+<hr>
+<ul>
+<li><i class="far fa-square fa-fw" aria-hidden="true"></i> JDBC/Redis + InfluxDB/Grafana</li>
+<li><i class="far fa-square fa-fw" aria-hidden="true"></i> Flutter + VUE/Spring</li>
+<li><i class="far fa-square fa-fw" aria-hidden="true"></i> Rust (Slint) + C# (Unity3D/Cocos2d)</li>
+</ul>
+<h2 id="2-hal库的坑">2. HAL库的坑</h2>
+<p>(1) GetFlag和GetITSource <br>
+  前者查SR，可以判断中断或事件是否发生，而后者查CR，并不准确掌握状态，只适用单类型中断情况。（CR只会查使能） <br>
+<a href="https://shequ.stmicroelectronics.cn/thread-631088-1-1.html" title="资料" target="_blank" rel="noopener noreffer ">相关资料</a></p>
+<p>(2) 复用GPIO默认不上拉（干扰模拟信号） <br>
+  有概率浮空串入干扰信号，如从I2S和UART进入干扰模拟信号。</p>
+<h2 id="3-exflash相关">3. ExFlash相关</h2>
+<ol>
+<li>写入操作必须查BUSY或delay，跨页/区（Page/Sector）依赖于第一个ADDR所处的页空间盈余，其他的区自动对齐，统一操作。</li>
+<li>AT24C02(EEPROM) 类似 <br>
+<a href="https://www.winbond.com/resource-files/W25Q128JV%20RevJ%2004252024%20Plus.pdf" target="_blank" rel="noopener noreffer ">W25Q128手册</a>
+<a href="https://ww1.microchip.com/downloads/en/DeviceDoc/AT24C01C-AT24C02C-I2C-Compatible-Two-Wire-Serial-EEPROM-1Kbit-2Kbit-20006111A.pdf" target="_blank" rel="noopener noreffer ">AT24C02手册</a><br>
+W25Q128 (16MB) <strong>256Byte/Page</strong> <br>
+4KB/Sector <br>
+AT24C02 (2KB)
+<strong>8Byte/Page</strong></li>
+</ol>
+<h2 id="4-fatfs避坑">4. FATFS避坑</h2>
+<ol>
+<li>FAT12/16/32统称FATFS，其中FAT32不支持小于512MB的设备（如GD25Q128 16M&lt;512M）</li>
+<li>FatFS的IOCTL接口，注意FRESULT返回值（见&quot;USER_DISKIO.c&quot;)</li>
+</ol>
+<h2 id="5-usb_massstorage">5. USB_MassStorage</h2>
+<p>只需要实现usbd_storage_if.c中的容量、读取、写入块函数即可
+问题检查步骤：</p>
+<ol>
+<li>SDIO 初始化使用1bit总线宽度</li>
+<li>GetCapacity函数的BlockNbr,BlockSize</li>
+<li>Write/Read hander伴随CardState模式查忙</li>
+<li>USBD大容量信息包不超过512bytes，丢包
+(注) 一般情况下，SD卡以512Byte为一个Block大小</li>
+</ol>
+<h2 id="6-ssd1306-oled相关">6. SSD1306 OLED相关</h2>
+<p>尺寸: 128x64，分为8Page，128段，每段为一个字节。
+写入的思路：建立buffer缓冲区，以命令选中页，按行列比较每个字节的bit位，决定是否要绘制（如U8G2/NWatch)</p>
+<h2 id="7-有关i2s缓冲区组包端序">7. 有关I2S缓冲区组包端序</h2>
+<p>前提：在WAV文件中读到小端序的字节组，分为24位/16位情况 <br>
+  16位情况：I2S的发送器会将16bit直接转大端MSB <br>
+  24位情况：I2S的组包被切分成两端，如: <br>
+ 	0x112233 (Value) <br>
+  33 22 11 (文件流) <br>
+  发送第一包：11 22 （缓冲区存下22 11）<br>
+  发送第二包：33 00 （缓冲区存下00 33）<br>
+原因：发送器获得一个int16后，会以八位一组进行大小端转换（在发送序上看）<br>
+推导：假定p为文件流指针 <br>
+ 	低&lt;&ndash; p[0] p[1] p[2] &ndash;&gt;高<br>
+ 	实际包：p[2] p[1] || p[0] 00 <br>
+ 	缓存包：p[1] p[2] || 00 p[0]
+我们将缓存包组好后，由DMA送到I2S从机</p>
+<h2 id="8-dma双重缓冲区乒乓缓存避免取和存对冲">8. DMA双重缓冲区（乒乓缓存，避免取和存对冲）</h2>
+<p>开辟两个buffer，大小最好是最大传输大小的两倍以上。在DMA传输完成中断后，切换当前缓冲区。对于F407自带MultiBuffer，其他型号考虑DMA半中断切换。	<br>
+常规DMA申请（标准库）：
+DMA三要素 -&gt; DMA中断/事件使能 -&gt; DMA_NVIC优先级裁决 -&gt; DMA请求允许
+外设使能 -&gt; LinkDMA联系 -&gt; 循环/单次正常模式</p>
+<h2 id="9-linux多进程">9. Linux多进程</h2>
+<ol start="0">
+<li>管道 + 信号 + 信号量 + 共享内存 + 消息队列</li>
+<li>注意，无名容器只有父子进程之间，exec后子不受父进程完全控制。</li>
+<li>守护进程：setsid(0,0); + dtablesize-&gt;close(fd<i class="far fa-check-square fa-fw" aria-hidden="true"></i> ) + chdir(&quot;/tmp&quot;)</li>
+<li>匿名管道 + 匿名信号量都是无名容器</li>
+<li>有名mkfifo+node或ftok(path,id)生成唯一标识符，多进程适用</li>
+<li>signal/sigaction为SET/GET，为信号响应重写方法</li>
+<li>kill(pid,sig), raise(self,sig), pause()</li>
+<li>信号量：ftok+semget / semctrl(SetDel) / semops(PV)完备操作，主要是ctl</li>
+<li>父进程，子进程\</li>
+<li>进程组（前台/后台），前台对应一个终端</li>
+<li>会话 （用户的登入作为一个会话）</li>
+<li>僵尸进程，孤儿进程</li>
+<li>open(fd,O_CREAT|O_WRONLY|O_APPEND,&ldquo;0600&rdquo;),close,write,read (sys/fcntl.h)</li>
+<li>wait,waitid,waitpid</li>
+<li>双端RW pipe(int[2]) , dup2(int[1],STDOUT_FILENAME)</li>
+<li>popen(cmdstring,&ldquo;r&rdquo;/&ldquo;w&rdquo;)，管道定向</li>
+<li>execvp,execlp,execle</li>
+<li>不要在临界区调用sleep,send/recv类函数返回值一般&gt;0有效，-1无效</li>
+<li>IPC常用0600|IPC_CREAT|IPC_EXCLE，pthread_attr追加解耦父子回收</li>
+<li>注意socklen_t的变量和指针,sizeof()求值，指针可能需要追加临时变量</li>
+<li>fcntl(user_sockfd, F_SETFL, fcntl(user_sockfd, F_GETFL, 0)|O_NONBLOCK)</li>
+</ol>
+<h2 id="10-fsmc-nbl10-奇偶地址">10. FSMC-NBL[1:0] 奇偶地址</h2>
+<p>推荐读物：《8086微机原理》<br>
+16位半字的高低位分开，奇地址无法一个周期访存，分两次加掩码（高/低位有效）获取16位完整数据。<br>
+STM32的FMC配置为16bit时，NBL1的信号变化规律记录：<br>
+1.当进行单字节操作，地址为偶地址时，NBL0低电平，NBL1会是高电平，<br>
+案例代码：<em>(uint8_t <em>)(0x600000000)=0xaa;<br>
+2.当进行单字节操作，地址为奇地址时，NBL0高电平，NBL1低电平，<br>
+案例代码：</em>(uint8_t <em>)(0x600000001)=0xaa;<br>
+3.当进行双字节操作，地址为偶地址时，NBL0、NBL1会是低电平，<br>
+案例代码：</em>(uint16_t <em>)(0x600000002)=0xaabb;<br>
+4.当进行双字节操作，地址为奇地址时，相当于分为2次操作(下有说明)。<br>
+案例代码： * (uint16_t</em>)(0x600000005)=0xaabb;<br>
+相当于操作1：</em>(uint8_t *)(0x600000005)=0xbb;<br>
+相当于操作2： *(uint8_t *)(0x600000006)=0xaa\</p>
+<p>读取操作不用特别控制NBL，默认拉低NBL[1:0]，APB总线会根据地址奇偶从（实际上以字地址）SRAM读出的16位数据中，判断需要该半字的高位/低位。</p>
+<h2 id="11-shell脚本">11. Shell脚本</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">file</span><span class="o">=</span>/dir1/dir2/dir3/my.file.txt
+可以用<span class="si">${</span><span class="p"> </span><span class="si">}</span>分别替换得到不同的值：
+
+1. 分割
+<span class="si">${</span><span class="nv">file</span><span class="p">#*/</span><span class="si">}</span>：删掉第一个 / 及其左边的字符串：dir1/dir2/dir3/my.file.txt
+<span class="si">${</span><span class="nv">file</span><span class="p">##*/</span><span class="si">}</span>：删掉最后一个 /  及其左边的字符串：my.file.txt
+<span class="si">${</span><span class="nv">file</span><span class="p">%/*</span><span class="si">}</span>：删掉最后一个  /  及其右边的字符串：/dir1/dir2/dir3
+<span class="si">${</span><span class="nv">file</span><span class="p">%%/*</span><span class="si">}</span>：删掉第一个 /  及其右边的字符串：<span class="o">(</span>空值<span class="o">)</span>
+<span class="c1">#是去掉左边（键盘上#在$ 的左边）</span>
+%是去掉右边（键盘上%在$ 的右边）
+单一符号是最小匹配；两个符号是最大匹配
+
+2. 切片
+<span class="si">${</span><span class="nv">file</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">5</span><span class="si">}</span>：提取最左边的 <span class="m">5</span> 个字节：/dir1
+<span class="si">${</span><span class="nv">file</span><span class="p">:</span><span class="nv">5</span><span class="p">:</span><span class="nv">5</span><span class="si">}</span>：提取第 <span class="m">5</span> 个字节右边的连续5个字节：/dir2
+
+3. 替换
+<span class="si">${</span><span class="nv">file</span><span class="p">/dir/path</span><span class="si">}</span>：将第一个dir 替换为path：/path1/dir2/dir3/my.file.txt
+<span class="si">${</span><span class="nv">file</span><span class="p">//dir/path</span><span class="si">}</span>：将全部dir 替换为 path：/path1/path2/path3/my.file.txt
+</code></pre></div><h2 id="12-arm汇编">12. ARM汇编</h2>
+<ol>
+<li><strong>ASM</strong>()用法：导出C标号别名；寄存器绑定register变量；间接寄存器访问（c标号参加汇编）</li>
+<li>跳转：<br>
+B/BL label的范围32M，基于pc计算与label的距离（相对跳转）；<br>
+LDR pc,=xxx的范围4Kb，编译时把label的链接地址存在段内某处，LDR载入这个label的编译地址会跑飞（属于绝对跳转）。 <br>
+连接地址不等于加载地址，导致了这个问题</li>
+</ol>
+<h2 id="13-rcc外部晶振的必要性">13. RCC外部晶振的必要性</h2>
+<p>内部HSI RC时序波动，会干扰SPI/I2C/CAN硬件外设的正常CLK建立，另外频率不能太低。</p>
+<h2 id="14-mpu6050移植流程">14. MPU6050移植流程</h2>
+<ul>
+<li>修改I2C驱动内的MPU_ADDR</li>
+<li>WHOAMI寄存器恒等于0x68 (AD0无关)</li>
+<li>DMP解算库中hw_s的addr修改</li>
+</ul>
+<h2 id="15-结构体变量存放位置">15. 结构体/变量存放位置</h2>
+<ul>
+<li>全局/静态变量：初始化为0</li>
+<li>局部变量（栈）：初值随机</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-07-08</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/0708/" data-title="STM32笔记与教训 (尽信书，不如无书)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://example.org/posts/0708/" data-title="STM32笔记与教训 (尽信书，不如无书)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/posts/0708/" data-title="STM32笔记与教训 (尽信书，不如无书)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/0627/" class="prev" rel="prev" title="论游戏引擎"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>论游戏引擎</a>
+            <a href="/posts/rtos_01/" class="next" rel="next" title="RTOS 批判会">RTOS 批判会<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        </div>
+    </footer>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js"></script>
+
+<script type="text/javascript">
+    L2Dwidget.init({
+        model: {
+            scale: 1,
+            hHeadPos: 0.5,
+            vHeadPos: 0.618,
+            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko/assets/wanko.model.json',       
+        },
+        display: {
+            superSample: 1,     
+            width: 400,         
+            height: 600,        
+            position: 'right',   
+            hOffset: 0,         
+            vOffset: 0,         
+        },
+        mobile: {
+            show: true,         
+            scale: 1,           
+            motion: true,       
+        },
+        react: {
+            opacityDefault: 1,  
+            opacityOnHover: 1,  
+        },
+     });
+</script></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":32},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
