@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/booklist\/"
-        },"genre": "posts","wordcount":  470 ,
+        },"genre": "posts","wordcount":  498 ,
         "url": "http:\/\/example.org\/posts\/booklist\/","datePublished": "2025-10-01T08:07:25+08:00","dateModified": "2025-10-01T08:07:25+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -70,7 +70,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">（零）Linux内核驱动 - 资料推荐</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-10-01">2025-10-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;470 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-10-01">2025-10-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;498 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -83,6 +83,7 @@
       <ul>
         <li><a href="#驱动开发">驱动开发</a></li>
         <li><a href="#内核扫盲">内核扫盲</a></li>
+        <li><a href="#应用编程">应用编程</a></li>
         <li><a href="#源代码文档检索">源代码/文档检索</a></li>
         <li><a href="#分层模型">分层模型</a></li>
       </ul>
@@ -100,6 +101,11 @@
 <ol>
 <li>《Linux内核深度解析 基于ARM64架构的Linux 4.x内核_余华兵》</li>
 <li>《从零开始写Linux内核 基于0.12_海纳》</li>
+</ol>
+<hr>
+<h3 id="应用编程">应用编程</h3>
+<ol>
+<li>《Linux/UNIX系统编程手册（上、下册）》</li>
 </ol>
 <hr>
 <h3 id="源代码文档检索">源代码/文档检索</h3>
@@ -158,37 +164,21 @@
         </div>
     </footer>
 
-
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.0.min.js"></script>
-
-<script type="text/javascript">
-    L2Dwidget.init({
-        model: {
-            scale: 1,
-            hHeadPos: 0.5,
-            vHeadPos: 0.618,
-            jsonPath: 'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko/assets/wanko.model.json',       
-        },
-        display: {
-            superSample: 1,     
-            width: 400,         
-            height: 600,        
-            position: 'right',   
-            hOffset: 0,         
-            vOffset: 0,         
-        },
-        mobile: {
-            show: true,         
-            scale: 1,           
-            motion: true,       
-        },
-        react: {
-            opacityDefault: 1,  
-            opacityOnHover: 1,  
-        },
-     });
+<script src="https://unpkg.com/oh-my-live2d@latest"></script>
+<script>
+  OML2D.loadOml2d({
+    models: [
+      {
+        path: 'https://model.hacxy.cn/HK416-1-normal/model.json',
+	dockedPosition: "right",
+        position: [0, 60],
+        scale: 0.08,
+        stageStyle: {
+          height: 450
+        }
+      }
+    ]
+  });
 </script></div>
 
         <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
