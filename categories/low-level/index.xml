@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Low-level - Category - 程序小站</title>
+        <link>http://example.org/categories/low-level/</link>
+        <description>Low-level - Category - 程序小站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
+            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Mon, 06 Apr 2026 02:13:00 &#43;0800</lastBuildDate><atom:link href="http://example.org/categories/low-level/" rel="self" type="application/rss+xml" /><item>
+    <title>从指令级到策略级：Linux SMP 并发原语的“认怂”审计</title>
+    <link>http://example.org/posts/linux_subsys_06_smp/</link>
+    <pubDate>Mon, 06 Apr 2026 02:13:00 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/linux_subsys_06_smp/</guid>
+    <description><![CDATA[在现代多核（SMP）架构下，编写并发代码本质上是在处理一场由物理电信号驱动的“绩效狂欢”。当我们剥开 mutex_lock 的华丽外衣，最深处只有那几行冷酷的 ld]]></description>
+</item>
+</channel>
+</rss>

@@ -66,6 +66,23 @@
         alt="images/avatar.png"
         title="images/avatar.png" /></a></div><h1 class="home-title">梦溪笔谈</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux_subsystem_01_common_model/">（一）Linux 内核驱动 - 统一驱动模型</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-01">2025-10-01</time></span></div><div class="content">TBD</div><div class="post-footer">
+        <a href="/posts/linux_subsystem_01_common_model/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/booklist/">（零）Linux内核驱动 - 资料推荐</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-01">2025-10-01</time></span></div><div class="content">驱动开发 《Linux设备驱动开发_（法）约翰·马迪厄（John Madieu）》 《Linux设备驱动开发详解_宋宝华》 《Android驱动开发</div><div class="post-footer">
+        <a href="/posts/booklist/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/smart_ptr/">C++ 智能指针与 Q&A</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-01">2025-10-01</time></span>&nbsp;<span class="post-category">included in <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>C++</a>&nbsp;<a href="/categories/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>智能指针</a>&nbsp;<a href="/categories/raii/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>RAII</a></span></div><div class="content">前言 在现代 C++ 中，智能指针是管理动态资源（new 分配的堆对象）的利器。它们遵循 RAII 原则：资源的生存期绑定句柄（对象），句柄析构时自动释放资源。 下</div><div class="post-footer">
+        <a href="/posts/smart_ptr/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/unique_ptr/">unique_ptr</a>,&nbsp;<a href="/tags/shared_ptr/">shared_ptr</a>,&nbsp;<a href="/tags/weak_ptr/">weak_ptr</a>,&nbsp;<a href="/tags/raii/">RAII</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux_ipc_shell/">Linux IPC&Shell编程笔记</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-01">2025-10-01</time></span></div><div class="content">1. Linux多进程 管道 + 信号 + 信号量 + 共享内存 + 消息队列 注意，无名容器只有父子进程之间，exec后子不受父进程完全控制。 守护进程：setsi</div><div class="post-footer">
+        <a href="/posts/linux_ipc_shell/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/define_usage/">宏的控制流程与防止重定义</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-08-29">2025-08-29</time></span></div><div class="content">// 以本文件定义为准，解除CDBG防止编译器重复定义报错 #undef CDBG #ifdef ENABLE_XXX #define CDBG printk #else #define CDBG #endif /* ENABLE_XXX */</div><div class="post-footer">
         <a href="/posts/define_usage/">Read More</a></div>
@@ -73,22 +90,6 @@
         <a href="/posts/bug02/">[udev] device_create()与/dev/xx</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-05-06">2025-05-06</time></span></div><div class="content">理论上，device_create()会发送uevent触发用户态udev进行/dev/xxx设备文件的建立，但就算禁止udev，devtm</div><div class="post-footer">
         <a href="/posts/bug02/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/bug01/">[OV2640] 记一次设备树盲目CV的闹剧</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-05-06">2025-05-06</time></span></div><div class="content">在编写ov2640节点时，直接抄了部分5640的内容，差异点导致probe直接失败。作为盲目CV的教训 &lsquo;xvclk&rsquo;</div><div class="post-footer">
-        <a href="/posts/bug01/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/circuit/">典型电路设计收集</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-15">2025-03-15</time></span></div><div class="content">1.连接器保护电路（RC缓冲/TVS管） RC缓冲中，C保持两端电压不变有效抑制尖峰电压，而R作为限值分流电阻抑制住了尖峰电流。 目测全志的EV</div><div class="post-footer">
-        <a href="/posts/circuit/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/esp32/">[ESP32] IDF/Arduino 开发纪实</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-08">2025-03-08</time></span></div><div class="content">1. 多版本共存 下载安装官网离线包esp-idf-offiline VSCode插件配置Setup，选择“Advanced”项 路径选定： IDF_TOOLS_PATH = e:\Crash\Espressif IDF_PATH =</div><div class="post-footer">
-        <a href="/posts/esp32/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/1126/">[Cadence] 学习笔记录入</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-10-17">2024-10-17</time></span></div><div class="content">1. [光绘层Artwork] 设定自定义可见关系集 详情： SOLDERMASK（阻焊） Pin/SOLDMASK Package Geometry/SOLDMASK PASTEMASK （锡膏） Pin/PASTEMASK Package Geometry/PASTEMASK SILKSCREEN （丝印） RefDes/SILKSCREEN Package Geometry/SILKSCREEN TOP/BOT （顶/底层预览） Pin Etch</div><div class="post-footer">
-        <a href="/posts/1126/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -111,7 +112,7 @@
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
         </div>
     </footer>
 

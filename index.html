@@ -66,6 +66,26 @@
         alt="images/avatar.png"
         title="images/avatar.png" /></a></div><h1 class="home-title">梦溪笔谈</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux_subsys_08_futex_libc/">从指令到契约：Linux 并发原语的“认怂”审计（修订终版）</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">published on <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">included in <a href="/categories/architecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Architecture</a></span></div><div class="content">在 Linux 用户态开发中，std::thread 或 pthread 往往被视为并发的起点。但剥开库的包装，你会发现：用户态没有独立的并发物理权。 所有的同步原语，本质</div><div class="post-footer">
+        <a href="/posts/linux_subsys_08_futex_libc/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/pthread/">Pthread</a>,&nbsp;<a href="/tags/futex/">Futex</a>,&nbsp;<a href="/tags/syscall/">Syscall</a>,&nbsp;<a href="/tags/concurrency/">Concurrency</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux_subsys_07_futex_pthread/">用户态并发的“借贷”真相：从 Futex 到 std::thread 的性能审计</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">published on <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">included in <a href="/categories/architecture/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Architecture</a></span></div><div class="content">在 C++ 或 C 语言中调用 std::thread 或 pthread_create 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。 但剥开层层包装，你会发现：用户态没有真正的并发原语。 所有的“体面”</div><div class="post-footer">
+        <a href="/posts/linux_subsys_07_futex_pthread/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/pthread/">Pthread</a>,&nbsp;<a href="/tags/futex/">Futex</a>,&nbsp;<a href="/tags/glibc/">Glibc</a>,&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux_subsys_06_smp/">从指令级到策略级：Linux SMP 并发原语的“认怂”审计</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">published on <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">included in <a href="/categories/low-level/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Low-level</a></span></div><div class="content">在现代多核（SMP）架构下，编写并发代码本质上是在处理一场由物理电信号驱动的“绩效狂欢”。当我们剥开 mutex_lock 的华丽外衣，最深处只有那几行冷酷的 ld</div><div class="post-footer">
+        <a href="/posts/linux_subsys_06_smp/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux-kernel/">Linux Kernel</a>,&nbsp;<a href="/tags/concurrency/">Concurrency</a>,&nbsp;<a href="/tags/architecture/">Architecture</a>,&nbsp;<a href="/tags/smp/">SMP</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/ap_bp_brief_intro/">模块化 IP 的具象化：AP+BP 架构、奢侈的基带与 AOSP 的深水区</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2026-03-24">2026-03-24</time></span></div><div class="content">0. 前言：算力倒挂的工业荒诞 在嵌入式开发中，我们常陷入一种“主从错觉”：认为主控 CPU（AP）是核心，而通讯模块（BP）只是个外设。但当你拆开</div><div class="post-footer">
+        <a href="/posts/ap_bp_brief_intro/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/i.mx6ull/">i.MX6ULL</a>,&nbsp;<a href="/tags/qualcomm/">Qualcomm</a>,&nbsp;<a href="/tags/ec20/">EC20</a>,&nbsp;<a href="/tags/aosp/">AOSP</a>,&nbsp;<a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/">嵌入式开发</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/qt_gesture_flowchart/">[QT] 手势识别 - 层次笔记</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-11-18">2025-11-18</time></span></div><div class="content">初始化层 职责: 注册手势类型，启用触摸事件支持 代码片段: // 在构造函数中注册需要的手势类型 grabGesture(Qt::PinchGesture); // 捏合缩放手势 grabGesture(Qt::PanGesture); // 平移拖动手势 grabGesture(Qt::SwipeGesture); // 滑动手势 grabGesture(Qt::TapGesture); // 点击手</div><div class="post-footer">
         <a href="/posts/qt_gesture_flowchart/">Read More</a><div class="post-tags">
@@ -74,24 +94,6 @@
         <a href="/posts/1108_new_ai_calendar/">基于TTS&RVC / SVC的AI歌唱模型日程</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-11-08">2025-11-08</time></span></div><div class="content">收集会话素材 训练TTS模型 TTS推理歌词稿 调音制作歌唱数据集（实际把握导向） 投入SVC/RVC训练 获得成品模型</div><div class="post-footer">
         <a href="/posts/1108_new_ai_calendar/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cpp_runtime_lib_dlopen/">[转] C语言动态加载共享库详解</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-20">2025-10-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程语言</a></span></div><div class="content">概述 &lt;dlfcn.h&gt; 是 C 标准库中用于动态加载共享库的头文件，主要用于在运行时加载共享库（如 .so 文件或 .dll 文件），获取符号地址并调用其中的函数。 核心函数 函数 说明</div><div class="post-footer">
-        <a href="/posts/cpp_runtime_lib_dlopen/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cpp/">cpp</a>,&nbsp;<a href="/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/">动态加载</a>,&nbsp;<a href="/tags/%E5%85%B1%E4%BA%AB%E5%BA%93/">共享库</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_perms/">Linux 文件权限位介绍</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-17">2025-10-17</time></span></div><div class="content">1. Linux文件权限概述 2. 权限位的组成 Linux文件权限位通常由10个字符组成，格式如下： -rwxr-xr-x 这10个字符可以分解为以下部分： 第一个字符：文件</div><div class="post-footer">
-        <a href="/posts/linux_perms/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">文件权限</a>,&nbsp;<a href="/tags/%E6%9D%83%E9%99%90%E4%BD%8D/">权限位</a>,&nbsp;<a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_05_initcall/">[转]（五）Linux 内核驱动 - InitCall机制</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-12">2025-10-12</time></span></div><div class="content">1. initcall机制的起源与背景 当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插</div><div class="post-footer">
-        <a href="/posts/linux_subsystem_05_initcall/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_04_pinctrl/">（四）Linux 内核驱动 - Pinctrl子系统</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-11">2025-10-11</time></span></div><div class="content">1. 概述 在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同S</div><div class="post-footer">
-        <a href="/posts/linux_subsystem_04_pinctrl/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -112,7 +114,7 @@
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
         </div>
     </footer>
 

@@ -4,7 +4,39 @@
         <link>http://example.org/posts/</link>
         <description>All Posts | 程序小站</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
-            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>从指令到契约：Linux 并发原语的“认怂”审计（修订终版）</title>
+    <link>http://example.org/posts/linux_subsys_08_futex_libc/</link>
+    <pubDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/linux_subsys_08_futex_libc/</guid>
+    <description><![CDATA[在 Linux 用户态开发中，std::thread 或 pthread 往往被视为并发的起点。但剥开库的包装，你会发现：用户态没有独立的并发物理权。 所有的同步原语，本质]]></description>
+</item>
+<item>
+    <title>用户态并发的“借贷”真相：从 Futex 到 std::thread 的性能审计</title>
+    <link>http://example.org/posts/linux_subsys_07_futex_pthread/</link>
+    <pubDate>Mon, 06 Apr 2026 10:45:00 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/linux_subsys_07_futex_pthread/</guid>
+    <description><![CDATA[在 C++ 或 C 语言中调用 std::thread 或 pthread_create 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。 但剥开层层包装，你会发现：用户态没有真正的并发原语。 所有的“体面”]]></description>
+</item>
+<item>
+    <title>从指令级到策略级：Linux SMP 并发原语的“认怂”审计</title>
+    <link>http://example.org/posts/linux_subsys_06_smp/</link>
+    <pubDate>Mon, 06 Apr 2026 02:13:00 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/linux_subsys_06_smp/</guid>
+    <description><![CDATA[在现代多核（SMP）架构下，编写并发代码本质上是在处理一场由物理电信号驱动的“绩效狂欢”。当我们剥开 mutex_lock 的华丽外衣，最深处只有那几行冷酷的 ld]]></description>
+</item>
+<item>
+    <title>模块化 IP 的具象化：AP&#43;BP 架构、奢侈的基带与 AOSP 的深水区</title>
+    <link>http://example.org/posts/ap_bp_brief_intro/</link>
+    <pubDate>Tue, 24 Mar 2026 00:00:00 &#43;0000</pubDate>
+    <author>TUXEDO</author>
+    <guid>http://example.org/posts/ap_bp_brief_intro/</guid>
+    <description><![CDATA[0. 前言：算力倒挂的工业荒诞 在嵌入式开发中，我们常陷入一种“主从错觉”：认为主控 CPU（AP）是核心，而通讯模块（BP）只是个外设。但当你拆开]]></description>
+</item>
+<item>
     <title>[QT] 手势识别 - 层次笔记</title>
     <link>http://example.org/posts/qt_gesture_flowchart/</link>
     <pubDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</pubDate>
@@ -51,38 +83,6 @@
     <author>TUXEDO</author>
     <guid>http://example.org/posts/linux_subsystem_04_pinctrl/</guid>
     <description><![CDATA[1. 概述 在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同S]]></description>
-</item>
-<item>
-    <title>（三）Linux 内核驱动 - GPIO子系统</title>
-    <link>http://example.org/posts/linux_subsystem_03_subsys_gpio/</link>
-    <pubDate>Wed, 01 Oct 2025 09:02:36 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/posts/linux_subsystem_03_subsys_gpio/</guid>
-    <description><![CDATA[TBD]]></description>
-</item>
-<item>
-    <title>（二）Linux 内核驱动 - 核心层core与IP控制器抽象</title>
-    <link>http://example.org/posts/linux_subsystem_02_core_controller/</link>
-    <pubDate>Wed, 01 Oct 2025 09:00:36 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/posts/linux_subsystem_02_core_controller/</guid>
-    <description><![CDATA[TBD]]></description>
-</item>
-<item>
-    <title>（一）Linux 内核驱动 - 统一驱动模型</title>
-    <link>http://example.org/posts/linux_subsystem_01_common_model/</link>
-    <pubDate>Wed, 01 Oct 2025 08:58:36 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/posts/linux_subsystem_01_common_model/</guid>
-    <description><![CDATA[TBD]]></description>
-</item>
-<item>
-    <title>（零）Linux内核驱动 - 资料推荐</title>
-    <link>http://example.org/posts/booklist/</link>
-    <pubDate>Wed, 01 Oct 2025 08:07:25 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/posts/booklist/</guid>
-    <description><![CDATA[驱动开发 《Linux设备驱动开发_（法）约翰·马迪厄（John Madieu）》 《Linux设备驱动开发详解_宋宝华》 《Android驱动开发]]></description>
 </item>
 </channel>
 </rss>

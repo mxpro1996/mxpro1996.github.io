@@ -66,6 +66,18 @@
         alt="images/avatar.png"
         title="images/avatar.png" /></a></div><h1 class="home-title">梦溪笔谈</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/bug01/">[OV2640] 记一次设备树盲目CV的闹剧</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-05-06">2025-05-06</time></span></div><div class="content">在编写ov2640节点时，直接抄了部分5640的内容，差异点导致probe直接失败。作为盲目CV的教训 &lsquo;xvclk&rsquo;</div><div class="post-footer">
+        <a href="/posts/bug01/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/esp32/">[ESP32] IDF/Arduino 开发纪实</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-03-08">2025-03-08</time></span></div><div class="content">1. 多版本共存 下载安装官网离线包esp-idf-offiline VSCode插件配置Setup，选择“Advanced”项 路径选定： IDF_TOOLS_PATH = e:\Crash\Espressif IDF_PATH =</div><div class="post-footer">
+        <a href="/posts/esp32/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/1126/">[Cadence] 学习笔记录入</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-10-17">2024-10-17</time></span></div><div class="content">1. [光绘层Artwork] 设定自定义可见关系集 详情： SOLDERMASK（阻焊） Pin/SOLDMASK Package Geometry/SOLDMASK PASTEMASK （锡膏） Pin/PASTEMASK Package Geometry/PASTEMASK SILKSCREEN （丝印） RefDes/SILKSCREEN Package Geometry/SILKSCREEN TOP/BOT （顶/底层预览） Pin Etch</div><div class="post-footer">
+        <a href="/posts/1126/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/1107/">[Linux] 灵异集合</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-10-17">2024-10-17</time></span></div><div class="content">1. [VFS] dd命令的诡异现象 起因： 使用dd(conv=fdatasync)写入启动SD卡时，总是发现没有生效，以为dd命令存在缺陷。 解析： 当sd卡</div><div class="post-footer">
         <a href="/posts/1107/">Read More</a></div>
@@ -77,18 +89,6 @@
         <a href="/posts/1013_crc/">CRC16-XMODEM实现</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-10-13">2024-10-13</time></span></div><div class="content">crc16.c #include &lt;stdio.h&gt;#include &lt;stdint.h&gt;// crc多项式最高位总为1，可以省略（对CRC-16说是16位） #define CRC16_XMODEM_POLY 0x1021 #define CRC16_XMODEM_TAB crc16_xmodem_table static uint16_t crc16_xmodem_table[256]; /* 总结此处的思路： | dats[0] | | dats[1] | | CRC1H | CRC1L | | CRC2H | CRC2L | 首</div><div class="post-footer">
         <a href="/posts/1013_crc/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/1010/">使用SSL_TCP通过禁止ssh进出的局域网</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-10-10">2024-10-10</time></span></div><div class="content"># How to tunnel SSH over SSL/TLS laptop ssh -&gt; laptop stunnel -&gt; evil network -&gt; internet -&gt; your server -&gt; your server ssh ## Server (your shell server/home box/work box/whatever) Sets up a stunnel process listening externally on port 2443/tcp, forwards to localhost 22/tcp - Install stunnel, e.g. `yum install stunnel` - Install server config snippet to `/etc/stunnel/stunnel.conf` - Create a TLS cert+key pair, save to `/etc/stunnel/stunnel.pem` Quick and</div><div class="post-footer">
-        <a href="/posts/1010/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/rtos_01/">RTOS 批判会</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-10-10">2024-10-10</time></span></div><div class="content">核心分块 TCB (持有任务要素，以及静态任务栈及指针) Dual-LinkedList (环双向链表的O(1)增删) SVC/PendSVC (恢复与保护任务栈，切换PSP，内核/用户保护) IDLE （空闲延时</div><div class="post-footer">
-        <a href="/posts/rtos_01/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/0708/">STM32笔记与教训 (尽信书，不如无书)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-07-08">2024-07-08</time></span></div><div class="content">1. TBD DualDMA + RTOS/LVGL/LWIP RFID/CAN/TLSF Player + AI/Watch Linux/OpenCV + QT/Slint PCB1 (F1C200S + RV1103) PCB2 (LT8619C + LT6911) PCB3 (Sunxi-A13/RK3399) RaspPico (mpy) + ESP32 SquareLine / ARM2D MQTT + cJSON IWDG + WWDG + BKP REGs PWR + WKUP (Sleep/Stop/Standby) ADC/DAC (TRGO/MultiADC/Chans) Flash + EPROM SDIO + USB Bulk(Block W/R) FATFS + W25Q128/SDCard/UDisk UDisk + USBHost_Process Key/Mouse USB-HID Device U8G2 + OLED(Page/Seg) + BMP/GIF I2C/DCMI (RGB565, not JPEG)</div><div class="post-footer">
-        <a href="/posts/0708/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -111,7 +111,7 @@
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
         </div>
     </footer>
 

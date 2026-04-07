@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Syscall - Tag - 程序小站</title>
+        <link>http://example.org/tags/syscall/</link>
+        <description>Syscall - Tag - 程序小站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
+            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/syscall/" rel="self" type="application/rss+xml" /><item>
+    <title>从指令到契约：Linux 并发原语的“认怂”审计（修订终版）</title>
+    <link>http://example.org/posts/linux_subsys_08_futex_libc/</link>
+    <pubDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/linux_subsys_08_futex_libc/</guid>
+    <description><![CDATA[在 Linux 用户态开发中，std::thread 或 pthread 往往被视为并发的起点。但剥开库的包装，你会发现：用户态没有独立的并发物理权。 所有的同步原语，本质]]></description>
+</item>
+</channel>
+</rss>
