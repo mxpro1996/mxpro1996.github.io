@@ -2,31 +2,32 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://example.org/categories/architecture/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/categories/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/concurrency/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/futex/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/linux/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/pthread/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/syscall/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/linux_subsys_08_futex_libc/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/categories/architecture/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/categories/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/concurrency/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/futex/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/linux/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/linux_subsystem_09_cdev_sep_dev/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/pthread/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/syscall/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/linux_subsystem_08_futex_libc/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/linux_subsystem_07_futex_pthread/</loc><lastmod>2026-04-06T10:45:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/c&#43;&#43;/</loc><lastmod>2026-04-06T10:45:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/glibc/</loc><lastmod>2026-04-06T10:45:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/linux_subsys_07_futex_pthread/</loc><lastmod>2026-04-06T10:45:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/linux_subsystem_06_smp/</loc><lastmod>2026-04-06T02:13:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/architecture/</loc><lastmod>2026-04-06T02:13:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/linux-kernel/</loc><lastmod>2026-04-06T02:13:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/categories/low-level/</loc><lastmod>2026-04-06T02:13:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/smp/</loc><lastmod>2026-04-06T02:13:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/linux_subsys_06_smp/</loc><lastmod>2026-04-06T02:13:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/ap_bp_brief_intro/</loc><lastmod>2026-03-24T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/aosp/</loc><lastmod>2026-03-24T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/ec20/</loc><lastmod>2026-03-24T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/i.mx6ull/</loc><lastmod>2026-03-24T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/qualcomm/</loc><lastmod>2026-03-24T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/</loc><lastmod>2026-03-24T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/posts/ap_bp_brief_intro/</loc><lastmod>2026-03-24T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/qt_gesture_flowchart/</loc><lastmod>2025-11-18T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/qt/</loc><lastmod>2025-11-18T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB/</loc><lastmod>2025-11-18T00:00:00&#43;00:00</lastmod></url><url>
@@ -49,8 +50,8 @@
             <loc>http://example.org/posts/booklist/</loc><lastmod>2025-10-01T08:07:25&#43;08:00</lastmod></url><url>
             <loc>http://example.org/categories/c&#43;&#43;/</loc><lastmod>2025-10-01T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/smart_ptr/</loc><lastmod>2025-10-01T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/tags/raii/</loc><lastmod>2025-10-01T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/categories/raii/</loc><lastmod>2025-10-01T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/tags/raii/</loc><lastmod>2025-10-01T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/shared_ptr/</loc><lastmod>2025-10-01T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/unique_ptr/</loc><lastmod>2025-10-01T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/weak_ptr/</loc><lastmod>2025-10-01T00:00:00&#43;00:00</lastmod></url><url>

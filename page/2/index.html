@@ -1,44 +1,58 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-	<meta name="generator" content="Hugo 0.92.2" />
+	<meta name="generator" content="Hugo 0.160.0">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:title" content="程序小站" />
-<meta property="og:description" content="逸一时，误一世。" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://example.org/" /><meta property="og:site_name" content="剪纸堆" />
+        <title>程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/">
+  <meta property="og:site_name" content="程序小站">
+  <meta property="og:title" content="程序小站">
+  <meta property="og:description" content="逸一时，误一世。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="程序小站"/>
-<meta name="twitter:description" content="逸一时，误一世。"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="程序小站">
+  <meta name="twitter:description" content="逸一时，误一世。">
 <meta name="application-name" content="My cool site">
-<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="程序小站">
-    <link rel="feed" href="/index.xml" type="application/rss+xml" title="程序小站"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="程序小站"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "WebSite",
         "url": "http:\/\/example.org\/","inLanguage": "zh-CN","author": {
                 "@type": "Person",
-                "name": "TUXEDO"
+                "name": "lazurite"
             },"description": "逸一时，误一世。","name": "程序小站"
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="程序小站">剪纸堆</a>
+            <a href="/" title="程序小站"><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
                 </a></div>
         </div>
     </div>
@@ -46,14 +60,14 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="程序小站">剪纸堆</a>
+                <a href="/" title="程序小站"><span id="id-2" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
             </div>
         </div>
-        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
             </a></div>
     </div>
 </header><main class="main">
@@ -64,33 +78,129 @@
         data-srcset="images/avatar.png, images/avatar.png 1.5x, images/avatar.png 2x"
         data-sizes="auto"
         alt="images/avatar.png"
-        title="images/avatar.png" /></a></div><h1 class="home-title">梦溪笔谈</h1><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"></div></div>
+        title="images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/1108_new_ai_calendar/">基于TTS&RVC / SVC的AI歌唱模型日程</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-11-08">2025-11-08</time></span></div><div class="content"><ul>
+<li><i class="far fa-square" aria-hidden="true"></i> 收集会话素材</li>
+<li><i class="far fa-square" aria-hidden="true"></i> 训练TTS模型</li>
+<li><i class="far fa-square" aria-hidden="true"></i> TTS推理歌词稿</li>
+</ul>
+<hr>
+<ul>
+<li><i class="far fa-square" aria-hidden="true"></i> 调音制作歌唱数据集（实际把握导向）</li>
+<li><i class="far fa-square" aria-hidden="true"></i> 投入SVC/RVC训练</li>
+</ul>
+<hr>
+<ul>
+<li><i class="far fa-square" aria-hidden="true"></i> 获得成品模型</li>
+</ul></div><div class="post-footer">
+        <a href="/posts/1108_new_ai_calendar/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cpp_runtime_lib_dlopen/">[转] C语言动态加载共享库详解</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-20">2025-10-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>编程语言</a></span></div><div class="content">概述 &lt;dlfcn.h&gt; 是 C 标准库中用于动态加载共享库的头文件，主要用于在运行时加载共享库（如 .so 文件或 .dll 文件），获取符号地址并调用其中的函数。 核心函数 函数 说明</div><div class="post-footer">
-        <a href="/posts/cpp_runtime_lib_dlopen/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cpp/">cpp</a>,&nbsp;<a href="/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/">动态加载</a>,&nbsp;<a href="/tags/%E5%85%B1%E4%BA%AB%E5%BA%93/">共享库</a></div></div>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-20">2025-10-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"><i class="far fa-folder" aria-hidden="true"></i>编程语言</a></span></div><div class="content"><h2 id="概述">概述</h2>
+<p><code>&lt;dlfcn.h&gt;</code> 是 C 标准库中用于<strong>动态加载共享库</strong>的头文件，主要用于在运行时加载共享库（如 <code>.so</code> 文件或 <code>.dll</code> 文件），获取符号地址并调用其中的函数。</p>
+<h2 id="核心函数">核心函数</h2>
+<table>
+  <thead>
+      <tr>
+          <th>函数</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>dlopen</code></td>
+          <td>打开共享库文件，返回句柄</td>
+      </tr>
+      <tr>
+          <td><code>dlsym</code></td>
+          <td>从共享库中获取符号（函数/变量）地址</td>
+      </tr>
+      <tr>
+          <td><code>dlclose</code></td>
+          <td>关闭共享库</td>
+      </tr>
+      <tr>
+          <td><code>dlerror</code></td>
+          <td>获取最近一次 dl 函数的错误信息</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="dlopen-模式">dlopen 模式</h2>
+<table>
+  <thead>
+      <tr>
+          <th>模式</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>RTLD_LAZY</code></td>
+          <td>懒加载（首次调用时解析符号）</td>
+      </tr>
+      <tr>
+          <td><code>RTLD_NOW</code></td>
+          <td>立即加载（返回前解析所有符号）</td>
+      </tr>
+      <tr>
+          <td><code>RTLD_GLOBAL</code></td>
+          <td>符号可被后续加载的库使用</td>
+      </tr>
+      <tr>
+          <td><code>RTLD_LOCAL</code></td>
+          <td>符号仅当前库可见（默认）</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="关键特性">关键特性</h2>
+<h3 id="dlsym-查找符号">dlsym 查找符号</h3>
+<ul>
+<li>可以查找<strong>函数</strong>或<strong>全局变量</strong>的地址</li>
+<li>返回 <code>void*</code>，需强制转换为正确的函数指针类型</li>
+</ul>
+<h3 id="错误处理">错误处理</h3>
+<ul>
+<li><code>dlerror()</code> 返回最近一次 dl* 函数的错误信息（字符串）</li>
+<li>如果 <code>dlopen</code>/<code>dlsym</code> 失败，应检查 <code>dlerror()</code></li>
+</ul>
+<hr>
+<h2 id="典型应用场景">典型应用场景</h2>
+<h3 id="1-插件系统">1. 插件系统</h3>
+<p>程序运行时加载插件（如浏览器插件、游戏模组）</p></div><div class="post-footer">
+        <a href="/posts/cpp_runtime_lib_dlopen/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/cpp/">Cpp</a>,&nbsp;<a href="/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/">动态加载</a>,&nbsp;<a href="/tags/%E5%85%B1%E4%BA%AB%E5%BA%93/">共享库</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/linux_perms/">Linux 文件权限位介绍</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-17">2025-10-17</time></span></div><div class="content">1. Linux文件权限概述 2. 权限位的组成 Linux文件权限位通常由10个字符组成，格式如下： -rwxr-xr-x 这10个字符可以分解为以下部分： 第一个字符：文件</div><div class="post-footer">
-        <a href="/posts/linux_perms/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">文件权限</a>,&nbsp;<a href="/tags/%E6%9D%83%E9%99%90%E4%BD%8D/">权限位</a>,&nbsp;<a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a></div></div>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-17">2025-10-17</time></span></div><div class="content"><h2 id="1-linux文件权限概述">1. Linux文件权限概述</h2>
+<h2 id="2-权限位的组成">2. 权限位的组成</h2>
+<p>Linux文件权限位通常由10个字符组成，格式如下：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>-rwxr-xr-x</code></pre></div>
+<p>这10个字符可以分解为以下部分：</p></div><div class="post-footer">
+        <a href="/posts/linux_perms/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">文件权限</a>,&nbsp;<a href="/tags/%E6%9D%83%E9%99%90%E4%BD%8D/">权限位</a>,&nbsp;<a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/linux_subsystem_05_initcall/">[转]（五）Linux 内核驱动 - InitCall机制</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-12">2025-10-12</time></span></div><div class="content">1. initcall机制的起源与背景 当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插</div><div class="post-footer">
-        <a href="/posts/linux_subsystem_05_initcall/">Read More</a></div>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-12">2025-10-12</time></span></div><div class="content"><h3 id="1-initcall机制的起源与背景">1. <strong>initcall机制的起源与背景</strong></h3>
+<p>当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插入调用，但这显然不适用于大型的Linux内核，因为驱动程序数量庞大，且有一定的依赖关系，必须按特定顺序进行初始化。</p></div><div class="post-footer">
+        <a href="/posts/linux_subsystem_05_initcall/">阅读全文</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_04_pinctrl/">（四）Linux 内核驱动 - Pinctrl子系统</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-11">2025-10-11</time></span></div><div class="content">1. 概述 在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同S</div><div class="post-footer">
-        <a href="/posts/linux_subsystem_04_pinctrl/">Read More</a></div>
+        <a href="/posts/linux_subsystem_04_pinctrl/">[转]（四）Linux 内核驱动 - Pinctrl子系统</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-11">2025-10-11</time></span></div><div class="content"><h4 id="1-概述"><strong>1. 概述</strong></h4>
+<p>在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同SoC厂商的引脚配置，Linux内核提供了 <strong>pinctrl</strong> 子系统，用于管理引脚的复用、特性配置、GPIO等。</p></div><div class="post-footer">
+        <a href="/posts/linux_subsystem_04_pinctrl/">阅读全文</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/linux_subsystem_03_subsys_gpio/">（三）Linux 内核驱动 - GPIO子系统</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-01">2025-10-01</time></span></div><div class="content">TBD</div><div class="post-footer">
-        <a href="/posts/linux_subsystem_03_subsys_gpio/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_02_core_controller/">（二）Linux 内核驱动 - 核心层core与IP控制器抽象</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span>&nbsp;<span class="post-publish">published on <time datetime="2025-10-01">2025-10-01</time></span></div><div class="content">TBD</div><div class="post-footer">
-        <a href="/posts/linux_subsystem_02_core_controller/">Read More</a></div>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-01">2025-10-01</time></span></div><div class="content"><h1 id="tbd">TBD</h1></div><div class="post-footer">
+        <a href="/posts/linux_subsystem_03_subsys_gpio/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -113,10 +223,10 @@
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.160.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lazurite</a></span></div>
         </div>
     </footer>
-
 <script src="https://unpkg.com/oh-my-live2d@latest"></script>
 <script>
   OML2D.loadOml2d({
@@ -134,10 +244,13 @@
   });
 </script></div>
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":32},"data":{"id-1":"逸一时，误一世"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script>window.config={"data":{"id-1":"剪纸堆","id-2":"剪纸堆","id-3":"逸一时，误一世。"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"],"id-3":["id-3"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
 </html>

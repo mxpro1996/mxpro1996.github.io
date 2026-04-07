@@ -1,24 +1,36 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Pthread - Tag - 程序小站</title>
+        <title>Pthread - 标签 - 程序小站</title>
         <link>http://example.org/tags/pthread/</link>
-        <description>Pthread - Tag - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
-            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/pthread/" rel="self" type="application/rss+xml" /><item>
-    <title>从指令到契约：Linux 并发原语的“认怂”审计（修订终版）</title>
-    <link>http://example.org/posts/linux_subsys_08_futex_libc/</link>
-    <pubDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</pubDate>
+        <description>Pthread - 标签 - 程序小站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 07 Apr 2026 10:15:00 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/pthread/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux 内核架构观察：功能体（cdev）与实体（Device）的分立</title>
+    <link>http://example.org/posts/linux_subsystem_09_cdev_sep_dev/</link>
+    <pubDate>Tue, 07 Apr 2026 10:15:00 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/linux_subsys_08_futex_libc/</guid>
-    <description><![CDATA[在 Linux 用户态开发中，std::thread 或 pthread 往往被视为并发的起点。但剥开库的包装，你会发现：用户态没有独立的并发物理权。 所有的同步原语，本质]]></description>
+    <guid>http://example.org/posts/linux_subsystem_09_cdev_sep_dev/</guid>
+    <description><![CDATA[<h3 id="核心论点">核心论点</h3>
+<p>在 Linux 设备模型中，驱动程序并不是一个不可分割的整体，而是**功能策略（Functionality）<strong>与</strong>物理实体（Entity）**的强行耦合。</p>
+<h3 id="1-cdev卑微的会计与策略表">1. cdev：卑微的“会计”与策略表</h3>
+<p><strong>cdev (Character Device)</strong> 并不在内核的硬件拓扑树中占有一席之地。它的本质是一个<strong>策略映射器</strong>。</p>]]></description>
 </item>
 <item>
-    <title>用户态并发的“借贷”真相：从 Futex 到 std::thread 的性能审计</title>
-    <link>http://example.org/posts/linux_subsys_07_futex_pthread/</link>
+    <title>[AI总结] 用户态并发原理: 从指令到契约（修订版）</title>
+    <link>http://example.org/posts/linux_subsystem_08_futex_libc/</link>
+    <pubDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/linux_subsystem_08_futex_libc/</guid>
+    <description><![CDATA[<p>在 Linux 用户态开发中，<code>std::thread</code> 或 <code>pthread</code> 往往被视为并发的起点。但剥开库的包装，你会发现：<strong>用户态没有独立的并发物理权。</strong></p>
+<p>所有的同步原语，本质上都是从内核 UAPI 中“借”出来的执行策略。而 <code>pthread</code>，则是这套借贷契约的标准化搬运工。</p>]]></description>
+</item>
+<item>
+    <title>[AI总结] 用户态并发原理：从 Futex规则 到 std::thread 的性能审计</title>
+    <link>http://example.org/posts/linux_subsystem_07_futex_pthread/</link>
     <pubDate>Mon, 06 Apr 2026 10:45:00 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/linux_subsys_07_futex_pthread/</guid>
-    <description><![CDATA[在 C++ 或 C 语言中调用 std::thread 或 pthread_create 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。 但剥开层层包装，你会发现：用户态没有真正的并发原语。 所有的“体面”]]></description>
+    <guid>http://example.org/posts/linux_subsystem_07_futex_pthread/</guid>
+    <description><![CDATA[<p>在 C++ 或 C 语言中调用 <code>std::thread</code> 或 <code>pthread_create</code> 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。</p>
+<p>但剥开层层包装，你会发现：<strong>用户态没有真正的并发原语。</strong> 所有的“体面”都是向内核借来的，而这张借条的名字，叫作 <strong>Futex (Fast Userspace Mutex)</strong>。</p>]]></description>
 </item>
 </channel>
 </rss>

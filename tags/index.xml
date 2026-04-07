@@ -1,88 +1,208 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Tags - Tag - 程序小站</title>
-        <link>http://example.org/tags/</link>
-        <description>Tags - Tag - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
-            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>Concurrency</title>
-    <link>http://example.org/tags/concurrency/</link>
-    <pubDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/tags/concurrency/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Futex</title>
-    <link>http://example.org/tags/futex/</link>
-    <pubDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/tags/futex/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Linux</title>
-    <link>http://example.org/tags/linux/</link>
-    <pubDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/tags/linux/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Pthread</title>
-    <link>http://example.org/tags/pthread/</link>
-    <pubDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/tags/pthread/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Syscall</title>
-    <link>http://example.org/tags/syscall/</link>
-    <pubDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/tags/syscall/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>C&#43;&#43;</title>
-    <link>http://example.org/tags/c&#43;&#43;/</link>
-    <pubDate>Mon, 06 Apr 2026 10:45:00 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/tags/c&#43;&#43;/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Glibc</title>
-    <link>http://example.org/tags/glibc/</link>
-    <pubDate>Mon, 06 Apr 2026 10:45:00 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/tags/glibc/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Architecture</title>
-    <link>http://example.org/tags/architecture/</link>
-    <pubDate>Mon, 06 Apr 2026 02:13:00 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/tags/architecture/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Linux Kernel</title>
-    <link>http://example.org/tags/linux-kernel/</link>
-    <pubDate>Mon, 06 Apr 2026 02:13:00 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/tags/linux-kernel/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>SMP</title>
-    <link>http://example.org/tags/smp/</link>
-    <pubDate>Mon, 06 Apr 2026 02:13:00 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/tags/smp/</guid>
-    <description><![CDATA[]]></description>
-</item>
-</channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 程序小站</title>
+    <link>http://example.org/tags/</link>
+    <description>Recent content in Tags on 程序小站</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 07 Apr 2026 10:15:00 +0800</lastBuildDate>
+    <atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Concurrency</title>
+      <link>http://example.org/tags/concurrency/</link>
+      <pubDate>Tue, 07 Apr 2026 10:15:00 +0800</pubDate>
+      <guid>http://example.org/tags/concurrency/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Futex</title>
+      <link>http://example.org/tags/futex/</link>
+      <pubDate>Tue, 07 Apr 2026 10:15:00 +0800</pubDate>
+      <guid>http://example.org/tags/futex/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>http://example.org/tags/linux/</link>
+      <pubDate>Tue, 07 Apr 2026 10:15:00 +0800</pubDate>
+      <guid>http://example.org/tags/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Pthread</title>
+      <link>http://example.org/tags/pthread/</link>
+      <pubDate>Tue, 07 Apr 2026 10:15:00 +0800</pubDate>
+      <guid>http://example.org/tags/pthread/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Syscall</title>
+      <link>http://example.org/tags/syscall/</link>
+      <pubDate>Tue, 07 Apr 2026 10:15:00 +0800</pubDate>
+      <guid>http://example.org/tags/syscall/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>http://example.org/tags/c&#43;&#43;/</link>
+      <pubDate>Mon, 06 Apr 2026 10:45:00 +0800</pubDate>
+      <guid>http://example.org/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Glibc</title>
+      <link>http://example.org/tags/glibc/</link>
+      <pubDate>Mon, 06 Apr 2026 10:45:00 +0800</pubDate>
+      <guid>http://example.org/tags/glibc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Architecture</title>
+      <link>http://example.org/tags/architecture/</link>
+      <pubDate>Mon, 06 Apr 2026 02:13:00 +0800</pubDate>
+      <guid>http://example.org/tags/architecture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux Kernel</title>
+      <link>http://example.org/tags/linux-kernel/</link>
+      <pubDate>Mon, 06 Apr 2026 02:13:00 +0800</pubDate>
+      <guid>http://example.org/tags/linux-kernel/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SMP</title>
+      <link>http://example.org/tags/smp/</link>
+      <pubDate>Mon, 06 Apr 2026 02:13:00 +0800</pubDate>
+      <guid>http://example.org/tags/smp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>AOSP</title>
+      <link>http://example.org/tags/aosp/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/aosp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>EC20</title>
+      <link>http://example.org/tags/ec20/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/ec20/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>I.MX6ULL</title>
+      <link>http://example.org/tags/i.mx6ull/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/i.mx6ull/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Qualcomm</title>
+      <link>http://example.org/tags/qualcomm/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/qualcomm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>嵌入式开发</title>
+      <link>http://example.org/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/</link>
+      <pubDate>Tue, 24 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Qt</title>
+      <link>http://example.org/tags/qt/</link>
+      <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/qt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>手势识别</title>
+      <link>http://example.org/tags/%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB/</link>
+      <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>框架</title>
+      <link>http://example.org/tags/%E6%A1%86%E6%9E%B6/</link>
+      <pubDate>Tue, 18 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/%E6%A1%86%E6%9E%B6/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cpp</title>
+      <link>http://example.org/tags/cpp/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/cpp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>共享库</title>
+      <link>http://example.org/tags/%E5%85%B1%E4%BA%AB%E5%BA%93/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/%E5%85%B1%E4%BA%AB%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>动态加载</title>
+      <link>http://example.org/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>基础</title>
+      <link>http://example.org/tags/%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/%E5%9F%BA%E7%A1%80/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>文件权限</title>
+      <link>http://example.org/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/</link>
+      <pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>权限位</title>
+      <link>http://example.org/tags/%E6%9D%83%E9%99%90%E4%BD%8D/</link>
+      <pubDate>Fri, 17 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/%E6%9D%83%E9%99%90%E4%BD%8D/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>RAII</title>
+      <link>http://example.org/tags/raii/</link>
+      <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/raii/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shared_ptr</title>
+      <link>http://example.org/tags/shared_ptr/</link>
+      <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/shared_ptr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Unique_ptr</title>
+      <link>http://example.org/tags/unique_ptr/</link>
+      <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/unique_ptr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Weak_ptr</title>
+      <link>http://example.org/tags/weak_ptr/</link>
+      <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://example.org/tags/weak_ptr/</guid>
+      <description></description>
+    </item>
+  </channel>
 </rss>

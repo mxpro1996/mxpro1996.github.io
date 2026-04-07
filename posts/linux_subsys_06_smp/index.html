@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>从指令级到策略级：Linux SMP 并发原语的“认怂”审计 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:title" content="从指令级到策略级：Linux SMP 并发原语的“认怂”审计" />
-<meta property="og:description" content="在现代多核（SMP）架构下，编写并发代码本质上是在处理一场由物理电信号驱动的“绩效狂欢”。当我们剥开 mutex_lock 的华丽外衣，最深处只有那几行冷酷的 ld" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/posts/linux_subsys_06_smp/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2026-04-06T02:13:00+08:00" />
-<meta property="article:modified_time" content="2026-04-06T02:13:00+08:00" /><meta property="og:site_name" content="剪纸堆" />
+        <title>从指令级到策略级：Linux SMP 并发原语的“认怂”审计 - 程序小站</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="http://localhost:1313/posts/linux_subsys_06_smp/">
+  <meta property="og:site_name" content="程序小站">
+  <meta property="og:title" content="从指令级到策略级：Linux SMP 并发原语的“认怂”审计">
+  <meta property="og:description" content="在现代多核（SMP）架构下，编写并发代码本质上是在处理一场由物理电信号驱动的“绩效狂欢”。当我们剥开 mutex_lock 的华丽外衣，最深处只有那几行冷酷的 ldrex/strex。
+本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从物理重试到逻辑认怂的完整链路。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-06T02:13:00+08:00">
+    <meta property="article:modified_time" content="2026-04-06T02:13:00+08:00">
+    <meta property="article:tag" content="Linux Kernel">
+    <meta property="article:tag" content="Concurrency">
+    <meta property="article:tag" content="Architecture">
+    <meta property="article:tag" content="SMP">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="从指令级到策略级：Linux SMP 并发原语的“认怂”审计"/>
-<meta name="twitter:description" content="在现代多核（SMP）架构下，编写并发代码本质上是在处理一场由物理电信号驱动的“绩效狂欢”。当我们剥开 mutex_lock 的华丽外衣，最深处只有那几行冷酷的 ld"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="从指令级到策略级：Linux SMP 并发原语的“认怂”审计">
+  <meta name="twitter:description" content="在现代多核（SMP）架构下，编写并发代码本质上是在处理一场由物理电信号驱动的“绩效狂欢”。当我们剥开 mutex_lock 的华丽外衣，最深处只有那几行冷酷的 ldrex/strex。
+本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从物理重试到逻辑认怂的完整链路。">
 <meta name="application-name" content="My cool site">
-<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/linux_subsys_06_smp/" /><link rel="prev" href="http://example.org/posts/ap_bp_brief_intro/" /><link rel="next" href="http://example.org/posts/linux_subsys_07_futex_pthread/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/linux_subsys_06_smp/" /><link rel="prev" href="http://localhost:1313/posts/ap_bp_brief_intro/" /><link rel="next" href="http://localhost:1313/posts/linux_subsys_07_futex_pthread/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -27,9 +37,9 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/example.org\/posts\/linux_subsys_06_smp\/"
+            "@id": "http:\/\/localhost:1313\/posts\/linux_subsys_06_smp\/"
         },"genre": "posts","keywords": "Linux Kernel, Concurrency, Architecture, SMP","wordcount":  1335 ,
-        "url": "http:\/\/example.org\/posts\/linux_subsys_06_smp\/","datePublished": "2026-04-06T02:13:00+08:00","dateModified": "2026-04-06T02:13:00+08:00","publisher": {
+        "url": "http:\/\/localhost:1313\/posts\/linux_subsys_06_smp\/","datePublished": "2026-04-06T02:13:00+08:00","dateModified": "2026-04-06T02:13:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -37,16 +47,27 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="程序小站">剪纸堆</a>
+            <a href="/" title="程序小站">My cool site</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
                 </a></div>
         </div>
     </div>
@@ -54,27 +75,27 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="程序小站">剪纸堆</a>
+                <a href="/" title="程序小站">My cool site</a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
             </div>
         </div>
-        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
             </a></div>
     </div>
 </header><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
+            <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">从指令级到策略级：Linux SMP 并发原语的“认怂”审计</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-category">included in <a href="/categories/low-level/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Low-level</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-06">2026-04-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1335 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/low-level/"><i class="far fa-folder" aria-hidden="true"></i>Low-Level</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-06">2026-04-06</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1335 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
-                    <span>Contents</span>
+                    <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
@@ -112,25 +133,25 @@
 <h2 id="一-物理原点指令级的博弈">一、 物理原点：指令级的“博弈”</h2>
 <p>所有的并发逻辑都坍缩在 CPU 的**独占监视器（Exclusive Monitor）**上。这是数字世界的“因果律”起点。</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:left">机制</th>
-<th style="text-align:left">行为本质</th>
-<th style="text-align:left">绩效代价</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><strong>ldrex / strex</strong></td>
-<td style="text-align:left"><strong>盲目尝试</strong>。在 L1/总线上打标，不成功便成仁。</td>
-<td style="text-align:left">频繁冲突会导致微指令自杀重试（Re-exec）。</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Memory Barrier</strong></td>
-<td style="text-align:left"><strong>压制乱序</strong>。强行插入显式依赖（DEP），禁止 CPU 抢跑。</td>
-<td style="text-align:left">破坏流水线流水，换取语义合规。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">机制</th>
+          <th style="text-align: left">行为本质</th>
+          <th style="text-align: left">绩效代价</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>ldrex / strex</strong></td>
+          <td style="text-align: left"><strong>盲目尝试</strong>。在 L1/总线上打标，不成功便成仁。</td>
+          <td style="text-align: left">频繁冲突会导致微指令自杀重试（Re-exec）。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>Memory Barrier</strong></td>
+          <td style="text-align: left"><strong>压制乱序</strong>。强行插入显式依赖（DEP），禁止 CPU 抢跑。</td>
+          <td style="text-align: left">破坏流水线流水，换取语义合规。</td>
+      </tr>
+  </tbody>
 </table>
 <blockquote>
 <p><strong>底层觉悟</strong>：<code>add eax, 1</code> 可能会失败 100 次。你看到的成功，只是在物理竞速中活下来的“幸存者偏差”。</p>
@@ -188,59 +209,59 @@
 <hr>
 <h2 id="六-终极审计并发原语频谱">六、 终极审计：并发原语频谱</h2>
 <table>
-<thead>
-<tr>
-<th style="text-align:left">层级</th>
-<th style="text-align:left">代表机制</th>
-<th style="text-align:left">底层依赖</th>
-<th style="text-align:left">行为本质</th>
-<th style="text-align:left">上下文限制</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><strong>第一级：指令</strong></td>
-<td style="text-align:left"><code>ldrex/strex</code></td>
-<td style="text-align:left">物理监视器</td>
-<td style="text-align:left">抢排名，输了重赛</td>
-<td style="text-align:left">无</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>第二级：变量</strong></td>
-<td style="text-align:left"><code>atomic_t</code></td>
-<td style="text-align:left"><code>while</code> + 指令</td>
-<td style="text-align:left">撞大运的复读机</td>
-<td style="text-align:left">无</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>第三级：自旋</strong></td>
-<td style="text-align:left"><code>spinlock</code></td>
-<td style="text-align:left"><code>atomic</code> + 叫号</td>
-<td style="text-align:left">原地踏步，禁止抢占</td>
-<td style="text-align:left"><strong>禁止睡眠</strong></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>第四级：名单</strong></td>
-<td style="text-align:left"><code>waitqueue</code></td>
-<td style="text-align:left"><code>list</code> + <code>spin</code></td>
-<td style="text-align:left">登记名字，准备跑路</td>
-<td style="text-align:left">进程/中断</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>第五级：策略</strong></td>
-<td style="text-align:left"><code>mutex/sem</code></td>
-<td style="text-align:left"><code>atomic</code> + <code>waitq</code></td>
-<td style="text-align:left">抢不到就回家睡觉</td>
-<td style="text-align:left"><strong>禁止中断</strong></td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>第六级：隔离</strong></td>
-<td style="text-align:left"><strong><code>RCU</code></strong></td>
-<td style="text-align:left">屏障 + 指针替换</td>
-<td style="text-align:left">时空隔离，读写分离</td>
-<td style="text-align:left">读者极快</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">层级</th>
+          <th style="text-align: left">代表机制</th>
+          <th style="text-align: left">底层依赖</th>
+          <th style="text-align: left">行为本质</th>
+          <th style="text-align: left">上下文限制</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>第一级：指令</strong></td>
+          <td style="text-align: left"><code>ldrex/strex</code></td>
+          <td style="text-align: left">物理监视器</td>
+          <td style="text-align: left">抢排名，输了重赛</td>
+          <td style="text-align: left">无</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>第二级：变量</strong></td>
+          <td style="text-align: left"><code>atomic_t</code></td>
+          <td style="text-align: left"><code>while</code> + 指令</td>
+          <td style="text-align: left">撞大运的复读机</td>
+          <td style="text-align: left">无</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>第三级：自旋</strong></td>
+          <td style="text-align: left"><code>spinlock</code></td>
+          <td style="text-align: left"><code>atomic</code> + 叫号</td>
+          <td style="text-align: left">原地踏步，禁止抢占</td>
+          <td style="text-align: left"><strong>禁止睡眠</strong></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>第四级：名单</strong></td>
+          <td style="text-align: left"><code>waitqueue</code></td>
+          <td style="text-align: left"><code>list</code> + <code>spin</code></td>
+          <td style="text-align: left">登记名字，准备跑路</td>
+          <td style="text-align: left">进程/中断</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>第五级：策略</strong></td>
+          <td style="text-align: left"><code>mutex/sem</code></td>
+          <td style="text-align: left"><code>atomic</code> + <code>waitq</code></td>
+          <td style="text-align: left">抢不到就回家睡觉</td>
+          <td style="text-align: left"><strong>禁止中断</strong></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>第六级：隔离</strong></td>
+          <td style="text-align: left"><strong><code>RCU</code></strong></td>
+          <td style="text-align: left">屏障 + 指针替换</td>
+          <td style="text-align: left">时空隔离，读写分离</td>
+          <td style="text-align: left">读者极快</td>
+      </tr>
+  </tbody>
 </table>
 <hr>
 <h2 id="结语">结语</h2>
@@ -255,53 +276,40 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2026-04-06</span>
+                <span>更新于 2026-04-06</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/linux_subsys_06_smp/" data-title="从指令级到策略级：Linux SMP 并发原语的“认怂”审计"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://example.org/posts/linux_subsys_06_smp/" data-title="从指令级到策略级：Linux SMP 并发原语的“认怂”审计"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/posts/linux_subsys_06_smp/" data-title="从指令级到策略级：Linux SMP 并发原语的“认怂”审计"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://localhost:1313/posts/linux_subsys_06_smp/" data-title="从指令级到策略级：Linux SMP 并发原语的“认怂”审计" data-hashtags="Linux Kernel,Concurrency,Architecture,SMP"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://localhost:1313/posts/linux_subsys_06_smp/" data-title="从指令级到策略级：Linux SMP 并发原语的“认怂”审计"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/linux_subsys_06_smp/" data-hashtag="Linux Kernel"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/linux_subsys_06_smp/" data-title="从指令级到策略级：Linux SMP 并发原语的“认怂”审计"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:1313/posts/linux_subsys_06_smp/" data-title="从指令级到策略级：Linux SMP 并发原语的“认怂”审计"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/linux_subsys_06_smp/" data-title="从指令级到策略级：Linux SMP 并发原语的“认怂”审计"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://localhost:1313/posts/linux_subsys_06_smp/" data-title="从指令级到策略级：Linux SMP 并发原语的“认怂”审计" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2flocalhost%3a1313%2fposts%2flinux_subsys_06_smp%2f&amp;text=%e4%bb%8e%e6%8c%87%e4%bb%a4%e7%ba%a7%e5%88%b0%e7%ad%96%e7%95%a5%e7%ba%a7%ef%bc%9aLinux%20SMP%20%e5%b9%b6%e5%8f%91%e5%8e%9f%e8%af%ad%e7%9a%84%e2%80%9c%e8%ae%a4%e6%80%82%e2%80%9d%e5%ae%a1%e8%ae%a1" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux-kernel/">Linux Kernel</a>,&nbsp;<a href="/tags/concurrency/">Concurrency</a>,&nbsp;<a href="/tags/architecture/">Architecture</a>,&nbsp;<a href="/tags/smp/">SMP</a></section>
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux-kernel/">Linux Kernel</a>,&nbsp;<a href="/tags/concurrency/">Concurrency</a>,&nbsp;<a href="/tags/architecture/">Architecture</a>,&nbsp;<a href="/tags/smp/">SMP</a></section>
         <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/ap_bp_brief_intro/" class="prev" rel="prev" title="模块化 IP 的具象化：AP&#43;BP 架构、奢侈的基带与 AOSP 的深水区"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>模块化 IP 的具象化：AP+BP 架构、奢侈的基带与 AOSP 的深水区</a>
-            <a href="/posts/linux_subsys_07_futex_pthread/" class="next" rel="next" title="用户态并发的“借贷”真相：从 Futex 到 std::thread 的性能审计">用户态并发的“借贷”真相：从 Futex 到 std::thread 的性能审计<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/posts/ap_bp_brief_intro/" class="prev" rel="prev" title="模块化 IP 的具象化：AP&#43;BP 架构、奢侈的基带与 AOSP 的深水区"><i class="fas fa-angle-left" aria-hidden="true"></i>模块化 IP 的具象化：AP+BP 架构、奢侈的基带与 AOSP 的深水区</a>
+            <a href="/posts/linux_subsys_07_futex_pthread/" class="next" rel="next" title="用户态并发的“借贷”真相：从 Futex 到 std::thread 的性能审计">用户态并发的“借贷”真相：从 Futex 到 std::thread 的性能审计<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.160.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xxxx</a></span></div>
         </div>
-    </footer>
+    </footer></div>
 
-<script src="https://unpkg.com/oh-my-live2d@latest"></script>
-<script>
-  OML2D.loadOml2d({
-    models: [
-      {
-        path: 'https://model.hacxy.cn/HK416-1-normal/model.json',
-	dockedPosition: "right",
-        position: [0, 60],
-        scale: 0.08,
-        stageStyle: {
-          height: 450
-        }
-      }
-    ]
-  });
-</script></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":32},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script>window.config={"comment":{}};</script><script src="/js/theme.js"></script></body>
 </html>

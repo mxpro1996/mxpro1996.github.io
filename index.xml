@@ -3,88 +3,205 @@
         <title>程序小站</title>
         <link>http://example.org/</link>
         <description>逸一时，误一世。</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
-            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 07 Apr 2026 10:15:00 &#43;0800</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>从指令到契约：Linux 并发原语的“认怂”审计（修订终版）</title>
-    <link>http://example.org/posts/linux_subsys_08_futex_libc/</link>
+    <title>Linux 内核架构观察：功能体（cdev）与实体（Device）的分立</title>
+    <link>http://example.org/posts/linux_subsystem_09_cdev_sep_dev/</link>
+    <pubDate>Tue, 07 Apr 2026 10:15:00 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/linux_subsystem_09_cdev_sep_dev/</guid>
+    <description><![CDATA[<h3 id="核心论点">核心论点</h3>
+<p>在 Linux 设备模型中，驱动程序并不是一个不可分割的整体，而是**功能策略（Functionality）<strong>与</strong>物理实体（Entity）**的强行耦合。</p>
+<h3 id="1-cdev卑微的会计与策略表">1. cdev：卑微的“会计”与策略表</h3>
+<p><strong>cdev (Character Device)</strong> 并不在内核的硬件拓扑树中占有一席之地。它的本质是一个<strong>策略映射器</strong>。</p>]]></description>
+</item>
+<item>
+    <title>[AI总结] 用户态并发原理: 从指令到契约（修订版）</title>
+    <link>http://example.org/posts/linux_subsystem_08_futex_libc/</link>
     <pubDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/linux_subsys_08_futex_libc/</guid>
-    <description><![CDATA[在 Linux 用户态开发中，std::thread 或 pthread 往往被视为并发的起点。但剥开库的包装，你会发现：用户态没有独立的并发物理权。 所有的同步原语，本质]]></description>
+    <guid>http://example.org/posts/linux_subsystem_08_futex_libc/</guid>
+    <description><![CDATA[<p>在 Linux 用户态开发中，<code>std::thread</code> 或 <code>pthread</code> 往往被视为并发的起点。但剥开库的包装，你会发现：<strong>用户态没有独立的并发物理权。</strong></p>
+<p>所有的同步原语，本质上都是从内核 UAPI 中“借”出来的执行策略。而 <code>pthread</code>，则是这套借贷契约的标准化搬运工。</p>]]></description>
 </item>
 <item>
-    <title>用户态并发的“借贷”真相：从 Futex 到 std::thread 的性能审计</title>
-    <link>http://example.org/posts/linux_subsys_07_futex_pthread/</link>
+    <title>[AI总结] 用户态并发原理：从 Futex规则 到 std::thread 的性能审计</title>
+    <link>http://example.org/posts/linux_subsystem_07_futex_pthread/</link>
     <pubDate>Mon, 06 Apr 2026 10:45:00 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/linux_subsys_07_futex_pthread/</guid>
-    <description><![CDATA[在 C++ 或 C 语言中调用 std::thread 或 pthread_create 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。 但剥开层层包装，你会发现：用户态没有真正的并发原语。 所有的“体面”]]></description>
+    <guid>http://example.org/posts/linux_subsystem_07_futex_pthread/</guid>
+    <description><![CDATA[<p>在 C++ 或 C 语言中调用 <code>std::thread</code> 或 <code>pthread_create</code> 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。</p>
+<p>但剥开层层包装，你会发现：<strong>用户态没有真正的并发原语。</strong> 所有的“体面”都是向内核借来的，而这张借条的名字，叫作 <strong>Futex (Fast Userspace Mutex)</strong>。</p>]]></description>
 </item>
 <item>
-    <title>从指令级到策略级：Linux SMP 并发原语的“认怂”审计</title>
-    <link>http://example.org/posts/linux_subsys_06_smp/</link>
+    <title>[AI总结] 用户态并发原理: 从指令到契约</title>
+    <link>http://example.org/posts/linux_subsystem_06_smp/</link>
     <pubDate>Mon, 06 Apr 2026 02:13:00 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/linux_subsys_06_smp/</guid>
-    <description><![CDATA[在现代多核（SMP）架构下，编写并发代码本质上是在处理一场由物理电信号驱动的“绩效狂欢”。当我们剥开 mutex_lock 的华丽外衣，最深处只有那几行冷酷的 ld]]></description>
+    <guid>http://example.org/posts/linux_subsystem_06_smp/</guid>
+    <description><![CDATA[<p>在现代多核（SMP）架构下，编写并发代码本质上是在处理一场<strong>由物理电信号驱动的“绩效狂欢”</strong>。当我们剥开 <code>mutex_lock</code> 的华丽外衣，最深处只有那几行冷酷的 <code>ldrex/strex</code>。</p>
+<p>本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从<strong>物理重试</strong>到<strong>逻辑认怂</strong>的完整链路。</p>]]></description>
 </item>
 <item>
-    <title>模块化 IP 的具象化：AP&#43;BP 架构、奢侈的基带与 AOSP 的深水区</title>
+    <title>[AI总结] 模块化 IP 的具象：AP&#43;BP 架构、奢侈的基带</title>
     <link>http://example.org/posts/ap_bp_brief_intro/</link>
     <pubDate>Tue, 24 Mar 2026 00:00:00 &#43;0000</pubDate>
-    <author>TUXEDO</author>
+    <author>lazurite</author>
     <guid>http://example.org/posts/ap_bp_brief_intro/</guid>
-    <description><![CDATA[0. 前言：算力倒挂的工业荒诞 在嵌入式开发中，我们常陷入一种“主从错觉”：认为主控 CPU（AP）是核心，而通讯模块（BP）只是个外设。但当你拆开]]></description>
+    <description><![CDATA[<h2 id="0-前言算力倒挂的工业荒诞">0. 前言：算力倒挂的工业荒诞</h2>
+<p>在嵌入式开发中，我们常陷入一种“主从错觉”：认为主控 CPU（AP）是核心，而通讯模块（BP）只是个外设。但当你拆开屏蔽罩，看到 <strong>1.2GHz 的 MDM9x07</strong> 甚至 <strong>四核 MSM8612</strong> 仅仅是在通过串口为 <strong>528MHz 的 i.MX6ULL</strong> 传递几行 AT 指令时，一种工业级的讽刺感油然而生。</p>]]></description>
 </item>
 <item>
     <title>[QT] 手势识别 - 层次笔记</title>
     <link>http://example.org/posts/qt_gesture_flowchart/</link>
     <pubDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</pubDate>
-    <author>TUXEDO</author>
+    <author>lazurite</author>
     <guid>http://example.org/posts/qt_gesture_flowchart/</guid>
-    <description><![CDATA[初始化层 职责: 注册手势类型，启用触摸事件支持 代码片段: // 在构造函数中注册需要的手势类型 grabGesture(Qt::PinchGesture); // 捏合缩放手势 grabGesture(Qt::PanGesture); // 平移拖动手势 grabGesture(Qt::SwipeGesture); // 滑动手势 grabGesture(Qt::TapGesture); // 点击手]]></description>
+    <description><![CDATA[<h2 id="初始化层">初始化层</h2>
+<p><strong>职责</strong>: 注册手势类型，启用触摸事件支持</p>
+<p><strong>代码片段</strong>:</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-cpp">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 在构造函数中注册需要的手势类型
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PinchGesture</span><span class="p">);</span>    <span class="c1">// 捏合缩放手势
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PanGesture</span><span class="p">);</span>      <span class="c1">// 平移拖动手势  
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">SwipeGesture</span><span class="p">);</span>    <span class="c1">// 滑动手势
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">TapGesture</span><span class="p">);</span>      <span class="c1">// 点击手势
+</span></span></span><span class="line"><span class="cl"><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_AcceptTouchEvents</span><span class="p">);</span>  <span class="c1">// 启用触摸事件
+</span></span></span></code></pre></div></div>
+<h2 id="事件拦截层">事件拦截层</h2>
+<p><strong>职责</strong>: 识别并路由手势事件到专用处理器</p>]]></description>
 </item>
 <item>
     <title>基于TTS&amp;RVC / SVC的AI歌唱模型日程</title>
     <link>http://example.org/posts/1108_new_ai_calendar/</link>
     <pubDate>Sat, 08 Nov 2025 08:07:25 &#43;0800</pubDate>
-    <author>TUXEDO</author>
+    <author>lazurite</author>
     <guid>http://example.org/posts/1108_new_ai_calendar/</guid>
-    <description><![CDATA[收集会话素材 训练TTS模型 TTS推理歌词稿 调音制作歌唱数据集（实际把握导向） 投入SVC/RVC训练 获得成品模型]]></description>
+    <description><![CDATA[<ul>
+<li><i class="far fa-square" aria-hidden="true"></i> 收集会话素材</li>
+<li><i class="far fa-square" aria-hidden="true"></i> 训练TTS模型</li>
+<li><i class="far fa-square" aria-hidden="true"></i> TTS推理歌词稿</li>
+</ul>
+<hr>
+<ul>
+<li><i class="far fa-square" aria-hidden="true"></i> 调音制作歌唱数据集（实际把握导向）</li>
+<li><i class="far fa-square" aria-hidden="true"></i> 投入SVC/RVC训练</li>
+</ul>
+<hr>
+<ul>
+<li><i class="far fa-square" aria-hidden="true"></i> 获得成品模型</li>
+</ul>]]></description>
 </item>
 <item>
     <title>[转] C语言动态加载共享库详解</title>
     <link>http://example.org/posts/cpp_runtime_lib_dlopen/</link>
     <pubDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</pubDate>
-    <author>TUXEDO</author>
+    <author>lazurite</author>
     <guid>http://example.org/posts/cpp_runtime_lib_dlopen/</guid>
-    <description><![CDATA[概述 &lt;dlfcn.h&gt; 是 C 标准库中用于动态加载共享库的头文件，主要用于在运行时加载共享库（如 .so 文件或 .dll 文件），获取符号地址并调用其中的函数。 核心函数 函数 说明]]></description>
+    <description><![CDATA[<h2 id="概述">概述</h2>
+<p><code>&lt;dlfcn.h&gt;</code> 是 C 标准库中用于<strong>动态加载共享库</strong>的头文件，主要用于在运行时加载共享库（如 <code>.so</code> 文件或 <code>.dll</code> 文件），获取符号地址并调用其中的函数。</p>
+<h2 id="核心函数">核心函数</h2>
+<table>
+  <thead>
+      <tr>
+          <th>函数</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>dlopen</code></td>
+          <td>打开共享库文件，返回句柄</td>
+      </tr>
+      <tr>
+          <td><code>dlsym</code></td>
+          <td>从共享库中获取符号（函数/变量）地址</td>
+      </tr>
+      <tr>
+          <td><code>dlclose</code></td>
+          <td>关闭共享库</td>
+      </tr>
+      <tr>
+          <td><code>dlerror</code></td>
+          <td>获取最近一次 dl 函数的错误信息</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="dlopen-模式">dlopen 模式</h2>
+<table>
+  <thead>
+      <tr>
+          <th>模式</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>RTLD_LAZY</code></td>
+          <td>懒加载（首次调用时解析符号）</td>
+      </tr>
+      <tr>
+          <td><code>RTLD_NOW</code></td>
+          <td>立即加载（返回前解析所有符号）</td>
+      </tr>
+      <tr>
+          <td><code>RTLD_GLOBAL</code></td>
+          <td>符号可被后续加载的库使用</td>
+      </tr>
+      <tr>
+          <td><code>RTLD_LOCAL</code></td>
+          <td>符号仅当前库可见（默认）</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="关键特性">关键特性</h2>
+<h3 id="dlsym-查找符号">dlsym 查找符号</h3>
+<ul>
+<li>可以查找<strong>函数</strong>或<strong>全局变量</strong>的地址</li>
+<li>返回 <code>void*</code>，需强制转换为正确的函数指针类型</li>
+</ul>
+<h3 id="错误处理">错误处理</h3>
+<ul>
+<li><code>dlerror()</code> 返回最近一次 dl* 函数的错误信息（字符串）</li>
+<li>如果 <code>dlopen</code>/<code>dlsym</code> 失败，应检查 <code>dlerror()</code></li>
+</ul>
+<hr>
+<h2 id="典型应用场景">典型应用场景</h2>
+<h3 id="1-插件系统">1. 插件系统</h3>
+<p>程序运行时加载插件（如浏览器插件、游戏模组）</p>]]></description>
 </item>
 <item>
     <title>Linux 文件权限位介绍</title>
     <link>http://example.org/posts/linux_perms/</link>
     <pubDate>Fri, 17 Oct 2025 00:00:00 &#43;0000</pubDate>
-    <author>TUXEDO</author>
+    <author>lazurite</author>
     <guid>http://example.org/posts/linux_perms/</guid>
-    <description><![CDATA[1. Linux文件权限概述 2. 权限位的组成 Linux文件权限位通常由10个字符组成，格式如下： -rwxr-xr-x 这10个字符可以分解为以下部分： 第一个字符：文件]]></description>
+    <description><![CDATA[<h2 id="1-linux文件权限概述">1. Linux文件权限概述</h2>
+<h2 id="2-权限位的组成">2. 权限位的组成</h2>
+<p>Linux文件权限位通常由10个字符组成，格式如下：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><pre tabindex="0"><code>-rwxr-xr-x</code></pre></div>
+<p>这10个字符可以分解为以下部分：</p>]]></description>
 </item>
 <item>
     <title>[转]（五）Linux 内核驱动 - InitCall机制</title>
     <link>http://example.org/posts/linux_subsystem_05_initcall/</link>
     <pubDate>Sun, 12 Oct 2025 09:02:36 &#43;0800</pubDate>
-    <author>TUXEDO</author>
+    <author>lazurite</author>
     <guid>http://example.org/posts/linux_subsystem_05_initcall/</guid>
-    <description><![CDATA[1. initcall机制的起源与背景 当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插]]></description>
-</item>
-<item>
-    <title>（四）Linux 内核驱动 - Pinctrl子系统</title>
-    <link>http://example.org/posts/linux_subsystem_04_pinctrl/</link>
-    <pubDate>Sat, 11 Oct 2025 09:02:36 &#43;0800</pubDate>
-    <author>TUXEDO</author>
-    <guid>http://example.org/posts/linux_subsystem_04_pinctrl/</guid>
-    <description><![CDATA[1. 概述 在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同S]]></description>
+    <description><![CDATA[<h3 id="1-initcall机制的起源与背景">1. <strong>initcall机制的起源与背景</strong></h3>
+<p>当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插入调用，但这显然不适用于大型的Linux内核，因为驱动程序数量庞大，且有一定的依赖关系，必须按特定顺序进行初始化。</p>]]></description>
 </item>
 </channel>
 </rss>

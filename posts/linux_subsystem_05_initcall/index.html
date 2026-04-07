@@ -4,21 +4,25 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[转]（五）Linux 内核驱动 - InitCall机制 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:title" content="[转]（五）Linux 内核驱动 - InitCall机制" />
-<meta property="og:description" content="1. initcall机制的起源与背景 当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/posts/linux_subsystem_05_initcall/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2025-10-12T09:02:36+08:00" />
-<meta property="article:modified_time" content="2025-10-12T09:02:36+08:00" /><meta property="og:site_name" content="剪纸堆" />
+        <title>[转]（五）Linux 内核驱动 - InitCall机制 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/linux_subsystem_05_initcall/">
+  <meta property="og:site_name" content="程序小站">
+  <meta property="og:title" content="[转]（五）Linux 内核驱动 - InitCall机制">
+  <meta property="og:description" content="1. initcall机制的起源与背景 当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插入调用，但这显然不适用于大型的Linux内核，因为驱动程序数量庞大，且有一定的依赖关系，必须按特定顺序进行初始化。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-10-12T09:02:36+08:00">
+    <meta property="article:modified_time" content="2025-10-12T09:02:36+08:00">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[转]（五）Linux 内核驱动 - InitCall机制"/>
-<meta name="twitter:description" content="1. initcall机制的起源与背景 当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[转]（五）Linux 内核驱动 - InitCall机制">
+  <meta name="twitter:description" content="1. initcall机制的起源与背景 当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插入调用，但这显然不适用于大型的Linux内核，因为驱动程序数量庞大，且有一定的依赖关系，必须按特定顺序进行初始化。">
 <meta name="application-name" content="My cool site">
-<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/linux_subsystem_05_initcall/" /><link rel="prev" href="http://example.org/posts/linux_subsystem_04_pinctrl/" /><link rel="next" href="http://example.org/posts/linux_perms/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/linux_subsystem_05_initcall/" /><link rel="prev" href="http://example.org/posts/linux_subsystem_04_pinctrl/" /><link rel="next" href="http://example.org/posts/linux_perms/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
@@ -33,20 +37,31 @@
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "TUXEDO"
+                "name": "lazurite"
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="程序小站">剪纸堆</a>
+            <a href="/" title="程序小站"><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
                 </a></div>
         </div>
     </div>
@@ -54,27 +69,27 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="程序小站">剪纸堆</a>
+                <a href="/" title="程序小站"><span id="id-2" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
             </div>
         </div>
-        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
             </a></div>
     </div>
 </header><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
+            <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[转]（五）Linux 内核驱动 - InitCall机制</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-10-12">2025-10-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1309 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2025-10-12">2025-10-12</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1309 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
-                    <span>Contents</span>
+                    <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
@@ -111,24 +126,29 @@
 <p>每个 <code>fn</code> 被宏包装后，会使用 GNU 的 <code>__attribute__((section(&quot;.initcall&lt;level&gt;.init&quot;)))</code> 将其放置在特定段中。<code>initcall</code> 的优先级由数字指定，数字越小，表示初始化越早。</p>
 <h4 id="22-initcall的段和链接">2.2 <strong>initcall的段和链接</strong></h4>
 <p>这些初始化函数被放置到内核映像文件中的特定段内，具体的段由 <code>vmlinux.lds.h</code> 文件控制，以下为相关部分：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define INIT_CALLS_LEVEL(level) \
-</span><span class="cp">    VMLINUX_SYMBOL(__initcall##level##_start) = .; \
-</span><span class="cp">    KEEP(*(.initcall##level##.init)) \
-</span><span class="cp">    KEEP(*(.initcall##level##s.init))
-</span><span class="cp"></span>
-<span class="cp">#define INIT_CALLS \
-</span><span class="cp">    VMLINUX_SYMBOL(__initcall_start) = .; \
-</span><span class="cp">    KEEP(*(.initcallearly.init)) \
-</span><span class="cp">    INIT_CALLS_LEVEL(0) \
-</span><span class="cp">    INIT_CALLS_LEVEL(1) \
-</span><span class="cp">    INIT_CALLS_LEVEL(2) \
-</span><span class="cp">    INIT_CALLS_LEVEL(3) \
-</span><span class="cp">    INIT_CALLS_LEVEL(4) \
-</span><span class="cp">    INIT_CALLS_LEVEL(5) \
-</span><span class="cp">    INIT_CALLS_LEVEL(6) \
-</span><span class="cp">    INIT_CALLS_LEVEL(7) \
-</span><span class="cp">    VMLINUX_SYMBOL(__initcall_end) = .;
-</span></code></pre></div><p>这个定义将初始化函数放置在不同的段中（<code>.initcall0.init</code>, <code>.initcall1.init</code> 等），并在内核启动时通过 <code>do_initcalls</code> 进行调用。</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#define INIT_CALLS_LEVEL(level) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    VMLINUX_SYMBOL(__initcall##level##_start) = .; \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    KEEP(*(.initcall##level##.init)) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    KEEP(*(.initcall##level##s.init))
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#define INIT_CALLS \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    VMLINUX_SYMBOL(__initcall_start) = .; \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    KEEP(*(.initcallearly.init)) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    INIT_CALLS_LEVEL(0) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    INIT_CALLS_LEVEL(1) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    INIT_CALLS_LEVEL(2) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    INIT_CALLS_LEVEL(3) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    INIT_CALLS_LEVEL(4) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    INIT_CALLS_LEVEL(5) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    INIT_CALLS_LEVEL(6) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    INIT_CALLS_LEVEL(7) \
+</span></span></span><span class="line"><span class="cl"><span class="cp">    VMLINUX_SYMBOL(__initcall_end) = .;</span></span></span></code></pre></div></div>
+<p>这个定义将初始化函数放置在不同的段中（<code>.initcall0.init</code>, <code>.initcall1.init</code> 等），并在内核启动时通过 <code>do_initcalls</code> 进行调用。</p>
 <h3 id="3-初始化函数的执行流程">3. <strong>初始化函数的执行流程</strong></h3>
 <p>内核启动时，会依次调用各个初始化函数。这个过程从 <code>start_kernel</code> 函数开始，具体的调用顺序如下：</p>
 <ol>
@@ -138,33 +158,48 @@
 <li><code>do_basic_setup()</code> -&gt; <code>do_initcalls()</code></li>
 </ol>
 <p><code>do_initcalls</code> 会按照优先级执行各个初始化函数。优先级由 <code>initcall_levels</code> 数组管理，该数组包含了各个初始化段的指针数组：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="n">initcall_t</span> <span class="o">*</span><span class="n">initcall_levels</span><span class="p">[]</span> <span class="n">__initdata</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="n">__initcall0_start</span><span class="p">,</span>
-    <span class="n">__initcall1_start</span><span class="p">,</span>
-    <span class="n">__initcall2_start</span><span class="p">,</span>
-    <span class="n">__initcall3_start</span><span class="p">,</span>
-    <span class="n">__initcall4_start</span><span class="p">,</span>
-    <span class="n">__initcall5_start</span><span class="p">,</span>
-    <span class="n">__initcall6_start</span><span class="p">,</span>
-    <span class="n">__initcall7_start</span><span class="p">,</span>
-    <span class="n">__initcall_end</span><span class="p">,</span>
-<span class="p">};</span>
-</code></pre></div><p><code>do_initcalls</code> 会遍历这些级别（0-7），依次执行每个段中的函数。</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">initcall_t</span> <span class="o">*</span><span class="n">initcall_levels</span><span class="p">[]</span> <span class="n">__initdata</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__initcall0_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__initcall1_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__initcall2_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__initcall3_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__initcall4_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__initcall5_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__initcall6_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__initcall7_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__initcall_end</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
+<p><code>do_initcalls</code> 会遍历这些级别（0-7），依次执行每个段中的函数。</p>
 <h4 id="31-函数指针执行">3.1 <strong>函数指针执行</strong></h4>
 <p>在 <code>do_initcall_level(level)</code> 中，系统会遍历某一段中的所有函数指针，并通过 <code>do_one_initcall(fn)</code> 执行：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span> <span class="n">__init</span> <span class="nf">do_initcall_level</span><span class="p">(</span><span class="kt">int</span> <span class="n">level</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">initcall_t</span> <span class="o">*</span><span class="n">fn</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">fn</span> <span class="o">=</span> <span class="n">initcall_levels</span><span class="p">[</span><span class="n">level</span><span class="p">];</span> <span class="n">fn</span> <span class="o">&lt;</span> <span class="n">initcall_levels</span><span class="p">[</span><span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> <span class="n">fn</span><span class="o">++</span><span class="p">)</span>
-        <span class="n">do_one_initcall</span><span class="p">(</span><span class="o">*</span><span class="n">fn</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div><p>每次执行函数时，会判断是否需要调试输出：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="n">__init_or_module</span> <span class="nf">do_one_initcall</span><span class="p">(</span><span class="n">initcall_t</span> <span class="n">fn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">initcall_debug</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">do_one_initcall_debug</span><span class="p">(</span><span class="n">fn</span><span class="p">);</span>
-    <span class="k">else</span>
-        <span class="k">return</span> <span class="n">fn</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></div><p>实际的初始化函数就是通过 <code>fn()</code> 被调用。</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">void</span> <span class="n">__init</span> <span class="nf">do_initcall_level</span><span class="p">(</span><span class="kt">int</span> <span class="n">level</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">initcall_t</span> <span class="o">*</span><span class="n">fn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">fn</span> <span class="o">=</span> <span class="n">initcall_levels</span><span class="p">[</span><span class="n">level</span><span class="p">];</span> <span class="n">fn</span> <span class="o">&lt;</span> <span class="n">initcall_levels</span><span class="p">[</span><span class="n">level</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> <span class="n">fn</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">do_one_initcall</span><span class="p">(</span><span class="o">*</span><span class="n">fn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>每次执行函数时，会判断是否需要调试输出：</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">__init_or_module</span> <span class="nf">do_one_initcall</span><span class="p">(</span><span class="kt">initcall_t</span> <span class="n">fn</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">initcall_debug</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">do_one_initcall_debug</span><span class="p">(</span><span class="n">fn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">fn</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>实际的初始化函数就是通过 <code>fn()</code> 被调用。</p>
 <h3 id="4-应用与实践">4. <strong>应用与实践</strong></h3>
 <h4 id="41-驱动开发中的应用">4.1 <strong>驱动开发中的应用</strong></h4>
 <p>例如，一个名为 <code>beagle</code> 的驱动，开发者希望在内核启动时调用 <code>beagle_init()</code> 来初始化该驱动。使用 <code>core_initcall(beagle_init)</code> 宏后，<code>beagle_init()</code> 函数会被放置在 <code>.initcall1.init</code> 段中，并在系统启动时被执行。</p>
@@ -181,12 +216,12 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2025-10-12</span>
+                <span>更新于 2025-10-12</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/linux_subsystem_05_initcall/" data-title="[转]（五）Linux 内核驱动 - InitCall机制"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://example.org/posts/linux_subsystem_05_initcall/" data-title="[转]（五）Linux 内核驱动 - InitCall机制"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/posts/linux_subsystem_05_initcall/" data-title="[转]（五）Linux 内核驱动 - InitCall机制"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/linux_subsystem_05_initcall/" data-title="[转]（五）Linux 内核驱动 - InitCall机制"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/linux_subsystem_05_initcall/" data-title="[转]（五）Linux 内核驱动 - InitCall机制"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/linux_subsystem_05_initcall/"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/linux_subsystem_05_initcall/" data-title="[转]（五）Linux 内核驱动 - InitCall机制"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/linux_subsystem_05_initcall/" data-title="[转]（五）Linux 内核驱动 - InitCall机制"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/linux_subsystem_05_initcall/" data-title="[转]（五）Linux 内核驱动 - InitCall机制"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/linux_subsystem_05_initcall/" data-title="[转]（五）Linux 内核驱动 - InitCall机制" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2flinux_subsystem_05_initcall%2f&amp;text=%5b%e8%bd%ac%5d%ef%bc%88%e4%ba%94%ef%bc%89Linux%20%e5%86%85%e6%a0%b8%e9%a9%b1%e5%8a%a8%20-%20InitCall%e6%9c%ba%e5%88%b6" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -194,19 +229,19 @@
     <div class="post-info-more">
         <section class="post-tags"></section>
         <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/linux_subsystem_04_pinctrl/" class="prev" rel="prev" title="（四）Linux 内核驱动 - Pinctrl子系统"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>（四）Linux 内核驱动 - Pinctrl子系统</a>
-            <a href="/posts/linux_perms/" class="next" rel="next" title="Linux 文件权限位介绍">Linux 文件权限位介绍<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/posts/linux_subsystem_04_pinctrl/" class="prev" rel="prev" title="[转]（四）Linux 内核驱动 - Pinctrl子系统"><i class="fas fa-angle-left" aria-hidden="true"></i>[转]（四）Linux 内核驱动 - Pinctrl子系统</a>
+            <a href="/posts/linux_perms/" class="next" rel="next" title="Linux 文件权限位介绍">Linux 文件权限位介绍<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.160.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lazurite</a></span></div>
         </div>
     </footer>
-
 <script src="https://unpkg.com/oh-my-live2d@latest"></script>
 <script>
   OML2D.loadOml2d({
@@ -224,10 +259,13 @@
   });
 </script></div>
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":32},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script>window.config={"comment":{},"data":{"id-1":"剪纸堆","id-2":"剪纸堆"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
 </html>

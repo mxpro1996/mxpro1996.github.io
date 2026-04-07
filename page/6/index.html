@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+	<meta name="generator" content="Hugo 0.160.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://localhost:1313/">
+  <meta property="og:site_name" content="程序小站">
+  <meta property="og:title" content="程序小站">
+  <meta property="og:description" content="逸一时，误一世。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="程序小站">
+  <meta name="twitter:description" content="逸一时，误一世。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="程序小站">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="程序小站"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "http:\/\/localhost:1313\/","inLanguage": "zh-CN","author": {
+                "@type": "Person",
+                "name": "lazurite"
+            },"description": "逸一时，误一世。","name": "程序小站"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="程序小站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="程序小站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="文章"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="images/avatar.png"
+        data-srcset="images/avatar.png, images/avatar.png 1.5x, images/avatar.png 2x"
+        data-sizes="auto"
+        alt="images/avatar.png"
+        title="images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/esp8266/">[HAL] STM32 RXNE 接替Receive_IT</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-06-14">2024-06-14</time></span></div><div class="content"><h2 id="关闭irqhandler生成">关闭IRQHandler生成</h2>
+<p>详见Cubemx中NVIC内选项</p>
+<h2 id="关闭优化">关闭优化</h2>
+<p>手动切到&quot;-O0&quot;（不开优化）</p>
+<h2 id="中断接收">中断接收</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">USART3_IRQHandler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>                	<span class="c1">//串口3中断服务程序
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u8</span> <span class="n">Res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nf">__HAL_UART_GET_IT_SOURCE</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart3</span><span class="p">,</span> <span class="n">UART_IT_RXNE</span><span class="p">)</span> <span class="o">!=</span> <span class="n">RESET</span><span class="p">)</span>  <span class="c1">//接收中断
+</span></span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Res</span> <span class="o">=</span> <span class="n">USART3</span><span class="o">-&gt;</span><span class="n">DR</span><span class="p">;</span>	<span class="c1">//读取接收到的数据
+</span></span></span><span class="line"><span class="cl">        <span class="n">USART3_RX_BUF</span><span class="p">[</span><span class="n">USART3_RX_STA</span><span class="p">]</span><span class="o">=</span><span class="n">Res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl"><span class="c1">//		USART1-&gt;DR = Res;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//		while(__HAL_UART_GET_FLAG(&amp;huart1,UART_FLAG_TXE)!=SET){}
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">USART3_RX_BUF</span><span class="p">[</span><span class="n">USART3_RX_STA</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;K&#39;</span><span class="p">)</span>  <span class="c1">// 表示接收到了“OK&#34;回应
+</span></span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">USART3_RX_BUF</span><span class="p">[</span><span class="n">USART3_RX_STA</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;O&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Flag_USART3_receive_OK</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">//OK接收成功
+</span></span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">USART3_RX_STA</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">USART3_RX_STA</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">USART3_REC_LEN</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">USART3_RX_STA</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="超时中断或空闲">超时中断（或空闲）</h2>
+<p>随便选一个定时器时基中断，作为串口结束超时判断。</p></div><div class="post-footer">
+        <a href="/posts/esp8266/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/0531/">第十五届预测点</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-05-31">2024-05-31</time></span></div><div class="content"><h1 id="1-双击按键">1. 双击按键</h1>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">scanKeyUseStructAndTime</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">static</span> <span class="k">struct</span> <span class="n">keyState</span> <span class="n">_key</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1">//获取按键的最新状态
+</span></span></span><span class="line"><span class="cl">	<span class="n">_key</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">keyState</span> <span class="o">=</span> <span class="nf">HAL_GPIO_ReadPin</span><span class="p">(</span><span class="n">GPIOB</span><span class="p">,</span><span class="n">GPIO_PIN_0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">_key</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">keyState</span> <span class="o">=</span> <span class="nf">HAL_GPIO_ReadPin</span><span class="p">(</span><span class="n">GPIOB</span><span class="p">,</span><span class="n">GPIO_PIN_1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">_key</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">keyState</span> <span class="o">=</span> <span class="nf">HAL_GPIO_ReadPin</span><span class="p">(</span><span class="n">GPIOB</span><span class="p">,</span><span class="n">GPIO_PIN_2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">_key</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">keyState</span> <span class="o">=</span> <span class="nf">HAL_GPIO_ReadPin</span><span class="p">(</span><span class="n">GPIOA</span><span class="p">,</span><span class="n">GPIO_PIN_0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1">//处理按键的最新状态
+</span></span></span><span class="line"><span class="cl">	<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">switch</span> <span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">//按键第一次按下
+</span></span></span><span class="line"><span class="cl">			<span class="k">case</span> <span class="mi">0</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">					<span class="c1">//跳转按键的状态
+</span></span></span><span class="line"><span class="cl">					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="c1">//清空按键时间
+</span></span></span><span class="line"><span class="cl">					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyTime</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">//按键第二次按下 两次相隔10ms可以起到消抖作用	
+</span></span></span><span class="line"><span class="cl">			<span class="k">case</span> <span class="mi">1</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">				<span class="c1">//按键再次按下 跳转按键状态
+</span></span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyState</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="c1">//上一次按键按下是抖动按下 属于无效状态 应该退回最开始的状态
+</span></span></span><span class="line"><span class="cl">				<span class="k">else</span> 
+</span></span><span class="line"><span class="cl">					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">//确定按键按下后的处理过程
+</span></span></span><span class="line"><span class="cl">			<span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">				<span class="c1">//等待松开过程,且非长按键
+</span></span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">((</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyState</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyTime</span><span class="o">&lt;</span><span class="mi">30</span><span class="p">){</span>	
+</span></span><span class="line"><span class="cl">					<span class="c1">//可能双击按键的第一次，进入计时
+</span></span></span><span class="line"><span class="cl">					<span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">						<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">						<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="p">}</span>
+</span></span><span class="line"><span class="cl">					<span class="c1">//在计时范围内又按了一次
+</span></span></span><span class="line"><span class="cl">					<span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">						<span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleFlag</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="c1">//双击情况
+</span></span></span><span class="line"><span class="cl">						<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="p">}</span>
+</span></span><span class="line"><span class="cl">					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">				<span class="c1">//松开且是长按键
+</span></span></span><span class="line"><span class="cl">				<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyState</span><span class="o">==</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyTime</span><span class="o">&gt;=</span><span class="mi">30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">judgeSate</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">longFlag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">				<span class="c1">//按下 且为长按键
+</span></span></span><span class="line"><span class="cl">				<span class="k">else</span> 
+</span></span><span class="line"><span class="cl">					<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">keyTime</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//按键单次按下
+</span></span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTime</span> <span class="o">&gt;=</span> <span class="mi">25</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//按键双击 双击计时
+</span></span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTimerFlag</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">			<span class="n">_key</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">doubleClickTime</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h1 id="2-串口不定长两种方法">2. 串口不定长（两种方法）</h1>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// RXNE+IDLE or DMA+IDLE
+</span></span></span><span class="line"><span class="cl"><span class="kt">uint8_t</span> <span class="n">RxBuffer</span><span class="p">[</span><span class="mi">20</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">__IO</span> <span class="kt">uint8_t</span> <span class="n">RxCounter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">uint8_t</span> <span class="n">Rx_Temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">USER_UART_IDLECallback</span><span class="p">(</span><span class="n">UART_HandleTypeDef</span> <span class="o">*</span><span class="n">huart</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* Init
+</span></span></span><span class="line"><span class="cl"><span class="cm">	__HAL_UART_ENABLE_IT(&amp;huart1,UART_IT_IDLE);
+</span></span></span><span class="line"><span class="cl"><span class="cm">	HAL_UART_Receive_IT(&amp;huart1,(uint8_t*)&amp;Rx_Temp,1);
+</span></span></span><span class="line"><span class="cl"><span class="cm">	printf(&#34;HELLO WORLD!!\r\n&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">HAL_UART_RxCpltCallback</span><span class="p">(</span><span class="n">UART_HandleTypeDef</span> <span class="o">*</span><span class="n">huart</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">huart</span><span class="o">-&gt;</span><span class="n">Instance</span> <span class="o">==</span> <span class="n">USART1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="n">RxBuffer</span><span class="p">[</span><span class="n">RxCounter</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rx_Temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">HAL_UART_Receive_IT</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart1</span><span class="p">,(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">Rx_Temp</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 记得这里一定要重新使能串口接收中断
+</span></span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">USER_UART_IDLECallback</span><span class="p">(</span><span class="n">UART_HandleTypeDef</span> <span class="o">*</span><span class="n">huart</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">huart</span><span class="o">-&gt;</span><span class="n">Instance</span> <span class="o">==</span> <span class="n">USART1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">RESET</span> <span class="o">!=</span> <span class="nf">__HAL_UART_GET_FLAG</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart1</span><span class="p">,</span> <span class="n">UART_FLAG_IDLE</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">			<span class="n">USART1</span><span class="o">-&gt;</span><span class="n">RDR</span><span class="p">;</span>	<span class="c1">// 必须要读取数据寄存器，否则不能清除标志
+</span></span></span><span class="line"><span class="cl">			<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\r\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">RxBuffer</span><span class="p">);</span> <span class="c1">// 将接收发送回去
+</span></span></span><span class="line"><span class="cl">			<span class="nf">__HAL_UART_CLEAR_IDLEFLAG</span><span class="p">(</span><span class="n">huart</span><span class="p">);</span> <span class="c1">// 清中断标志
+</span></span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fputc</span><span class="p">(</span><span class="kt">int</span> <span class="n">ch</span><span class="p">,</span> <span class="n">FILE</span> <span class="o">*</span><span class="n">f</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">HAL_UART_Transmit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart1</span><span class="p">,</span> <span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">ch</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mh">0xFF</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  	<span class="k">return</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// DMA is optional
+</span></span></span></code></pre></div></div>
+<h1 id="3-可编程电阻mcp4017">3. 可编程电阻（MCP4017）</h1>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-C">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 0x5f,0x5e
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">ADC_Process</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">u16</span> <span class="n">adc1_val</span><span class="p">,</span><span class="n">adc2_val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">volt_r37</span><span class="p">,</span><span class="n">volt_r38</span><span class="p">,</span><span class="n">volt_mcp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">HAL_ADC_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">volt_mcp</span><span class="o">=</span><span class="nf">HAL_ADC_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc1</span><span class="p">)</span><span class="o">/</span><span class="mf">4096.0f</span><span class="o">*</span><span class="mf">3.3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="nf">HAL_ADC_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">adc1_val</span><span class="o">=</span><span class="nf">HAL_ADC_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">volt_r38</span><span class="o">=</span><span class="n">adc1_val</span><span class="o">/</span><span class="mf">4096.0f</span><span class="o">*</span><span class="mf">3.3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">HAL_ADC_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">adc2_val</span><span class="o">=</span><span class="nf">HAL_ADC_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">volt_r37</span><span class="o">=</span><span class="n">adc1_val</span><span class="o">/</span><span class="mf">4096.0f</span><span class="o">*</span><span class="mf">3.3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div></div><div class="post-footer">
+        <a href="/posts/0531/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/0529/">蓝桥杯嵌入式第十四届国赛实现</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-05-29">2024-05-29</time></span></div><div class="content"><h1 id="samplec">sample.c</h1>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// 定义双变量为采样值
+</span></span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">volt_r37</span><span class="p">,</span><span class="n">volt_r37_last</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">temp</span><span class="p">,</span><span class="n">temp_last</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">u16</span> <span class="n">adc_val</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 四个界面的参数，带默认值
+</span></span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">interface</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//interface 2
+</span></span></span><span class="line"><span class="cl"><span class="n">u16</span> <span class="n">FH</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span><span class="n">FH_set</span><span class="o">=</span><span class="mi">2000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">AH</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span><span class="n">AH_set</span><span class="o">=</span><span class="mf">3.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">TH</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span><span class="n">TH_set</span><span class="o">=</span><span class="mi">30</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//interface 3
+</span></span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">FN</span><span class="p">,</span><span class="n">AN</span><span class="p">,</span><span class="n">TN</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//interface 4
+</span></span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">FP</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">FP_set</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">VP</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span><span class="n">VP_set</span><span class="o">=</span><span class="mf">0.9</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">TT</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span><span class="n">TT_set</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//1.ADC
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">ADC_Process</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">HAL_ADC_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">adc_val</span> <span class="o">=</span> <span class="nf">HAL_ADC_GetValue</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hadc2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">volt_r37_last</span> <span class="o">=</span> <span class="n">volt_r37</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">volt_r37</span> <span class="o">=</span> <span class="n">adc_val</span><span class="o">/</span><span class="mf">4095.0f</span><span class="o">*</span><span class="mf">3.3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// 单一采集ADC，超限指Flag
+</span></span></span><span class="line"><span class="cl">	<span class="cm">/* 当上一次小于，此处大于，记作超限*/</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 防止无限递增
+</span></span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">volt_r37</span><span class="o">&gt;</span><span class="n">AH_set</span><span class="o">&amp;&amp;</span><span class="n">volt_r37_last</span><span class="o">&lt;</span><span class="n">AH_set</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">AN</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//2.PWM IC
+</span></span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">state_tim2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u16</span> <span class="n">cnt1_tim2</span><span class="p">,</span><span class="n">cnt2_tim2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">u16</span> <span class="n">freq_PA1_r</span><span class="p">,</span><span class="n">freq_PA1</span><span class="p">,</span><span class="n">freq_PA1_last</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">duty_PA1_R</span><span class="p">,</span><span class="n">duty_PA1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u32</span> <span class="n">freq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u16</span> <span class="n">duty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">j</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 对PA1的回调采集实现，一般使用PWMI主从通道
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">HAL_TIM_IC_CaptureCallback</span><span class="p">(</span><span class="n">TIM_HandleTypeDef</span> <span class="o">*</span><span class="n">htim</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 此处采用单通道，以状态机修改捕获边沿
+</span></span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">state_tim2</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">__HAL_TIM_SetCounter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">htim2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">TIM2</span><span class="o">-&gt;</span><span class="n">CCER</span> <span class="o">|=</span> <span class="mh">0x02</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">state_tim2</span> <span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">state_tim2</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cnt1_tim2</span> <span class="o">=</span> <span class="nf">__HAL_TIM_GetCounter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">htim2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">TIM2</span><span class="o">-&gt;</span><span class="n">CCER</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="mh">0x02</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">state_tim2</span> <span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span> <span class="c1">// 第二次上升沿
+</span></span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">state_tim2</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cnt2_tim2</span> <span class="o">=</span> <span class="nf">__HAL_TIM_GetCounter</span><span class="p">(</span><span class="o">&amp;</span><span class="n">htim2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="n">state_tim2</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">freq_PA1_last</span> <span class="o">=</span> <span class="n">freq_PA1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">freq_PA1_r</span> <span class="o">=</span> <span class="mf">1e6</span><span class="o">/</span><span class="n">cnt2_tim2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">duty_PA1_R</span> <span class="o">=</span> <span class="n">cnt1_tim2</span><span class="o">*</span><span class="mf">100.0f</span><span class="o">/</span><span class="n">cnt2_tim2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 结算占空比和频率数值
+</span></span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">60</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">freq</span><span class="o">+=</span><span class="n">freq_PA1_r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">60</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">			<span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">freq_PA1</span> <span class="o">=</span> <span class="n">freq</span><span class="o">/</span><span class="p">(</span><span class="mi">60</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">freq</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">duty</span><span class="o">+=</span><span class="n">duty_PA1_R</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">==</span><span class="mi">100</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">			<span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">duty_PA1</span> <span class="o">=</span> <span class="n">duty</span><span class="o">/</span><span class="p">(</span><span class="mi">100</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">duty</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 双平均滤波
+</span></span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">		<span class="c1">// 超限统计，不包含占空比	
+</span></span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">freq_PA1</span><span class="o">&gt;</span><span class="n">FH_set</span><span class="o">&amp;&amp;</span><span class="n">freq_PA1_last</span><span class="o">&lt;=</span><span class="n">FH_set</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	  	<span class="n">FN</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">HAL_TIM_IC_Start_IT</span><span class="p">(</span><span class="o">&amp;</span><span class="n">htim2</span><span class="p">,</span><span class="n">TIM_CHANNEL_2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//3.Temp
+</span></span></span><span class="line"><span class="cl"><span class="n">__IO</span> <span class="n">u16</span> <span class="n">temp_tick</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Temp_Process</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">temp_last</span> <span class="o">=</span><span class="n">temp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">temp</span> <span class="o">=</span> <span class="nf">ds18b20_read</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 总计入两个数据，判定超限且递增
+</span></span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="o">&gt;</span><span class="n">TH_set</span><span class="o">&amp;&amp;</span><span class="n">temp_last</span><span class="o">&lt;</span><span class="n">TH_set</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">TN</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h1 id="systick">Systick</h1>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//4.LCD	基本界面绘制
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//record
+</span></span></span><span class="line"><span class="cl"><span class="n">u16</span> <span class="n">freq_r</span><span class="p">[</span><span class="mi">101</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">duty_r</span><span class="p">[</span><span class="mi">101</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">duty_Adc</span><span class="p">[</span><span class="mi">101</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 基本点采样回放
+</span></span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 频率和占空比
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * 以ADC转占空比
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 回放用索引Bool
+</span></span></span><span class="line"><span class="cl"><span class="n">_Bool</span> <span class="n">flag_Record</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u16</span> <span class="n">cnt_Record</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">cnt_index</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 按键Time，采样Flag
+</span></span></span><span class="line"><span class="cl"><span class="n">u16</span> <span class="n">cnt_KB34</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">_Bool</span> <span class="n">flag_K34</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">_Bool</span> <span class="n">flag_pwm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">_Bool</span> <span class="n">flag_adc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">_Bool</span> <span class="n">flag_jilu</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">led</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">led_cnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 记录和回放实现
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">SysTick_Handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="cm">/* USER CODE BEGIN SysTick_IRQn 0 */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/* USER CODE END SysTick_IRQn 0 */</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">HAL_IncTick</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="cm">/* USER CODE BEGIN SysTick_IRQn 1 */</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">flag_K34</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 长按2s以上，默认参数
+</span></span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">cnt_KB34</span><span class="o">&gt;</span><span class="mi">2000</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cnt_KB34</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">key_lock</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">flag_K34</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			<span class="n">interface</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">FH_set</span><span class="o">=</span><span class="n">FH</span><span class="o">=</span><span class="mi">2000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">AH_set</span><span class="o">=</span><span class="n">AH</span><span class="o">=</span><span class="mf">3.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">TH_set</span><span class="o">=</span><span class="n">TH</span><span class="o">=</span><span class="mi">30</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">FP_set</span><span class="o">=</span><span class="n">FP</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">VP_set</span><span class="o">=</span><span class="n">VP</span><span class="o">=</span><span class="mf">0.9f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">TT_set</span><span class="o">=</span><span class="n">TT</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">FN</span><span class="o">=</span><span class="n">AN</span><span class="o">=</span><span class="n">TN</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Flag内部累积时间
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">temp_tick</span><span class="o">&gt;</span><span class="mi">750</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">temp_tick</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">Temp_Process</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 每750ms刷新一次DS18B20的值
+</span></span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">flag_Record</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 总体记录时间结束
+</span></span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">cnt_Record</span><span class="o">&gt;</span><span class="mi">1000</span><span class="o">*</span><span class="n">TT_set</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cnt_Record</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">flag_Record</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cnt_index</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">flag_jilu</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 每100ms采样Duty,Freq
+</span></span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">cnt_Record</span><span class="o">%</span><span class="mi">100</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="c1">//0.1s
+</span></span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">freq_r</span><span class="p">[</span><span class="n">cnt_index</span><span class="p">]</span><span class="o">=</span><span class="n">freq_PA1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">duty_r</span><span class="p">[</span><span class="n">cnt_index</span><span class="p">]</span><span class="o">=</span><span class="n">duty_PA1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span><span class="p">(</span><span class="n">volt_r37</span><span class="o">&gt;=</span><span class="n">VP_set</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">duty_Adc</span><span class="p">[</span><span class="n">cnt_index</span><span class="p">]</span><span class="o">=</span><span class="mf">90.0f</span><span class="o">/</span><span class="p">(</span><span class="mf">3.3f</span><span class="o">-</span><span class="n">VP_set</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">volt_r37</span><span class="o">-</span><span class="mf">3.3f</span><span class="p">)</span><span class="o">+</span><span class="mf">100.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span>
+</span></span><span class="line"><span class="cl">				<span class="n">duty_Adc</span><span class="p">[</span><span class="n">cnt_index</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cnt_index</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// 除10关系
+</span></span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">led_cnt</span><span class="o">==</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">led</span><span class="o">^=</span><span class="mh">0x01</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">led_cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="n">led</span><span class="o">&amp;=~</span><span class="mh">0x01</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// LD1 指示记录是否进行
+</span></span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">flag_pwm</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">cnt_Record</span><span class="o">&gt;</span><span class="mi">1000</span><span class="o">*</span><span class="n">TT_set</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cnt_Record</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">flag_pwm</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cnt_index</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">cnt_Record</span><span class="o">%</span><span class="mi">100</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="c1">//0.1s
+</span></span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">TIM17</span><span class="o">-&gt;</span><span class="n">ARR</span><span class="o">=</span><span class="mf">1e6</span><span class="o">/</span><span class="n">freq_r</span><span class="p">[</span><span class="n">cnt_index</span><span class="p">]</span><span class="o">*</span><span class="n">FP_set</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">TIM17</span><span class="o">-&gt;</span><span class="n">CCR1</span><span class="o">=</span><span class="n">duty_r</span><span class="p">[</span><span class="n">cnt_index</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mf">1e6</span><span class="o">/</span><span class="n">freq_r</span><span class="p">[</span><span class="n">cnt_index</span><span class="p">]</span><span class="o">*</span><span class="n">FP_set</span><span class="p">)</span><span class="o">/</span><span class="mf">100.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cnt_index</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">cnt_Record</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">TIM17</span><span class="o">-&gt;</span><span class="n">CCR1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">led_cnt</span><span class="o">==</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">led_cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">led</span><span class="o">^=</span><span class="mh">0x02</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="n">led</span><span class="o">&amp;=~</span><span class="mh">0x02</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 回放标志
+</span></span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1">// ADC回放
+</span></span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">flag_adc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">cnt_Record</span><span class="o">&gt;</span><span class="mi">1000</span><span class="o">*</span><span class="n">TT_set</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cnt_Record</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">flag_adc</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cnt_index</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">cnt_Record</span><span class="o">%</span><span class="mi">100</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="c1">//0.1s
+</span></span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">TIM17</span><span class="o">-&gt;</span><span class="n">ARR</span><span class="o">=</span><span class="mi">999</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">TIM17</span><span class="o">-&gt;</span><span class="n">CCR1</span><span class="o">=</span><span class="n">duty_Adc</span><span class="p">[</span><span class="n">cnt_index</span><span class="p">]</span><span class="o">*</span><span class="mf">10.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">cnt_index</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">cnt_Record</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">TIM17</span><span class="o">-&gt;</span><span class="n">CCR1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">led_cnt</span><span class="o">==</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">led_cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">led</span><span class="o">^=</span><span class="mh">0x04</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="n">led</span><span class="o">&amp;=~</span><span class="mh">0x04</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="cm">/* USER CODE END SysTick_IRQn 1 */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//5.LED
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">LED_Process</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">LED_Contr</span><span class="p">(</span><span class="n">led</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">freq_PA1</span><span class="o">&gt;</span><span class="n">FH_set</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">led</span><span class="o">|=</span><span class="mh">0x08</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="n">led</span><span class="o">&amp;=~</span><span class="mh">0x08</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">volt_r37</span><span class="o">&gt;</span><span class="n">AH_set</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">led</span><span class="o">|=</span><span class="mh">0x10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		<span class="n">led</span><span class="o">&amp;=~</span><span class="mh">0x10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">temp</span><span class="o">&gt;</span><span class="n">TH_set</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">led</span><span class="o">|=</span><span class="mh">0x20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> 
+</span></span><span class="line"><span class="cl">		<span class="n">led</span><span class="o">&amp;=~</span><span class="mh">0x20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// 超限灯
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">LCD_Init</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">HAL_TIM_IC_Start_IT</span><span class="p">(</span><span class="o">&amp;</span><span class="n">htim2</span><span class="p">,</span><span class="n">TIM_CHANNEL_2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ds18b20_init_x</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">HAL_TIM_PWM_Start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">htim17</span><span class="p">,</span><span class="n">TIM_CHANNEL_1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TIM17</span><span class="o">-&gt;</span><span class="n">CCR1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//high 0
+</span></span></span><span class="line"><span class="cl">    <span class="c1">// PA1,PA7
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">LCD_Clear</span><span class="p">(</span><span class="n">Black</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">LCD_SetBackColor</span><span class="p">(</span><span class="n">Black</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">LCD_SetTextColor</span><span class="p">(</span><span class="n">White</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">((</span><span class="n">u8</span><span class="p">)</span><span class="nf">ds18b20_read</span><span class="p">()</span><span class="o">==</span><span class="mi">85</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// 等待18B20初始化    
+</span></span></span><span class="line"><span class="cl">    <span class="n">temp</span> <span class="o">=</span> <span class="nf">ds18b20_read</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	    <span class="nf">ADC_Process</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	    <span class="nf">LCD_Process</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	    <span class="nf">Key_Process</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	    <span class="nf">LED_Process</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span></span></span></code></pre></div></div>
+<h1 id="keyc">key.c</h1>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;key.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define Key_Port (KB1)|(KB2&lt;&lt;1)|(KB3&lt;&lt;2)|(KB4&lt;&lt;3)|0xf0
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">Trg</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">Cnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">_Bool</span> <span class="n">key_lock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 异或加锁按键
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Scan_Key</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">u8</span> <span class="n">Read_Dat</span> <span class="o">=</span> <span class="p">(</span><span class="n">Key_Port</span><span class="p">)</span><span class="o">^</span><span class="mh">0xff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">key_lock</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Trg</span> <span class="o">=</span> <span class="n">Cnt</span><span class="o">&amp;</span><span class="p">(</span><span class="n">Read_Dat</span><span class="o">^</span><span class="n">Cnt</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Cnt</span> <span class="o">=</span> <span class="n">Read_Dat</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">u8</span> <span class="n">flag_interface1</span><span class="p">,</span><span class="n">flag_interface3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">__IO</span> <span class="n">u32</span> <span class="n">key_tick</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Key_Process</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">uwTick</span> <span class="o">-</span> <span class="n">key_tick</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">)</span>	<span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">key_tick</span> <span class="o">=</span> <span class="n">uwTick</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">Scan_Key</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">flag_Record</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">Cnt</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">key_lock</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">cnt_KB34</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="n">flag_K34</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">Cnt</span><span class="o">&amp;</span><span class="mh">0x0c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">flag_K34</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="n">Trg</span><span class="o">&amp;</span><span class="mh">0x01</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">interface</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="n">interface</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">FH_set</span> <span class="o">=</span> <span class="n">FH</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">AH_set</span> <span class="o">=</span> <span class="n">AH</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">TH_set</span> <span class="o">=</span> <span class="n">TH</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">FP_set</span> <span class="o">=</span> <span class="n">FP</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">VP_set</span> <span class="o">=</span> <span class="n">VP</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">TT_set</span> <span class="o">=</span> <span class="n">TT</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">flag_interface1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">flag_interface3</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">Trg</span><span class="o">&amp;</span><span class="mh">0x02</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="c1">//Record
+</span></span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">flag_Record</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">led_cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">flag_interface1</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">flag_interface1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">FN</span><span class="o">=</span><span class="n">AN</span><span class="o">=</span><span class="n">TN</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">flag_interface3</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">flag_interface3</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">Trg</span><span class="o">&amp;</span><span class="mh">0x04</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span><span class="p">(</span><span class="n">flag_interface1</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">FH</span><span class="o">&lt;</span><span class="mi">10000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">FH</span><span class="o">+=</span><span class="mi">1000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">flag_interface1</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">AH</span><span class="o">&lt;</span><span class="mf">3.2f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">AH</span><span class="o">+=</span><span class="mf">0.3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">flag_interface1</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">TH</span><span class="o">&lt;</span><span class="mi">80</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">TH</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span><span class="p">(</span><span class="n">flag_interface3</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">FP</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">FP</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">flag_interface3</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">VP</span><span class="o">&lt;</span><span class="mf">3.2f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">VP</span><span class="o">+=</span><span class="mf">0.3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">flag_interface3</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">TT</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">TT</span><span class="o">+=</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">flag_pwm</span><span class="o">&amp;&amp;</span><span class="n">flag_jilu</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">flag_adc</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">led_cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">Trg</span><span class="o">&amp;</span><span class="mh">0x08</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span><span class="p">(</span><span class="n">flag_interface1</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">FH</span><span class="o">&gt;</span><span class="mi">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">FH</span><span class="o">-=</span><span class="mi">1000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">flag_interface1</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">AH</span><span class="o">&gt;</span><span class="mf">0.2f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">AH</span><span class="o">-=</span><span class="mf">0.3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">flag_interface1</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">TH</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">TH</span><span class="o">-=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span><span class="p">(</span><span class="n">flag_interface3</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">FP</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">FP</span><span class="o">-=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">flag_interface3</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">VP</span><span class="o">&gt;</span><span class="mf">0.5f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">VP</span><span class="o">-=</span><span class="mf">0.3f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">else</span> 
+</span></span><span class="line"><span class="cl">					<span class="n">VP</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">flag_interface3</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">if</span><span class="p">(</span><span class="n">TT</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">					<span class="n">TT</span><span class="o">-=</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">interface</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">flag_adc</span><span class="o">&amp;&amp;</span><span class="n">flag_jilu</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">flag_pwm</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">led_cnt</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div></div><div class="post-footer">
+        <a href="/posts/0529/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/first_post/">Adobe AIR SQL Database Extract</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-04-25">2024-04-25</time></span></div><div class="content"><p>Adobe AIR SQL解密数据库程序，基于Flash CS6。</p>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-java">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">flash.filesystem.*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">flash.data.*</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// for sel Input database</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">db</span><span class="p">:</span><span class="n">File</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="na">documentsDirectory</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">function</span><span class="w"> </span><span class="nf">FileSelected_Callback</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="n">Event</span><span class="p">):</span><span class="kt">void</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">Label_1</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="n">db</span><span class="p">.</span><span class="na">nativePath</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">clickSelIn</span><span class="p">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">function</span><span class="w"> </span><span class="nf">selectDataFile</span><span class="p">(</span><span class="n">root</span><span class="p">:</span><span class="n">File</span><span class="p">):</span><span class="kt">void</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 		</span><span class="kd">var</span><span class="w"> </span><span class="n">dbFilter</span><span class="p">:</span><span class="n">FileFilter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileFilter</span><span class="p">(</span><span class="s">&#34;SQL Database&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;*.db;*.dat&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 		</span><span class="n">root</span><span class="p">.</span><span class="na">browseForOpen</span><span class="p">(</span><span class="s">&#34;SQL Database Choose&#34;</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">dbFilter</span><span class="o">]</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    	</span><span class="n">root</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="na">SELECT</span><span class="p">,</span><span class="w"> </span><span class="n">FileSelected_Callback</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">selectDataFile</span><span class="p">(</span><span class="n">db</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">But_SelIn</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="s">&#34;click&#34;</span><span class="p">,</span><span class="n">clickSelIn</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// for sel OutPut Path</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">out_path</span><span class="p">:</span><span class="n">File</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="na">documentsDirectory</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">function</span><span class="w"> </span><span class="nf">PathSelected_Callback</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="n">Event</span><span class="p">):</span><span class="kt">void</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">Label_2</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="n">out_path</span><span class="p">.</span><span class="na">nativePath</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">clickSelOut</span><span class="p">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 	</span><span class="n">out_path</span><span class="p">.</span><span class="na">browseForDirectory</span><span class="p">(</span><span class="s">&#34;Output Directory&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">out_path</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="na">SELECT</span><span class="p">,</span><span class="w"> </span><span class="n">PathSelected_Callback</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">But_SelOut</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="s">&#34;click&#34;</span><span class="p">,</span><span class="n">clickSelOut</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">tableName</span><span class="p">:</span><span class="n">String</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="n">dbKey</span><span class="p">:</span><span class="n">ByteArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ByteArray</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">tableName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;scenariotbl&#34;</span><span class="p">;</span><span class="w"> </span><span class="c1">// DB name, TBD</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">dbKey</span><span class="p">.</span><span class="na">writeUTFBytes</span><span class="p">(</span><span class="s">&#34;Egroj38D9fUNkkgB&#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// DB Key</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">function</span><span class="w"> </span><span class="nf">Connect_Database</span><span class="p">(</span><span class="n">conn</span><span class="p">:</span><span class="n">SQLConnection</span><span class="p">):</span><span class="kt">void</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="n">conn</span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">SQLMode</span><span class="p">.</span><span class="na">UPDATE</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">1024</span><span class="p">,</span><span class="w"> </span><span class="n">dbKey</span><span class="p">);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;the database was created successfully&#34;</span><span class="p">);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">:</span><span class="n">SQLError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">      	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">.</span><span class="na">errorID</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">3138</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">      	  </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Incorrect encryption key&#34;</span><span class="p">);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">     	 </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="p">{</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">     	    </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Error message:&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="na">message</span><span class="p">);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">     	    </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Details:&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="na">details</span><span class="p">);</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    	 </span><span class="p">}</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">function</span><span class="w"> </span><span class="nf">SQL_Execute</span><span class="p">(</span><span class="n">conn</span><span class="p">:</span><span class="n">SQLConnection</span><span class="p">,</span><span class="w"> </span><span class="n">sqlStr</span><span class="p">:</span><span class="n">String</span><span class="p">):</span><span class="n">SQLResult</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlRes</span><span class="p">:</span><span class="n">SQLResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlStatement</span><span class="p">:</span><span class="n">SQLStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SQLStatement</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">sqlConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlStr</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">sqlRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">getResult</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	   </span><span class="k">return</span><span class="w"> </span><span class="n">sqlRes</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="o">*</span><span class="p">){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;SQL Command execute error&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// for extractor</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">clickExtract</span><span class="p">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">Fin_01</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">Label_1</span><span class="p">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Label_2</span><span class="p">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span><span class="p">){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Start the extractor process&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">conn</span><span class="p">:</span><span class="n">SQLConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SQLConnection</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">Connect_Database</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlRes</span><span class="p">:</span><span class="n">SQLResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SQL_Execute</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="s">&#34;SELECT * from &#34;</span><span class="o">+</span><span class="n">tableName</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="kd">var</span><span class="w"> </span><span class="n">texts</span><span class="p">:</span><span class="n">Vector</span><span class="p">.</span><span class="o">&lt;*&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector</span><span class="p">.</span><span class="o">&lt;*&gt;</span><span class="p">(</span><span class="n">sqlRes</span><span class="p">.</span><span class="na">data</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">texts</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">file</span><span class="p">:</span><span class="n">File</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out_path</span><span class="p">.</span><span class="na">resolvePath</span><span class="p">(</span><span class="n">texts</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">id</span><span class="o">+</span><span class="s">&#34;.xml&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">fileStream</span><span class="p">:</span><span class="n">FileStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileStream</span><span class="p">();</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">fileStream</span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="n">FileMode</span><span class="p">.</span><span class="na">WRITE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">fileStream</span><span class="p">.</span><span class="na">writeUTFBytes</span><span class="p">(</span><span class="n">texts</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">data</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Output to &#34;</span><span class="o">+</span><span class="n">texts</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">id</span><span class="o">+</span><span class="s">&#34;.xml&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">fileStream</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;All is well, application is shutting down.&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">Fin_01</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;解包完成&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Missing parameters&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">But_Extract</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="s">&#34;click&#34;</span><span class="p">,</span><span class="n">clickExtract</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// for editor</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">rival</span><span class="p">:</span><span class="n">File</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="na">documentsDirectory</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">function</span><span class="w"> </span><span class="nf">RivalSelected_Callback</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="n">Event</span><span class="p">):</span><span class="kt">void</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">Label_3</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="n">rival</span><span class="p">.</span><span class="na">nativePath</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">clickSelNew</span><span class="p">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">function</span><span class="w"> </span><span class="nf">selectDataFile</span><span class="p">(</span><span class="n">root</span><span class="p">:</span><span class="n">File</span><span class="p">):</span><span class="kt">void</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 		</span><span class="kd">var</span><span class="w"> </span><span class="n">dbFilter</span><span class="p">:</span><span class="n">FileFilter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileFilter</span><span class="p">(</span><span class="s">&#34;XML Document&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;*.xml&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 		</span><span class="n">root</span><span class="p">.</span><span class="na">browseForOpen</span><span class="p">(</span><span class="s">&#34;XML Text Insert&#34;</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">dbFilter</span><span class="o">]</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    	</span><span class="n">root</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="na">SELECT</span><span class="p">,</span><span class="w"> </span><span class="n">RivalSelected_Callback</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">selectDataFile</span><span class="p">(</span><span class="n">rival</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">But_SelNew</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="s">&#34;click&#34;</span><span class="p">,</span><span class="n">clickSelNew</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">clickApply</span><span class="p">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="p">(){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">Fin_02</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">Label_1</span><span class="p">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Label_3</span><span class="p">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span><span class="p">){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Start the replacer process&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">xml_id</span><span class="p">:</span><span class="n">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rival</span><span class="p">.</span><span class="na">name</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="c1">// trace(xml_id);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">conn</span><span class="p">:</span><span class="n">SQLConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SQLConnection</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">Connect_Database</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlRes</span><span class="p">:</span><span class="n">SQLResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    	 </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlStatement</span><span class="p">:</span><span class="n">SQLStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SQLStatement</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlStr</span><span class="p">:</span><span class="n">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">sqlConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">sqlStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;UPDATE &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tableName</span><span class="o">+</span><span class="s">&#34; SET data=:data WHERE id=:id&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlStr</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">parameters</span><span class="o">[</span><span class="s">&#34;:id&#34;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xml_id</span><span class="p">;</span><span class="w"> </span><span class="c1">// the xml name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">XMLContent</span><span class="p">:</span><span class="n">ByteArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ByteArray</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">fileStream</span><span class="p">:</span><span class="n">FileStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileStream</span><span class="p">();</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="n">fileStream</span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">rival</span><span class="p">,</span><span class="w"> </span><span class="n">FileMode</span><span class="p">.</span><span class="na">READ</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">XMLContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fileStream</span><span class="p">.</span><span class="na">readUTFBytes</span><span class="p">(</span><span class="n">rival</span><span class="p">.</span><span class="na">size</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="n">fileStream</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">parameters</span><span class="o">[</span><span class="s">&#34;:data&#34;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XMLContent</span><span class="p">;</span><span class="w"> </span><span class="c1">// the byteArray for fileContent</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="k">try</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      		 </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      		 </span><span class="n">sqlRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">getResult</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">			 </span><span class="n">conn</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   		 </span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="o">*</span><span class="p">){</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    		   </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;SQL Command execute error&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   		 </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;All is well, application is shutting down.&#34;</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">Fin_02</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;替换完成&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Missing parameters&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">But_Apply</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="s">&#34;click&#34;</span><span class="p">,</span><span class="n">clickApply</span><span class="p">);</span></span></span></code></pre></div></div></div><div class="post-footer">
+        <a href="/posts/first_post/">阅读全文</a></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/4/">4</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/5/">5</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/6/">6</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.160.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lazurite</a></span></div>
+        </div>
+    </footer>
+<script src="https://unpkg.com/oh-my-live2d@latest"></script>
+<script>
+  OML2D.loadOml2d({
+    models: [
+      {
+        path: 'https://model.hacxy.cn/HK416-1-normal/model.json',
+	dockedPosition: "right",
+        position: [0, 60],
+        scale: 0.08,
+        stageStyle: {
+          height: 450
+        }
+      }
+    ]
+  });
+</script></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/typeit/index.umd.js"></script><script>window.config={"data":{"id-1":"剪纸堆","id-2":"剪纸堆","id-3":"逸一时，误一世。"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"],"id-3":["id-3"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
+</html>

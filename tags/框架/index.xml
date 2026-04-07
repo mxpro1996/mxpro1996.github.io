@@ -1,16 +1,31 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>框架 - Tag - 程序小站</title>
+        <title>框架 - 标签 - 程序小站</title>
         <link>http://example.org/tags/%E6%A1%86%E6%9E%B6/</link>
-        <description>框架 - Tag - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>730513694@qq.com (TUXEDO)</managingEditor>
-            <webMaster>730513694@qq.com (TUXEDO)</webMaster><lastBuildDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/%E6%A1%86%E6%9E%B6/" rel="self" type="application/rss+xml" /><item>
+        <description>框架 - 标签 - 程序小站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/%E6%A1%86%E6%9E%B6/" rel="self" type="application/rss+xml" /><item>
     <title>[QT] 手势识别 - 层次笔记</title>
     <link>http://example.org/posts/qt_gesture_flowchart/</link>
     <pubDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</pubDate>
-    <author>TUXEDO</author>
+    <author>lazurite</author>
     <guid>http://example.org/posts/qt_gesture_flowchart/</guid>
-    <description><![CDATA[初始化层 职责: 注册手势类型，启用触摸事件支持 代码片段: // 在构造函数中注册需要的手势类型 grabGesture(Qt::PinchGesture); // 捏合缩放手势 grabGesture(Qt::PanGesture); // 平移拖动手势 grabGesture(Qt::SwipeGesture); // 滑动手势 grabGesture(Qt::TapGesture); // 点击手]]></description>
+    <description><![CDATA[<h2 id="初始化层">初始化层</h2>
+<p><strong>职责</strong>: 注册手势类型，启用触摸事件支持</p>
+<p><strong>代码片段</strong>:</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-cpp">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 在构造函数中注册需要的手势类型
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PinchGesture</span><span class="p">);</span>    <span class="c1">// 捏合缩放手势
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PanGesture</span><span class="p">);</span>      <span class="c1">// 平移拖动手势  
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">SwipeGesture</span><span class="p">);</span>    <span class="c1">// 滑动手势
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">TapGesture</span><span class="p">);</span>      <span class="c1">// 点击手势
+</span></span></span><span class="line"><span class="cl"><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_AcceptTouchEvents</span><span class="p">);</span>  <span class="c1">// 启用触摸事件
+</span></span></span></code></pre></div></div>
+<h2 id="事件拦截层">事件拦截层</h2>
+<p><strong>职责</strong>: 识别并路由手势事件到专用处理器</p>]]></description>
 </item>
 </channel>
 </rss>

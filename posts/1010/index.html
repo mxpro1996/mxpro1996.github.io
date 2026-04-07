@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>使用SSL_TCP通过禁止ssh进出的局域网 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:title" content="使用SSL_TCP通过禁止ssh进出的局域网" />
-<meta property="og:description" content="# How to tunnel SSH over SSL/TLS laptop ssh -&gt; laptop stunnel -&gt; evil network -&gt; internet -&gt; your server -&gt; your server ssh ## Server (your shell server/home box/work box/whatever) Sets up a stunnel process listening externally on port 2443/tcp, forwards to localhost 22/tcp - Install stunnel, e.g. `yum install stunnel` - Install server config snippet to `/etc/stunnel/stunnel.conf` - Create a TLS cert&#43;key pair, save to `/etc/stunnel/stunnel.pem` Quick and" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/posts/1010/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-10-10T20:36:24+08:00" />
-<meta property="article:modified_time" content="2024-10-10T20:36:24+08:00" /><meta property="og:site_name" content="剪纸堆" />
+        <title>使用SSL_TCP通过禁止ssh进出的局域网 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://localhost:1313/posts/1010/">
+  <meta property="og:site_name" content="程序小站">
+  <meta property="og:title" content="使用SSL_TCP通过禁止ssh进出的局域网">
+  <meta property="og:description" content="# How to tunnel SSH over SSL/TLS laptop ssh -&gt; laptop stunnel -&gt; evil network -&gt; internet -&gt; your server -&gt; your server ssh ## Server (your shell server/home box/work box/whatever) Sets up a stunnel process listening externally on port 2443/tcp, forwards to localhost 22/tcp - Install stunnel, e.g. `yum install stunnel` - Install server config snippet to `/etc/stunnel/stunnel.conf` - Create a TLS cert&#43;key pair, save to `/etc/stunnel/stunnel.pem` Quick and dirty self signed cert, if you don&#39;t care about repudiation: `openssl req -new -x509 -days 365 -nodes -out stunnel.pem -keyout stunnel.pem` - Create the chroot directory: `mkdir /var/run/stunnel ; chown nobody.nobody /var/run/stunnel` - Run the server: `stunnel /etc/stunnel/stunnel.conf` if there isn&#39;t an init script - Remember to open iptables to accept connections on 2443/tcp if you use it! ## Client/laptop Sets up a stunnel process listening on the laptop on port 2443 - Install stunnel - Install client config to your homedir as stunnel-client.conf - Edit `connect=` line to change to the name/address of your server, e.g. `connect=myserver.example.com:2443` - Run the client: `stunnel stunnel-client.conf` ## Testing/verification Testing ssh: lapdance:~ bwann$ ssh -p 2443 localhost uname -n my-server.wann.net ## Usage On your laptop, ssh to localhost port 443. This will connect you to the sshd running on your server. Done! ssh -p 4443 localhost`cert = /etc/stunnel/stunnel.pem sslVersion = TLSv1 options = NO_SSLv2 options = NO_SSLv3 chroot = /var/run/stunnel setuid = nobody setgid = nobody pid = /stunnel.pid socket = l:TCP_NODELAY=1 socket = r:TCP_NODELAY=1 [sshd] accept = 2443 connect = 22 TIMEOUTclose = 0pid = /tmp/stunnel.pid client=yes [ssh] accept=2443 connect=my-server.wann.net:2443">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-10-10T20:36:24+08:00">
+    <meta property="article:modified_time" content="2024-10-10T20:36:24+08:00">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="使用SSL_TCP通过禁止ssh进出的局域网"/>
-<meta name="twitter:description" content="# How to tunnel SSH over SSL/TLS laptop ssh -&gt; laptop stunnel -&gt; evil network -&gt; internet -&gt; your server -&gt; your server ssh ## Server (your shell server/home box/work box/whatever) Sets up a stunnel process listening externally on port 2443/tcp, forwards to localhost 22/tcp - Install stunnel, e.g. `yum install stunnel` - Install server config snippet to `/etc/stunnel/stunnel.conf` - Create a TLS cert&#43;key pair, save to `/etc/stunnel/stunnel.pem` Quick and"/>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用SSL_TCP通过禁止ssh进出的局域网">
+  <meta name="twitter:description" content="# How to tunnel SSH over SSL/TLS laptop ssh -&gt; laptop stunnel -&gt; evil network -&gt; internet -&gt; your server -&gt; your server ssh ## Server (your shell server/home box/work box/whatever) Sets up a stunnel process listening externally on port 2443/tcp, forwards to localhost 22/tcp - Install stunnel, e.g. `yum install stunnel` - Install server config snippet to `/etc/stunnel/stunnel.conf` - Create a TLS cert&#43;key pair, save to `/etc/stunnel/stunnel.pem` Quick and dirty self signed cert, if you don&#39;t care about repudiation: `openssl req -new -x509 -days 365 -nodes -out stunnel.pem -keyout stunnel.pem` - Create the chroot directory: `mkdir /var/run/stunnel ; chown nobody.nobody /var/run/stunnel` - Run the server: `stunnel /etc/stunnel/stunnel.conf` if there isn&#39;t an init script - Remember to open iptables to accept connections on 2443/tcp if you use it! ## Client/laptop Sets up a stunnel process listening on the laptop on port 2443 - Install stunnel - Install client config to your homedir as stunnel-client.conf - Edit `connect=` line to change to the name/address of your server, e.g. `connect=myserver.example.com:2443` - Run the client: `stunnel stunnel-client.conf` ## Testing/verification Testing ssh: lapdance:~ bwann$ ssh -p 2443 localhost uname -n my-server.wann.net ## Usage On your laptop, ssh to localhost port 443. This will connect you to the sshd running on your server. Done! ssh -p 4443 localhost`cert = /etc/stunnel/stunnel.pem sslVersion = TLSv1 options = NO_SSLv2 options = NO_SSLv3 chroot = /var/run/stunnel setuid = nobody setgid = nobody pid = /stunnel.pid socket = l:TCP_NODELAY=1 socket = r:TCP_NODELAY=1 [sshd] accept = 2443 connect = 22 TIMEOUTclose = 0pid = /tmp/stunnel.pid client=yes [ssh] accept=2443 connect=my-server.wann.net:2443">
 <meta name="application-name" content="My cool site">
-<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/1010/" /><link rel="prev" href="http://example.org/posts/rtos_01/" /><link rel="next" href="http://example.org/posts/1013_crc/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/1010/" /><link rel="prev" href="http://localhost:1313/posts/rtos_01/" /><link rel="next" href="http://localhost:1313/posts/1013_crc/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -27,26 +31,37 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/example.org\/posts\/1010\/"
+            "@id": "http:\/\/localhost:1313\/posts\/1010\/"
         },"genre": "posts","wordcount":  260 ,
-        "url": "http:\/\/example.org\/posts\/1010\/","datePublished": "2024-10-10T20:36:24+08:00","dateModified": "2024-10-10T20:36:24+08:00","publisher": {
+        "url": "http:\/\/localhost:1313\/posts\/1010\/","datePublished": "2024-10-10T20:36:24+08:00","dateModified": "2024-10-10T20:36:24+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "TUXEDO"
+                "name": "lazurite"
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="程序小站">剪纸堆</a>
+            <a href="/" title="程序小站"><span id="id-1" class="typeit"></span></a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
                 </a></div>
         </div>
     </div>
@@ -54,97 +69,112 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="程序小站">剪纸堆</a>
+                <a href="/" title="程序小站"><span id="id-2" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
             </div>
         </div>
-        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
             </a></div>
     </div>
 </header><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
+            <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用SSL_TCP通过禁止ssh进出的局域网</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>TUXEDO</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-10-10">2024-10-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;260 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2024-10-10">2024-10-10</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 260 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
-                    <span>Contents</span>
+                    <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># How to tunnel SSH over SSL/TLS</span>
-
-laptop ssh -&gt; laptop stunnel -&gt; evil network -&gt; internet -&gt; your server -&gt; your server ssh
-
-<span class="c1">## Server (your shell server/home box/work box/whatever)</span>
-
-Sets up a stunnel process listening externally on port 2443/tcp, forwards to localhost 22/tcp
-
-- Install stunnel, e.g.  <span class="sb">`</span>yum install stunnel<span class="sb">`</span>
-- Install server config snippet to <span class="sb">`</span>/etc/stunnel/stunnel.conf<span class="sb">`</span>
-- Create a TLS cert+key pair, save to <span class="sb">`</span>/etc/stunnel/stunnel.pem<span class="sb">`</span>
-
-Quick and dirty self signed cert, <span class="k">if</span> you don<span class="s1">&#39;t care about repudiation:
-</span><span class="s1">`openssl req -new -x509 -days 365 -nodes -out stunnel.pem -keyout stunnel.pem`
-</span><span class="s1">
-</span><span class="s1">- Create the chroot directory: `mkdir /var/run/stunnel ; chown nobody.nobody /var/run/stunnel`
-</span><span class="s1">- Run the server:  `stunnel /etc/stunnel/stunnel.conf`  if there isn&#39;</span>t an init script
-- Remember to open iptables to accept connections on 2443/tcp <span class="k">if</span> you use it!
-
-<span class="c1">## Client/laptop</span>
-
-Sets up a stunnel process listening on the laptop on port <span class="m">2443</span>
-
-- Install stunnel
-- Install client config to your homedir as stunnel-client.conf
-- Edit <span class="sb">`</span><span class="nv">connect</span><span class="o">=</span><span class="sb">`</span> line to change to the name/address of your server, e.g. <span class="sb">`</span><span class="nv">connect</span><span class="o">=</span>myserver.example.com:2443<span class="sb">`</span>
-- Run the client:  <span class="sb">`</span>stunnel stunnel-client.conf<span class="sb">`</span>
-
-<span class="c1">## Testing/verification</span>
-Testing ssh:
-lapdance:~ bwann$ ssh -p <span class="m">2443</span> localhost uname -n
-my-server.wann.net
-<span class="c1">## Usage</span>
-
-On your laptop, ssh to localhost port 443.  This will connect you to the sshd running on your server. Done!
-
-ssh -p <span class="m">4443</span> localhost<span class="sb">`</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">cert</span> <span class="o">=</span> /etc/stunnel/stunnel.pem
-<span class="nv">sslVersion</span> <span class="o">=</span> TLSv1
-<span class="nv">options</span> <span class="o">=</span> NO_SSLv2
-<span class="nv">options</span> <span class="o">=</span> NO_SSLv3
-<span class="nv">chroot</span> <span class="o">=</span> /var/run/stunnel
-<span class="nv">setuid</span> <span class="o">=</span> nobody
-<span class="nv">setgid</span> <span class="o">=</span> nobody
-<span class="nv">pid</span> <span class="o">=</span> /stunnel.pid
-<span class="nv">socket</span> <span class="o">=</span> l:TCP_NODELAY<span class="o">=</span><span class="m">1</span>
-<span class="nv">socket</span> <span class="o">=</span> r:TCP_NODELAY<span class="o">=</span><span class="m">1</span>
-
-<span class="o">[</span>sshd<span class="o">]</span>
-<span class="nv">accept</span> <span class="o">=</span> <span class="m">2443</span>
-<span class="nv">connect</span> <span class="o">=</span> <span class="m">22</span>
-<span class="nv">TIMEOUTclose</span> <span class="o">=</span> <span class="m">0</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">pid</span> <span class="o">=</span> /tmp/stunnel.pid
-<span class="nv">client</span><span class="o">=</span>yes
-<span class="o">[</span>ssh<span class="o">]</span>
-<span class="nv">accept</span><span class="o">=</span><span class="m">2443</span>
-<span class="nv">connect</span><span class="o">=</span>my-server.wann.net:2443
-</code></pre></div></div><div class="post-footer" id="post-footer">
+            </div><div class="content" id="content"><div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># How to tunnel SSH over SSL/TLS</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">laptop ssh -&gt; laptop stunnel -&gt; evil network -&gt; internet -&gt; your server -&gt; your server ssh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Server (your shell server/home box/work box/whatever)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Sets up a stunnel process listening externally on port 2443/tcp, forwards to localhost 22/tcp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- Install stunnel, e.g.  <span class="sb">`</span>yum install stunnel<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">- Install server config snippet to <span class="sb">`</span>/etc/stunnel/stunnel.conf<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">- Create a TLS cert+key pair, save to <span class="sb">`</span>/etc/stunnel/stunnel.pem<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Quick and dirty self signed cert, <span class="k">if</span> you don<span class="s1">&#39;t care about repudiation:
+</span></span></span><span class="line"><span class="cl"><span class="s1">`openssl req -new -x509 -days 365 -nodes -out stunnel.pem -keyout stunnel.pem`
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">- Create the chroot directory: `mkdir /var/run/stunnel ; chown nobody.nobody /var/run/stunnel`
+</span></span></span><span class="line"><span class="cl"><span class="s1">- Run the server:  `stunnel /etc/stunnel/stunnel.conf`  if there isn&#39;</span>t an init script
+</span></span><span class="line"><span class="cl">- Remember to open iptables to accept connections on 2443/tcp <span class="k">if</span> you use it!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Client/laptop</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Sets up a stunnel process listening on the laptop on port <span class="m">2443</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- Install stunnel
+</span></span><span class="line"><span class="cl">- Install client config to your homedir as stunnel-client.conf
+</span></span><span class="line"><span class="cl">- Edit <span class="sb">`</span><span class="nv">connect</span><span class="o">=</span><span class="sb">`</span> line to change to the name/address of your server, e.g. <span class="sb">`</span><span class="nv">connect</span><span class="o">=</span>myserver.example.com:2443<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">- Run the client:  <span class="sb">`</span>stunnel stunnel-client.conf<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Testing/verification</span>
+</span></span><span class="line"><span class="cl">Testing ssh:
+</span></span><span class="line"><span class="cl">lapdance:~ bwann$ ssh -p <span class="m">2443</span> localhost uname -n
+</span></span><span class="line"><span class="cl">my-server.wann.net
+</span></span><span class="line"><span class="cl"><span class="c1">## Usage</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">On your laptop, ssh to localhost port 443.  This will connect you to the sshd running on your server. Done!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ssh -p <span class="m">4443</span> localhost<span class="sb">`</span></span></span></code></pre></div></div>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">cert</span> <span class="o">=</span> /etc/stunnel/stunnel.pem
+</span></span><span class="line"><span class="cl"><span class="nv">sslVersion</span> <span class="o">=</span> TLSv1
+</span></span><span class="line"><span class="cl"><span class="nv">options</span> <span class="o">=</span> NO_SSLv2
+</span></span><span class="line"><span class="cl"><span class="nv">options</span> <span class="o">=</span> NO_SSLv3
+</span></span><span class="line"><span class="cl"><span class="nv">chroot</span> <span class="o">=</span> /var/run/stunnel
+</span></span><span class="line"><span class="cl"><span class="nv">setuid</span> <span class="o">=</span> nobody
+</span></span><span class="line"><span class="cl"><span class="nv">setgid</span> <span class="o">=</span> nobody
+</span></span><span class="line"><span class="cl"><span class="nv">pid</span> <span class="o">=</span> /stunnel.pid
+</span></span><span class="line"><span class="cl"><span class="nv">socket</span> <span class="o">=</span> l:TCP_NODELAY<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">socket</span> <span class="o">=</span> r:TCP_NODELAY<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>sshd<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">accept</span> <span class="o">=</span> <span class="m">2443</span>
+</span></span><span class="line"><span class="cl"><span class="nv">connect</span> <span class="o">=</span> <span class="m">22</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TIMEOUTclose</span> <span class="o">=</span> <span class="m">0</span></span></span></code></pre></div></div>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">pid</span> <span class="o">=</span> /tmp/stunnel.pid
+</span></span><span class="line"><span class="cl"><span class="nv">client</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl"><span class="o">[</span>ssh<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">accept</span><span class="o">=</span><span class="m">2443</span>
+</span></span><span class="line"><span class="cl"><span class="nv">connect</span><span class="o">=</span>my-server.wann.net:2443</span></span></code></pre></div></div>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2024-10-10</span>
+                <span>更新于 2024-10-10</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/1010/" data-title="使用SSL_TCP通过禁止ssh进出的局域网"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://example.org/posts/1010/" data-title="使用SSL_TCP通过禁止ssh进出的局域网"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/posts/1010/" data-title="使用SSL_TCP通过禁止ssh进出的局域网"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://localhost:1313/posts/1010/" data-title="使用SSL_TCP通过禁止ssh进出的局域网"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://localhost:1313/posts/1010/" data-title="使用SSL_TCP通过禁止ssh进出的局域网"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/1010/"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/1010/" data-title="使用SSL_TCP通过禁止ssh进出的局域网"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:1313/posts/1010/" data-title="使用SSL_TCP通过禁止ssh进出的局域网"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/1010/" data-title="使用SSL_TCP通过禁止ssh进出的局域网"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://localhost:1313/posts/1010/" data-title="使用SSL_TCP通过禁止ssh进出的局域网" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2flocalhost%3a1313%2fposts%2f1010%2f&amp;text=%e4%bd%bf%e7%94%a8SSL_TCP%e9%80%9a%e8%bf%87%e7%a6%81%e6%ad%a2ssh%e8%bf%9b%e5%87%ba%e7%9a%84%e5%b1%80%e5%9f%9f%e7%bd%91" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -152,40 +182,27 @@ ssh -p <span class="m">4443</span> localhost<span class="sb">`</span>
     <div class="post-info-more">
         <section class="post-tags"></section>
         <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/rtos_01/" class="prev" rel="prev" title="RTOS 批判会"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>RTOS 批判会</a>
-            <a href="/posts/1013_crc/" class="next" rel="next" title="CRC16-XMODEM实现">CRC16-XMODEM实现<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/posts/rtos_01/" class="prev" rel="prev" title="RTOS 批判会"><i class="fas fa-angle-left" aria-hidden="true"></i>RTOS 批判会</a>
+            <a href="/posts/1013_crc/" class="next" rel="next" title="CRC16-XMODEM实现">CRC16-XMODEM实现<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">TUXEDO</a></span></div>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.160.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lazurite</a></span></div>
         </div>
-    </footer>
+    </footer></div>
 
-<script src="https://unpkg.com/oh-my-live2d@latest"></script>
-<script>
-  OML2D.loadOml2d({
-    models: [
-      {
-        path: 'https://model.hacxy.cn/HK416-1-normal/model.json',
-	dockedPosition: "right",
-        position: [0, 60],
-        scale: 0.08,
-        stageStyle: {
-          height: 450
-        }
-      }
-    ]
-  });
-</script></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":32},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/typeit/index.umd.js"></script><script>window.config={"comment":{},"data":{"id-1":"剪纸堆","id-2":"剪纸堆"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
 </html>
