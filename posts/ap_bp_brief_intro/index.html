@@ -26,7 +26,7 @@
 <meta name="apple-mobile-web-app-title" content="My cool site">
 <meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/ap_bp_brief_intro/" /><link rel="prev" href="http://example.org/posts/qt_gesture_flowchart/" /><link rel="next" href="http://example.org/posts/linux_subsystem_06_smp/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/ap_bp_brief_intro/" /><link rel="prev" href="http://example.org/posts/cpp_qt_gesture_flowchart/" /><link rel="next" href="http://example.org/posts/linux_subsystem_06_smp/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/ap_bp_brief_intro\/"
-        },"genre": "posts","keywords": "i.MX6ULL, Qualcomm, EC20, AOSP, 嵌入式开发","wordcount":  1432 ,
+        },"genre": "posts","keywords": "i.MX6ULL, Qualcomm, EC20, AOSP, 嵌入式开发","wordcount":  1364 ,
         "url": "http:\/\/example.org\/posts\/ap_bp_brief_intro\/","datePublished": "2026-03-24T00:00:00+00:00","dateModified": "2026-03-24T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -90,7 +90,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[AI总结] 模块化 IP 的具象：AP+BP 架构、奢侈的基带</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-24">2026-03-24</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1432 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-24">2026-03-24</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1364 字&nbsp;
                 <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -137,7 +137,7 @@
 <h2 id="2-硬件考古那些落难王子级别的基带">2. 硬件考古：那些“落难王子”级别的基带</h2>
 <p>我们常说 4G 模块只是个“上网卡”，但事实上，它们是阉割了自主权的 <strong>Headless Phone</strong>。</p>
 <ul>
-<li><strong>Neoway AM201</strong>：在那个 2G/3G 时代，它竟然奢侈地使用了 <strong>MSM8612 (骁龙 200)</strong>。这原本是跑红米手机的四核处理器，却被锁在屏蔽罩里做工控机的“外挂手机”。</li>
+<li><strong>Neoway AM201</strong>：在那个 2G/3G 时代，它竟然奢侈地使用了 <strong>MSM8612 (骁龙 200)</strong>。这原本是跑安卓的四核处理器，却被锁在屏蔽罩里做工控机的“外挂手机”。</li>
 <li><strong>MDM9x07 (EC20 核心)</strong>：1.2GHz 的 A7 核心配合 QDSP6。它的马力足以处理 5G 级别的调度，却在为 i.MX6ULL 提供基础的拨号服务。</li>
 </ul>
 <p><strong>讽刺点</strong>：你买到的不是一个模块，而是<strong>手机产业链溢出的剩余价值</strong>。为了成本，厂家宁愿拿过剩的手机 SoC 屏蔽掉显示输出（DSI/GPU），也不愿重新开发一颗纯粹的低功耗基带。</p>
@@ -169,9 +169,7 @@
 </ol>
 <hr>
 <h2 id="6-结语">6. 结语</h2>
-<p>如果你不做成狭隘的 AT Modem，模组预留的 <strong>DSI、CSI 与 Audio</strong> 足以配合 BSP 做成极其强悍的 Linux/安卓工控机。但在那之前，请记住：</p>
-<p><strong>AP 负责温暖人心（交互），BP 负责连接世界（物理）。</strong></p>
-<p>每一次 <code>ATD</code> 的成功回显，都是这两个次元在跨越物理连线后的完美握手。</p>
+<p>如果你不做成狭隘的 AT Modem，模组预留的 <strong>DSI、CSI 与 Audio</strong> 足以配合 BSP 做成极其强悍的 Linux/安卓工控机。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -193,7 +191,7 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/qt_gesture_flowchart/" class="prev" rel="prev" title="[QT] 手势识别 - 层次笔记"><i class="fas fa-angle-left" aria-hidden="true"></i>[QT] 手势识别 - 层次笔记</a>
+    <div class="post-nav"><a href="/posts/cpp_qt_gesture_flowchart/" class="prev" rel="prev" title="[C/C&#43;&#43;] QT手势识别 - 层次笔记"><i class="fas fa-angle-left" aria-hidden="true"></i>[C/C++] QT手势识别 - 层次笔记</a>
             <a href="/posts/linux_subsystem_06_smp/" class="next" rel="next" title="[AI总结] 用户态并发原理: 从指令到契约">[AI总结] 用户态并发原理: 从指令到契约<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
 </div>
 </article></div>

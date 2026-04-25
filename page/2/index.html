@@ -80,6 +80,27 @@
         alt="images/avatar.png"
         title="images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/cpp_qt_gesture_flowchart/">[C/C++] QT手势识别 - 层次笔记</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-11-18">2025-11-18</time></span></div><div class="content"><h2 id="初始化层">初始化层</h2>
+<p><strong>职责</strong>: 注册手势类型，启用触摸事件支持</p>
+<p><strong>代码片段</strong>:</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-cpp">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 在构造函数中注册需要的手势类型
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PinchGesture</span><span class="p">);</span>    <span class="c1">// 捏合缩放手势
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PanGesture</span><span class="p">);</span>      <span class="c1">// 平移拖动手势  
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">SwipeGesture</span><span class="p">);</span>    <span class="c1">// 滑动手势
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">TapGesture</span><span class="p">);</span>      <span class="c1">// 点击手势
+</span></span></span><span class="line"><span class="cl"><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_AcceptTouchEvents</span><span class="p">);</span>  <span class="c1">// 启用触摸事件
+</span></span></span></code></pre></div></div>
+<h2 id="事件拦截层">事件拦截层</h2>
+<p><strong>职责</strong>: 识别并路由手势事件到专用处理器</p></div><div class="post-footer">
+        <a href="/posts/cpp_qt_gesture_flowchart/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/qt/">Qt</a>,&nbsp;<a href="/tags/%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB/">手势识别</a>,&nbsp;<a href="/tags/%E6%A1%86%E6%9E%B6/">框架</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/1108_new_ai_calendar/">基于TTS&RVC / SVC的AI歌唱模型日程</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-11-08">2025-11-08</time></span></div><div class="content"><ul>
 <li><i class="far fa-square" aria-hidden="true"></i> 收集会话素材</li>
@@ -88,7 +109,7 @@
 </ul>
 <hr>
 <ul>
-<li><i class="far fa-square" aria-hidden="true"></i> 调音制作歌唱数据集（实际把握导向）</li>
+<li><i class="far fa-square" aria-hidden="true"></i> 调音制作歌唱数据集（utau?）</li>
 <li><i class="far fa-square" aria-hidden="true"></i> 投入SVC/RVC训练</li>
 </ul>
 <hr>
@@ -97,7 +118,7 @@
 </ul></div><div class="post-footer">
         <a href="/posts/1108_new_ai_calendar/">阅读全文</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cpp_runtime_lib_dlopen/">[转] C语言动态加载共享库详解</a>
+        <a href="/posts/cpp_runtime_lib_dlopen/">[C/C++] 运行时装载 - libdl</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-20">2025-10-20</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"><i class="far fa-folder" aria-hidden="true"></i>编程语言</a></span></div><div class="content"><h2 id="概述">概述</h2>
 <p><code>&lt;dlfcn.h&gt;</code> 是 C 标准库中用于<strong>动态加载共享库</strong>的头文件，主要用于在运行时加载共享库（如 <code>.so</code> 文件或 <code>.dll</code> 文件），获取符号地址并调用其中的函数。</p>
 <h2 id="核心函数">核心函数</h2>
@@ -160,16 +181,16 @@
 <h3 id="dlsym-查找符号">dlsym 查找符号</h3>
 <ul>
 <li>可以查找<strong>函数</strong>或<strong>全局变量</strong>的地址</li>
-<li>返回 <code>void*</code>，需强制转换为正确的函数指针类型</li>
+<li>返回 <code>void*</code>，需强转为正确的函数指针类型</li>
 </ul>
-<h3 id="错误处理">错误处理</h3>
+<h3 id="dlerror-错误处理">dlerror 错误处理</h3>
 <ul>
-<li><code>dlerror()</code> 返回最近一次 dl* 函数的错误信息（字符串）</li>
-<li>如果 <code>dlopen</code>/<code>dlsym</code> 失败，应检查 <code>dlerror()</code></li>
+<li>返回最近一次 dl* 函数的错误信息（字符串）</li>
+<li>如果 <code>dlopen</code>/<code>dlsym</code> 失败，应检查error信息</li>
 </ul>
 <hr>
 <h2 id="典型应用场景">典型应用场景</h2>
-<h3 id="1-插件系统">1. 插件系统</h3>
+<h3 id="1-插件plugin">1. 插件（Plugin）</h3>
 <p>程序运行时加载插件（如浏览器插件、游戏模组）</p></div><div class="post-footer">
         <a href="/posts/cpp_runtime_lib_dlopen/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/cpp/">Cpp</a>,&nbsp;<a href="/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/">动态加载</a>,&nbsp;<a href="/tags/%E5%85%B1%E4%BA%AB%E5%BA%93/">共享库</a></div></div>
@@ -197,10 +218,6 @@
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-11">2025-10-11</time></span></div><div class="content"><h4 id="1-概述"><strong>1. 概述</strong></h4>
 <p>在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同SoC厂商的引脚配置，Linux内核提供了 <strong>pinctrl</strong> 子系统，用于管理引脚的复用、特性配置、GPIO等。</p></div><div class="post-footer">
         <a href="/posts/linux_subsystem_04_pinctrl/">阅读全文</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_03_subsys_gpio/">（三）Linux 内核驱动 - GPIO子系统</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-01">2025-10-01</time></span></div><div class="content"><h1 id="tbd">TBD</h1></div><div class="post-footer">
-        <a href="/posts/linux_subsystem_03_subsys_gpio/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

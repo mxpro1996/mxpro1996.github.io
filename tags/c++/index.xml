@@ -12,5 +12,29 @@
     <description><![CDATA[<p>在 C++ 或 C 语言中调用 <code>std::thread</code> 或 <code>pthread_create</code> 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。</p>
 <p>但剥开层层包装，你会发现：<strong>用户态没有真正的并发原语。</strong> 所有的“体面”都是向内核借来的，而这张借条的名字，叫作 <strong>Futex (Fast Userspace Mutex)</strong>。</p>]]></description>
 </item>
+<item>
+    <title>[C/C&#43;&#43;] QT手势识别 - 层次笔记</title>
+    <link>http://example.org/posts/cpp_qt_gesture_flowchart/</link>
+    <pubDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/cpp_qt_gesture_flowchart/</guid>
+    <description><![CDATA[<h2 id="初始化层">初始化层</h2>
+<p><strong>职责</strong>: 注册手势类型，启用触摸事件支持</p>
+<p><strong>代码片段</strong>:</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-cpp">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 在构造函数中注册需要的手势类型
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PinchGesture</span><span class="p">);</span>    <span class="c1">// 捏合缩放手势
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PanGesture</span><span class="p">);</span>      <span class="c1">// 平移拖动手势  
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">SwipeGesture</span><span class="p">);</span>    <span class="c1">// 滑动手势
+</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">TapGesture</span><span class="p">);</span>      <span class="c1">// 点击手势
+</span></span></span><span class="line"><span class="cl"><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_AcceptTouchEvents</span><span class="p">);</span>  <span class="c1">// 启用触摸事件
+</span></span></span></code></pre></div></div>
+<h2 id="事件拦截层">事件拦截层</h2>
+<p><strong>职责</strong>: 识别并路由手势事件到专用处理器</p>]]></description>
+</item>
 </channel>
 </rss>
