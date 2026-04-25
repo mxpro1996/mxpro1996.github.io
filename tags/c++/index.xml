@@ -5,10 +5,10 @@
         <description>C&#43;&#43; - 标签 - 程序小站</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 06 Apr 2026 10:45:00 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/c&#43;&#43;/" rel="self" type="application/rss+xml" /><item>
     <title>[AI总结] 用户态并发原理：从 Futex规则 到 std::thread 的性能审计</title>
-    <link>http://example.org/posts/linux_subsystem_07_futex_pthread/</link>
+    <link>http://example.org/posts/linux_subsystem_06_futex_pthread/</link>
     <pubDate>Mon, 06 Apr 2026 10:45:00 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/linux_subsystem_07_futex_pthread/</guid>
+    <guid>http://example.org/posts/linux_subsystem_06_futex_pthread/</guid>
     <description><![CDATA[<p>在 C++ 或 C 语言中调用 <code>std::thread</code> 或 <code>pthread_create</code> 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。</p>
 <p>但剥开层层包装，你会发现：<strong>用户态没有真正的并发原语。</strong> 所有的“体面”都是向内核借来的，而这张借条的名字，叫作 <strong>Futex (Fast Userspace Mutex)</strong>。</p>]]></description>
 </item>

@@ -134,30 +134,30 @@
 </span></span></span><span class="line"><span class="cl"><span class="cp">#endif</span></span></span></code></pre></div></div></div><div class="post-footer">
         <a href="/posts/cpp_macro_usage/">阅读全文</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_09_cdev_sep_dev/">Linux 内核架构观察：功能体（cdev）与实体（Device）的分立</a>
+        <a href="/posts/linux_subsystem_08_cdev_sep_dev/">Linux 内核架构观察：功能体（cdev）与实体（Device）的分立</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-07">2026-04-07</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/architecture/"><i class="far fa-folder" aria-hidden="true"></i>Architecture</a></span></div><div class="content"><h3 id="核心论点">核心论点</h3>
 <p>在 Linux 设备模型中，驱动程序并不是一个不可分割的整体，而是**功能策略（Functionality）<strong>与</strong>物理实体（Entity）**的强行耦合。</p>
 <h3 id="1-cdev卑微的会计与策略表">1. cdev：卑微的“会计”与策略表</h3>
 <p><strong>cdev (Character Device)</strong> 并不在内核的硬件拓扑树中占有一席之地。它的本质是一个<strong>策略映射器</strong>。</p></div><div class="post-footer">
-        <a href="/posts/linux_subsystem_09_cdev_sep_dev/">阅读全文</a><div class="post-tags">
+        <a href="/posts/linux_subsystem_08_cdev_sep_dev/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/pthread/">Pthread</a>,&nbsp;<a href="/tags/futex/">Futex</a>,&nbsp;<a href="/tags/syscall/">Syscall</a>,&nbsp;<a href="/tags/concurrency/">Concurrency</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_08_futex_libc/">[AI总结] 用户态并发原理: 从指令到契约（修订版）</a>
+        <a href="/posts/linux_subsystem_07_futex_libc/">[AI总结] 用户态并发原理: 从指令到契约（修订版）</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/architecture/"><i class="far fa-folder" aria-hidden="true"></i>Architecture</a></span></div><div class="content"><p>在 Linux 用户态开发中，<code>std::thread</code> 或 <code>pthread</code> 往往被视为并发的起点。但剥开库的包装，你会发现：<strong>用户态没有独立的并发物理权。</strong></p>
 <p>所有的同步原语，本质上都是从内核 UAPI 中“借”出来的执行策略。而 <code>pthread</code>，则是这套借贷契约的标准化搬运工。</p></div><div class="post-footer">
-        <a href="/posts/linux_subsystem_08_futex_libc/">阅读全文</a><div class="post-tags">
+        <a href="/posts/linux_subsystem_07_futex_libc/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/pthread/">Pthread</a>,&nbsp;<a href="/tags/futex/">Futex</a>,&nbsp;<a href="/tags/syscall/">Syscall</a>,&nbsp;<a href="/tags/concurrency/">Concurrency</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_07_futex_pthread/">[AI总结] 用户态并发原理：从 Futex规则 到 std::thread 的性能审计</a>
+        <a href="/posts/linux_subsystem_06_futex_pthread/">[AI总结] 用户态并发原理：从 Futex规则 到 std::thread 的性能审计</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/architecture/"><i class="far fa-folder" aria-hidden="true"></i>Architecture</a></span></div><div class="content"><p>在 C++ 或 C 语言中调用 <code>std::thread</code> 或 <code>pthread_create</code> 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。</p>
 <p>但剥开层层包装，你会发现：<strong>用户态没有真正的并发原语。</strong> 所有的“体面”都是向内核借来的，而这张借条的名字，叫作 <strong>Futex (Fast Userspace Mutex)</strong>。</p></div><div class="post-footer">
-        <a href="/posts/linux_subsystem_07_futex_pthread/">阅读全文</a><div class="post-tags">
+        <a href="/posts/linux_subsystem_06_futex_pthread/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/pthread/">Pthread</a>,&nbsp;<a href="/tags/futex/">Futex</a>,&nbsp;<a href="/tags/glibc/">Glibc</a>,&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_06_smp/">[AI总结] 用户态并发原理: 从指令到契约</a>
+        <a href="/posts/linux_subsystem_05_smp/">[AI总结] 用户态并发原理: 从指令到契约</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/low-level/"><i class="far fa-folder" aria-hidden="true"></i>Low-Level</a></span></div><div class="content"><p>在现代多核（SMP）架构下，编写并发代码本质上是在处理一场<strong>由物理电信号驱动的“绩效狂欢”</strong>。当我们剥开 <code>mutex_lock</code> 的华丽外衣，最深处只有那几行冷酷的 <code>ldrex/strex</code>。</p>
 <p>本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从<strong>物理重试</strong>到<strong>逻辑认怂</strong>的完整链路。</p></div><div class="post-footer">
-        <a href="/posts/linux_subsystem_06_smp/">阅读全文</a><div class="post-tags">
+        <a href="/posts/linux_subsystem_05_smp/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux-kernel/">Linux Kernel</a>,&nbsp;<a href="/tags/concurrency/">Concurrency</a>,&nbsp;<a href="/tags/architecture/">Architecture</a>,&nbsp;<a href="/tags/smp/">SMP</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/ap_bp_brief_intro/">[AI总结] 模块化 IP 的具象：AP+BP 架构、奢侈的基带</a>

@@ -10,15 +10,15 @@
             <loc>http://example.org/tags/concurrency/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/futex/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/linux/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/linux_subsystem_09_cdev_sep_dev/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/linux_subsystem_08_cdev_sep_dev/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/pthread/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/syscall/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/</loc><lastmod>2026-04-07T10:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/linux_subsystem_08_futex_libc/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/linux_subsystem_07_futex_pthread/</loc><lastmod>2026-04-06T10:45:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/linux_subsystem_07_futex_libc/</loc><lastmod>2026-04-06T11:15:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/linux_subsystem_06_futex_pthread/</loc><lastmod>2026-04-06T10:45:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/c&#43;&#43;/</loc><lastmod>2026-04-06T10:45:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/glibc/</loc><lastmod>2026-04-06T10:45:00&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/linux_subsystem_06_smp/</loc><lastmod>2026-04-06T02:13:00&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/linux_subsystem_05_smp/</loc><lastmod>2026-04-06T02:13:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/architecture/</loc><lastmod>2026-04-06T02:13:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/linux-kernel/</loc><lastmod>2026-04-06T02:13:00&#43;08:00</lastmod></url><url>
             <loc>http://example.org/categories/low-level/</loc><lastmod>2026-04-06T02:13:00&#43;08:00</lastmod></url><url>
@@ -43,9 +43,8 @@
             <loc>http://example.org/tags/%E5%9F%BA%E7%A1%80/</loc><lastmod>2025-10-17T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/</loc><lastmod>2025-10-17T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/%E6%9D%83%E9%99%90%E4%BD%8D/</loc><lastmod>2025-10-17T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/posts/linux_subsystem_05_initcall/</loc><lastmod>2025-10-12T09:02:36&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/linux_subsystem_04_pinctrl/</loc><lastmod>2025-10-11T09:02:36&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/linux_subsystem_03_subsys_gpio/</loc><lastmod>2025-10-01T09:02:36&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/linux_subsystem_04_initcall/</loc><lastmod>2025-10-12T09:02:36&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/linux_subsystem_03_pinctrl/</loc><lastmod>2025-10-11T09:02:36&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/linux_subsystem_02_core_controller/</loc><lastmod>2025-10-01T09:00:36&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/linux_subsystem_01_common_model/</loc><lastmod>2025-10-01T08:58:36&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/linux_subsystem_00_booklist/</loc><lastmod>2025-10-01T08:07:25&#43;08:00</lastmod></url><url>
