@@ -3,7 +3,27 @@
         <title>嵌入式开发 - 标签 - 程序小站</title>
         <link>http://example.org/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/</link>
         <description>嵌入式开发 - 标签 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 24 Mar 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 20 Apr 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="self" type="application/rss+xml" /><item>
+    <title>[MTK] BringUp 01 - LCM Driver 移植流程</title>
+    <link>http://example.org/posts/mtk_bring_up_01_lcm_porting/</link>
+    <pubDate>Mon, 20 Apr 2026 00:00:00 &#43;0000</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/mtk_bring_up_01_lcm_porting/</guid>
+    <description><![CDATA[<h2 id="1-硬件资源配置从-drvgen-到-dts">1. 硬件资源配置：从 DrvGen 到 DTS</h2>
+<p>在点亮屏幕之前，必须确保电源、复位（RST）及背光（PWM）的通路正确。</p>
+<ul>
+<li><strong>Legacy 模式 (Kernel ≤ 3.10)</strong>：使用 <code>mtk_legacy</code> 的 GPIO 控制方式，开发者需通过 <code>DrvGen.exe</code> 工具配置表格并生成头文件。</li>
+<li><strong>现代模式 (Kernel &gt; 3.10)</strong>：转向 <code>gpiod</code> 封装配合 <strong>Device Tree (DTS)</strong> 描述。
+<ul>
+<li><strong>关键点</strong>：检查总线类型。MIPI 接口需关注 Lane 数量及 D-PHY 规格；RGB 接口则需确认并行数据位的极性。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-驱动注册">2. 驱动注册：</h2>
+<p>MTK封装的子系统mtk_fb采用列表注册机制，允许内核在启动时探测不同的模组。</p>]]></description>
+</item>
+<item>
     <title>[AI总结] 模块化 IP 的具象：AP&#43;BP 架构、奢侈的基带</title>
     <link>http://example.org/posts/ap_bp_brief_intro/</link>
     <pubDate>Tue, 24 Mar 2026 00:00:00 &#43;0000</pubDate>

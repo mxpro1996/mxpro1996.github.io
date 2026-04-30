@@ -80,6 +80,11 @@
         alt="images/avatar.png"
         title="images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux_subsystem_03_pinctrl/">[转]（三）Linux 内核驱动 - Pinctrl子系统</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-11">2025-10-11</time></span></div><div class="content"><h4 id="1-概述"><strong>1. 概述</strong></h4>
+<p>在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同SoC厂商的引脚配置，Linux内核提供了 <strong>pinctrl</strong> 子系统，用于管理引脚的复用、特性配置、GPIO等。</p></div><div class="post-footer">
+        <a href="/posts/linux_subsystem_03_pinctrl/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/linux_subsystem_02_core_controller/">（二）Linux 内核驱动 - 核心层core与IP控制器抽象</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-01">2025-10-01</time></span></div><div class="content"><h1 id="tbd">TBD</h1></div><div class="post-footer">
         <a href="/posts/linux_subsystem_02_core_controller/">阅读全文</a></div>
@@ -197,10 +202,6 @@
 </span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">file</span><span class="p">/dir/path</span><span class="si">}</span>：将第一个dir 替换为path：/path1/dir2/dir3/my.file.txt
 </span></span><span class="line"><span class="cl"><span class="si">${</span><span class="nv">file</span><span class="p">//dir/path</span><span class="si">}</span>：将全部dir 替换为 path：/path1/path2/path3/my.file.txt</span></span></code></pre></div></div></div><div class="post-footer">
         <a href="/posts/linux_ipc_shell/">阅读全文</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/bug02/">[udev] device_create()与/dev/xx</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-05-06">2025-05-06</time></span></div><div class="content"><p> 理论上，device_create()会发送uevent触发用户态udev进行/dev/xxx设备文件的建立，但就算禁止udev，devtmpfs也会在device_add()函数被调用时收到信息，建立基本设备文件节点。</p></div><div class="post-footer">
-        <a href="/posts/bug02/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

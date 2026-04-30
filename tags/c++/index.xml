@@ -18,10 +18,10 @@
     <pubDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</pubDate>
     <author>lazurite</author>
     <guid>http://example.org/posts/cpp_qt_gesture_flowchart/</guid>
-    <description><![CDATA[<h2 id="初始化层">初始化层</h2>
+    <description><![CDATA[<h2 id="挂钩转发">挂钩、转发</h2>
 <p><strong>职责</strong>: 注册手势类型，启用触摸事件支持</p>
 <p><strong>代码片段</strong>:</p>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
     <div class="code-header language-cpp">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
@@ -32,9 +32,16 @@
 </span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">SwipeGesture</span><span class="p">);</span>    <span class="c1">// 滑动手势
 </span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">TapGesture</span><span class="p">);</span>      <span class="c1">// 点击手势
 </span></span></span><span class="line"><span class="cl"><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_AcceptTouchEvents</span><span class="p">);</span>  <span class="c1">// 启用触摸事件
-</span></span></span></code></pre></div></div>
-<h2 id="事件拦截层">事件拦截层</h2>
-<p><strong>职责</strong>: 识别并路由手势事件到专用处理器</p>]]></description>
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">event</span><span class="p">(</span><span class="n">QEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="o">-&gt;</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QEvent</span><span class="o">::</span><span class="n">Gesture</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">gestureEvent</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">QGestureEvent</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">event</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">QWidget</span><span class="o">::</span><span class="n">event</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="分类">分类</h2>
+<p><strong>职责</strong>: 按手势类型分发到对应的具体处理器</p>]]></description>
 </item>
 </channel>
 </rss>

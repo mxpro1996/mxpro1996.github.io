@@ -134,6 +134,23 @@
 </span></span></span><span class="line"><span class="cl"><span class="cp">#endif</span></span></span></code></pre></div></div></div><div class="post-footer">
         <a href="/posts/cpp_macro_usage/">阅读全文</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/mtk_bring_up_01_lcm_porting/">[MTK] BringUp 01 - LCM Driver 移植流程</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-20">2026-04-20</time></span></div><div class="content"><h2 id="1-硬件资源配置从-drvgen-到-dts">1. 硬件资源配置：从 DrvGen 到 DTS</h2>
+<p>在点亮屏幕之前，必须确保电源、复位（RST）及背光（PWM）的通路正确。</p>
+<ul>
+<li><strong>Legacy 模式 (Kernel ≤ 3.10)</strong>：使用 <code>mtk_legacy</code> 的 GPIO 控制方式，开发者需通过 <code>DrvGen.exe</code> 工具配置表格并生成头文件。</li>
+<li><strong>现代模式 (Kernel &gt; 3.10)</strong>：转向 <code>gpiod</code> 封装配合 <strong>Device Tree (DTS)</strong> 描述。
+<ul>
+<li><strong>关键点</strong>：检查总线类型。MIPI 接口需关注 Lane 数量及 D-PHY 规格；RGB 接口则需确认并行数据位的极性。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-驱动注册">2. 驱动注册：</h2>
+<p>MTK封装的子系统mtk_fb采用列表注册机制，允许内核在启动时探测不同的模组。</p></div><div class="post-footer">
+        <a href="/posts/mtk_bring_up_01_lcm_porting/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/mt6797/">MT6797</a>,&nbsp;<a href="/tags/aosp/">AOSP</a>,&nbsp;<a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/">嵌入式开发</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/linux_subsystem_08_cdev_sep_dev/">Linux 内核架构观察：功能体（cdev）与实体（Device）的分立</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-07">2026-04-07</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/architecture/"><i class="far fa-folder" aria-hidden="true"></i>Architecture</a></span></div><div class="content"><h3 id="核心论点">核心论点</h3>
 <p>在 Linux 设备模型中，驱动程序并不是一个不可分割的整体，而是**功能策略（Functionality）<strong>与</strong>物理实体（Entity）**的强行耦合。</p>
@@ -159,12 +176,6 @@
 <p>本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从<strong>物理重试</strong>到<strong>逻辑认怂</strong>的完整链路。</p></div><div class="post-footer">
         <a href="/posts/linux_subsystem_05_smp/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux-kernel/">Linux Kernel</a>,&nbsp;<a href="/tags/concurrency/">Concurrency</a>,&nbsp;<a href="/tags/architecture/">Architecture</a>,&nbsp;<a href="/tags/smp/">SMP</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ap_bp_brief_intro/">[AI总结] 模块化 IP 的具象：AP+BP 架构、奢侈的基带</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-03-24">2026-03-24</time></span></div><div class="content"><h2 id="0-前言算力倒挂的工业荒诞">0. 前言：算力倒挂的工业荒诞</h2>
-<p>在嵌入式开发中，我们常陷入一种“主从错觉”：认为主控 CPU（AP）是核心，而通讯模块（BP）只是个外设。但当你拆开屏蔽罩，看到 <strong>1.2GHz 的 MDM9x07</strong> 甚至 <strong>四核 MSM8612</strong> 仅仅是在通过串口为 <strong>528MHz 的 i.MX6ULL</strong> 传递几行 AT 指令时，一种工业级的讽刺感油然而生。</p></div><div class="post-footer">
-        <a href="/posts/ap_bp_brief_intro/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/i.mx6ull/">I.MX6ULL</a>,&nbsp;<a href="/tags/qualcomm/">Qualcomm</a>,&nbsp;<a href="/tags/ec20/">EC20</a>,&nbsp;<a href="/tags/aosp/">AOSP</a>,&nbsp;<a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/">嵌入式开发</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>

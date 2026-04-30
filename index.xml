@@ -64,6 +64,26 @@
 </span></span></span><span class="line"><span class="cl"><span class="cp">#endif</span></span></span></code></pre></div></div>]]></description>
 </item>
 <item>
+    <title>[MTK] BringUp 01 - LCM Driver 移植流程</title>
+    <link>http://example.org/posts/mtk_bring_up_01_lcm_porting/</link>
+    <pubDate>Mon, 20 Apr 2026 00:00:00 &#43;0000</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/mtk_bring_up_01_lcm_porting/</guid>
+    <description><![CDATA[<h2 id="1-硬件资源配置从-drvgen-到-dts">1. 硬件资源配置：从 DrvGen 到 DTS</h2>
+<p>在点亮屏幕之前，必须确保电源、复位（RST）及背光（PWM）的通路正确。</p>
+<ul>
+<li><strong>Legacy 模式 (Kernel ≤ 3.10)</strong>：使用 <code>mtk_legacy</code> 的 GPIO 控制方式，开发者需通过 <code>DrvGen.exe</code> 工具配置表格并生成头文件。</li>
+<li><strong>现代模式 (Kernel &gt; 3.10)</strong>：转向 <code>gpiod</code> 封装配合 <strong>Device Tree (DTS)</strong> 描述。
+<ul>
+<li><strong>关键点</strong>：检查总线类型。MIPI 接口需关注 Lane 数量及 D-PHY 规格；RGB 接口则需确认并行数据位的极性。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-驱动注册">2. 驱动注册：</h2>
+<p>MTK封装的子系统mtk_fb采用列表注册机制，允许内核在启动时探测不同的模组。</p>]]></description>
+</item>
+<item>
     <title>Linux 内核架构观察：功能体（cdev）与实体（Device）的分立</title>
     <link>http://example.org/posts/linux_subsystem_08_cdev_sep_dev/</link>
     <pubDate>Tue, 07 Apr 2026 10:15:00 &#43;0800</pubDate>
@@ -116,10 +136,10 @@
     <pubDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</pubDate>
     <author>lazurite</author>
     <guid>http://example.org/posts/cpp_qt_gesture_flowchart/</guid>
-    <description><![CDATA[<h2 id="初始化层">初始化层</h2>
+    <description><![CDATA[<h2 id="挂钩转发">挂钩、转发</h2>
 <p><strong>职责</strong>: 注册手势类型，启用触摸事件支持</p>
 <p><strong>代码片段</strong>:</p>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
     <div class="code-header language-cpp">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
@@ -130,9 +150,16 @@
 </span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">SwipeGesture</span><span class="p">);</span>    <span class="c1">// 滑动手势
 </span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">TapGesture</span><span class="p">);</span>      <span class="c1">// 点击手势
 </span></span></span><span class="line"><span class="cl"><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_AcceptTouchEvents</span><span class="p">);</span>  <span class="c1">// 启用触摸事件
-</span></span></span></code></pre></div></div>
-<h2 id="事件拦截层">事件拦截层</h2>
-<p><strong>职责</strong>: 识别并路由手势事件到专用处理器</p>]]></description>
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">event</span><span class="p">(</span><span class="n">QEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="o">-&gt;</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QEvent</span><span class="o">::</span><span class="n">Gesture</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">gestureEvent</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">QGestureEvent</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">event</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">QWidget</span><span class="o">::</span><span class="n">event</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="分类">分类</h2>
+<p><strong>职责</strong>: 按手势类型分发到对应的具体处理器</p>]]></description>
 </item>
 <item>
     <title>基于TTS&amp;RVC / SVC的AI歌唱模型日程</title>
@@ -234,23 +261,6 @@
 <h2 id="典型应用场景">典型应用场景</h2>
 <h3 id="1-插件plugin">1. 插件（Plugin）</h3>
 <p>程序运行时加载插件（如浏览器插件、游戏模组）</p>]]></description>
-</item>
-<item>
-    <title>Linux 文件权限位介绍</title>
-    <link>http://example.org/posts/linux_perms/</link>
-    <pubDate>Fri, 17 Oct 2025 00:00:00 &#43;0000</pubDate>
-    <author>lazurite</author>
-    <guid>http://example.org/posts/linux_perms/</guid>
-    <description><![CDATA[<h2 id="1-linux文件权限概述">1. Linux文件权限概述</h2>
-<h2 id="2-权限位的组成">2. 权限位的组成</h2>
-<p>Linux文件权限位通常由10个字符组成，格式如下：</p>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
-    <div class="code-header language-">
-        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
-        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
-        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
-    </div><pre tabindex="0"><code>-rwxr-xr-x</code></pre></div>
-<p>这10个字符可以分解为以下部分：</p>]]></description>
 </item>
 </channel>
 </rss>

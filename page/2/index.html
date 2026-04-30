@@ -80,11 +80,17 @@
         alt="images/avatar.png"
         title="images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/ap_bp_brief_intro/">[AI总结] 模块化 IP 的具象：AP+BP 架构、奢侈的基带</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-03-24">2026-03-24</time></span></div><div class="content"><h2 id="0-前言算力倒挂的工业荒诞">0. 前言：算力倒挂的工业荒诞</h2>
+<p>在嵌入式开发中，我们常陷入一种“主从错觉”：认为主控 CPU（AP）是核心，而通讯模块（BP）只是个外设。但当你拆开屏蔽罩，看到 <strong>1.2GHz 的 MDM9x07</strong> 甚至 <strong>四核 MSM8612</strong> 仅仅是在通过串口为 <strong>528MHz 的 i.MX6ULL</strong> 传递几行 AT 指令时，一种工业级的讽刺感油然而生。</p></div><div class="post-footer">
+        <a href="/posts/ap_bp_brief_intro/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/i.mx6ull/">I.MX6ULL</a>,&nbsp;<a href="/tags/qualcomm/">Qualcomm</a>,&nbsp;<a href="/tags/ec20/">EC20</a>,&nbsp;<a href="/tags/aosp/">AOSP</a>,&nbsp;<a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/">嵌入式开发</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cpp_qt_gesture_flowchart/">[C/C++] QT手势识别 - 层次笔记</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-11-18">2025-11-18</time></span></div><div class="content"><h2 id="初始化层">初始化层</h2>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-11-18">2025-11-18</time></span></div><div class="content"><h2 id="挂钩转发">挂钩、转发</h2>
 <p><strong>职责</strong>: 注册手势类型，启用触摸事件支持</p>
 <p><strong>代码片段</strong>:</p>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
     <div class="code-header language-cpp">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
@@ -95,9 +101,16 @@
 </span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">SwipeGesture</span><span class="p">);</span>    <span class="c1">// 滑动手势
 </span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">TapGesture</span><span class="p">);</span>      <span class="c1">// 点击手势
 </span></span></span><span class="line"><span class="cl"><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_AcceptTouchEvents</span><span class="p">);</span>  <span class="c1">// 启用触摸事件
-</span></span></span></code></pre></div></div>
-<h2 id="事件拦截层">事件拦截层</h2>
-<p><strong>职责</strong>: 识别并路由手势事件到专用处理器</p></div><div class="post-footer">
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">event</span><span class="p">(</span><span class="n">QEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="o">-&gt;</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QEvent</span><span class="o">::</span><span class="n">Gesture</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">gestureEvent</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">QGestureEvent</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">event</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">QWidget</span><span class="o">::</span><span class="n">event</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="分类">分类</h2>
+<p><strong>职责</strong>: 按手势类型分发到对应的具体处理器</p></div><div class="post-footer">
         <a href="/posts/cpp_qt_gesture_flowchart/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>,&nbsp;<a href="/tags/qt/">Qt</a>,&nbsp;<a href="/tags/%E6%89%8B%E5%8A%BF%E8%AF%86%E5%88%AB/">手势识别</a>,&nbsp;<a href="/tags/%E6%A1%86%E6%9E%B6/">框架</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
@@ -213,11 +226,6 @@
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-12">2025-10-12</time></span></div><div class="content"><h3 id="1-initcall机制的起源与背景">1. <strong>initcall机制的起源与背景</strong></h3>
 <p>当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插入调用，但这显然不适用于大型的Linux内核，因为驱动程序数量庞大，且有一定的依赖关系，必须按特定顺序进行初始化。</p></div><div class="post-footer">
         <a href="/posts/linux_subsystem_04_initcall/">阅读全文</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_03_pinctrl/">[转]（三）Linux 内核驱动 - Pinctrl子系统</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-11">2025-10-11</time></span></div><div class="content"><h4 id="1-概述"><strong>1. 概述</strong></h4>
-<p>在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同SoC厂商的引脚配置，Linux内核提供了 <strong>pinctrl</strong> 子系统，用于管理引脚的复用、特性配置、GPIO等。</p></div><div class="post-footer">
-        <a href="/posts/linux_subsystem_03_pinctrl/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

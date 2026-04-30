@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[MTK] BringUp 01 - LCM Driver 移植流程 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/mtk_bring_up_01_lcm_porting/">
+  <meta property="og:site_name" content="程序小站">
+  <meta property="og:title" content="[MTK] BringUp 01 - LCM Driver 移植流程">
+  <meta property="og:description" content="1. 硬件资源配置：从 DrvGen 到 DTS 在点亮屏幕之前，必须确保电源、复位（RST）及背光（PWM）的通路正确。
+Legacy 模式 (Kernel ≤ 3.10)：使用 mtk_legacy 的 GPIO 控制方式，开发者需通过 DrvGen.exe 工具配置表格并生成头文件。 现代模式 (Kernel &gt; 3.10)：转向 gpiod 封装配合 Device Tree (DTS) 描述。 关键点：检查总线类型。MIPI 接口需关注 Lane 数量及 D-PHY 规格；RGB 接口则需确认并行数据位的极性。 2. 驱动注册： MTK封装的子系统mtk_fb采用列表注册机制，允许内核在启动时探测不同的模组。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-04-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-04-20T00:00:00+00:00">
+    <meta property="article:tag" content="MT6797">
+    <meta property="article:tag" content="AOSP">
+    <meta property="article:tag" content="嵌入式开发">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[MTK] BringUp 01 - LCM Driver 移植流程">
+  <meta name="twitter:description" content="1. 硬件资源配置：从 DrvGen 到 DTS 在点亮屏幕之前，必须确保电源、复位（RST）及背光（PWM）的通路正确。
+Legacy 模式 (Kernel ≤ 3.10)：使用 mtk_legacy 的 GPIO 控制方式，开发者需通过 DrvGen.exe 工具配置表格并生成头文件。 现代模式 (Kernel &gt; 3.10)：转向 gpiod 封装配合 Device Tree (DTS) 描述。 关键点：检查总线类型。MIPI 接口需关注 Lane 数量及 D-PHY 规格；RGB 接口则需确认并行数据位的极性。 2. 驱动注册： MTK封装的子系统mtk_fb采用列表注册机制，允许内核在启动时探测不同的模组。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/mtk_bring_up_01_lcm_porting/" /><link rel="prev" href="http://example.org/posts/linux_subsystem_08_cdev_sep_dev/" /><link rel="next" href="http://example.org/posts/cpp_macro_usage/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[MTK] BringUp 01 - LCM Driver 移植流程",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/mtk_bring_up_01_lcm_porting\/"
+        },"genre": "posts","keywords": "MT6797, AOSP, 嵌入式开发","wordcount":  636 ,
+        "url": "http:\/\/example.org\/posts\/mtk_bring_up_01_lcm_porting\/","datePublished": "2026-04-20T00:00:00+00:00","dateModified": "2026-04-20T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "lazurite"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="程序小站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="程序小站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[MTK] BringUp 01 - LCM Driver 移植流程</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-20">2026-04-20</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 636 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-硬件资源配置从-drvgen-到-dts">1. 硬件资源配置：从 DrvGen 到 DTS</a></li>
+    <li><a href="#2-驱动注册">2. 驱动注册：</a></li>
+    <li><a href="#3-环境变量与编译定义">3. 环境变量与编译定义</a></li>
+    <li><a href="#4-checklist">4. Checklist</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1-硬件资源配置从-drvgen-到-dts">1. 硬件资源配置：从 DrvGen 到 DTS</h2>
+<p>在点亮屏幕之前，必须确保电源、复位（RST）及背光（PWM）的通路正确。</p>
+<ul>
+<li><strong>Legacy 模式 (Kernel ≤ 3.10)</strong>：使用 <code>mtk_legacy</code> 的 GPIO 控制方式，开发者需通过 <code>DrvGen.exe</code> 工具配置表格并生成头文件。</li>
+<li><strong>现代模式 (Kernel &gt; 3.10)</strong>：转向 <code>gpiod</code> 封装配合 <strong>Device Tree (DTS)</strong> 描述。
+<ul>
+<li><strong>关键点</strong>：检查总线类型。MIPI 接口需关注 Lane 数量及 D-PHY 规格；RGB 接口则需确认并行数据位的极性。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-驱动注册">2. 驱动注册：</h2>
+<p>MTK封装的子系统mtk_fb采用列表注册机制，允许内核在启动时探测不同的模组。</p>
+<ul>
+<li><strong>修改文件</strong>：<code>mt65xx_lcm_list.c</code> 与 <code>mt65xx_lcm_list.h</code>。</li>
+<li><strong>操作流</strong>：
+<ol>
+<li>在头文件中追加 <code>extern</code> 声明（例如 <code>extern LCM_DRIVER your_lcm_drv;</code>）。</li>
+<li>在 <code>lcm_driver_list[]</code> 结构体数组中注册该指针。</li>
+</ol>
+</li>
+<li><strong>探测逻辑</strong>：系统会根据 <code>lcm_name</code>做匹配, lk/kernel早期阶段LCM NAME失配会触发panic</li>
+</ul>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="p">...</span><span class="o">/</span><span class="n">misc</span><span class="o">/</span><span class="n">mediatek</span><span class="o">/</span><span class="n">lcm</span><span class="o">/</span><span class="n">mt65xx_lcm_list</span><span class="p">.</span><span class="n">h</span> 
+</span></span><span class="line"><span class="cl"><span class="o">+</span><span class="err">#</span><span class="n">ifdef</span> <span class="n">VENDOR_EDIT</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span><span class="k">extern</span> <span class="n">LCM_DRIVER</span> <span class="n">otm1284a_hd720_dsi_vdo_tm_lcm_drv</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span><span class="err">#</span><span class="n">endif</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">...</span><span class="o">/</span><span class="n">misc</span><span class="o">/</span><span class="n">mediatek</span><span class="o">/</span><span class="n">lcm</span><span class="o">/</span><span class="n">mt65xx_lcm_list</span><span class="p">.</span><span class="n">c</span> 
+</span></span><span class="line"><span class="cl"><span class="n">LCM_DRIVER</span> <span class="o">*</span><span class="n">lcm_driver_list</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span>	<span class="err">#</span><span class="k">if</span> <span class="nf">defined</span><span class="p">(</span><span class="n">OTM1284A_HD720_DSI_VDO_TM</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span>	<span class="o">&amp;</span><span class="n">otm1284a_hd720_dsi_vdo_tm_lcm_drv</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span>	<span class="err">#</span><span class="n">endif</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
+<hr>
+<h2 id="3-环境变量与编译定义">3. 环境变量与编译定义</h2>
+<ul>
+<li><strong>defconfig 修改</strong>：在相应的 Project Config 文件（如 <code>CONFIG_CUSTOM_KERNEL_LCM</code>）中追加宏定义。</li>
+<li><strong>Makefile 关联</strong>：确保驱动目录下的 <code>Makefile</code> 能够根据该宏正确索引到LCD厂家的源文件。</li>
+</ul>
+<hr>
+<h2 id="4-checklist">4. Checklist</h2>
+<p>移植过程中，若屏幕未如期点亮，排查：</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">检查项</th>
+          <th style="text-align: left">关键点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>电压 (VCC/VSP/VSN)</strong></td>
+          <td style="text-align: left">确认 1.8V 和 5.xV 差分电压是否由 PMIC 正常输出。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>时序参数</strong></td>
+          <td style="text-align: left">HFP/HBP/VFP/VBP 是否严格符合 DataSheet 规格。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>LP 模式指令</strong></td>
+          <td style="text-align: left">MIPI 初始化指令是否需要在 Low Power 模式下发送。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>内核日志</strong></td>
+          <td style="text-align: left">通过<code>dmesg | grep lcm</code>查看探测阶段是否报错。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>CrashDump</strong></td>
+          <td style="text-align: left">通过aee异常捕获的mtklog和expdb解析得到挂死现场</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>ID手误</strong></td>
+          <td style="text-align: left">lk/kernel早期lcd_name失配会触发panic</td>
+      </tr>
+  </tbody>
+</table>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-04-20</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/mtk_bring_up_01_lcm_porting/" data-title="[MTK] BringUp 01 - LCM Driver 移植流程" data-hashtags="MT6797,AOSP,嵌入式开发"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/mtk_bring_up_01_lcm_porting/" data-title="[MTK] BringUp 01 - LCM Driver 移植流程"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/mtk_bring_up_01_lcm_porting/" data-hashtag="MT6797"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/mtk_bring_up_01_lcm_porting/" data-title="[MTK] BringUp 01 - LCM Driver 移植流程"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/mtk_bring_up_01_lcm_porting/" data-title="[MTK] BringUp 01 - LCM Driver 移植流程"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/mtk_bring_up_01_lcm_porting/" data-title="[MTK] BringUp 01 - LCM Driver 移植流程"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/mtk_bring_up_01_lcm_porting/" data-title="[MTK] BringUp 01 - LCM Driver 移植流程" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2fmtk_bring_up_01_lcm_porting%2f&amp;text=%5bMTK%5d%20BringUp%2001%20-%20LCM%20Driver%20%e7%a7%bb%e6%a4%8d%e6%b5%81%e7%a8%8b" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/mt6797/">MT6797</a>,&nbsp;<a href="/tags/aosp/">AOSP</a>,&nbsp;<a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/">嵌入式开发</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/linux_subsystem_08_cdev_sep_dev/" class="prev" rel="prev" title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立"><i class="fas fa-angle-left" aria-hidden="true"></i>Linux 内核架构观察：功能体（cdev）与实体（Device）的分立</a>
+            <a href="/posts/cpp_macro_usage/" class="next" rel="next" title="[C/CPP] 宏技巧收集">[C/CPP] 宏技巧收集<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.160.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lazurite</a></span></div>
+        </div>
+    </footer>
+<script src="https://unpkg.com/oh-my-live2d@latest"></script>
+<script>
+  OML2D.loadOml2d({
+    models: [
+      {
+        path: 'https://model.hacxy.cn/HK416-1-normal/model.json',
+	dockedPosition: "right",
+        position: [0, 60],
+        scale: 0.08,
+        stageStyle: {
+          height: 450
+        }
+      }
+    ]
+  });
+</script></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script>window.config={"comment":{},"data":{"id-1":"剪纸堆","id-2":"剪纸堆"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
+</html>

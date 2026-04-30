@@ -1,0 +1,12 @@
+.../misc/mediatek/lcm/mt65xx_lcm_list.h 
++#ifdef VENDOR_EDIT
++extern LCM_DRIVER ili9881c_fhd720_dsi_vdo_boe_lcm_drv;
++#endif
+
+.../misc/mediatek/lcm/mt65xx_lcm_list.c 
+LCM_DRIVER *lcm_driver_list[] = {
+	...
+	#if defined(OTM1284A_HD720_DSI_VDO_TM)
+	&otm1284a_hd720_dsi_vdo_tm_lcm_drv,
+	...
+};
