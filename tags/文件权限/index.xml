@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>文件权限 - 标签 - 程序小站</title>
-        <link>http://example.org/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/</link>
+        <link>http://localhost:1313/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/</link>
         <description>文件权限 - 标签 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 17 Oct 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 17 Oct 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/" rel="self" type="application/rss+xml" /><item>
     <title>Linux 文件权限位介绍</title>
-    <link>http://example.org/posts/linux_perms/</link>
+    <link>http://localhost:1313/posts/linux_perms/</link>
     <pubDate>Fri, 17 Oct 2025 00:00:00 &#43;0000</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/linux_perms/</guid>
+    <guid>http://localhost:1313/posts/linux_perms/</guid>
     <description><![CDATA[<h2 id="1-linux文件权限概述">1. Linux文件权限概述</h2>
 <h2 id="2-权限位的组成">2. 权限位的组成</h2>
 <p>Linux文件权限位通常由10个字符组成，格式如下：</p>

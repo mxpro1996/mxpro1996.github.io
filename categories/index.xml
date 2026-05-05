@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on 程序小站</title>
-    <link>http://example.org/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on 程序小站</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 07 Apr 2026 10:15:00 +0800</lastBuildDate>
-    <atom:link href="http://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Architecture</title>
-      <link>http://example.org/categories/architecture/</link>
+      <link>http://localhost:1313/categories/architecture/</link>
       <pubDate>Tue, 07 Apr 2026 10:15:00 +0800</pubDate>
-      <guid>http://example.org/categories/architecture/</guid>
+      <guid>http://localhost:1313/categories/architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Low-Level</title>
-      <link>http://example.org/categories/low-level/</link>
+      <link>http://localhost:1313/categories/low-level/</link>
       <pubDate>Mon, 06 Apr 2026 02:13:00 +0800</pubDate>
-      <guid>http://example.org/categories/low-level/</guid>
+      <guid>http://localhost:1313/categories/low-level/</guid>
       <description></description>
     </item>
     <item>
       <title>编程语言</title>
-      <link>http://example.org/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link>
+      <link>http://localhost:1313/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link>
       <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://example.org/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</guid>
+      <guid>http://localhost:1313/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</guid>
       <description></description>
     </item>
     <item>
       <title>C&#43;&#43;</title>
-      <link>http://example.org/categories/c&#43;&#43;/</link>
+      <link>http://localhost:1313/categories/c&#43;&#43;/</link>
       <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://example.org/categories/c&#43;&#43;/</guid>
+      <guid>http://localhost:1313/categories/c&#43;&#43;/</guid>
       <description></description>
     </item>
     <item>
       <title>RAII</title>
-      <link>http://example.org/categories/raii/</link>
+      <link>http://localhost:1313/categories/raii/</link>
       <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://example.org/categories/raii/</guid>
+      <guid>http://localhost:1313/categories/raii/</guid>
       <description></description>
     </item>
     <item>
       <title>智能指针</title>
-      <link>http://example.org/categories/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
+      <link>http://localhost:1313/categories/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
       <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
-      <guid>http://example.org/categories/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
+      <guid>http://localhost:1313/categories/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
       <description></description>
     </item>
   </channel>
