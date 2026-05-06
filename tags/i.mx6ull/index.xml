@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>I.MX6ULL - 标签 - 程序小站</title>
-        <link>http://localhost:1444/tags/i.mx6ull/</link>
+        <link>http://localhost:1414/tags/i.mx6ull/</link>
         <description>I.MX6ULL - 标签 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 24 Mar 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1444/tags/i.mx6ull/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 24 Mar 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1414/tags/i.mx6ull/" rel="self" type="application/rss+xml" /><item>
     <title>[AI总结] 模块化 IP 的具象：AP&#43;BP 架构、奢侈的基带</title>
-    <link>http://localhost:1444/posts/ap_bp_brief_intro/</link>
+    <link>http://localhost:1414/posts/ap_bp_brief_intro/</link>
     <pubDate>Tue, 24 Mar 2026 00:00:00 &#43;0000</pubDate>
     <author>lazurite</author>
-    <guid>http://localhost:1444/posts/ap_bp_brief_intro/</guid>
+    <guid>http://localhost:1414/posts/ap_bp_brief_intro/</guid>
     <description><![CDATA[<h2 id="0-前言算力倒挂的工业荒诞">0. 前言：算力倒挂的工业荒诞</h2>
 <p>在嵌入式开发中，我们常陷入一种“主从错觉”：认为主控 CPU（AP）是核心，而通讯模块（BP）只是个外设。但当你拆开屏蔽罩，看到 <strong>1.2GHz 的 MDM9x07</strong> 甚至 <strong>四核 MSM8612</strong> 仅仅是在通过串口为 <strong>528MHz 的 i.MX6ULL</strong> 传递几行 AT 指令时，一种工业级的讽刺感油然而生。</p>]]></description>
 </item>

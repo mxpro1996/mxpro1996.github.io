@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Cpp - 标签 - 程序小站</title>
-        <link>http://localhost:1444/tags/cpp/</link>
+        <link>http://localhost:1414/tags/cpp/</link>
         <description>Cpp - 标签 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1444/tags/cpp/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1414/tags/cpp/" rel="self" type="application/rss+xml" /><item>
     <title>[C/C&#43;&#43;] 运行时装载 - libdl</title>
-    <link>http://localhost:1444/posts/cpp_runtime_lib_dlopen/</link>
+    <link>http://localhost:1414/posts/cpp_runtime_lib_dlopen/</link>
     <pubDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</pubDate>
     <author>lazurite</author>
-    <guid>http://localhost:1444/posts/cpp_runtime_lib_dlopen/</guid>
+    <guid>http://localhost:1414/posts/cpp_runtime_lib_dlopen/</guid>
     <description><![CDATA[<h2 id="概述">概述</h2>
 <p><code>&lt;dlfcn.h&gt;</code> 是 C 标准库中用于<strong>动态加载共享库</strong>的头文件，主要用于在运行时加载共享库（如 <code>.so</code> 文件或 <code>.dll</code> 文件），获取符号地址并调用其中的函数。</p>
 <h2 id="核心函数">核心函数</h2>
