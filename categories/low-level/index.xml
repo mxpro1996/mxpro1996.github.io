@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Low-Level - 分类 - 程序小站</title>
-        <link>http://localhost:1313/categories/low-level/</link>
+        <link>http://localhost:1444/categories/low-level/</link>
         <description>Low-Level - 分类 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 06 Apr 2026 02:13:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/low-level/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 06 Apr 2026 02:13:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1444/categories/low-level/" rel="self" type="application/rss+xml" /><item>
     <title>[AI总结] 用户态并发原理: 从指令到契约</title>
-    <link>http://localhost:1313/posts/linux_subsystem_05_smp/</link>
+    <link>http://localhost:1444/posts/linux_subsystem_05_smp/</link>
     <pubDate>Mon, 06 Apr 2026 02:13:00 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://localhost:1313/posts/linux_subsystem_05_smp/</guid>
+    <guid>http://localhost:1444/posts/linux_subsystem_05_smp/</guid>
     <description><![CDATA[<p>在现代多核（SMP）架构下，编写并发代码本质上是在处理一场<strong>由物理电信号驱动的“绩效狂欢”</strong>。当我们剥开 <code>mutex_lock</code> 的华丽外衣，最深处只有那几行冷酷的 <code>ldrex/strex</code>。</p>
 <p>本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从<strong>物理重试</strong>到<strong>逻辑认怂</strong>的完整链路。</p>]]></description>
 </item>

@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Concurrency - 标签 - 程序小站</title>
-        <link>http://localhost:1313/tags/concurrency/</link>
+        <link>http://localhost:1444/tags/concurrency/</link>
         <description>Concurrency - 标签 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 07 Apr 2026 10:15:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/concurrency/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 07 Apr 2026 10:15:00 &#43;0800</lastBuildDate><atom:link href="http://localhost:1444/tags/concurrency/" rel="self" type="application/rss+xml" /><item>
     <title>Linux 内核架构观察：功能体（cdev）与实体（Device）的分立</title>
-    <link>http://localhost:1313/posts/linux_subsystem_08_cdev_sep_dev/</link>
+    <link>http://localhost:1444/posts/linux_subsystem_08_cdev_sep_dev/</link>
     <pubDate>Tue, 07 Apr 2026 10:15:00 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://localhost:1313/posts/linux_subsystem_08_cdev_sep_dev/</guid>
+    <guid>http://localhost:1444/posts/linux_subsystem_08_cdev_sep_dev/</guid>
     <description><![CDATA[<h3 id="核心论点">核心论点</h3>
 <p>在 Linux 设备模型中，驱动程序并不是一个不可分割的整体，而是**功能策略（Functionality）<strong>与</strong>物理实体（Entity）**的强行耦合。</p>
 <h3 id="1-cdev卑微的会计与策略表">1. cdev：卑微的“会计”与策略表</h3>
@@ -16,19 +16,19 @@
 </item>
 <item>
     <title>[AI总结] 用户态并发原理: 从指令到契约（修订版）</title>
-    <link>http://localhost:1313/posts/linux_subsystem_07_futex_libc/</link>
+    <link>http://localhost:1444/posts/linux_subsystem_07_futex_libc/</link>
     <pubDate>Mon, 06 Apr 2026 11:15:00 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://localhost:1313/posts/linux_subsystem_07_futex_libc/</guid>
+    <guid>http://localhost:1444/posts/linux_subsystem_07_futex_libc/</guid>
     <description><![CDATA[<p>在 Linux 用户态开发中，<code>std::thread</code> 或 <code>pthread</code> 往往被视为并发的起点。但剥开库的包装，你会发现：<strong>用户态没有独立的并发物理权。</strong></p>
 <p>所有的同步原语，本质上都是从内核 UAPI 中“借”出来的执行策略。而 <code>pthread</code>，则是这套借贷契约的标准化搬运工。</p>]]></description>
 </item>
 <item>
     <title>[AI总结] 用户态并发原理: 从指令到契约</title>
-    <link>http://localhost:1313/posts/linux_subsystem_05_smp/</link>
+    <link>http://localhost:1444/posts/linux_subsystem_05_smp/</link>
     <pubDate>Mon, 06 Apr 2026 02:13:00 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://localhost:1313/posts/linux_subsystem_05_smp/</guid>
+    <guid>http://localhost:1444/posts/linux_subsystem_05_smp/</guid>
     <description><![CDATA[<p>在现代多核（SMP）架构下，编写并发代码本质上是在处理一场<strong>由物理电信号驱动的“绩效狂欢”</strong>。当我们剥开 <code>mutex_lock</code> 的华丽外衣，最深处只有那几行冷酷的 <code>ldrex/strex</code>。</p>
 <p>本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从<strong>物理重试</strong>到<strong>逻辑认怂</strong>的完整链路。</p>]]></description>
 </item>
