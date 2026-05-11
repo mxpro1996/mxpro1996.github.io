@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>MT6797 - 标签 - 程序小站</title>
-        <link>http://localhost:1414/tags/mt6797/</link>
+        <link>http://example.org/tags/mt6797/</link>
         <description>MT6797 - 标签 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 20 Apr 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1414/tags/mt6797/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 20 Apr 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/mt6797/" rel="self" type="application/rss+xml" /><item>
     <title>[MTK] BringUp 01 - LCM Driver 移植流程</title>
-    <link>http://localhost:1414/posts/mtk_bring_up_01_lcm_porting/</link>
+    <link>http://example.org/posts/mtk_bring_up_01_lcm_porting/</link>
     <pubDate>Mon, 20 Apr 2026 00:00:00 &#43;0000</pubDate>
     <author>lazurite</author>
-    <guid>http://localhost:1414/posts/mtk_bring_up_01_lcm_porting/</guid>
+    <guid>http://example.org/posts/mtk_bring_up_01_lcm_porting/</guid>
     <description><![CDATA[<h2 id="1-硬件资源配置从-drvgen-到-dts">1. 硬件资源配置：从 DrvGen 到 DTS</h2>
 <p>在点亮屏幕之前，必须确保电源、复位（RST）及背光（PWM）的通路正确。</p>
 <ul>

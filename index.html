@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-	<meta name="generator" content="Hugo 0.160.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1414&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.160.0">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://localhost:1414/">
+        <title>程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/">
   <meta property="og:site_name" content="程序小站">
   <meta property="og:title" content="程序小站">
   <meta property="og:description" content="逸一时，误一世。">
@@ -19,14 +19,14 @@
 <meta name="apple-mobile-web-app-title" content="My cool site">
 <meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1414/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="程序小站">
-    <link rel="feed" href="/index.xml" type="application/rss+xml" title="程序小站"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="程序小站">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="程序小站"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "WebSite",
-        "url": "http:\/\/localhost:1414\/","inLanguage": "zh-CN","author": {
+        "url": "http:\/\/example.org\/","inLanguage": "zh-CN","author": {
                 "@type": "Person",
                 "name": "lazurite"
             },"description": "逸一时，误一世。","name": "程序小站"
@@ -80,6 +80,14 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/game_extract_02/">[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-05-11">2026-05-11</time></span></div><div class="content"><p>这个古文物游戏，由于dvm转art虚拟机的缘故，只能用旧版本安卓/VMOS虚拟机玩已经是老生常谈了，<br>
+至于IAP的处理思路也被前人写烂了。我来写写闪退修复吧。<br>
+测试安卓5/10运行正常，就是第一部不太适配全面屏手机。<br>
+放一下问题表现、分析过程、修复手段，仅此而已。<br>
+<strong>本质原因：安卓5以前dvm虚拟机检查不严格，导致厂家存在引用懒加载和池化滥用的黑魔法编程</strong></p></div><div class="post-footer">
+        <a href="/posts/game_extract_02/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cpp_macro_usage/">[C/CPP] 宏技巧收集</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-25">2026-04-25</time></span></div><div class="content"><h1 id="防止重定义">防止重定义</h1>
 <div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
@@ -170,12 +178,6 @@
 <p>但剥开层层包装，你会发现：<strong>用户态没有真正的并发原语。</strong> 所有的“体面”都是向内核借来的，而这张借条的名字，叫作 <strong>Futex (Fast Userspace Mutex)</strong>。</p></div><div class="post-footer">
         <a href="/posts/linux_subsystem_06_futex_pthread/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/pthread/">Pthread</a>,&nbsp;<a href="/tags/futex/">Futex</a>,&nbsp;<a href="/tags/glibc/">Glibc</a>,&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_05_smp/">[AI总结] 用户态并发原理: 从指令到契约</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/low-level/"><i class="far fa-folder" aria-hidden="true"></i>Low-Level</a></span></div><div class="content"><p>在现代多核（SMP）架构下，编写并发代码本质上是在处理一场<strong>由物理电信号驱动的“绩效狂欢”</strong>。当我们剥开 <code>mutex_lock</code> 的华丽外衣，最深处只有那几行冷酷的 <code>ldrex/strex</code>。</p>
-<p>本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从<strong>物理重试</strong>到<strong>逻辑认怂</strong>的完整链路。</p></div><div class="post-footer">
-        <a href="/posts/linux_subsystem_05_smp/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux-kernel/">Linux Kernel</a>,&nbsp;<a href="/tags/concurrency/">Concurrency</a>,&nbsp;<a href="/tags/architecture/">Architecture</a>,&nbsp;<a href="/tags/smp/">SMP</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -215,47 +217,6 @@
       }
     ]
   });
-</script>
-
-
-<link rel="stylesheet" href="/Ikagaka/css/ikagaka.css">
-<script src="/Ikagaka/vendor/js/es6-shim.js"></script>
-<script src="/Ikagaka/vendor/js/bluebird.js"></script>
-<script src="/Ikagaka/vendor/js/encoding.js"></script>
-<script src="/Ikagaka/vendor/js/browserfs.js"></script>
-<script src="/Ikagaka/vendor/js/shiorijk.js"></script>
-<script src="/Ikagaka/vendor/js/jszip.js"></script>
-<script src="/Ikagaka/vendor/js/eventemitter2.js"></script>
-<script src="/Ikagaka/vendor/js/NarLoader.js"></script>
-<script src="/Ikagaka/vendor/js/NanikaStorage.js"></script>
-<script src="/Ikagaka/vendor/js/NanikaStorage.backend.FS.js"></script>
-<script src="/Ikagaka/vendor/js/cuttlebone.js"></script>
-<script src="/Ikagaka/vendor/js/SakuraScriptPlayer.js"></script>
-<script src="/Ikagaka/vendor/js/ShioriLoader.js"></script>
-<script src="/Ikagaka/vendor/js/shioridetector-common_names.js"></script>
-<script src="/Ikagaka/vendor/js/WorkerClient.js"></script>
-<script src="/Ikagaka/vendor/js/URLWorkerClient.js"></script>
-<script src="/Ikagaka/vendor/js/NativeShioriWorkerClient.js"></script>
-<script src="/Ikagaka/vendor/js/kawariworker.js"></script>
-<script src="/Ikagaka/vendor/js/kawari7worker.js"></script>
-<script src="/Ikagaka/vendor/js/satoriworker.js"></script>
-<script src="/Ikagaka/vendor/js/yayaworker.js"></script>
-<script src="/Ikagaka/vendor/js/aya5worker.js"></script>
-<script src="/Ikagaka/vendor/js/NanikaDefaultEventDefinition.js"></script>
-<script src="/Ikagaka/vendor/js/ua-parser.js"></script>
-<script src="/Ikagaka/vendor/js/useragent_parser.js"></script>
-<script src="/Ikagaka/vendor/js/NanikaDefaultPlugin.js"></script>
-<script src="/Ikagaka/vendor/js/Nanika.js"></script>
-<script src="/Ikagaka/vendor/js/NanikaManager.js"></script>
-<script src="/Ikagaka/js/ikagakaConfig.js"></script>
-<script src="/Ikagaka/js/demo.js"></script>
-
-<script>
-    
-    window.onbeforeunload = null;
-    window.addEventListener('beforeunload', function(event) {
-        event.stopImmediatePropagation();
-    }, true);
 </script></div>
 
         <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
@@ -266,5 +227,5 @@
         <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment" aria-hidden="true"></i>
             </a>
-        </div><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/typeit/index.umd.js"></script><script>window.config={"data":{"id-1":"剪纸堆","id-2":"剪纸堆","id-3":"逸一时，误一世。"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"],"id-3":["id-3"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
+        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script>window.config={"data":{"id-1":"剪纸堆","id-2":"剪纸堆","id-3":"逸一时，误一世。"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"],"id-3":["id-3"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
 </html>

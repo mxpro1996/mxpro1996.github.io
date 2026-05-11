@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1414&amp;path=livereload" data-no-instant defer></script>
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[转]（三）Linux 内核驱动 - Pinctrl子系统 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://localhost:1414/posts/linux_subsystem_03_pinctrl/">
+        <title>[转]（三）Linux 内核驱动 - Pinctrl子系统 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/linux_subsystem_03_pinctrl/">
   <meta property="og:site_name" content="程序小站">
   <meta property="og:title" content="[转]（三）Linux 内核驱动 - Pinctrl子系统">
   <meta property="og:description" content="1. 概述 在许多SoC（System-on-Chip）中，内部包含了pin控制器，这些控制器通过寄存器来配置引脚的功能和特性。为了统一管理不同SoC厂商的引脚配置，Linux内核提供了 pinctrl 子系统，用于管理引脚的复用、特性配置、GPIO等。">
@@ -21,9 +21,9 @@
 <meta name="apple-mobile-web-app-title" content="My cool site">
 <meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1414/posts/linux_subsystem_03_pinctrl/" /><link rel="prev" href="http://localhost:1414/posts/linux_subsystem_02_core_controller/" /><link rel="next" href="http://localhost:1414/posts/linux_subsystem_04_initcall/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/linux_subsystem_03_pinctrl/" /><link rel="prev" href="http://example.org/posts/linux_subsystem_02_core_controller/" /><link rel="next" href="http://example.org/posts/linux_subsystem_04_initcall/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -31,9 +31,9 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/localhost:1414\/posts\/linux_subsystem_03_pinctrl\/"
+            "@id": "http:\/\/example.org\/posts\/linux_subsystem_03_pinctrl\/"
         },"genre": "posts","wordcount":  1725 ,
-        "url": "http:\/\/localhost:1414\/posts\/linux_subsystem_03_pinctrl\/","datePublished": "2025-10-11T09:02:36+08:00","dateModified": "2025-10-11T09:02:36+08:00","publisher": {
+        "url": "http:\/\/example.org\/posts\/linux_subsystem_03_pinctrl\/","datePublished": "2025-10-11T09:02:36+08:00","dateModified": "2025-10-11T09:02:36+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -227,7 +227,7 @@
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://localhost:1414/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://localhost:1414/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:1414/posts/linux_subsystem_03_pinctrl/"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:1414/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:1414/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:1414/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://localhost:1414/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2flocalhost%3a1414%2fposts%2flinux_subsystem_03_pinctrl%2f&amp;text=%5b%e8%bd%ac%5d%ef%bc%88%e4%b8%89%ef%bc%89Linux%20%e5%86%85%e6%a0%b8%e9%a9%b1%e5%8a%a8%20-%20Pinctrl%e5%ad%90%e7%b3%bb%e7%bb%9f" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/linux_subsystem_03_pinctrl/"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/linux_subsystem_03_pinctrl/" data-title="[转]（三）Linux 内核驱动 - Pinctrl子系统" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2flinux_subsystem_03_pinctrl%2f&amp;text=%5b%e8%bd%ac%5d%ef%bc%88%e4%b8%89%ef%bc%89Linux%20%e5%86%85%e6%a0%b8%e9%a9%b1%e5%8a%a8%20-%20Pinctrl%e5%ad%90%e7%b3%bb%e7%bb%9f" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -263,41 +263,7 @@
       }
     ]
   });
-</script>
-
-
-<link rel="stylesheet" href="/Ikagaka/css/ikagaka.css">
-<script src="/Ikagaka/vendor/js/es6-shim.js"></script>
-<script src="/Ikagaka/vendor/js/bluebird.js"></script>
-<script src="/Ikagaka/vendor/js/encoding.js"></script>
-<script src="/Ikagaka/vendor/js/browserfs.js"></script>
-<script src="/Ikagaka/vendor/js/shiorijk.js"></script>
-<script src="/Ikagaka/vendor/js/jszip.js"></script>
-<script src="/Ikagaka/vendor/js/eventemitter2.js"></script>
-<script src="/Ikagaka/vendor/js/NarLoader.js"></script>
-<script src="/Ikagaka/vendor/js/NanikaStorage.js"></script>
-<script src="/Ikagaka/vendor/js/NanikaStorage.backend.FS.js"></script>
-<script src="/Ikagaka/vendor/js/cuttlebone.js"></script>
-<script src="/Ikagaka/vendor/js/SakuraScriptPlayer.js"></script>
-<script src="/Ikagaka/vendor/js/ShioriLoader.js"></script>
-<script src="/Ikagaka/vendor/js/shioridetector-common_names.js"></script>
-<script src="/Ikagaka/vendor/js/WorkerClient.js"></script>
-<script src="/Ikagaka/vendor/js/URLWorkerClient.js"></script>
-<script src="/Ikagaka/vendor/js/NativeShioriWorkerClient.js"></script>
-<script src="/Ikagaka/vendor/js/kawariworker.js"></script>
-<script src="/Ikagaka/vendor/js/kawari7worker.js"></script>
-<script src="/Ikagaka/vendor/js/satoriworker.js"></script>
-<script src="/Ikagaka/vendor/js/yayaworker.js"></script>
-<script src="/Ikagaka/vendor/js/aya5worker.js"></script>
-<script src="/Ikagaka/vendor/js/NanikaDefaultEventDefinition.js"></script>
-<script src="/Ikagaka/vendor/js/ua-parser.js"></script>
-<script src="/Ikagaka/vendor/js/useragent_parser.js"></script>
-<script src="/Ikagaka/vendor/js/NanikaDefaultPlugin.js"></script>
-<script src="/Ikagaka/vendor/js/Nanika.js"></script>
-<script src="/Ikagaka/vendor/js/NanikaManager.js"></script>
-<script src="/Ikagaka/js/ikagakaConfig.js"></script>
-<script src="/Ikagaka/js/demo.js"></script>
-</div>
+</script></div>
 
         <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
                 <i class="fas fa-arrow-up" aria-hidden="true"></i>
@@ -307,5 +273,5 @@
         <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment" aria-hidden="true"></i>
             </a>
-        </div><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/typeit/index.umd.js"></script><script>window.config={"comment":{},"data":{"id-1":"剪纸堆","id-2":"剪纸堆"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
+        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script>window.config={"comment":{},"data":{"id-1":"剪纸堆","id-2":"剪纸堆"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
 </html>
