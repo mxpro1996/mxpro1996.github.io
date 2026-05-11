@@ -4,14 +4,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/game_extract_02/">
+        <title>[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧） - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/game_extract_02/">
   <meta property="og:site_name" content="程序小站">
-  <meta property="og:title" content="[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复">
+  <meta property="og:title" content="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）">
   <meta property="og:description" content="这个古文物游戏，由于dvm转art虚拟机的缘故，只能用旧版本安卓/VMOS虚拟机玩已经是老生常谈了，
 至于IAP的处理思路也被前人写烂了。我来写写闪退修复吧。
-测试安卓5/10运行正常，就是第一部不太适配全面屏手机。
 放一下问题表现、分析过程、修复手段，仅此而已。
-本质原因：安卓5以前dvm虚拟机检查不严格，厂家存在懒加载和池化滥用JNI LocalRef（局部引用）的黑魔法编程">
+本质原因：安卓5以前dvm虚拟机检查不严格，厂家存在池化滥用JNI LocalRef（局部引用）的黑魔法编程">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -19,12 +18,11 @@
     <meta property="article:modified_time" content="2026-05-11T13:45:31+08:00">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复">
+  <meta name="twitter:title" content="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）">
   <meta name="twitter:description" content="这个古文物游戏，由于dvm转art虚拟机的缘故，只能用旧版本安卓/VMOS虚拟机玩已经是老生常谈了，
 至于IAP的处理思路也被前人写烂了。我来写写闪退修复吧。
-测试安卓5/10运行正常，就是第一部不太适配全面屏手机。
 放一下问题表现、分析过程、修复手段，仅此而已。
-本质原因：安卓5以前dvm虚拟机检查不严格，厂家存在懒加载和池化滥用JNI LocalRef（局部引用）的黑魔法编程">
+本质原因：安卓5以前dvm虚拟机检查不严格，厂家存在池化滥用JNI LocalRef（局部引用）的黑魔法编程">
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site">
 <meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -35,12 +33,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复",
+        "headline": "[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/game_extract_02\/"
-        },"genre": "posts","wordcount":  854 ,
+        },"genre": "posts","wordcount":  1071 ,
         "url": "http:\/\/example.org\/posts\/game_extract_02\/","datePublished": "2026-05-11T13:45:31+08:00","dateModified": "2026-05-11T13:45:31+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -91,10 +89,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-05-11">2026-05-11</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 854 字&nbsp;
-                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-05-11">2026-05-11</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1071 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -102,20 +100,35 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#核心观点">核心观点</a></li>
     <li><a href="#问题表现">问题表现</a></li>
-    <li><a href="#分析过程一二两部的bug是同类型这里只放第1部的">分析过程（一、二两部的BUG是同类型，这里只放第1部的）</a>
+    <li><a href="#分析过程">分析过程</a>
       <ul>
         <li><a href="#系统侧日志意义不大">系统侧日志意义不大</a></li>
         <li><a href="#应用侧的末端逻辑">应用侧的末端逻辑</a></li>
       </ul>
     </li>
+    <li><a href="#修复手段">修复手段</a></li>
+    <li><a href="#后记">后记</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>这个古文物游戏，由于dvm转art虚拟机的缘故，只能用旧版本安卓/VMOS虚拟机玩已经是老生常谈了，<br>
 至于IAP的处理思路也被前人写烂了。我来写写闪退修复吧。<br>
-测试安卓5/10运行正常，就是第一部不太适配全面屏手机。<br>
 放一下问题表现、分析过程、修复手段，仅此而已。<br>
-<strong>本质原因：安卓5以前dvm虚拟机检查不严格，厂家存在懒加载和池化滥用JNI LocalRef（局部引用）的黑魔法编程</strong></p>
+<strong>本质原因：安卓5以前dvm虚拟机检查不严格，厂家存在池化滥用JNI LocalRef（局部引用）的黑魔法编程</strong></p>
+<h2 id="核心观点">核心观点</h2>
+<ol>
+<li>
+<p>安卓8以上的思路（<strong>测试可行</strong>）<br>
+局部引用表的上限提升到了8388608个引用, 可以使用本文的暴力手段。</p>
+</li>
+<li>
+<p>安卓5-7的思路（有点麻烦）<br>
+作为早期ART限制REF总数&lt;=512，不适用本文的暴力手段。<br>
+需要考虑配套deleteLocalRef，或者是提升局部引用到globalRef，<br>
+工具这个就各显神通了，<strong>frida so劫持/段扩容/段注入/汇编覆盖</strong>都行。</p>
+</li>
+</ol>
 <h2 id="问题表现">问题表现</h2>
 <p>点击开始/章节选择后闪退 <br>
 logcat日志：</p>
@@ -128,9 +141,10 @@ logcat日志：</p>
 </span></span><span class="line"><span class="cl">F creativefactor: indirect_reference_table.cc:60<span class="o">]</span> JNI ERROR <span class="o">(</span>app bug<span class="o">)</span>: accessed deleted Local 0x21 
 </span></span><span class="line"><span class="cl">第二部：
 </span></span><span class="line"><span class="cl">F DEBUG   : Abort message: <span class="s1">&#39;JNI ERROR (app bug): accessed stale Local 0x29  (index 2 in a table of size 1)&#39;</span></span></span></code></pre></div></div>
-<h2 id="分析过程一二两部的bug是同类型这里只放第1部的">分析过程（一、二两部的BUG是同类型，这里只放第1部的）</h2>
+<h2 id="分析过程">分析过程</h2>
 <h3 id="系统侧日志意义不大">系统侧日志意义不大</h3>
-<p>主要提示就是“accessed deleted Local”。</p>
+<p>（一、二两部的BUG是同类型，这里只放第1部的）<br>
+主要提示就是“<strong>accessed deleted Local</strong>”。</p>
 <div class="code-block code-line-numbers" style="counter-reset: code-block 0">
     <div class="code-header language-bash">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
@@ -165,7 +179,7 @@ logcat日志：</p>
 </span></span><span class="line"><span class="cl"> F creativefactor: runtime.cc:655<span class="o">]</span>   native: <span class="c1">#20 pc 000a2993 ==/lib/arm/libgame_logic.so (StandardMenuLayer::openMenu()+22)</span>
 </span></span><span class="line"><span class="cl"> F creativefactor: runtime.cc:655<span class="o">]</span>   native: <span class="c1">#21 pc 00076699 ==/lib/arm/libgame_logic.so (MainMenuScene::replaceMenu(int)+60)</span>
 </span></span><span class="line"><span class="cl"> F creativefactor: runtime.cc:655<span class="o">]</span>   native: <span class="c1">#22 pc 000769ef ==/lib/arm/libgame_logic.so (MainMenuLayer::_completeCloseLayer()+54)</span></span></span></code></pre></div></div>
-<h1 id="修复手段">修复手段</h1>
+<h2 id="修复手段">修复手段</h2>
 <p>我们就去libgame_logic.so里会一会这个函数，显然sub_BDEFC是个JNI引用池化的查找函数：<br>
 判断dword_1463C0这个全局引用池是否存在jclass缓存，存在就复用。<br>
 拿掉这个判断即可if ( dword_1463C0 )，将BEQ/BNE判断改成强制B跳转。（无论池化缓存与否，强行触发jni findXXX查找获取新引用）</p>
@@ -204,6 +218,9 @@ logcat日志：</p>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="kr">__fastcall</span> <span class="o">**</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">))(</span><span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">dword_1463BC</span> <span class="o">+</span> <span class="mi">452</span><span class="p">))(</span><span class="n">dword_1463BC</span><span class="p">,</span> <span class="n">v4</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="后记">后记</h2>
+<p>本文的方法存在长时间游玩闪退的风险，毕竟8388608也不是无穷大；<br>
+建议勤存档，至少本文的手段可以让游戏正常游玩，完美修改得等下一篇文章。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -213,7 +230,7 @@ logcat日志：</p>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/game_extract_02/"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2fgame_extract_02%2f&amp;text=%5bJNI%e6%9f%a5%e9%94%99%5d%20%e5%af%b9%e5%8f%a3%e8%a2%8b%e4%be%a6%e6%8e%a21-2%e5%9c%a8%e5%ae%89%e5%8d%935%e4%bb%a5%e4%b8%8a%e9%97%aa%e9%80%80%e7%9a%84%e4%bf%ae%e5%a4%8d" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/game_extract_02/"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2fgame_extract_02%2f&amp;text=%5bJNI%e6%9f%a5%e9%94%99%5d%20%e5%af%b9%e5%8f%a3%e8%a2%8b%e4%be%a6%e6%8e%a21-2%e5%9c%a8%e5%ae%89%e5%8d%938%e5%8f%8a%e4%bb%a5%e4%b8%8a%e9%97%aa%e9%80%80%e7%9a%84%e4%bf%ae%e5%a4%8d%ef%bc%88%e5%a5%87%e6%8a%80%e6%b7%ab%e5%b7%a7%ef%bc%89" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>

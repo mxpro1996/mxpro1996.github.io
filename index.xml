@@ -6,16 +6,15 @@
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 11 May 2026 13:45:31 &#43;0800</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>[JNI查错] 对口袋侦探1-2在安卓5以上闪退的修复</title>
+    <title>[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）</title>
     <link>http://example.org/posts/game_extract_02/</link>
     <pubDate>Mon, 11 May 2026 13:45:31 &#43;0800</pubDate>
     <author>lazurite</author>
     <guid>http://example.org/posts/game_extract_02/</guid>
     <description><![CDATA[<p>这个古文物游戏，由于dvm转art虚拟机的缘故，只能用旧版本安卓/VMOS虚拟机玩已经是老生常谈了，<br>
 至于IAP的处理思路也被前人写烂了。我来写写闪退修复吧。<br>
-测试安卓5/10运行正常，就是第一部不太适配全面屏手机。<br>
 放一下问题表现、分析过程、修复手段，仅此而已。<br>
-<strong>本质原因：安卓5以前dvm虚拟机检查不严格，厂家存在懒加载和池化滥用JNI LocalRef（局部引用）的黑魔法编程</strong></p>]]></description>
+<strong>本质原因：安卓5以前dvm虚拟机检查不严格，厂家存在池化滥用JNI LocalRef（局部引用）的黑魔法编程</strong></p>]]></description>
 </item>
 <item>
     <title>[C/CPP] 宏技巧收集</title>
