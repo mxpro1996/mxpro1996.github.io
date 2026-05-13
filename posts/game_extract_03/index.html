@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/game_extract_03/">
+  <meta property="og:site_name" content="程序小站">
+  <meta property="og:title" content="[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上">
+  <meta property="og:description" content="原理分析 见上一篇文章
+核心观点 安卓5-7作为早期ART限制REF总数&lt;=512，不适用上一篇文章的暴力手段。
+（前一章汇编覆盖很优雅，只要改4-6个字节）
+本章是游戏bug的根治手段，提升局部引用到globalRef">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-05-14T07:15:31+08:00">
+    <meta property="article:modified_time" content="2026-05-14T07:15:31+08:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上">
+  <meta name="twitter:description" content="原理分析 见上一篇文章
+核心观点 安卓5-7作为早期ART限制REF总数&lt;=512，不适用上一篇文章的暴力手段。
+（前一章汇编覆盖很优雅，只要改4-6个字节）
+本章是游戏bug的根治手段，提升局部引用到globalRef">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/game_extract_03/" /><link rel="prev" href="http://example.org/posts/game_extract_02/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/game_extract_03\/"
+        },"genre": "posts","wordcount":  658 ,
+        "url": "http:\/\/example.org\/posts\/game_extract_03\/","datePublished": "2026-05-14T07:15:31+08:00","dateModified": "2026-05-14T07:15:31+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "lazurite"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="程序小站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="程序小站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-05-14">2026-05-14</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 658 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#核心观点">核心观点</a></li>
+    <li><a href="#切入点">切入点</a></li>
+    <li><a href="#修复手段">修复手段</a></li>
+    <li><a href="#后记">后记</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><strong>原理分析 见上一篇文章</strong></p>
+<h2 id="核心观点">核心观点</h2>
+<p>安卓5-7作为早期ART限制REF总数&lt;=512，不适用上一篇文章的暴力手段。<br>
+（前一章<strong>汇编覆盖</strong>很优雅，只要改4-6个字节）<br>
+本章是游戏bug的<strong>根治</strong>手段，提升局部引用到globalRef</p>
+<h2 id="切入点">切入点</h2>
+<p>（厂商懒缓存了java侧sqliteDBManager的局部引用，当全局用）<br>
+<strong>我们就坡下驴，把这个局部引用拦截提升到全局。</strong></p>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">.text:000BEF12                 LDR             R1, <span class="o">[</span>R4,#<span class="o">(</span>dword_1473C0 - 0x1473B8<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">.text:000BEF14                 CMP             R1, <span class="c1">#0</span>
+</span></span><span class="line"><span class="cl">.text:000BEF16                 BEQ             loc_BEF2E
+</span></span><span class="line"><span class="cl"><span class="c1"># 若R1==0,也就是无缓存，跳到findClass</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 否则直接复用</span>
+</span></span><span class="line"><span class="cl">.text:000BEF18 loc_BEF18                               <span class="p">;</span> CODE XREF: sub_BEEFC+48↓j
+</span></span><span class="line"><span class="cl">.text:000BEF18                 LDR             R3, <span class="o">=(</span>dword_1473B8 - 0xBEF1E<span class="o">)</span>
+</span></span><span class="line"><span class="cl">.text:000BEF1A                 ADD             R3, PC  <span class="p">;</span> dword_1473B8
+</span></span><span class="line"><span class="cl">.text:000BEF1C                 LDR             R0, <span class="o">[</span>R3,#<span class="o">(</span>env - 0x1473B8<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">.text:000BEF1E                 MOVS            R3, <span class="c1">#0x1C4</span>
+</span></span><span class="line"><span class="cl">.text:000BEF22                 LDR             R2, <span class="o">[</span>R0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">.text:000BEF24                 LDR             R4, <span class="o">[</span>R2,R3<span class="o">]</span>
+</span></span><span class="line"><span class="cl">.text:000BEF26                 MOVS            R2, R6
+</span></span><span class="line"><span class="cl">.text:000BEF28                 MOVS            R3, R5
+</span></span><span class="line"><span class="cl">.text:000BEF2A                 BLX             R4
+</span></span><span class="line"><span class="cl">.text:000BEF2C
+</span></span><span class="line"><span class="cl">.text:000BEF2C locret_BEF2C                            <span class="p">;</span> CODE XREF: sub_BEEFC+46↓j
+</span></span><span class="line"><span class="cl">.text:000BEF2C                 POP             <span class="o">{</span>R4-R6,PC<span class="o">}</span>
+</span></span><span class="line"><span class="cl">.text:000BEF2E <span class="p">;</span> ---------------------------------------------------------------------------
+</span></span><span class="line"><span class="cl"><span class="c1"># 下面这段是喜闻乐见的(*env)-&gt;findClass</span>
+</span></span><span class="line"><span class="cl">.text:000BEF2E loc_BEF2E                               <span class="p">;</span> CODE XREF: sub_BEEFC+1A↑j
+</span></span><span class="line"><span class="cl">.text:000BEF2E                 LDR             R0, <span class="o">[</span>R4,#<span class="o">(</span>env - 0x1473B8<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">.text:000BEF30                 LDR             R1, <span class="o">=(</span>aComCreativefac_4 - 0xBEF38<span class="o">)</span> <span class="p">;</span> <span class="s2">&#34;com/creativefactory/SqliteManager&#34;</span>
+</span></span><span class="line"><span class="cl">.text:000BEF32                 LDR             R3, <span class="o">[</span>R0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">.text:000BEF34                 ADD             R1, PC  <span class="p">;</span> <span class="s2">&#34;com/creativefactory/SqliteManager&#34;</span>
+</span></span><span class="line"><span class="cl">.text:000BEF36                 LDR             R3, <span class="o">[</span>R3,#0x18<span class="o">]</span>   <span class="c1"># 虚表vtab取函数，基操</span>
+</span></span><span class="line"><span class="cl">.text:000BEF38                 BLX             R3
+</span></span><span class="line"><span class="cl"><span class="c1"># 此处截胡执行frida脚本，提升局部引用到全局</span>
+</span></span><span class="line"><span class="cl">.text:000BEF3A                 MOVS            R1, R0
+</span></span><span class="line"><span class="cl">.text:000BEF3C                 STR             R0, <span class="o">[</span>R4,#<span class="o">(</span>dword_1473C0 - 0x1473B8<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">.text:000BEF3E                 MOVS            R0, <span class="c1">#0</span>
+</span></span><span class="line"><span class="cl">.text:000BEF40                 CMP             R1, <span class="c1">#0</span>
+</span></span><span class="line"><span class="cl">.text:000BEF42                 BEQ             locret_BEF2C
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">.text:000BEF44                 B               loc_BEF18</span></span></code></pre></div></div>
+<h2 id="修复手段">修复手段</h2>
+<p>工具这个就各显神通了，<strong>frida so劫持/段扩容/段注入</strong>都行。<br>
+下面是第一部的frida脚本，第二部修复思路一致。<br>
+可以通过frida-gadget connect/script情境执行</p>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-js">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">logicModule</span> <span class="o">=</span> <span class="nx">Process</span><span class="p">.</span><span class="nx">findModuleByName</span><span class="p">(</span><span class="s2">&#34;libgame_logic.so&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">logicModule</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">returnAddr</span> <span class="o">=</span> <span class="nx">logicModule</span><span class="p">.</span><span class="nx">base</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mh">0xBEF3A</span><span class="p">).</span><span class="nx">or</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">returnAddr</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">onEnter</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="kd">var</span> <span class="nx">localRef</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">r0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">localRef</span><span class="p">.</span><span class="nx">isNull</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="kd">var</span> <span class="nx">env</span> <span class="o">=</span> <span class="nx">Java</span><span class="p">.</span><span class="nx">vm</span><span class="p">.</span><span class="nx">getEnv</span><span class="p">().</span><span class="nx">handle</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="kd">var</span> <span class="nx">newGlobalRefPtr</span> <span class="o">=</span> <span class="nx">env</span><span class="p">.</span><span class="nx">readPointer</span><span class="p">().</span><span class="nx">add</span><span class="p">(</span><span class="mi">84</span><span class="p">).</span><span class="nx">readPointer</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">					<span class="kd">var</span> <span class="nx">NewGlobalRef</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NativeFunction</span><span class="p">(</span><span class="nx">newGlobalRefPtr</span><span class="p">,</span> <span class="s1">&#39;pointer&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;pointer&#39;</span><span class="p">,</span> <span class="s1">&#39;pointer&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">					
+</span></span><span class="line"><span class="cl">					<span class="kd">var</span> <span class="nx">globalRef</span> <span class="o">=</span> <span class="nx">NewGlobalRef</span><span class="p">(</span><span class="nx">env</span><span class="p">,</span> <span class="nx">localRef</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">					<span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">r0</span> <span class="o">=</span> <span class="nx">globalRef</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;[+] xxyyzz: Upgrade at 0xBEF3A: &#34;</span> <span class="o">+</span> <span class="nx">globalRef</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">});</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Hook reference PASS&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Hook too early, logic.so is not ready&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="后记">后记</h2>
+<p>笔者的安卓5.1/10设备测试通过，运行正常；<br>
+点击“开始游戏”后，不再出现闪退。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-05-14</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/game_extract_03/" data-title="[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/game_extract_03/" data-title="[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/game_extract_03/"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/game_extract_03/" data-title="[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/game_extract_03/" data-title="[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/game_extract_03/" data-title="[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/game_extract_03/" data-title="[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2fgame_extract_03%2f&amp;text=%5bJNI%e6%9f%a5%e9%94%99%5d%20%e5%8f%a3%e8%a2%8b%e4%be%a6%e6%8e%a2%e9%97%aa%e9%80%80%e4%bf%ae%e5%a4%8d%ef%bc%88%e4%ba%8c%ef%bc%89%20-%20%e5%ae%89%e5%8d%935%e5%8f%8a%e4%bb%a5%e4%b8%8a" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/game_extract_02/" class="prev" rel="prev" title="[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上"><i class="fas fa-angle-left" aria-hidden="true"></i>[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.160.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lazurite</a></span></div>
+        </div>
+    </footer>
+<script src="https://unpkg.com/oh-my-live2d@latest"></script>
+<script>
+  OML2D.loadOml2d({
+    models: [
+      {
+        path: 'https://model.hacxy.cn/HK416-1-normal/model.json',
+	dockedPosition: "right",
+        position: [0, 60],
+        scale: 0.08,
+        stageStyle: {
+          height: 450
+        }
+      }
+    ]
+  });
+</script></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script>window.config={"comment":{},"data":{"id-1":"剪纸堆","id-2":"剪纸堆"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
+</html>

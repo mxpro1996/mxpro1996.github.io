@@ -2,9 +2,10 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://example.org/posts/game_extract_03/</loc><lastmod>2026-05-14T07:15:31&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/</loc><lastmod>2026-05-14T07:15:31&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/</loc><lastmod>2026-05-14T07:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/game_extract_02/</loc><lastmod>2026-05-11T13:45:31&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2026-05-11T13:45:31&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/</loc><lastmod>2026-05-11T13:45:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/cpp_macro_usage/</loc><lastmod>2026-04-25T05:07:25&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/mtk_bring_up_01_lcm_porting/</loc><lastmod>2026-04-20T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/aosp/</loc><lastmod>2026-04-20T00:00:00&#43;00:00</lastmod></url><url>

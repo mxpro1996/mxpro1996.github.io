@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧） - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/game_extract_02/">
+        <title>[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/game_extract_02/">
   <meta property="og:site_name" content="程序小站">
-  <meta property="og:title" content="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）">
+  <meta property="og:title" content="[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上">
   <meta property="og:description" content="这个古文物游戏，由于dvm转art虚拟机的缘故，只能用旧版本安卓/VMOS虚拟机玩已经是老生常谈了，
 至于IAP的处理思路也被前人写烂了。我来写写闪退修复吧。
 放一下问题表现、分析过程、修复手段，仅此而已。
@@ -18,7 +18,7 @@
     <meta property="article:modified_time" content="2026-05-11T13:45:31+08:00">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）">
+  <meta name="twitter:title" content="[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上">
   <meta name="twitter:description" content="这个古文物游戏，由于dvm转art虚拟机的缘故，只能用旧版本安卓/VMOS虚拟机玩已经是老生常谈了，
 至于IAP的处理思路也被前人写烂了。我来写写闪退修复吧。
 放一下问题表现、分析过程、修复手段，仅此而已。
@@ -27,18 +27,18 @@
 <meta name="apple-mobile-web-app-title" content="My cool site">
 <meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/game_extract_02/" /><link rel="prev" href="http://example.org/posts/cpp_macro_usage/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/game_extract_02/" /><link rel="prev" href="http://example.org/posts/cpp_macro_usage/" /><link rel="next" href="http://example.org/posts/game_extract_03/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）",
+        "headline": "[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/game_extract_02\/"
-        },"genre": "posts","wordcount":  1071 ,
+        },"genre": "posts","wordcount":  1051 ,
         "url": "http:\/\/example.org\/posts\/game_extract_02\/","datePublished": "2026-05-11T13:45:31+08:00","dateModified": "2026-05-11T13:45:31+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -89,9 +89,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-05-11">2026-05-11</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1071 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-05-11">2026-05-11</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1051 字&nbsp;
                 <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -181,8 +181,7 @@ logcat日志：</p>
 </span></span><span class="line"><span class="cl"> F creativefactor: runtime.cc:655<span class="o">]</span>   native: <span class="c1">#22 pc 000769ef ==/lib/arm/libgame_logic.so (MainMenuLayer::_completeCloseLayer()+54)</span></span></span></code></pre></div></div>
 <h2 id="修复手段">修复手段</h2>
 <p>我们就去libgame_logic.so里会一会这个函数，显然sub_BDEFC是个JNI引用池化的查找函数：<br>
-判断dword_1463C0这个全局引用池是否存在jclass缓存，存在就复用。<br>
-拿掉这个判断即可if ( dword_1463C0 )，将BEQ/BNE判断改成强制B跳转。（无论池化缓存与否，强行触发jni findXXX查找获取新引用）</p>
+我们需要（无论池化缓存与否，强行触发jni findXXX查找获取新引用）</p>
 <div class="code-block code-line-numbers" style="counter-reset: code-block 0">
     <div class="code-header language-c">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
@@ -200,23 +199,28 @@ logcat日志：</p>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="kr">__fastcall</span> <span class="nf">sub_BDEFC</span><span class="p">(</span><span class="kt">int</span> <span class="n">a1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">a2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// JNI修复后，导入Jni.h的流程不做赘述
+</span></span></span><span class="line"><span class="cl"><span class="n">jmethodID</span> <span class="kr">__fastcall</span> <span class="nf">sub_BEEFC</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">a1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">a2</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">v4</span><span class="p">;</span> <span class="c1">// r1
-</span></span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">result</span><span class="p">;</span> <span class="c1">// r0
+</span></span><span class="line"><span class="cl">  <span class="n">jclass</span> <span class="n">v4</span><span class="p">;</span> <span class="c1">// r1
+</span></span></span><span class="line"><span class="cl">  <span class="n">jmethodID</span> <span class="n">result</span><span class="p">;</span> <span class="c1">// r0
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">void</span> <span class="p">(</span><span class="kr">__fastcall</span> <span class="o">**</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="p">,</span> <span class="n">_DWORD</span><span class="p">))(</span><span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">dword_1463B8</span> <span class="o">+</span> <span class="mi">16</span><span class="p">))(</span><span class="n">dword_1463B8</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dword_1463BC</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">v4</span> <span class="o">=</span> <span class="n">dword_1463C0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">dword_1463C0</span> <span class="p">)</span>	<span class="c1">// 
-</span></span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="kr">__fastcall</span> <span class="o">**</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">))(</span><span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">dword_1463BC</span> <span class="o">+</span> <span class="mi">452</span><span class="p">))(</span><span class="n">dword_1463BC</span><span class="p">,</span> <span class="n">v4</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">v4</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="kr">__fastcall</span> <span class="o">**</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">))(</span><span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">dword_1463BC</span> <span class="o">+</span> <span class="mi">24</span><span class="p">))(</span>
-</span></span><span class="line"><span class="cl">         <span class="n">dword_1463BC</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">         <span class="s">&#34;com/creativefactory/SqliteManager&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="n">dword_1463C0</span> <span class="o">=</span> <span class="n">v4</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">v4</span> <span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="kr">__fastcall</span> <span class="o">**</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">))(</span><span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">dword_1463BC</span> <span class="o">+</span> <span class="mi">452</span><span class="p">))(</span><span class="n">dword_1463BC</span><span class="p">,</span> <span class="n">v4</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">void</span> <span class="p">(</span><span class="kr">__fastcall</span> <span class="o">**</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span> <span class="n">JNIEnv</span> <span class="o">**</span><span class="p">,</span> <span class="n">_DWORD</span><span class="p">))(</span><span class="o">*</span><span class="p">(</span><span class="n">_DWORD</span> <span class="o">*</span><span class="p">)</span><span class="n">dword_1473B8</span> <span class="o">+</span> <span class="mi">16</span><span class="p">))(</span><span class="n">dword_1473B8</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">env</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v4</span> <span class="o">=</span> <span class="p">(</span><span class="n">jclass</span><span class="p">)</span><span class="n">dword_1473C0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="cm">/* 
+</span></span></span><span class="line"><span class="cl"><span class="cm">    判断是否存在jclass缓存，存在就复用。
+</span></span></span><span class="line"><span class="cl"><span class="cm">    拿掉这个判断即可，将BEQ/BNE判断改成强制B跳转。
+</span></span></span><span class="line"><span class="cl"><span class="cm">  */</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">dword_1473C0</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="n">env</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">GetStaticMethodID</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">v4</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">v4</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">env</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">FindClass</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="s">&#34;com/creativefactory/SqliteManager&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dword_1473C0</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">v4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="n">v4</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="n">env</span><span class="p">)</span><span class="o">-&gt;</span><span class="nf">GetStaticMethodID</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">v4</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h2 id="后记">后记</h2>
 <p>本文的方法存在长时间游玩闪退的风险，毕竟8388608也不是无穷大；<br>
@@ -230,7 +234,7 @@ logcat日志：</p>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/game_extract_02/"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2fgame_extract_02%2f&amp;text=%5bJNI%e6%9f%a5%e9%94%99%5d%20%e5%af%b9%e5%8f%a3%e8%a2%8b%e4%be%a6%e6%8e%a21-2%e5%9c%a8%e5%ae%89%e5%8d%938%e5%8f%8a%e4%bb%a5%e4%b8%8a%e9%97%aa%e9%80%80%e7%9a%84%e4%bf%ae%e5%a4%8d%ef%bc%88%e5%a5%87%e6%8a%80%e6%b7%ab%e5%b7%a7%ef%bc%89" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/game_extract_02/"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/game_extract_02/" data-title="[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2fgame_extract_02%2f&amp;text=%5bJNI%e6%9f%a5%e9%94%99%5d%20%e5%8f%a3%e8%a2%8b%e4%be%a6%e6%8e%a2%e9%97%aa%e9%80%80%e4%bf%ae%e5%a4%8d%ef%bc%88%e4%b8%80%ef%bc%89%20-%20%e5%ae%89%e5%8d%938%e5%8f%8a%e4%bb%a5%e4%b8%8a" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -242,7 +246,8 @@ logcat日志：</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/cpp_macro_usage/" class="prev" rel="prev" title="[C/CPP] 宏技巧收集"><i class="fas fa-angle-left" aria-hidden="true"></i>[C/CPP] 宏技巧收集</a></div>
+    <div class="post-nav"><a href="/posts/cpp_macro_usage/" class="prev" rel="prev" title="[C/CPP] 宏技巧收集"><i class="fas fa-angle-left" aria-hidden="true"></i>[C/CPP] 宏技巧收集</a>
+            <a href="/posts/game_extract_03/" class="next" rel="next" title="[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上">[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上<i class="fas fa-angle-right" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">

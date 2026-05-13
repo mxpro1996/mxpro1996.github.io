@@ -3,8 +3,20 @@
         <title>所有文章 - 程序小站</title>
         <link>http://example.org/posts/</link>
         <description>所有文章 | 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 11 May 2026 13:45:31 &#43;0800</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>[JNI查错] 对口袋侦探1-2在安卓8及以上闪退的修复（奇技淫巧）</title>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 14 May 2026 07:15:31 &#43;0800</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上</title>
+    <link>http://example.org/posts/game_extract_03/</link>
+    <pubDate>Thu, 14 May 2026 07:15:31 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/game_extract_03/</guid>
+    <description><![CDATA[<p><strong>原理分析 见上一篇文章</strong></p>
+<h2 id="核心观点">核心观点</h2>
+<p>安卓5-7作为早期ART限制REF总数&lt;=512，不适用上一篇文章的暴力手段。<br>
+（前一章<strong>汇编覆盖</strong>很优雅，只要改4-6个字节）<br>
+本章是游戏bug的<strong>根治</strong>手段，提升局部引用到globalRef</p>]]></description>
+</item>
+<item>
+    <title>[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上</title>
     <link>http://example.org/posts/game_extract_02/</link>
     <pubDate>Mon, 11 May 2026 13:45:31 &#43;0800</pubDate>
     <author>lazurite</author>
@@ -169,27 +181,6 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h2 id="分类">分类</h2>
 <p><strong>职责</strong>: 按手势类型分发到对应的具体处理器</p>]]></description>
-</item>
-<item>
-    <title>基于TTS&amp;RVC / SVC的AI歌唱模型日程</title>
-    <link>http://example.org/posts/1108_new_ai_calendar/</link>
-    <pubDate>Sat, 08 Nov 2025 08:07:25 &#43;0800</pubDate>
-    <author>lazurite</author>
-    <guid>http://example.org/posts/1108_new_ai_calendar/</guid>
-    <description><![CDATA[<ul>
-<li><i class="far fa-square" aria-hidden="true"></i> 收集会话素材</li>
-<li><i class="far fa-square" aria-hidden="true"></i> 训练TTS模型</li>
-<li><i class="far fa-square" aria-hidden="true"></i> TTS推理歌词稿</li>
-</ul>
-<hr>
-<ul>
-<li><i class="far fa-square" aria-hidden="true"></i> 调音制作歌唱数据集（utau?）</li>
-<li><i class="far fa-square" aria-hidden="true"></i> 投入SVC/RVC训练</li>
-</ul>
-<hr>
-<ul>
-<li><i class="far fa-square" aria-hidden="true"></i> 获得成品模型</li>
-</ul>]]></description>
 </item>
 </channel>
 </rss>

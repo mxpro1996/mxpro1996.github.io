@@ -80,6 +80,12 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux_subsystem_06_futex_pthread/">[AI总结] 用户态并发原理：从 Futex规则 到 std::thread 的性能审计</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/architecture/"><i class="far fa-folder" aria-hidden="true"></i>Architecture</a></span></div><div class="content"><p>在 C++ 或 C 语言中调用 <code>std::thread</code> 或 <code>pthread_create</code> 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。</p>
+<p>但剥开层层包装，你会发现：<strong>用户态没有真正的并发原语。</strong> 所有的“体面”都是向内核借来的，而这张借条的名字，叫作 <strong>Futex (Fast Userspace Mutex)</strong>。</p></div><div class="post-footer">
+        <a href="/posts/linux_subsystem_06_futex_pthread/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/pthread/">Pthread</a>,&nbsp;<a href="/tags/futex/">Futex</a>,&nbsp;<a href="/tags/glibc/">Glibc</a>,&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/linux_subsystem_05_smp/">[AI总结] 用户态并发原理: 从指令到契约</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/low-level/"><i class="far fa-folder" aria-hidden="true"></i>Low-Level</a></span></div><div class="content"><p>在现代多核（SMP）架构下，编写并发代码本质上是在处理一场<strong>由物理电信号驱动的“绩效狂欢”</strong>。当我们剥开 <code>mutex_lock</code> 的华丽外衣，最深处只有那几行冷酷的 <code>ldrex/strex</code>。</p>
 <p>本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从<strong>物理重试</strong>到<strong>逻辑认怂</strong>的完整链路。</p></div><div class="post-footer">
@@ -213,20 +219,6 @@
 <p>程序运行时加载插件（如浏览器插件、游戏模组）</p></div><div class="post-footer">
         <a href="/posts/cpp_runtime_lib_dlopen/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/cpp/">Cpp</a>,&nbsp;<a href="/tags/%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD/">动态加载</a>,&nbsp;<a href="/tags/%E5%85%B1%E4%BA%AB%E5%BA%93/">共享库</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_perms/">Linux 文件权限位介绍</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-17">2025-10-17</time></span></div><div class="content"><h2 id="1-linux文件权限概述">1. Linux文件权限概述</h2>
-<h2 id="2-权限位的组成">2. 权限位的组成</h2>
-<p>Linux文件权限位通常由10个字符组成，格式如下：</p>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
-    <div class="code-header language-">
-        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
-        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
-        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
-    </div><pre tabindex="0"><code>-rwxr-xr-x</code></pre></div>
-<p>这10个字符可以分解为以下部分：</p></div><div class="post-footer">
-        <a href="/posts/linux_perms/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">文件权限</a>,&nbsp;<a href="/tags/%E6%9D%83%E9%99%90%E4%BD%8D/">权限位</a>,&nbsp;<a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
