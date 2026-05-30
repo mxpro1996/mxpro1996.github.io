@@ -80,8 +80,59 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux_subsystem_00_booklist/">（零）Linux内核驱动 - 资料推荐</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-01">2025-10-01</time></span></div><div class="content"><h3 id="驱动开发">驱动开发</h3>
+<ol>
+<li>《Linux设备驱动开发_（法）约翰·马迪厄（John Madieu）》</li>
+<li>《Linux设备驱动开发详解_宋宝华》</li>
+<li>《Android驱动开发权威指南_杨柳》</li>
+</ol>
+<hr>
+<h3 id="内核扫盲">内核扫盲</h3>
+<ol>
+<li>《Linux内核深度解析 基于ARM64架构的Linux 4.x内核_余华兵》</li>
+<li>《从零开始写Linux内核 基于0.12_海纳》</li>
+</ol>
+<hr>
+<h3 id="应用编程">应用编程</h3>
+<ol>
+<li>《Linux/UNIX系统编程手册（上、下册）》</li>
+</ol>
+<hr>
+<h3 id="源代码文档检索">源代码/文档检索</h3>
+<ol>
+<li><a href="https://elixir.bootlin.com" target="_blank" rel="noopener noreffer ">Bootlin 在线看</a></li>
+<li><a href="https://www.kernel.org/doc/html/latest/index.html" target="_blank" rel="noopener noreffer ">Linux_官方文档</a></li>
+<li><a href="https://www.devicetree.org/specifications/" target="_blank" rel="noopener noreffer ">DTS设备树_官方白皮书</a></li>
+</ol>
+<hr>
+<h3 id="分层模型">分层模型</h3>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-markdown">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">/real_kernel (实际内核体)
+</span></span><span class="line"><span class="cl">    /kernel        (内核核心功能：调度、时钟、系统调用等)
+</span></span><span class="line"><span class="cl">    /mm            (内存管理：虚拟内存、页表管理、内存分配等)
+</span></span><span class="line"><span class="cl">    /ipc           (进程间通信：信号量、消息队列、共享内存等)
+</span></span><span class="line"><span class="cl">    /init          (系统初始化：内核环境准备、启动过程)
+</span></span><span class="line"><span class="cl">-----------------------------
+</span></span><span class="line"><span class="cl">/resource_core （系统资源抽象，主体Core层）
+</span></span><span class="line"><span class="cl">    /fs             (文件系统：ext4、Btrfs、NTFS 等)
+</span></span><span class="line"><span class="cl">    /block          (块设备：磁盘、存储设备等)
+</span></span><span class="line"><span class="cl">    /net            (网络协议栈：TCP/IP、IPv6、路由等)
+</span></span><span class="line"><span class="cl">    /crypto         (加密与解密支持)
+</span></span><span class="line"><span class="cl">    /sched          (调度器：CPU 调度、负载均衡等)
+</span></span><span class="line"><span class="cl">-----------------------------
+</span></span><span class="line"><span class="cl">/drivers （驱动实化具体资源，常见接口也有core封装的协议栈）
+</span></span><span class="line"><span class="cl">    /drivers        (硬件驱动：网络、存储、音频、显示等设备驱动)
+</span></span><span class="line"><span class="cl">    /arch           (特定硬件架构支持：ARM、x86等)
+</span></span><span class="line"><span class="cl">    /dts            (设备树：硬件资源配置)</span></span></code></pre></div></div></div><div class="post-footer">
+        <a href="/posts/linux_subsystem_00_booklist/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cpp_smart_ptr/">C++ 智能指针与 Q&A</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-01">2025-10-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder" aria-hidden="true"></i>C++</a>&nbsp;<a href="/categories/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"><i class="far fa-folder" aria-hidden="true"></i>智能指针</a>&nbsp;<a href="/categories/raii/"><i class="far fa-folder" aria-hidden="true"></i>RAII</a></span></div><div class="content"><h2 id="前言">前言</h2>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-01">2025-10-01</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder" aria-hidden="true"></i>C++</a></span></div><div class="content"><h2 id="前言">前言</h2>
 <p>在现代 C++ 中，智能指针是管理动态资源（new 分配的堆对象）的利器。它们遵循 <strong>RAII 原则</strong>：资源的生存期绑定句柄（对象），句柄析构时自动释放资源。</p>
 <p>下面我们通俗梳理四种指针的特点和使用场景。</p></div><div class="post-footer">
         <a href="/posts/cpp_smart_ptr/">阅读全文</a><div class="post-tags">
@@ -182,22 +233,6 @@
         title="/images/pll_rep.png" /></li>
 </ul></div><div class="post-footer">
         <a href="/posts/circuit/">阅读全文</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/esp32/">[ESP32] IDF/Arduino 开发纪实</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-03-08">2025-03-08</time></span></div><div class="content"><h2 id="1-多版本共存">1. 多版本共存</h2>
-<ol>
-<li>下载安装官网离线包esp-idf-offiline</li>
-<li>VSCode插件配置Setup，选择“Advanced”项</li>
-<li>路径选定：</li>
-</ol>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
-    <div class="code-header language-sh">
-        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
-        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
-        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
-    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">IDF_TOOLS_PATH</span> <span class="o">=</span> e:<span class="se">\C</span>rash<span class="se">\E</span>spressif
-</span></span><span class="line"><span class="cl"><span class="nv">IDF_PATH</span> <span class="o">=</span> E:<span class="se">\C</span>rash<span class="se">\E</span>spressif<span class="se">\f</span>rameworks<span class="se">\e</span>sp-idf-v5.3.2</span></span></code></pre></div></div></div><div class="post-footer">
-        <a href="/posts/esp32/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

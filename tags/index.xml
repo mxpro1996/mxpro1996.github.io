@@ -6,8 +6,36 @@
     <description>Recent content in Tags on 程序小站</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 20 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 May 2026 07:15:31 +0800</lastBuildDate>
     <atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JNI</title>
+      <link>http://example.org/tags/jni/</link>
+      <pubDate>Thu, 14 May 2026 07:15:31 +0800</pubDate>
+      <guid>http://example.org/tags/jni/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>口袋侦探</title>
+      <link>http://example.org/tags/%E5%8F%A3%E8%A2%8B%E4%BE%A6%E6%8E%A2/</link>
+      <pubDate>Thu, 14 May 2026 07:15:31 +0800</pubDate>
+      <guid>http://example.org/tags/%E5%8F%A3%E8%A2%8B%E4%BE%A6%E6%8E%A2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>安卓</title>
+      <link>http://example.org/tags/%E5%AE%89%E5%8D%93/</link>
+      <pubDate>Thu, 14 May 2026 07:15:31 +0800</pubDate>
+      <guid>http://example.org/tags/%E5%AE%89%E5%8D%93/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>逆向</title>
+      <link>http://example.org/tags/%E9%80%86%E5%90%91/</link>
+      <pubDate>Thu, 14 May 2026 07:15:31 +0800</pubDate>
+      <guid>http://example.org/tags/%E9%80%86%E5%90%91/</guid>
+      <description></description>
+    </item>
     <item>
       <title>AOSP</title>
       <link>http://example.org/tags/aosp/</link>
@@ -209,6 +237,27 @@
       <link>http://example.org/tags/weak_ptr/</link>
       <pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
       <guid>http://example.org/tags/weak_ptr/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ActionScript</title>
+      <link>http://example.org/tags/actionscript/</link>
+      <pubDate>Thu, 25 Apr 2024 13:45:31 +0800</pubDate>
+      <guid>http://example.org/tags/actionscript/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Adobe AIR</title>
+      <link>http://example.org/tags/adobe-air/</link>
+      <pubDate>Thu, 25 Apr 2024 13:45:31 +0800</pubDate>
+      <guid>http://example.org/tags/adobe-air/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SQLite Encryption Extension</title>
+      <link>http://example.org/tags/sqlite-encryption-extension/</link>
+      <pubDate>Thu, 25 Apr 2024 13:45:31 +0800</pubDate>
+      <guid>http://example.org/tags/sqlite-encryption-extension/</guid>
       <description></description>
     </item>
   </channel>

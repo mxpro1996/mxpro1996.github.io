@@ -3,7 +3,34 @@
         <title>所有文章 - 程序小站</title>
         <link>http://example.org/posts/</link>
         <description>所有文章 | 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 14 May 2026 07:15:31 &#43;0800</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 26 May 2026 18:07:25 &#43;0800</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>【转载】意义主义</title>
+    <link>http://example.org/posts/meaninism/</link>
+    <pubDate>Tue, 26 May 2026 18:07:25 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/meaninism/</guid>
+    <description><![CDATA[<p>转自新浪博客@潘多拉魔盒，2010-04-07编写。</p>
+<h2 id="引论">引论</h2>
+<p> 该不该说自己是个负责任的人呢？还是自己还不够放得开，总是很容易动摇？被LJ说了，虽然自己有一肚子的委屈，可是也不想解释，免得给人一种抱怨的消极态度。也许我也还一直想把自己逼到某个境地，让自己看清楚在如此的客观环境下，怎样做好自己。虽然知道很难。</p>]]></description>
+</item>
+<item>
+    <title>[EDK2] 黑盒调试吐槽 - Trace32，你让人着迷</title>
+    <link>http://example.org/posts/the_will/</link>
+    <pubDate>Mon, 25 May 2026 18:07:25 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/the_will/</guid>
+    <description><![CDATA[<p>开篇自然是暴论，bootloader系/裸机Bare-Metal的套路无非都是:</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">asmEntry</span> <span class="o">-&gt;</span> <span class="n">CEntry</span> <span class="o">-&gt;</span> <span class="n">Main</span> <span class="o">-&gt;</span> <span class="nf">target_drvInit</span><span class="p">(</span><span class="n">UART_Init</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="err">&#39;</span><span class="k">do</span> <span class="n">Something</span><span class="err">&#39;</span></span></span></code></pre></div></div>
+<h2 id="剖析">剖析</h2>
+<p>既然平铺直叙，为什么又险象环生？<br>
+所谓日志，归根究底得CLK、IOMUX和UART起来才有戏，熔断设备CrashDump的日志能力就是半残废；</p>]]></description>
+</item>
+<item>
     <title>[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上</title>
     <link>http://example.org/posts/game_extract_03/</link>
     <pubDate>Thu, 14 May 2026 07:15:31 &#43;0800</pubDate>
@@ -46,7 +73,7 @@
 </span></span></span><span class="line"><span class="cl">	<span class="cp">#define CDBG
 </span></span></span><span class="line"><span class="cl"><span class="cp">#endif </span><span class="cm">/* ENABLE_XXX */</span></span></span></code></pre></div></div>
 <h1 id="宏重言智能枚举">宏重言（智能枚举）</h1>
-<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
     <div class="code-header language-c">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
@@ -141,46 +168,6 @@
     <guid>http://example.org/posts/linux_subsystem_05_smp/</guid>
     <description><![CDATA[<p>在现代多核（SMP）架构下，编写并发代码本质上是在处理一场<strong>由物理电信号驱动的“绩效狂欢”</strong>。当我们剥开 <code>mutex_lock</code> 的华丽外衣，最深处只有那几行冷酷的 <code>ldrex/strex</code>。</p>
 <p>本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从<strong>物理重试</strong>到<strong>逻辑认怂</strong>的完整链路。</p>]]></description>
-</item>
-<item>
-    <title>[AI总结] 模块化 IP 的具象：AP&#43;BP 架构、奢侈的基带</title>
-    <link>http://example.org/posts/ap_bp_brief_intro/</link>
-    <pubDate>Tue, 24 Mar 2026 00:00:00 &#43;0000</pubDate>
-    <author>lazurite</author>
-    <guid>http://example.org/posts/ap_bp_brief_intro/</guid>
-    <description><![CDATA[<h2 id="0-前言算力倒挂的工业荒诞">0. 前言：算力倒挂的工业荒诞</h2>
-<p>在嵌入式开发中，我们常陷入一种“主从错觉”：认为主控 CPU（AP）是核心，而通讯模块（BP）只是个外设。但当你拆开屏蔽罩，看到 <strong>1.2GHz 的 MDM9x07</strong> 甚至 <strong>四核 MSM8612</strong> 仅仅是在通过串口为 <strong>528MHz 的 i.MX6ULL</strong> 传递几行 AT 指令时，一种工业级的讽刺感油然而生。</p>]]></description>
-</item>
-<item>
-    <title>[C/C&#43;&#43;] QT手势识别 - 层次笔记</title>
-    <link>http://example.org/posts/cpp_qt_gesture_flowchart/</link>
-    <pubDate>Tue, 18 Nov 2025 00:00:00 &#43;0000</pubDate>
-    <author>lazurite</author>
-    <guid>http://example.org/posts/cpp_qt_gesture_flowchart/</guid>
-    <description><![CDATA[<h2 id="挂钩转发">挂钩、转发</h2>
-<p><strong>职责</strong>: 注册手势类型，启用触摸事件支持</p>
-<p><strong>代码片段</strong>:</p>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
-    <div class="code-header language-cpp">
-        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
-        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
-        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
-    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 在构造函数中注册需要的手势类型
-</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PinchGesture</span><span class="p">);</span>    <span class="c1">// 捏合缩放手势
-</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">PanGesture</span><span class="p">);</span>      <span class="c1">// 平移拖动手势  
-</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">SwipeGesture</span><span class="p">);</span>    <span class="c1">// 滑动手势
-</span></span></span><span class="line"><span class="cl"><span class="n">grabGesture</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">TapGesture</span><span class="p">);</span>      <span class="c1">// 点击手势
-</span></span></span><span class="line"><span class="cl"><span class="n">setAttribute</span><span class="p">(</span><span class="n">Qt</span><span class="o">::</span><span class="n">WA_AcceptTouchEvents</span><span class="p">);</span>  <span class="c1">// 启用触摸事件
-</span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">MyWidget</span><span class="o">::</span><span class="n">event</span><span class="p">(</span><span class="n">QEvent</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="o">-&gt;</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="n">QEvent</span><span class="o">::</span><span class="n">Gesture</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">gestureEvent</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">QGestureEvent</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">event</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">QWidget</span><span class="o">::</span><span class="n">event</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
-<h2 id="分类">分类</h2>
-<p><strong>职责</strong>: 按手势类型分发到对应的具体处理器</p>]]></description>
 </item>
 </channel>
 </rss>

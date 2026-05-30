@@ -80,6 +80,22 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/esp32/">[ESP32] IDF/Arduino 开发纪实</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-03-08">2025-03-08</time></span></div><div class="content"><h2 id="1-多版本共存">1. 多版本共存</h2>
+<ol>
+<li>下载安装官网离线包esp-idf-offiline</li>
+<li>VSCode插件配置Setup，选择“Advanced”项</li>
+<li>路径选定：</li>
+</ol>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-sh">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">IDF_TOOLS_PATH</span> <span class="o">=</span> e:<span class="se">\C</span>rash<span class="se">\E</span>spressif
+</span></span><span class="line"><span class="cl"><span class="nv">IDF_PATH</span> <span class="o">=</span> E:<span class="se">\C</span>rash<span class="se">\E</span>spressif<span class="se">\f</span>rameworks<span class="se">\e</span>sp-idf-v5.3.2</span></span></code></pre></div></div></div><div class="post-footer">
+        <a href="/posts/esp32/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/pcb_notelist/">[Cadence] 学习笔记录入</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-10-17">2024-10-17</time></span></div><div class="content"><h2 id="1-光绘层artwork-设定自定义可见关系集">1. [光绘层Artwork] 设定自定义可见关系集</h2>
 <h3 id="详情">详情：</h3>
@@ -294,46 +310,6 @@
 </span></span><span class="line"><span class="cl"><span class="nv">accept</span><span class="o">=</span><span class="m">2443</span>
 </span></span><span class="line"><span class="cl"><span class="nv">connect</span><span class="o">=</span>my-server.wann.net:2443</span></span></code></pre></div></div></div><div class="post-footer">
         <a href="/posts/1010/">阅读全文</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/0708/">STM32笔记与教训 (尽信书，不如无书)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-07-08">2024-07-08</time></span></div><div class="content"><h2 id="1-tbd">1. TBD</h2>
-<ul>
-<li><i class="far fa-square" aria-hidden="true"></i> DualDMA + RTOS/LVGL/LWIP</li>
-<li><i class="far fa-square" aria-hidden="true"></i> RFID/CAN/TLSF</li>
-<li><i class="far fa-square" aria-hidden="true"></i> Player + AI/Watch</li>
-<li><i class="far fa-square" aria-hidden="true"></i> Linux/OpenCV + QT/Slint</li>
-<li><i class="far fa-square" aria-hidden="true"></i> PCB1 (F1C200S + RV1103)</li>
-<li><i class="far fa-square" aria-hidden="true"></i> PCB2 (LT8619C + LT6911)</li>
-<li><i class="far fa-square" aria-hidden="true"></i> PCB3 (Sunxi-A13/RK3399)</li>
-<li><i class="far fa-square" aria-hidden="true"></i> RaspPico (mpy) + ESP32</li>
-</ul>
-<hr>
-<ul>
-<li><i class="far fa-check-square" aria-hidden="true"></i> SquareLine / ARM2D</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> MQTT + cJSON</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> IWDG + WWDG + BKP REGs</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> PWR + WKUP (Sleep/Stop/Standby)</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> ADC/DAC (TRGO/MultiADC/Chans)</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> Flash + EPROM</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> SDIO + USB Bulk(Block W/R)</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> FATFS + W25Q128/SDCard/UDisk</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> UDisk + USBHost_Process</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> Key/Mouse USB-HID Device</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> U8G2 + OLED(Page/Seg) + BMP/GIF</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> I2C/DCMI (RGB565, not JPEG)</li>
-<li><i class="far fa-check-square" aria-hidden="true"></i> GD25Q512（64KByte) + NES_F407</li>
-</ul>
-<hr>
-<ul>
-<li><i class="far fa-square" aria-hidden="true"></i> JDBC/Redis + InfluxDB/Grafana</li>
-<li><i class="far fa-square" aria-hidden="true"></i> Flutter + VUE/Spring</li>
-<li><i class="far fa-square" aria-hidden="true"></i> Rust (Slint) + C# (Unity3D/Cocos2d)</li>
-</ul>
-<h2 id="2-hal库的坑">2. HAL库的坑</h2>
-<p>(1) GetFlag和GetITSource <br>
-  前者查SR，可以判断中断或事件是否发生，而后者查CR，并不准确掌握状态，只适用单类型中断情况。（CR只会查使能） <br>
-<a href="https://shequ.stmicroelectronics.cn/thread-631088-1-1.html" title="资料" target="_blank" rel="noopener noreffer ">相关资料</a></p></div><div class="post-footer">
-        <a href="/posts/0708/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
