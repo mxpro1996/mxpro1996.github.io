@@ -2,18 +2,19 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://example.org/posts/game_extract_04/</loc><lastmod>2026-06-05T17:15:31&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/categories/</loc><lastmod>2026-06-05T17:15:31&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/jni/</loc><lastmod>2026-06-05T17:15:31&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/</loc><lastmod>2026-06-05T17:15:31&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/</loc><lastmod>2026-06-05T17:15:31&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/%E5%8F%A3%E8%A2%8B%E4%BE%A6%E6%8E%A2/</loc><lastmod>2026-06-05T17:15:31&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/%E5%AE%89%E5%8D%93/</loc><lastmod>2026-06-05T17:15:31&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/</loc><lastmod>2026-06-05T17:15:31&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/categories/%E9%80%86%E5%90%91/</loc><lastmod>2026-06-05T17:15:31&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/tags/%E9%80%86%E5%90%91/</loc><lastmod>2026-06-05T17:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/meaninism/</loc><lastmod>2026-05-26T18:07:25&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2026-05-26T18:07:25&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/</loc><lastmod>2026-05-26T18:07:25&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/the_will/</loc><lastmod>2026-05-25T18:07:25&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/game_extract_03/</loc><lastmod>2026-05-14T07:15:31&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/categories/</loc><lastmod>2026-05-14T07:15:31&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/jni/</loc><lastmod>2026-05-14T07:15:31&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/</loc><lastmod>2026-05-14T07:15:31&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/%E5%8F%A3%E8%A2%8B%E4%BE%A6%E6%8E%A2/</loc><lastmod>2026-05-14T07:15:31&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/%E5%AE%89%E5%8D%93/</loc><lastmod>2026-05-14T07:15:31&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/categories/%E9%80%86%E5%90%91/</loc><lastmod>2026-05-14T07:15:31&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/tags/%E9%80%86%E5%90%91/</loc><lastmod>2026-05-14T07:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/game_extract_02/</loc><lastmod>2026-05-11T13:45:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/cpp_macro_usage/</loc><lastmod>2026-04-25T05:07:25&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/mtk_bring_up_01_lcm_porting/</loc><lastmod>2026-04-20T00:00:00&#43;00:00</lastmod></url><url>

@@ -80,6 +80,81 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/1010/">使用SSL_TCP通过禁止ssh进出的局域网</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-10-10">2024-10-10</time></span></div><div class="content"><div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># How to tunnel SSH over SSL/TLS</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">laptop ssh -&gt; laptop stunnel -&gt; evil network -&gt; internet -&gt; your server -&gt; your server ssh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Server (your shell server/home box/work box/whatever)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Sets up a stunnel process listening externally on port 2443/tcp, forwards to localhost 22/tcp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- Install stunnel, e.g.  <span class="sb">`</span>yum install stunnel<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">- Install server config snippet to <span class="sb">`</span>/etc/stunnel/stunnel.conf<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">- Create a TLS cert+key pair, save to <span class="sb">`</span>/etc/stunnel/stunnel.pem<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Quick and dirty self signed cert, <span class="k">if</span> you don<span class="s1">&#39;t care about repudiation:
+</span></span></span><span class="line"><span class="cl"><span class="s1">`openssl req -new -x509 -days 365 -nodes -out stunnel.pem -keyout stunnel.pem`
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">- Create the chroot directory: `mkdir /var/run/stunnel ; chown nobody.nobody /var/run/stunnel`
+</span></span></span><span class="line"><span class="cl"><span class="s1">- Run the server:  `stunnel /etc/stunnel/stunnel.conf`  if there isn&#39;</span>t an init script
+</span></span><span class="line"><span class="cl">- Remember to open iptables to accept connections on 2443/tcp <span class="k">if</span> you use it!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Client/laptop</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Sets up a stunnel process listening on the laptop on port <span class="m">2443</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- Install stunnel
+</span></span><span class="line"><span class="cl">- Install client config to your homedir as stunnel-client.conf
+</span></span><span class="line"><span class="cl">- Edit <span class="sb">`</span><span class="nv">connect</span><span class="o">=</span><span class="sb">`</span> line to change to the name/address of your server, e.g. <span class="sb">`</span><span class="nv">connect</span><span class="o">=</span>myserver.example.com:2443<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">- Run the client:  <span class="sb">`</span>stunnel stunnel-client.conf<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Testing/verification</span>
+</span></span><span class="line"><span class="cl">Testing ssh:
+</span></span><span class="line"><span class="cl">lapdance:~ bwann$ ssh -p <span class="m">2443</span> localhost uname -n
+</span></span><span class="line"><span class="cl">my-server.wann.net
+</span></span><span class="line"><span class="cl"><span class="c1">## Usage</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">On your laptop, ssh to localhost port 443.  This will connect you to the sshd running on your server. Done!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ssh -p <span class="m">4443</span> localhost<span class="sb">`</span></span></span></code></pre></div></div>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">cert</span> <span class="o">=</span> /etc/stunnel/stunnel.pem
+</span></span><span class="line"><span class="cl"><span class="nv">sslVersion</span> <span class="o">=</span> TLSv1
+</span></span><span class="line"><span class="cl"><span class="nv">options</span> <span class="o">=</span> NO_SSLv2
+</span></span><span class="line"><span class="cl"><span class="nv">options</span> <span class="o">=</span> NO_SSLv3
+</span></span><span class="line"><span class="cl"><span class="nv">chroot</span> <span class="o">=</span> /var/run/stunnel
+</span></span><span class="line"><span class="cl"><span class="nv">setuid</span> <span class="o">=</span> nobody
+</span></span><span class="line"><span class="cl"><span class="nv">setgid</span> <span class="o">=</span> nobody
+</span></span><span class="line"><span class="cl"><span class="nv">pid</span> <span class="o">=</span> /stunnel.pid
+</span></span><span class="line"><span class="cl"><span class="nv">socket</span> <span class="o">=</span> l:TCP_NODELAY<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">socket</span> <span class="o">=</span> r:TCP_NODELAY<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>sshd<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">accept</span> <span class="o">=</span> <span class="m">2443</span>
+</span></span><span class="line"><span class="cl"><span class="nv">connect</span> <span class="o">=</span> <span class="m">22</span>
+</span></span><span class="line"><span class="cl"><span class="nv">TIMEOUTclose</span> <span class="o">=</span> <span class="m">0</span></span></span></code></pre></div></div>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-bash">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">pid</span> <span class="o">=</span> /tmp/stunnel.pid
+</span></span><span class="line"><span class="cl"><span class="nv">client</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl"><span class="o">[</span>ssh<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">accept</span><span class="o">=</span><span class="m">2443</span>
+</span></span><span class="line"><span class="cl"><span class="nv">connect</span><span class="o">=</span>my-server.wann.net:2443</span></span></code></pre></div></div></div><div class="post-footer">
+        <a href="/posts/1010/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/0708/">STM32笔记与教训 (尽信书，不如无书)</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-07-08">2024-07-08</time></span></div><div class="content"><h2 id="1-tbd">1. TBD</h2>
 <ul>
@@ -806,178 +881,6 @@
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div></div><div class="post-footer">
         <a href="/posts/0529/">阅读全文</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/game_extract_01/">Adobe AIR SQL Database Extract</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-04-25">2024-04-25</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E9%80%86%E5%90%91/"><i class="far fa-folder" aria-hidden="true"></i>逆向</a></span></div><div class="content"><p>Adobe AIR SQL解密数据库程序，基于Flash CS6。</p>
-<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
-    <div class="code-header language-java">
-        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
-        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
-        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
-    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">flash.filesystem.*</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">flash.data.*</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">// for sel Input database</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">db</span><span class="p">:</span><span class="n">File</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="na">documentsDirectory</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">function</span><span class="w"> </span><span class="nf">FileSelected_Callback</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="n">Event</span><span class="p">):</span><span class="kt">void</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">Label_1</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="n">db</span><span class="p">.</span><span class="na">nativePath</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">clickSelIn</span><span class="p">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="p">(){</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">function</span><span class="w"> </span><span class="nf">selectDataFile</span><span class="p">(</span><span class="n">root</span><span class="p">:</span><span class="n">File</span><span class="p">):</span><span class="kt">void</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> 		</span><span class="kd">var</span><span class="w"> </span><span class="n">dbFilter</span><span class="p">:</span><span class="n">FileFilter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileFilter</span><span class="p">(</span><span class="s">&#34;SQL Database&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;*.db;*.dat&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> 		</span><span class="n">root</span><span class="p">.</span><span class="na">browseForOpen</span><span class="p">(</span><span class="s">&#34;SQL Database Choose&#34;</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">dbFilter</span><span class="o">]</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    	</span><span class="n">root</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="na">SELECT</span><span class="p">,</span><span class="w"> </span><span class="n">FileSelected_Callback</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">selectDataFile</span><span class="p">(</span><span class="n">db</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">But_SelIn</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="s">&#34;click&#34;</span><span class="p">,</span><span class="n">clickSelIn</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">// for sel OutPut Path</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">out_path</span><span class="p">:</span><span class="n">File</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="na">documentsDirectory</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">function</span><span class="w"> </span><span class="nf">PathSelected_Callback</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="n">Event</span><span class="p">):</span><span class="kt">void</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">Label_2</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="n">out_path</span><span class="p">.</span><span class="na">nativePath</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">clickSelOut</span><span class="p">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="p">(){</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> 	</span><span class="n">out_path</span><span class="p">.</span><span class="na">browseForDirectory</span><span class="p">(</span><span class="s">&#34;Output Directory&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">out_path</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="na">SELECT</span><span class="p">,</span><span class="w"> </span><span class="n">PathSelected_Callback</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">But_SelOut</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="s">&#34;click&#34;</span><span class="p">,</span><span class="n">clickSelOut</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">tableName</span><span class="p">:</span><span class="n">String</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="n">dbKey</span><span class="p">:</span><span class="n">ByteArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ByteArray</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">tableName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;scenariotbl&#34;</span><span class="p">;</span><span class="w"> </span><span class="c1">// DB name, TBD</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">dbKey</span><span class="p">.</span><span class="na">writeUTFBytes</span><span class="p">(</span><span class="s">&#34;Egroj38D9fUNkkgB&#34;</span><span class="p">);</span><span class="w"> </span><span class="c1">// DB Key</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">function</span><span class="w"> </span><span class="nf">Connect_Database</span><span class="p">(</span><span class="n">conn</span><span class="p">:</span><span class="n">SQLConnection</span><span class="p">):</span><span class="kt">void</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="n">conn</span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">SQLMode</span><span class="p">.</span><span class="na">UPDATE</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="n">1024</span><span class="p">,</span><span class="w"> </span><span class="n">dbKey</span><span class="p">);</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;the database was created successfully&#34;</span><span class="p">);</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">:</span><span class="n">SQLError</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">      	</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error</span><span class="p">.</span><span class="na">errorID</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">3138</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">      	  </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Incorrect encryption key&#34;</span><span class="p">);</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">     	 </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="p">{</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">     	    </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Error message:&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="na">message</span><span class="p">);</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">     	    </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Details:&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="na">details</span><span class="p">);</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">    	 </span><span class="p">}</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">function</span><span class="w"> </span><span class="nf">SQL_Execute</span><span class="p">(</span><span class="n">conn</span><span class="p">:</span><span class="n">SQLConnection</span><span class="p">,</span><span class="w"> </span><span class="n">sqlStr</span><span class="p">:</span><span class="n">String</span><span class="p">):</span><span class="n">SQLResult</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlRes</span><span class="p">:</span><span class="n">SQLResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlStatement</span><span class="p">:</span><span class="n">SQLStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SQLStatement</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">sqlConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlStr</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">sqlRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">getResult</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	   </span><span class="k">return</span><span class="w"> </span><span class="n">sqlRes</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="o">*</span><span class="p">){</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;SQL Command execute error&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">// for extractor</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">clickExtract</span><span class="p">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="p">(){</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">Fin_01</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">Label_1</span><span class="p">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Label_2</span><span class="p">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span><span class="p">){</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Start the extractor process&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">conn</span><span class="p">:</span><span class="n">SQLConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SQLConnection</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">Connect_Database</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlRes</span><span class="p">:</span><span class="n">SQLResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SQL_Execute</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="s">&#34;SELECT * from &#34;</span><span class="o">+</span><span class="n">tableName</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 
-</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="kd">var</span><span class="w"> </span><span class="n">texts</span><span class="p">:</span><span class="n">Vector</span><span class="p">.</span><span class="o">&lt;*&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector</span><span class="p">.</span><span class="o">&lt;*&gt;</span><span class="p">(</span><span class="n">sqlRes</span><span class="p">.</span><span class="na">data</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">texts</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">file</span><span class="p">:</span><span class="n">File</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out_path</span><span class="p">.</span><span class="na">resolvePath</span><span class="p">(</span><span class="n">texts</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">id</span><span class="o">+</span><span class="s">&#34;.xml&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="n">fileStream</span><span class="p">:</span><span class="n">FileStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileStream</span><span class="p">();</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">fileStream</span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="n">FileMode</span><span class="p">.</span><span class="na">WRITE</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">fileStream</span><span class="p">.</span><span class="na">writeUTFBytes</span><span class="p">(</span><span class="n">texts</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">data</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Output to &#34;</span><span class="o">+</span><span class="n">texts</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">id</span><span class="o">+</span><span class="s">&#34;.xml&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">fileStream</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;All is well, application is shutting down.&#34;</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">Fin_01</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;解包完成&#34;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Missing parameters&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">But_Extract</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="s">&#34;click&#34;</span><span class="p">,</span><span class="n">clickExtract</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">// for editor</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">rival</span><span class="p">:</span><span class="n">File</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="na">documentsDirectory</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">function</span><span class="w"> </span><span class="nf">RivalSelected_Callback</span><span class="p">(</span><span class="n">event</span><span class="p">:</span><span class="n">Event</span><span class="p">):</span><span class="kt">void</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">Label_3</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="n">rival</span><span class="p">.</span><span class="na">nativePath</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">clickSelNew</span><span class="p">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="p">(){</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">function</span><span class="w"> </span><span class="nf">selectDataFile</span><span class="p">(</span><span class="n">root</span><span class="p">:</span><span class="n">File</span><span class="p">):</span><span class="kt">void</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> 		</span><span class="kd">var</span><span class="w"> </span><span class="n">dbFilter</span><span class="p">:</span><span class="n">FileFilter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileFilter</span><span class="p">(</span><span class="s">&#34;XML Document&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;*.xml&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"> 		</span><span class="n">root</span><span class="p">.</span><span class="na">browseForOpen</span><span class="p">(</span><span class="s">&#34;XML Text Insert&#34;</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">dbFilter</span><span class="o">]</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    	</span><span class="n">root</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="n">Event</span><span class="p">.</span><span class="na">SELECT</span><span class="p">,</span><span class="w"> </span><span class="n">RivalSelected_Callback</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">selectDataFile</span><span class="p">(</span><span class="n">rival</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">But_SelNew</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="s">&#34;click&#34;</span><span class="p">,</span><span class="n">clickSelNew</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="n">clickApply</span><span class="p">:</span><span class="n">Function</span><span class="o">=</span><span class="n">function</span><span class="p">(){</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">Fin_02</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">if</span><span class="p">(</span><span class="n">Label_1</span><span class="p">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Label_3</span><span class="p">.</span><span class="na">text</span><span class="o">!=</span><span class="s">&#34;&#34;</span><span class="p">){</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Start the replacer process&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">xml_id</span><span class="p">:</span><span class="n">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rival</span><span class="p">.</span><span class="na">name</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="c1">// trace(xml_id);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">conn</span><span class="p">:</span><span class="n">SQLConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SQLConnection</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">Connect_Database</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlRes</span><span class="p">:</span><span class="n">SQLResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    	 </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlStatement</span><span class="p">:</span><span class="n">SQLStatement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SQLStatement</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">sqlStr</span><span class="p">:</span><span class="n">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">sqlConnection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">sqlStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;UPDATE &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tableName</span><span class="o">+</span><span class="s">&#34; SET data=:data WHERE id=:id&#34;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlStr</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">parameters</span><span class="o">[</span><span class="s">&#34;:id&#34;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xml_id</span><span class="p">;</span><span class="w"> </span><span class="c1">// the xml name</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">XMLContent</span><span class="p">:</span><span class="n">ByteArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ByteArray</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="kd">var</span><span class="w"> </span><span class="n">fileStream</span><span class="p">:</span><span class="n">FileStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileStream</span><span class="p">();</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="n">fileStream</span><span class="p">.</span><span class="na">open</span><span class="p">(</span><span class="n">rival</span><span class="p">,</span><span class="w"> </span><span class="n">FileMode</span><span class="p">.</span><span class="na">READ</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">XMLContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fileStream</span><span class="p">.</span><span class="na">readUTFBytes</span><span class="p">(</span><span class="n">rival</span><span class="p">.</span><span class="na">size</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="n">fileStream</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">parameters</span><span class="o">[</span><span class="s">&#34;:data&#34;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">XMLContent</span><span class="p">;</span><span class="w"> </span><span class="c1">// the byteArray for fileContent</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="k">try</span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      		 </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      		 </span><span class="n">sqlRes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlStatement</span><span class="p">.</span><span class="na">getResult</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">			 </span><span class="n">conn</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">   		 </span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="o">*</span><span class="p">){</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    		   </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;SQL Command execute error&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">   		 </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;All is well, application is shutting down.&#34;</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		 </span><span class="n">Fin_02</span><span class="p">.</span><span class="na">text</span><span class="o">=</span><span class="s">&#34;替换完成&#34;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="k">else</span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="n">trace</span><span class="p">(</span><span class="s">&#34;Missing parameters&#34;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">But_Apply</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="s">&#34;click&#34;</span><span class="p">,</span><span class="n">clickApply</span><span class="p">);</span></span></span></code></pre></div></div></div><div class="post-footer">
-        <a href="/posts/game_extract_01/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/%E9%80%86%E5%90%91/">逆向</a>,&nbsp;<a href="/tags/actionscript/">ActionScript</a>,&nbsp;<a href="/tags/adobe-air/">Adobe AIR</a>,&nbsp;<a href="/tags/sqlite-encryption-extension/">SQLite Encryption Extension</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -995,6 +898,10 @@
                 </li><li class="page-item active">
                     <span class="page-link">
                         <a href="/page/6/">6</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/7/">7</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

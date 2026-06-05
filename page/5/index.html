@@ -80,6 +80,36 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/circuit/">典型电路设计收集</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-03-15">2025-03-15</time></span></div><div class="content"><h2 id="1连接器保护电路rc缓冲tvs管">1.连接器保护电路（RC缓冲/TVS管）</h2>
+<ul>
+<li>RC缓冲中，C保持两端电压不变有效抑制尖峰电压，而R作为限值分流电阻抑制住了尖峰电流。</li>
+<li>目测全志的EVB电路中都有此电路，相当于滤波+TVS替代。</li>
+</ul>
+<h2 id="2esp复位电流需求500ma">2.ESP复位电流需求&gt;=500ma</h2>
+<ul>
+<li>AMS1117 - 1A</li>
+<li>ME6217 - 800mA</li>
+<li>JY1106-ADJ - 600ma</li>
+<li>AP2127K - 300ma</li>
+</ul>
+<h2 id="3pll倍频和晶振">3.PLL倍频和晶振</h2>
+<ul>
+<li>晶振起振提供ref_clk</li>
+<li>鉴相器比较ref_clk与pll_out误差</li>
+<li>误差经LF滤波拟合</li>
+<li>电压进入VCO产生频率
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/images/pll_rep.png"
+        data-srcset="/images/pll_rep.png, /images/pll_rep.png 1.5x, /images/pll_rep.png 2x"
+        data-sizes="auto"
+        alt="/images/pll_rep.png"
+        title="/images/pll_rep.png" /></li>
+</ul></div><div class="post-footer">
+        <a href="/posts/circuit/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/esp32/">[ESP32] IDF/Arduino 开发纪实</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-03-08">2025-03-08</time></span></div><div class="content"><h2 id="1-多版本共存">1. 多版本共存</h2>
 <ol>
@@ -235,81 +265,6 @@
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div></div><div class="post-footer">
         <a href="/posts/cpp_crc16_xmodem/">阅读全文</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/1010/">使用SSL_TCP通过禁止ssh进出的局域网</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-10-10">2024-10-10</time></span></div><div class="content"><div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
-    <div class="code-header language-bash">
-        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
-        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
-        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
-    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># How to tunnel SSH over SSL/TLS</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">laptop ssh -&gt; laptop stunnel -&gt; evil network -&gt; internet -&gt; your server -&gt; your server ssh
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## Server (your shell server/home box/work box/whatever)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Sets up a stunnel process listening externally on port 2443/tcp, forwards to localhost 22/tcp
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">- Install stunnel, e.g.  <span class="sb">`</span>yum install stunnel<span class="sb">`</span>
-</span></span><span class="line"><span class="cl">- Install server config snippet to <span class="sb">`</span>/etc/stunnel/stunnel.conf<span class="sb">`</span>
-</span></span><span class="line"><span class="cl">- Create a TLS cert+key pair, save to <span class="sb">`</span>/etc/stunnel/stunnel.pem<span class="sb">`</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Quick and dirty self signed cert, <span class="k">if</span> you don<span class="s1">&#39;t care about repudiation:
-</span></span></span><span class="line"><span class="cl"><span class="s1">`openssl req -new -x509 -days 365 -nodes -out stunnel.pem -keyout stunnel.pem`
-</span></span></span><span class="line"><span class="cl"><span class="s1">
-</span></span></span><span class="line"><span class="cl"><span class="s1">- Create the chroot directory: `mkdir /var/run/stunnel ; chown nobody.nobody /var/run/stunnel`
-</span></span></span><span class="line"><span class="cl"><span class="s1">- Run the server:  `stunnel /etc/stunnel/stunnel.conf`  if there isn&#39;</span>t an init script
-</span></span><span class="line"><span class="cl">- Remember to open iptables to accept connections on 2443/tcp <span class="k">if</span> you use it!
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## Client/laptop</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Sets up a stunnel process listening on the laptop on port <span class="m">2443</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">- Install stunnel
-</span></span><span class="line"><span class="cl">- Install client config to your homedir as stunnel-client.conf
-</span></span><span class="line"><span class="cl">- Edit <span class="sb">`</span><span class="nv">connect</span><span class="o">=</span><span class="sb">`</span> line to change to the name/address of your server, e.g. <span class="sb">`</span><span class="nv">connect</span><span class="o">=</span>myserver.example.com:2443<span class="sb">`</span>
-</span></span><span class="line"><span class="cl">- Run the client:  <span class="sb">`</span>stunnel stunnel-client.conf<span class="sb">`</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## Testing/verification</span>
-</span></span><span class="line"><span class="cl">Testing ssh:
-</span></span><span class="line"><span class="cl">lapdance:~ bwann$ ssh -p <span class="m">2443</span> localhost uname -n
-</span></span><span class="line"><span class="cl">my-server.wann.net
-</span></span><span class="line"><span class="cl"><span class="c1">## Usage</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">On your laptop, ssh to localhost port 443.  This will connect you to the sshd running on your server. Done!
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">ssh -p <span class="m">4443</span> localhost<span class="sb">`</span></span></span></code></pre></div></div>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
-    <div class="code-header language-bash">
-        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
-        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
-        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
-    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">cert</span> <span class="o">=</span> /etc/stunnel/stunnel.pem
-</span></span><span class="line"><span class="cl"><span class="nv">sslVersion</span> <span class="o">=</span> TLSv1
-</span></span><span class="line"><span class="cl"><span class="nv">options</span> <span class="o">=</span> NO_SSLv2
-</span></span><span class="line"><span class="cl"><span class="nv">options</span> <span class="o">=</span> NO_SSLv3
-</span></span><span class="line"><span class="cl"><span class="nv">chroot</span> <span class="o">=</span> /var/run/stunnel
-</span></span><span class="line"><span class="cl"><span class="nv">setuid</span> <span class="o">=</span> nobody
-</span></span><span class="line"><span class="cl"><span class="nv">setgid</span> <span class="o">=</span> nobody
-</span></span><span class="line"><span class="cl"><span class="nv">pid</span> <span class="o">=</span> /stunnel.pid
-</span></span><span class="line"><span class="cl"><span class="nv">socket</span> <span class="o">=</span> l:TCP_NODELAY<span class="o">=</span><span class="m">1</span>
-</span></span><span class="line"><span class="cl"><span class="nv">socket</span> <span class="o">=</span> r:TCP_NODELAY<span class="o">=</span><span class="m">1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">[</span>sshd<span class="o">]</span>
-</span></span><span class="line"><span class="cl"><span class="nv">accept</span> <span class="o">=</span> <span class="m">2443</span>
-</span></span><span class="line"><span class="cl"><span class="nv">connect</span> <span class="o">=</span> <span class="m">22</span>
-</span></span><span class="line"><span class="cl"><span class="nv">TIMEOUTclose</span> <span class="o">=</span> <span class="m">0</span></span></span></code></pre></div></div>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
-    <div class="code-header language-bash">
-        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
-        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
-        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
-    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">pid</span> <span class="o">=</span> /tmp/stunnel.pid
-</span></span><span class="line"><span class="cl"><span class="nv">client</span><span class="o">=</span>yes
-</span></span><span class="line"><span class="cl"><span class="o">[</span>ssh<span class="o">]</span>
-</span></span><span class="line"><span class="cl"><span class="nv">accept</span><span class="o">=</span><span class="m">2443</span>
-</span></span><span class="line"><span class="cl"><span class="nv">connect</span><span class="o">=</span>my-server.wann.net:2443</span></span></code></pre></div></div></div><div class="post-footer">
-        <a href="/posts/1010/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -331,6 +286,10 @@
                 </li><li class="page-item ">
                     <span class="page-link">
                         <a href="/page/6/">6</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/7/">7</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

@@ -3,7 +3,17 @@
         <title>安卓 - 标签 - 程序小站</title>
         <link>http://example.org/tags/%E5%AE%89%E5%8D%93/</link>
         <description>安卓 - 标签 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 14 May 2026 07:15:31 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/%E5%AE%89%E5%8D%93/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 05 Jun 2026 17:15:31 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/%E5%AE%89%E5%8D%93/" rel="self" type="application/rss+xml" /><item>
+    <title>[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放</title>
+    <link>http://example.org/posts/game_extract_04/</link>
+    <pubDate>Fri, 05 Jun 2026 17:15:31 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/game_extract_04/</guid>
+    <description><![CDATA[<p><strong>本章针对口袋侦探第一部在1080P设备上，出现的画面过小只有544px大小的问题</strong></p>
+<h2 id="核心观点">核心观点</h2>
+<p>第一部的引擎太老，是cocos2dx-1.0.1的样子，加之下面的历史因素。</p>]]></description>
+</item>
+<item>
     <title>[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上</title>
     <link>http://example.org/posts/game_extract_03/</link>
     <pubDate>Thu, 14 May 2026 07:15:31 &#43;0800</pubDate>

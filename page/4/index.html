@@ -80,6 +80,10 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux_subsystem_01_common_model/">（一）Linux 内核驱动 - 统一驱动模型</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-01">2025-10-01</time></span></div><div class="content"><h1 id="tbd">TBD</h1></div><div class="post-footer">
+        <a href="/posts/linux_subsystem_01_common_model/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/linux_subsystem_00_booklist/">（零）Linux内核驱动 - 资料推荐</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-01">2025-10-01</time></span></div><div class="content"><h3 id="驱动开发">驱动开发</h3>
 <ol>
@@ -203,36 +207,6 @@
 </ol>
 <p> 建议往后调试启用dbg_print日志，以免不知驱动出错详情。</p></div><div class="post-footer">
         <a href="/posts/bug01/">阅读全文</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/circuit/">典型电路设计收集</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-03-15">2025-03-15</time></span></div><div class="content"><h2 id="1连接器保护电路rc缓冲tvs管">1.连接器保护电路（RC缓冲/TVS管）</h2>
-<ul>
-<li>RC缓冲中，C保持两端电压不变有效抑制尖峰电压，而R作为限值分流电阻抑制住了尖峰电流。</li>
-<li>目测全志的EVB电路中都有此电路，相当于滤波+TVS替代。</li>
-</ul>
-<h2 id="2esp复位电流需求500ma">2.ESP复位电流需求&gt;=500ma</h2>
-<ul>
-<li>AMS1117 - 1A</li>
-<li>ME6217 - 800mA</li>
-<li>JY1106-ADJ - 600ma</li>
-<li>AP2127K - 300ma</li>
-</ul>
-<h2 id="3pll倍频和晶振">3.PLL倍频和晶振</h2>
-<ul>
-<li>晶振起振提供ref_clk</li>
-<li>鉴相器比较ref_clk与pll_out误差</li>
-<li>误差经LF滤波拟合</li>
-<li>电压进入VCO产生频率
-<img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/images/pll_rep.png"
-        data-srcset="/images/pll_rep.png, /images/pll_rep.png 1.5x, /images/pll_rep.png 2x"
-        data-sizes="auto"
-        alt="/images/pll_rep.png"
-        title="/images/pll_rep.png" /></li>
-</ul></div><div class="post-footer">
-        <a href="/posts/circuit/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -256,6 +230,10 @@
                 </li><li class="page-item ">
                     <span class="page-link">
                         <a href="/page/6/">6</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/7/">7</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

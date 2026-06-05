@@ -149,7 +149,7 @@ logcat日志：</p>
 <h3 id="系统侧日志意义不大">系统侧日志意义不大</h3>
 <p>（一、二两部的BUG是同类型，这里只放第1部的）<br>
 主要提示就是“<strong>accessed deleted Local</strong>”。</p>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
     <div class="code-header language-bash">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
@@ -186,7 +186,7 @@ logcat日志：</p>
 <h2 id="修复手段">修复手段</h2>
 <p>我们就去libgame_logic.so里会一会这个函数，显然sub_BDEFC是个JNI引用池化的查找函数：<br>
 我们需要（无论池化缓存与否，强行触发jni findXXX查找获取新引用）</p>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
     <div class="code-header language-c">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
