@@ -4,11 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/game_extract_04/">
+        <title>[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/game_extract_04/">
   <meta property="og:site_name" content="程序小站">
-  <meta property="og:title" content="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放">
-  <meta property="og:description" content="本章针对口袋侦探第一部在1080P设备上，出现的画面过小只有544px大小的问题
-核心观点 第一部的引擎太老，是cocos2dx-1.0.1的样子，加之下面的历史因素。">
+  <meta property="og:title" content="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸">
+  <meta property="og:description" content="本章针对口袋侦探第一部在1080P设备上，画面过小只有544px的问题。 希望本文的view欺骗思路，能够给cocos2dx同好修复一些老游戏的分辨率提供参考。">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -20,9 +19,8 @@
     <meta property="article:tag" content="逆向">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放">
-  <meta name="twitter:description" content="本章针对口袋侦探第一部在1080P设备上，出现的画面过小只有544px大小的问题
-核心观点 第一部的引擎太老，是cocos2dx-1.0.1的样子，加之下面的历史因素。">
+  <meta name="twitter:title" content="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸">
+  <meta name="twitter:description" content="本章针对口袋侦探第一部在1080P设备上，画面过小只有544px的问题。 希望本文的view欺骗思路，能够给cocos2dx同好修复一些老游戏的分辨率提供参考。">
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site">
 <meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -33,12 +31,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放",
+        "headline": "[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/game_extract_04\/"
-        },"genre": "posts","keywords": "安卓, JNI, 口袋侦探, 逆向","wordcount":  658 ,
+        },"genre": "posts","keywords": "安卓, JNI, 口袋侦探, 逆向","wordcount":  1109 ,
         "url": "http:\/\/example.org\/posts\/game_extract_04\/","datePublished": "2026-06-05T17:15:31+08:00","dateModified": "2026-06-05T17:15:31+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -89,10 +87,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E9%80%86%E5%90%91/"><i class="far fa-folder" aria-hidden="true"></i>逆向</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-06-05">2026-06-05</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 658 字&nbsp;
-                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-06-05">2026-06-05</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 1109 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -103,10 +101,12 @@
     <li><a href="#核心观点">核心观点</a></li>
     <li><a href="#可能的切入点">可能的切入点</a></li>
     <li><a href="#修复详述">修复详述</a></li>
+    <li><a href="#触摸修复">触摸修复</a></li>
     <li><a href="#后记">后记</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p><strong>本章针对口袋侦探第一部在1080P设备上，出现的画面过小只有544px大小的问题</strong></p>
+            </div><div class="content" id="content"><p><strong>本章针对口袋侦探第一部在1080P设备上，画面过小只有544px的问题。</strong> <br>
+<strong>希望本文的view欺骗思路，能够给cocos2dx同好修复一些老游戏的分辨率提供参考。</strong></p>
 <h2 id="核心观点">核心观点</h2>
 <p>第一部的引擎太老，是cocos2dx-1.0.1的样子，加之下面的历史因素。</p>
 <ol>
@@ -125,10 +125,10 @@
   结论：可行，但别失手搞出“赛博灯泡”。</li>
 </ol>
 <h2 id="修复详述">修复详述</h2>
-<p>思路说来很有趣：<br>
-安卓的视图基本上都是view和surface，native侧游戏总归在view下渲染。<br>
+<p>思路说来很有趣：安卓的视图基本上都是view和surface，native侧游戏总归在view下渲染。<br>
 我们天天拿4k/2K的新手机，看720P视频也没见真就那么小吧。<br>
-那么：（以下为代码等效，具体修改用smali或dex/jar联合覆盖）</p>
+其实说不定只要改第二处，不过没有验证过。（fixedSize应该会传染给render?）<br>
+（以下为代码等效，具体修改用smali或dex/jar联合覆盖）</p>
 <ol>
 <li>so侧需要欺骗nativeInit，伪造尺寸上报</li>
 </ol>
@@ -174,8 +174,47 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// ........</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="触摸修复">触摸修复</h2>
+<p>经过720P分辨率压制后，游戏画面在1080P设备会缩到左上角；<br>
+再经由setFixedSize把egl缓冲区对齐到720P后，系统插值缩放铺满全屏。<br>
+但是触摸还躲在老地方呢，无非是把1920x1080的大坐标报点，比例变成1280x720的逻辑小坐标。<br>
+（伪代码如下/实际smali）</p>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-java">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Cocos2dxGLSurfaceView</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">GLSurfaceView</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="c1">// android.view.View</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">onTouchEvent</span><span class="p">(</span><span class="n">MotionEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">pointerNumber</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getPointerCount</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="n">pointerNumber</span><span class="o">]</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">float</span><span class="o">[]</span><span class="w"> </span><span class="n">xs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">float</span><span class="o">[</span><span class="n">pointerNumber</span><span class="o">]</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">float</span><span class="o">[]</span><span class="w"> </span><span class="n">ys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">float</span><span class="o">[</span><span class="n">pointerNumber</span><span class="o">]</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 片段1：在循环前算出缩放比例</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">scaleX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">1280</span><span class="p">.</span><span class="na">0f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">getWidth</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">scaleY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">720</span><span class="p">.</span><span class="na">0f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">getHeight</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// 片段1：结束</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">pointerNumber</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ids</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getPointerId</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">xs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getX</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ys</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getY</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// 片段2：乘上zoom in的缩小比例映射</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">xs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">scaleX</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ys</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">scaleY</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// 片段2：结束</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// ......</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h2 id="后记">后记</h2>
-<p>触摸报点意料之中的起飞了，完全就是只有左上角，需要再开一章修触摸坐标。</p>
+<p>闪退、分辨率和伴生的触摸bug都修好了，童年已经补完，但谁也回不去过往了。<br>
+ʅ（´◔౪◔）ʃ <br>
+说起来关于闪退，之前怀疑过cocos2d引擎问题，但想想看一个时代的“<strong>捕鱼达人</strong>”不是还能玩吗？<br>
+主线上对JNI的严格度还是很高的，最终定位到是厂家的sqliteJNI逻辑有问题。</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -185,7 +224,7 @@
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放" data-hashtags="安卓,JNI,口袋侦探,逆向"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/game_extract_04/" data-hashtag="安卓"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2fgame_extract_04%2f&amp;text=%5bJNI%e6%9f%a5%e9%94%99%5d%20%e5%8f%a3%e8%a2%8b%e4%be%a6%e6%8e%a2%e9%97%aa%e9%80%80%e4%bf%ae%e5%a4%8d%ef%bc%88%e4%b8%89%ef%bc%89%20-%20%e5%88%86%e8%be%a8%e7%8e%87%e7%bc%a9%e6%94%be" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸" data-hashtags="安卓,JNI,口袋侦探,逆向"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/game_extract_04/" data-hashtag="安卓"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/game_extract_04/" data-title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2fgame_extract_04%2f&amp;text=%5bJNI%e6%9f%a5%e9%94%99%5d%20%e5%8f%a3%e8%a2%8b%e4%be%a6%e6%8e%a2%e9%97%aa%e9%80%80%e4%bf%ae%e5%a4%8d%ef%bc%88%e4%b8%89%ef%bc%89%20-%20%e5%88%86%e8%be%a8%e7%8e%87%e7%bc%a9%e6%94%be%e4%b8%8e%e8%a7%a6%e6%91%b8" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
