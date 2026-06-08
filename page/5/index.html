@@ -80,6 +80,16 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"><a href="https://github.com/mxpro1996" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/bug01/">[OV2640] 记一次设备树盲目CV的闹剧</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-05-06">2025-05-06</time></span></div><div class="content"><p> 在编写ov2640节点时，直接抄了部分5640的内容，差异点导致probe直接失败。作为盲目CV的教训</p>
+<ol>
+<li>&lsquo;xvclk&rsquo;而不是&rsquo;xclk&rsquo;[OV5640]</li>
+<li>pwdn-gpios而不是powerdown-gpios</li>
+<li>rstb-gpios而不是resetb-gpios \</li>
+</ol>
+<p> 建议往后调试启用dbg_print日志，以免不知驱动出错详情。</p></div><div class="post-footer">
+        <a href="/posts/bug01/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/circuit/">典型电路设计收集</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-03-15">2025-03-15</time></span></div><div class="content"><h2 id="1连接器保护电路rc缓冲tvs管">1.连接器保护电路（RC缓冲/TVS管）</h2>
 <ul>
@@ -179,92 +189,6 @@
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-10-17">2024-10-17</time></span></div><div class="content"><h2 id="起因">起因：</h2>
 <p>在研究helix-mp3库与stm32的dma-i2s配合时，突然怀疑起这类技巧的并发性，尤其是while(!isEnd)带来了很大的迷惑性</p></div><div class="post-footer">
         <a href="/posts/1017/">阅读全文</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cpp_crc16_xmodem/">CRC16-XMODEM实现</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-10-13">2024-10-13</time></span></div><div class="content"><h1 id="crc16c">crc16.c</h1>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
-    <div class="code-header language-c">
-        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
-        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
-        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
-    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="c1">// crc多项式最高位总为1，可以省略（对CRC-16说是16位）
-</span></span></span><span class="line"><span class="cl"><span class="cp">#define CRC16_XMODEM_POLY   0x1021
-</span></span></span><span class="line"><span class="cl"><span class="cp">#define CRC16_XMODEM_TAB    crc16_xmodem_table
-</span></span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">uint16_t</span> <span class="n">crc16_xmodem_table</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="cm">/*
-</span></span></span><span class="line"><span class="cl"><span class="cm">    总结此处的思路：
-</span></span></span><span class="line"><span class="cl"><span class="cm">    | dats[0] |
-</span></span></span><span class="line"><span class="cl"><span class="cm">              | dats[1] |
-</span></span></span><span class="line"><span class="cl"><span class="cm">              |  CRC1H  |  CRC1L  |
-</span></span></span><span class="line"><span class="cl"><span class="cm">                        |  CRC2H  |  CRC2L |
-</span></span></span><span class="line"><span class="cl"><span class="cm">    首先CRC(0) = dats[0], 即第一个字节
-</span></span></span><span class="line"><span class="cl"><span class="cm">    CRC(2) = 消去(CRC1H+dats[1])而生成的余数table[(crc&gt;&gt;8)^dats[1]]
-</span></span></span><span class="line"><span class="cl"><span class="cm">            + 补全CRC1L这个没有使用的字节 (crc&lt;&lt;8)
-</span></span></span><span class="line"><span class="cl"><span class="cm">        ==&gt; crc(n+1) = (crc(n)&lt;&lt;8) ^ table[(crc(n)&gt;&gt;8)^dats[n]]
-</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">void</span> <span class="nf">CRC16_XModem_Init</span><span class="p">(</span><span class="kt">uint16_t</span><span class="o">*</span> <span class="n">dats</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">uint16_t</span> <span class="n">crc</span><span class="p">;</span>    <span class="c1">// 提前生成表查询
-</span></span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">uint16_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mh">0xff</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">crc</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">crc</span><span class="o">&amp;</span><span class="mh">0x8000</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">                <span class="n">crc</span> <span class="o">=</span> <span class="p">(</span><span class="n">crc</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span><span class="o">^</span><span class="n">CRC16_XMODEM_POLY</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">crc</span> <span class="o">=</span> <span class="p">(</span><span class="n">crc</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="n">dats</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">crc</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//return crc;
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">uint16_t</span> <span class="nf">CRC_Get</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">dats</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">uint16_t</span> <span class="n">crc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">crc</span> <span class="o">=</span> <span class="n">CRC16_XMODEM_TAB</span><span class="p">[(</span><span class="n">crc</span><span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">dats</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">^</span> <span class="p">(</span><span class="n">crc</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">crc</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">uint16_t</span> <span class="nf">CRC_Get_Legacy</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">dats</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">uint16_t</span> <span class="n">crc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span> <span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 补齐确定余数
-</span></span></span><span class="line"><span class="cl">        <span class="n">crc</span> <span class="o">^=</span> <span class="p">(</span><span class="n">dats</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// clz可以直接移位
-</span></span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">// crc舍弃首1位，注意做竖式除法
-</span></span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">crc</span><span class="o">&amp;</span><span class="mh">0x8000</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">                <span class="n">crc</span> <span class="o">=</span> <span class="p">(</span><span class="n">crc</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span><span class="o">^</span><span class="n">CRC16_XMODEM_POLY</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">crc</span><span class="o">&lt;&lt;=</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="c1">//printf(&#34;res: %04x\n&#34;,crc);
-</span></span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// 假设存在无限长整数，该crc可以通过偏移提取计算
-</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">crc</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">uint8_t</span> <span class="n">test</span><span class="p">[</span><span class="mi">1024</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="mh">0x1a</span><span class="p">,</span><span class="mi">1024</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="mh">0x31</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">test</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mh">0x32</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">test</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="mh">0x33</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%hhx &#34;</span><span class="p">,</span><span class="n">test</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">CRC16_XModem_Init</span><span class="p">(</span><span class="n">CRC16_XMODEM_TAB</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%04hx</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="nf">CRC_Get_Legacy</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="mi">1024</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">//printf(&#34;%02x\n&#34;,0x01&lt;&lt;(__builtin_clz(0x01)-16));
-</span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div></div><div class="post-footer">
-        <a href="/posts/cpp_crc16_xmodem/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

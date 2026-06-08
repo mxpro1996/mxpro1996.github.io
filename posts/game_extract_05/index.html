@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[J2ME] 天降少女2完美结局 - 暴力修复 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/game_extract_05/">
+  <meta property="og:site_name" content="程序小站">
+  <meta property="og:title" content="[J2ME] 天降少女2完美结局 - 暴力修复">
+  <meta property="og:description" content="当年这个游戏只能不完美结局，不知道是多少人的意难平。 本文针对天降少女2在镜之湖黑屏，不能打出完美结局的问题。
+问题表现 按照理想的完美结局设计流程，主角应该集齐10个碎片后，能够进入镜之湖这个重要剧情点，但是全网的帖子上面看到的大多都是：费尽心机集齐碎片，但是在镜之湖三层进入传送门后，会回到大地图再次重复“镜之湖”开放的剧情，并且伴随黑屏。
+有大牛可能要说了，黑屏又不是不能玩（按下左/右软键，仍然可以暂时看到游戏画面）。但是就算顶着黑屏，打完最终BOSS，也不能按预料之中触发完美结局。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-06-07T10:15:31+08:00">
+    <meta property="article:modified_time" content="2026-06-07T10:15:31+08:00">
+    <meta property="article:tag" content="JAVA">
+    <meta property="article:tag" content="J2ME">
+    <meta property="article:tag" content="天降少女">
+    <meta property="article:tag" content="逆向">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[J2ME] 天降少女2完美结局 - 暴力修复">
+  <meta name="twitter:description" content="当年这个游戏只能不完美结局，不知道是多少人的意难平。 本文针对天降少女2在镜之湖黑屏，不能打出完美结局的问题。
+问题表现 按照理想的完美结局设计流程，主角应该集齐10个碎片后，能够进入镜之湖这个重要剧情点，但是全网的帖子上面看到的大多都是：费尽心机集齐碎片，但是在镜之湖三层进入传送门后，会回到大地图再次重复“镜之湖”开放的剧情，并且伴随黑屏。
+有大牛可能要说了，黑屏又不是不能玩（按下左/右软键，仍然可以暂时看到游戏画面）。但是就算顶着黑屏，打完最终BOSS，也不能按预料之中触发完美结局。">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/game_extract_05/" /><link rel="prev" href="http://example.org/posts/game_extract_04/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[J2ME] 天降少女2完美结局 - 暴力修复",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/game_extract_05\/"
+        },"genre": "posts","keywords": "JAVA, J2ME, 天降少女, 逆向","wordcount":  844 ,
+        "url": "http:\/\/example.org\/posts\/game_extract_05\/","datePublished": "2026-06-07T10:15:31+08:00","dateModified": "2026-06-07T10:15:31+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "lazurite"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="程序小站"><span id="id-1" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="程序小站"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[J2ME] 天降少女2完美结局 - 暴力修复</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E9%80%86%E5%90%91/"><i class="far fa-folder" aria-hidden="true"></i>逆向</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt" aria-hidden="true"></i>&nbsp;<time datetime="2026-06-07">2026-06-07</time>&nbsp;<i class="fas fa-pencil-alt" aria-hidden="true"></i>&nbsp;约 844 字&nbsp;
+                <i class="far fa-clock" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#问题表现">问题表现</a></li>
+    <li><a href="#原理分析">原理分析</a></li>
+    <li><a href="#切入点">切入点</a></li>
+    <li><a href="#修复详述">修复详述</a></li>
+    <li><a href="#后记">后记</a></li>
+    <li><a href="#附录魔法吟唱">附录：魔法吟唱</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><strong>当年这个游戏只能不完美结局，不知道是多少人的意难平。</strong> <br>
+<strong>本文针对天降少女2在镜之湖黑屏，不能打出完美结局的问题。</strong></p>
+<h2 id="问题表现">问题表现</h2>
+<p>  按照理想的完美结局设计流程，主角应该集齐10个碎片后，能够进入<strong>镜之湖</strong>这个重要剧情点，但是全网的帖子上面看到的大多都是：费尽心机集齐碎片，但是在镜之湖三层进入传送门后，会回到大地图再次重复“镜之湖”开放的剧情，并且伴随<strong>黑屏</strong>。<br>
+  有大牛可能要说了，<strong>黑屏又不是不能玩</strong>（按下左/右软键，仍然可以暂时看到游戏画面）。但是就算顶着黑屏，打完最终BOSS，也不能按预料之中触发完美结局。</p>
+<h2 id="原理分析">原理分析</h2>
+<p>  从何谈起呢，jadx盘古开天吗？总之喜闻乐见的J2ME时代，就没有几个国产java游戏不用proguard混淆代码的，所以本次修复看了好几年的天书，就像是下面这种：
+<code>a(int) a(int,int) a(int,int,int)</code><br>
+  做过逆向解混淆的，应该知道我在吐槽什么。我只能被迫jadx+kemulator做了好久的黑盒测试，直接针对引擎进行功能分析了。（此处感谢RPGMaker，让我能够类比rpg的原理）<br>
+  废话不多说，我们开始抽丝剥茧：RPG游戏基本上是事件驱动，所以我们的重点关照对象是jar包里面的&quot;script.pak&quot;。</p>
+<h2 id="切入点">切入点</h2>
+<p>TBD</p>
+<h2 id="修复详述">修复详述</h2>
+<p>TBD</p>
+<h2 id="后记">后记</h2>
+<p>因为架空了结局判定，永远优先触发好结局，你再也打不出女主离开的坏结局了。。。</p>
+<h2 id="附录魔法吟唱">附录：魔法吟唱</h2>
+<p>  虽然并不一定需要，但还是顺带放点这游戏的金手指。有没有想起Rivio的<strong>漆黑惊栗</strong>，当年有游戏会在结局把作弊码交给玩家。不过天降系列并不是这种情况，<strong>这个作弊码都是逆向发掘的产物</strong>。</p>
+<blockquote>
+<p><strong>前置条件</strong>：在游戏内任何时候，先<strong>按住 <code>*</code> 键的同时按下 <code>#</code> 键</strong>，此时后台会切换到“作弊打开”状态。接着依次按下后面的数字序列即可。\</p>
+</blockquote>
+<table>
+  <thead>
+      <tr>
+          <th>序号</th>
+          <th>功能</th>
+          <th>按键序列</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>【0】</strong></td>
+          <td>全员属性/技能拉满</td>
+          <td><code>#</code> <code>1</code> <code>1</code></td>
+      </tr>
+      <tr>
+          <td><strong>【1】</strong></td>
+          <td>全员满血/满蓝恢复</td>
+          <td><code>*</code> <code>1</code> <code>1</code></td>
+      </tr>
+      <tr>
+          <td><strong>【2】</strong></td>
+          <td>获得全部核心装备/道具</td>
+          <td><code>#</code> <code>1</code> <code>2</code></td>
+      </tr>
+      <tr>
+          <td><strong>【3】</strong></td>
+          <td>技能点/天赋点全满</td>
+          <td><code>#</code> <code>1</code> <code>3</code></td>
+      </tr>
+      <tr>
+          <td><strong>【4】</strong></td>
+          <td>角色进入无敌/隐身状态</td>
+          <td><code>*</code> <code>2</code> <code>1</code></td>
+      </tr>
+      <tr>
+          <td><strong>【5】</strong></td>
+          <td>升级</td>
+          <td><code>5</code></td>
+      </tr>
+      <tr>
+          <td><strong>【6】</strong></td>
+          <td>瞬间关卡胜利 / 时间清零</td>
+          <td><code>#</code> <code>9</code> <code>9</code></td>
+      </tr>
+      <tr>
+          <td><strong>【7】</strong></td>
+          <td>暴富（直接获得 10W 金币/经验）</td>
+          <td><code>#</code> <code>1</code> <code>4</code></td>
+      </tr>
+      <tr>
+          <td><strong>【8】</strong></td>
+          <td>状态重置（恢复初始面板）</td>
+          <td><code>*</code> <code>2</code> <code>2</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2026-06-07</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/game_extract_05/" data-title="[J2ME] 天降少女2完美结局 - 暴力修复" data-hashtags="JAVA,J2ME,天降少女,逆向"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/game_extract_05/" data-title="[J2ME] 天降少女2完美结局 - 暴力修复"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/game_extract_05/" data-hashtag="JAVA"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/game_extract_05/" data-title="[J2ME] 天降少女2完美结局 - 暴力修复"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/game_extract_05/" data-title="[J2ME] 天降少女2完美结局 - 暴力修复"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/game_extract_05/" data-title="[J2ME] 天降少女2完美结局 - 暴力修复"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/game_extract_05/" data-title="[J2ME] 天降少女2完美结局 - 暴力修复" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2fgame_extract_05%2f&amp;text=%5bJ2ME%5d%20%e5%a4%a9%e9%99%8d%e5%b0%91%e5%a5%b32%e5%ae%8c%e7%be%8e%e7%bb%93%e5%b1%80%20-%20%e6%9a%b4%e5%8a%9b%e4%bf%ae%e5%a4%8d" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">JAVA</a>,&nbsp;<a href="/tags/j2me/">J2ME</a>,&nbsp;<a href="/tags/%E5%A4%A9%E9%99%8D%E5%B0%91%E5%A5%B3/">天降少女</a>,&nbsp;<a href="/tags/%E9%80%86%E5%90%91/">逆向</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/game_extract_04/" class="prev" rel="prev" title="[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸"><i class="fas fa-angle-left" aria-hidden="true"></i>[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.160.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lazurite</a></span></div>
+        </div>
+    </footer>
+<script src="https://unpkg.com/oh-my-live2d@latest"></script>
+<script>
+  OML2D.loadOml2d({
+    models: [
+      {
+        path: 'https://model.hacxy.cn/HK416-1-normal/model.json',
+	dockedPosition: "right",
+        position: [0, 60],
+        scale: 0.08,
+        stageStyle: {
+          height: 450
+        }
+      }
+    ]
+  });
+</script></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment" aria-hidden="true"></i>
+            </a>
+        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script>window.config={"comment":{},"data":{"id-1":"剪纸堆","id-2":"剪纸堆"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
+</html>

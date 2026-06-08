@@ -3,9 +3,21 @@
         <title>程序小站</title>
         <link>http://example.org/</link>
         <description>逸一时，误一世。</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 05 Jun 2026 17:15:31 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 07 Jun 2026 10:15:31 &#43;0800</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[J2ME] 天降少女2完美结局 - 暴力修复</title>
+    <link>http://example.org/posts/game_extract_05/</link>
+    <pubDate>Sun, 07 Jun 2026 10:15:31 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/game_extract_05/</guid>
+    <description><![CDATA[<p><strong>当年这个游戏只能不完美结局，不知道是多少人的意难平。</strong> <br>
+<strong>本文针对天降少女2在镜之湖黑屏，不能打出完美结局的问题。</strong></p>
+<h2 id="问题表现">问题表现</h2>
+<p>  按照理想的完美结局设计流程，主角应该集齐10个碎片后，能够进入<strong>镜之湖</strong>这个重要剧情点，但是全网的帖子上面看到的大多都是：费尽心机集齐碎片，但是在镜之湖三层进入传送门后，会回到大地图再次重复“镜之湖”开放的剧情，并且伴随<strong>黑屏</strong>。<br>
+  有大牛可能要说了，<strong>黑屏又不是不能玩</strong>（按下左/右软键，仍然可以暂时看到游戏画面）。但是就算顶着黑屏，打完最终BOSS，也不能按预料之中触发完美结局。</p>]]></description>
+</item>
+<item>
     <title>[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸</title>
     <link>http://example.org/posts/game_extract_04/</link>
     <pubDate>Fri, 05 Jun 2026 17:15:31 &#43;0800</pubDate>
@@ -161,15 +173,6 @@
     <guid>http://example.org/posts/linux_subsystem_07_futex_libc/</guid>
     <description><![CDATA[<p>在 Linux 用户态开发中，<code>std::thread</code> 或 <code>pthread</code> 往往被视为并发的起点。但剥开库的包装，你会发现：<strong>用户态没有独立的并发物理权。</strong></p>
 <p>所有的同步原语，本质上都是从内核 UAPI 中“借”出来的执行策略。而 <code>pthread</code>，则是这套借贷契约的标准化搬运工。</p>]]></description>
-</item>
-<item>
-    <title>[AI总结] 用户态并发原理：从 Futex规则 到 std::thread 的性能审计</title>
-    <link>http://example.org/posts/linux_subsystem_06_futex_pthread/</link>
-    <pubDate>Mon, 06 Apr 2026 10:45:00 &#43;0800</pubDate>
-    <author>lazurite</author>
-    <guid>http://example.org/posts/linux_subsystem_06_futex_pthread/</guid>
-    <description><![CDATA[<p>在 C++ 或 C 语言中调用 <code>std::thread</code> 或 <code>pthread_create</code> 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。</p>
-<p>但剥开层层包装，你会发现：<strong>用户态没有真正的并发原语。</strong> 所有的“体面”都是向内核借来的，而这张借条的名字，叫作 <strong>Futex (Fast Userspace Mutex)</strong>。</p>]]></description>
 </item>
 </channel>
 </rss>

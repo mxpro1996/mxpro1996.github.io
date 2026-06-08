@@ -3,7 +3,19 @@
         <title>逆向 - 分类 - 程序小站</title>
         <link>http://example.org/categories/%E9%80%86%E5%90%91/</link>
         <description>逆向 - 分类 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 05 Jun 2026 17:15:31 &#43;0800</lastBuildDate><atom:link href="http://example.org/categories/%E9%80%86%E5%90%91/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 07 Jun 2026 10:15:31 &#43;0800</lastBuildDate><atom:link href="http://example.org/categories/%E9%80%86%E5%90%91/" rel="self" type="application/rss+xml" /><item>
+    <title>[J2ME] 天降少女2完美结局 - 暴力修复</title>
+    <link>http://example.org/posts/game_extract_05/</link>
+    <pubDate>Sun, 07 Jun 2026 10:15:31 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/game_extract_05/</guid>
+    <description><![CDATA[<p><strong>当年这个游戏只能不完美结局，不知道是多少人的意难平。</strong> <br>
+<strong>本文针对天降少女2在镜之湖黑屏，不能打出完美结局的问题。</strong></p>
+<h2 id="问题表现">问题表现</h2>
+<p>  按照理想的完美结局设计流程，主角应该集齐10个碎片后，能够进入<strong>镜之湖</strong>这个重要剧情点，但是全网的帖子上面看到的大多都是：费尽心机集齐碎片，但是在镜之湖三层进入传送门后，会回到大地图再次重复“镜之湖”开放的剧情，并且伴随<strong>黑屏</strong>。<br>
+  有大牛可能要说了，<strong>黑屏又不是不能玩</strong>（按下左/右软键，仍然可以暂时看到游戏画面）。但是就算顶着黑屏，打完最终BOSS，也不能按预料之中触发完美结局。</p>]]></description>
+</item>
+<item>
     <title>[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸</title>
     <link>http://example.org/posts/game_extract_04/</link>
     <pubDate>Fri, 05 Jun 2026 17:15:31 &#43;0800</pubDate>

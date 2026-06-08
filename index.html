@@ -80,6 +80,15 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"><a href="https://github.com/mxpro1996" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/game_extract_05/">[J2ME] 天降少女2完美结局 - 暴力修复</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-06-07">2026-06-07</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E9%80%86%E5%90%91/"><i class="far fa-folder" aria-hidden="true"></i>逆向</a></span></div><div class="content"><p><strong>当年这个游戏只能不完美结局，不知道是多少人的意难平。</strong> <br>
+<strong>本文针对天降少女2在镜之湖黑屏，不能打出完美结局的问题。</strong></p>
+<h2 id="问题表现">问题表现</h2>
+<p>  按照理想的完美结局设计流程，主角应该集齐10个碎片后，能够进入<strong>镜之湖</strong>这个重要剧情点，但是全网的帖子上面看到的大多都是：费尽心机集齐碎片，但是在镜之湖三层进入传送门后，会回到大地图再次重复“镜之湖”开放的剧情，并且伴随<strong>黑屏</strong>。<br>
+  有大牛可能要说了，<strong>黑屏又不是不能玩</strong>（按下左/右软键，仍然可以暂时看到游戏画面）。但是就算顶着黑屏，打完最终BOSS，也不能按预料之中触发完美结局。</p></div><div class="post-footer">
+        <a href="/posts/game_extract_05/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">JAVA</a>,&nbsp;<a href="/tags/j2me/">J2ME</a>,&nbsp;<a href="/tags/%E5%A4%A9%E9%99%8D%E5%B0%91%E5%A5%B3/">天降少女</a>,&nbsp;<a href="/tags/%E9%80%86%E5%90%91/">逆向</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/game_extract_04/">[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-06-05">2026-06-05</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E9%80%86%E5%90%91/"><i class="far fa-folder" aria-hidden="true"></i>逆向</a></span></div><div class="content"><p><strong>本章针对口袋侦探第一部在1080P设备上，画面过小只有544px的问题。</strong> <br>
 <strong>希望本文的view欺骗思路，能够给cocos2dx同好修复一些老游戏的分辨率提供参考。</strong></p></div><div class="post-footer">
@@ -121,60 +130,6 @@
 <strong>本质原因：安卓5以前dvm虚拟机检查不严格，厂家存在池化滥用JNI LocalRef（局部引用）的黑魔法编程</strong></p></div><div class="post-footer">
         <a href="/posts/game_extract_02/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%AE%89%E5%8D%93/">安卓</a>,&nbsp;<a href="/tags/jni/">JNI</a>,&nbsp;<a href="/tags/%E5%8F%A3%E8%A2%8B%E4%BE%A6%E6%8E%A2/">口袋侦探</a>,&nbsp;<a href="/tags/%E9%80%86%E5%90%91/">逆向</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cpp_macro_usage/">[C/CPP] 宏技巧收集</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-25">2026-04-25</time></span></div><div class="content"><h1 id="防止重定义">防止重定义</h1>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
-    <div class="code-header language-c">
-        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
-        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
-        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
-    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// 以本文件定义为准，解除CDBG防止编译器重复定义报错
-</span></span></span><span class="line"><span class="cl"><span class="cp">#undef CDBG
-</span></span></span><span class="line"><span class="cl"><span class="cp">#ifdef ENABLE_XXX
-</span></span></span><span class="line"><span class="cl">	<span class="cp">#define CDBG printk
-</span></span></span><span class="line"><span class="cl"><span class="cp">#else
-</span></span></span><span class="line"><span class="cl">	<span class="cp">#define CDBG
-</span></span></span><span class="line"><span class="cl"><span class="cp">#endif </span><span class="cm">/* ENABLE_XXX */</span></span></span></code></pre></div></div>
-<h1 id="宏重言智能枚举">宏重言（智能枚举）</h1>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
-    <div class="code-header language-c">
-        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
-        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
-        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
-    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#ifdef SPECIAL_ENUM_META
-</span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// auxiliary macros for CONCAT
-</span></span></span><span class="line"><span class="cl"><span class="cp">#define _CONCAT(x,y) x##y
-</span></span></span><span class="line"><span class="cl"><span class="cp">#define CONCAT(x,y)	_CONCAT(x,y)
-</span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="cp">#define LABEL_CONNAME   CONCAT(label_,SPECIAL_ENUM_NAME)
-</span></span></span><span class="line"><span class="cl"><span class="cp">#define ENUM_CONNAME   CONCAT(enum_,SPECIAL_ENUM_NAME)
-</span></span></span><span class="line"><span class="cl"><span class="c1">// ENUM_TO
-</span></span></span><span class="line"><span class="cl"><span class="cp">#define ENUM_TO_STR(x)  LABEL_CONNAME[x]
-</span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// create info
-</span></span></span><span class="line"><span class="cl"><span class="cp">#ifdef MAKE_INSTANCE    </span><span class="c1">// const char &amp; 
-</span></span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">LABEL_CONNAME</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="cp">#define SPECIAL_ENUM(x) #x
-</span></span></span><span class="line"><span class="cl">    <span class="n">SPECIAL_ENUM_META</span>
-</span></span><span class="line"><span class="cl">    <span class="cp">#undef SPECIAL_ENUM
-</span></span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#else
-</span></span></span><span class="line"><span class="cl"><span class="k">extern</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">LABEL_CONNAME</span><span class="p">[];</span>
-</span></span><span class="line"><span class="cl"><span class="cp">#endif
-</span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// create enum, AS IS mode
-</span></span></span><span class="line"><span class="cl"><span class="k">enum</span> <span class="n">ENUM_CONNAME</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="cp">#define SPECIAL_ENUM(x) x
-</span></span></span><span class="line"><span class="cl">    <span class="n">SPECIAL_ENUM_META</span>
-</span></span><span class="line"><span class="cl">    <span class="cp">#undef SPECIAL_ENUM
-</span></span></span><span class="line"><span class="cl"><span class="p">};</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="cp">#undef SPECIAL_ENUM_META
-</span></span></span><span class="line"><span class="cl"><span class="cp">#endif</span></span></span></code></pre></div></div></div><div class="post-footer">
-        <a href="/posts/cpp_macro_usage/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>

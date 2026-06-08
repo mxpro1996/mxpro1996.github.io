@@ -80,6 +80,60 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"><a href="https://github.com/mxpro1996" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/cpp_macro_usage/">[C/CPP] 宏技巧收集</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-25">2026-04-25</time></span></div><div class="content"><h1 id="防止重定义">防止重定义</h1>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// 以本文件定义为准，解除CDBG防止编译器重复定义报错
+</span></span></span><span class="line"><span class="cl"><span class="cp">#undef CDBG
+</span></span></span><span class="line"><span class="cl"><span class="cp">#ifdef ENABLE_XXX
+</span></span></span><span class="line"><span class="cl">	<span class="cp">#define CDBG printk
+</span></span></span><span class="line"><span class="cl"><span class="cp">#else
+</span></span></span><span class="line"><span class="cl">	<span class="cp">#define CDBG
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif </span><span class="cm">/* ENABLE_XXX */</span></span></span></code></pre></div></div>
+<h1 id="宏重言智能枚举">宏重言（智能枚举）</h1>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#ifdef SPECIAL_ENUM_META
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// auxiliary macros for CONCAT
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define _CONCAT(x,y) x##y
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define CONCAT(x,y)	_CONCAT(x,y)
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#define LABEL_CONNAME   CONCAT(label_,SPECIAL_ENUM_NAME)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define ENUM_CONNAME   CONCAT(enum_,SPECIAL_ENUM_NAME)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ENUM_TO
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define ENUM_TO_STR(x)  LABEL_CONNAME[x]
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// create info
+</span></span></span><span class="line"><span class="cl"><span class="cp">#ifdef MAKE_INSTANCE    </span><span class="c1">// const char &amp; 
+</span></span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">LABEL_CONNAME</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cp">#define SPECIAL_ENUM(x) #x
+</span></span></span><span class="line"><span class="cl">    <span class="n">SPECIAL_ENUM_META</span>
+</span></span><span class="line"><span class="cl">    <span class="cp">#undef SPECIAL_ENUM
+</span></span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#else
+</span></span></span><span class="line"><span class="cl"><span class="k">extern</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">LABEL_CONNAME</span><span class="p">[];</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// create enum, AS IS mode
+</span></span></span><span class="line"><span class="cl"><span class="k">enum</span> <span class="n">ENUM_CONNAME</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cp">#define SPECIAL_ENUM(x) x
+</span></span></span><span class="line"><span class="cl">    <span class="n">SPECIAL_ENUM_META</span>
+</span></span><span class="line"><span class="cl">    <span class="cp">#undef SPECIAL_ENUM
+</span></span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#undef SPECIAL_ENUM_META
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif</span></span></span></code></pre></div></div></div><div class="post-footer">
+        <a href="/posts/cpp_macro_usage/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/mtk_bring_up_01_lcm_porting/">[MTK] BringUp 01 - LCM Driver 移植流程</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-20">2026-04-20</time></span></div><div class="content"><h2 id="1-硬件资源配置从-drvgen-到-dts">1. 硬件资源配置：从 DrvGen 到 DTS</h2>
 <p>在点亮屏幕之前，必须确保电源、复位（RST）及背光（PWM）的通路正确。</p>
@@ -122,12 +176,6 @@
 <p>本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从<strong>物理重试</strong>到<strong>逻辑认怂</strong>的完整链路。</p></div><div class="post-footer">
         <a href="/posts/linux_subsystem_05_smp/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux-kernel/">Linux Kernel</a>,&nbsp;<a href="/tags/concurrency/">Concurrency</a>,&nbsp;<a href="/tags/architecture/">Architecture</a>,&nbsp;<a href="/tags/smp/">SMP</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ap_bp_brief_intro/">[AI总结] 模块化 IP 的具象：AP+BP 架构、奢侈的基带</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-03-24">2026-03-24</time></span></div><div class="content"><h2 id="0-前言算力倒挂的工业荒诞">0. 前言：算力倒挂的工业荒诞</h2>
-<p>在嵌入式开发中，我们常陷入一种“主从错觉”：认为主控 CPU（AP）是核心，而通讯模块（BP）只是个外设。但当你拆开屏蔽罩，看到 <strong>1.2GHz 的 MDM9x07</strong> 甚至 <strong>四核 MSM8612</strong> 仅仅是在通过串口为 <strong>528MHz 的 i.MX6ULL</strong> 传递几行 AT 指令时，一种工业级的讽刺感油然而生。</p></div><div class="post-footer">
-        <a href="/posts/ap_bp_brief_intro/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/i.mx6ull/">I.MX6ULL</a>,&nbsp;<a href="/tags/qualcomm/">Qualcomm</a>,&nbsp;<a href="/tags/ec20/">EC20</a>,&nbsp;<a href="/tags/aosp/">AOSP</a>,&nbsp;<a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/">嵌入式开发</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
