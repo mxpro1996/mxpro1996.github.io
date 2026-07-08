@@ -118,7 +118,7 @@
 <h2 id="切入点">切入点</h2>
 <p>（厂商懒缓存了java侧sqliteDBManager的局部引用，当全局用）<br>
 <strong>我们就坡下驴，把这个局部引用拦截提升到全局。</strong></p>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
     <div class="code-header language-bash">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
@@ -163,7 +163,7 @@
 下面是第一部的frida脚本，第二部修复思路一致。<br>
 可以通过frida-gadget情境执行，具体分为在线调试版和离线版。</p>
 <p>在线版:</p>
-<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
     <div class="code-header language-js">
         <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>

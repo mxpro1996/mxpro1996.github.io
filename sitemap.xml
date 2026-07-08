@@ -2,14 +2,15 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://example.org/posts/iphone_diy_guide01/</loc><lastmod>2026-07-08T10:24:58&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/</loc><lastmod>2026-07-08T10:24:58&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/</loc><lastmod>2026-07-08T10:24:58&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/game_extract_05/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/categories/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/j2me/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/java/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/%E5%A4%A9%E9%99%8D%E5%B0%91%E5%A5%B3/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/categories/%E9%80%86%E5%90%91/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/%E9%80%86%E5%90%91/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/game_extract_04/</loc><lastmod>2026-06-05T17:15:31&#43;08:00</lastmod></url><url>

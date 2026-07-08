@@ -80,6 +80,10 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"><a href="https://github.com/mxpro1996" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/bug02/">[udev] device_create()与/dev/xx</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-05-06">2025-05-06</time></span></div><div class="content"><p> 理论上，device_create()会发送uevent触发用户态udev进行/dev/xxx设备文件的建立，但就算禁止udev，devtmpfs也会在device_add()函数被调用时收到信息，建立基本设备文件节点。</p></div><div class="post-footer">
+        <a href="/posts/bug02/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/bug01/">[OV2640] 记一次设备树盲目CV的闹剧</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-05-06">2025-05-06</time></span></div><div class="content"><p> 在编写ov2640节点时，直接抄了部分5640的内容，差异点导致probe直接失败。作为盲目CV的教训</p>
 <ol>
@@ -184,11 +188,6 @@
 <h3 id="解析">解析：</h3>
 <p>当sd卡没有插入时,dd of=/dev/sda1会创建一个同名文件，这个文件会阻碍实际块设备分区文件的建立。</p></div><div class="post-footer">
         <a href="/posts/1107/">阅读全文</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/1017/">DMA 双缓存模式释疑</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-10-17">2024-10-17</time></span></div><div class="content"><h2 id="起因">起因：</h2>
-<p>在研究helix-mp3库与stm32的dma-i2s配合时，突然怀疑起这类技巧的并发性，尤其是while(!isEnd)带来了很大的迷惑性</p></div><div class="post-footer">
-        <a href="/posts/1017/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
