@@ -80,6 +80,45 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"><a href="https://github.com/mxpro1996" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/esp8266/">[HAL] STM32 RXNE 接替Receive_IT</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-06-14">2024-06-14</time></span></div><div class="content"><h2 id="关闭irqhandler生成">关闭IRQHandler生成</h2>
+<p>详见Cubemx中NVIC内选项</p>
+<h2 id="关闭优化">关闭优化</h2>
+<p>手动切到&quot;-O0&quot;（不开优化）</p>
+<h2 id="中断接收">中断接收</h2>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-c">
+        <span class="code-title"><i class="arrow fas fa-angle-right" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span class="copy" title="复制到剪贴板"><i class="far fa-copy" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">USART3_IRQHandler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>                	<span class="c1">//串口3中断服务程序
+</span></span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u8</span> <span class="n">Res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nf">__HAL_UART_GET_IT_SOURCE</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart3</span><span class="p">,</span> <span class="n">UART_IT_RXNE</span><span class="p">)</span> <span class="o">!=</span> <span class="n">RESET</span><span class="p">)</span>  <span class="c1">//接收中断
+</span></span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Res</span> <span class="o">=</span> <span class="n">USART3</span><span class="o">-&gt;</span><span class="n">DR</span><span class="p">;</span>	<span class="c1">//读取接收到的数据
+</span></span></span><span class="line"><span class="cl">        <span class="n">USART3_RX_BUF</span><span class="p">[</span><span class="n">USART3_RX_STA</span><span class="p">]</span><span class="o">=</span><span class="n">Res</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl"><span class="c1">//		USART1-&gt;DR = Res;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//		while(__HAL_UART_GET_FLAG(&amp;huart1,UART_FLAG_TXE)!=SET){}
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">USART3_RX_BUF</span><span class="p">[</span><span class="n">USART3_RX_STA</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;K&#39;</span><span class="p">)</span>  <span class="c1">// 表示接收到了“OK&#34;回应
+</span></span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">USART3_RX_BUF</span><span class="p">[</span><span class="n">USART3_RX_STA</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;O&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Flag_USART3_receive_OK</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">//OK接收成功
+</span></span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">USART3_RX_STA</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">USART3_RX_STA</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">USART3_REC_LEN</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">USART3_RX_STA</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h2 id="超时中断或空闲">超时中断（或空闲）</h2>
+<p>随便选一个定时器时基中断，作为串口结束超时判断。</p></div><div class="post-footer">
+        <a href="/posts/esp8266/">阅读全文</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/0531/">第十五届预测点</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2024-05-31">2024-05-31</time></span></div><div class="content"><h1 id="1-双击按键">1. 双击按键</h1>
 <div class="code-block code-line-numbers open" style="counter-reset: code-block 0">

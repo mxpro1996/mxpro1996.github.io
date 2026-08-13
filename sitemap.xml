@@ -2,9 +2,10 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://example.org/posts/android_allwinner_01/</loc><lastmod>2026-08-13T10:24:58&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/posts/</loc><lastmod>2026-08-13T10:24:58&#43;08:00</lastmod></url><url>
+            <loc>http://example.org/</loc><lastmod>2026-08-13T10:24:58&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/iphone_diy_guide01/</loc><lastmod>2026-07-08T10:24:58&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2026-07-08T10:24:58&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/</loc><lastmod>2026-07-08T10:24:58&#43;08:00</lastmod></url><url>
             <loc>http://example.org/posts/game_extract_05/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/categories/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>
             <loc>http://example.org/tags/j2me/</loc><lastmod>2026-06-07T10:15:31&#43;08:00</lastmod></url><url>

@@ -3,9 +3,18 @@
         <title>程序小站</title>
         <link>http://example.org/</link>
         <description>逸一时，误一世。</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 08 Jul 2026 10:24:58 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 13 Aug 2026 10:24:58 &#43;0800</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[AOSP/Allwinner] 古早编译常见CASE</title>
+    <link>http://example.org/posts/android_allwinner_01/</link>
+    <pubDate>Thu, 13 Aug 2026 10:24:58 &#43;0800</pubDate>
+    <author>lazurite</author>
+    <guid>http://example.org/posts/android_allwinner_01/</guid>
+    <description><![CDATA[<p>旧版sunxi如A13 A20 A33出厂多于ubuntu 12.04-18.04时代，现今主流宿主机API迁移，行为变更导致诸多不切合。<br>
+至于安卓4后，虚拟机需要32还是64位这里不多言。</p>]]></description>
+</item>
+<item>
     <title>【IPhone】无原装电池解决Itunes报错29</title>
     <link>http://example.org/posts/iphone_diy_guide01/</link>
     <pubDate>Wed, 08 Jul 2026 10:24:58 &#43;0800</pubDate>
@@ -162,17 +171,6 @@
 <hr>
 <h2 id="2-驱动注册">2. 驱动注册：</h2>
 <p>MTK封装的子系统mtk_fb采用列表注册机制，允许内核在启动时探测不同的模组。</p>]]></description>
-</item>
-<item>
-    <title>Linux 内核架构观察：功能体（cdev）与实体（Device）的分立</title>
-    <link>http://example.org/posts/linux_subsystem_08_cdev_sep_dev/</link>
-    <pubDate>Tue, 07 Apr 2026 10:15:00 &#43;0800</pubDate>
-    <author>lazurite</author>
-    <guid>http://example.org/posts/linux_subsystem_08_cdev_sep_dev/</guid>
-    <description><![CDATA[<h3 id="核心论点">核心论点</h3>
-<p>在 Linux 设备模型中，驱动程序并不是一个不可分割的整体，而是**功能策略（Functionality）<strong>与</strong>物理实体（Entity）**的强行耦合。</p>
-<h3 id="1-cdev卑微的会计与策略表">1. cdev：卑微的“会计”与策略表</h3>
-<p><strong>cdev (Character Device)</strong> 并不在内核的硬件拓扑树中占有一席之地。它的本质是一个<strong>策略映射器</strong>。</p>]]></description>
 </item>
 </channel>
 </rss>

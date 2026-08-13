@@ -80,6 +80,12 @@
         alt="/images/avatar.png"
         title="/images/avatar.png" /></a></div><h1 class="home-title">TUXEDO</h1><div class="home-subtitle"><div id="id-3" class="typeit"></div></div><div class="links"><a href="https://github.com/mxpro1996" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/linux_subsystem_06_futex_pthread/">[AI总结] 用户态并发原理：从 Futex规则 到 std::thread 的性能审计</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/architecture/"><i class="far fa-folder" aria-hidden="true"></i>Architecture</a></span></div><div class="content"><p>在 C++ 或 C 语言中调用 <code>std::thread</code> 或 <code>pthread_create</code> 时，我们往往产生一种幻觉：我们在直接操控 CPU 的并发。</p>
+<p>但剥开层层包装，你会发现：<strong>用户态没有真正的并发原语。</strong> 所有的“体面”都是向内核借来的，而这张借条的名字，叫作 <strong>Futex (Fast Userspace Mutex)</strong>。</p></div><div class="post-footer">
+        <a href="/posts/linux_subsystem_06_futex_pthread/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/pthread/">Pthread</a>,&nbsp;<a href="/tags/futex/">Futex</a>,&nbsp;<a href="/tags/glibc/">Glibc</a>,&nbsp;<a href="/tags/c&#43;&#43;/">C&#43;&#43;</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/linux_subsystem_05_smp/">[AI总结] 用户态并发原理: 从指令到契约</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2026-04-06">2026-04-06</time></span>&nbsp;<span class="post-category">收录于 <a href="/categories/low-level/"><i class="far fa-folder" aria-hidden="true"></i>Low-Level</a></span></div><div class="content"><p>在现代多核（SMP）架构下，编写并发代码本质上是在处理一场<strong>由物理电信号驱动的“绩效狂欢”</strong>。当我们剥开 <code>mutex_lock</code> 的华丽外衣，最深处只有那几行冷酷的 <code>ldrex/strex</code>。</p>
 <p>本文旨在将 Linux 内核的并发体系按“细粒度”与“上下文”进行垂直排布，揭示从<strong>物理重试</strong>到<strong>逻辑认怂</strong>的完整链路。</p></div><div class="post-footer">
@@ -210,11 +216,6 @@
 <p>这10个字符可以分解为以下部分：</p></div><div class="post-footer">
         <a href="/posts/linux_perms/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90/">文件权限</a>,&nbsp;<a href="/tags/%E6%9D%83%E9%99%90%E4%BD%8D/">权限位</a>,&nbsp;<a href="/tags/%E5%9F%BA%E7%A1%80/">基础</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/linux_subsystem_04_initcall/">[转]（四）Linux 内核驱动 - InitCall机制</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle" aria-hidden="true"></i>lazurite</a></span>&nbsp;<span class="post-publish">发布于 <time datetime="2025-10-12">2025-10-12</time></span></div><div class="content"><h3 id="1-initcall机制的起源与背景">1. <strong>initcall机制的起源与背景</strong></h3>
-<p>当我们将驱动编译进内核时，需要在内核启动时调用相应的初始化函数。最简单的方式是，在系统启动时直接在代码中插入调用，但这显然不适用于大型的Linux内核，因为驱动程序数量庞大，且有一定的依赖关系，必须按特定顺序进行初始化。</p></div><div class="post-footer">
-        <a href="/posts/linux_subsystem_04_initcall/">阅读全文</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
