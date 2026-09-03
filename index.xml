@@ -1,34 +1,34 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>程序小站</title>
-        <link>http://example.org/</link>
+        <link>http://localhost:1313/</link>
         <description>逸一时，误一世。</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 13 Aug 2026 10:24:58 &#43;0800</lastBuildDate>
-            <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+            <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>[AOSP/Allwinner] 古早编译常见CASE</title>
-    <link>http://example.org/posts/android_allwinner_01/</link>
+    <title>[AOSP] 古早编译常见CASE</title>
+    <link>http://localhost:1313/posts/android_allwinner_01/</link>
     <pubDate>Thu, 13 Aug 2026 10:24:58 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/android_allwinner_01/</guid>
+    <guid>http://localhost:1313/posts/android_allwinner_01/</guid>
     <description><![CDATA[<p>旧版sunxi如A13 A20 A33出厂多于ubuntu 12.04-18.04时代，现今主流宿主机API迁移，行为变更导致诸多不切合。<br>
 至于安卓4后，虚拟机需要32还是64位这里不多言。</p>]]></description>
 </item>
 <item>
     <title>【IPhone】无原装电池解决Itunes报错29</title>
-    <link>http://example.org/posts/iphone_diy_guide01/</link>
+    <link>http://localhost:1313/posts/iphone_diy_guide01/</link>
     <pubDate>Wed, 08 Jul 2026 10:24:58 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/iphone_diy_guide01/</guid>
+    <guid>http://localhost:1313/posts/iphone_diy_guide01/</guid>
     <description><![CDATA[<p>Itunes/爱思对旧机型（iPhone 4s）刷机常见错误29，是电池附带IC通信失败，多发于替换第三方电池后。
 往年的处理方式，都是去寻找年久失修的原装电池救急。但近年Checkm8通过劫持启动链，给出了新解法。</p>]]></description>
 </item>
 <item>
     <title>[J2ME] 天降少女2完美结局 - 暴力修复</title>
-    <link>http://example.org/posts/game_extract_05/</link>
+    <link>http://localhost:1313/posts/game_extract_05/</link>
     <pubDate>Sun, 07 Jun 2026 10:15:31 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/game_extract_05/</guid>
+    <guid>http://localhost:1313/posts/game_extract_05/</guid>
     <description><![CDATA[<p><strong>当年这个游戏只能不完美结局，不知道是多少人的意难平。</strong> <br>
 <strong>本文针对天降少女2在镜之湖黑屏，不能打出完美结局的问题。</strong></p>
 <h2 id="问题表现">问题表现</h2>
@@ -37,29 +37,29 @@
 </item>
 <item>
     <title>[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸</title>
-    <link>http://example.org/posts/game_extract_04/</link>
+    <link>http://localhost:1313/posts/game_extract_04/</link>
     <pubDate>Fri, 05 Jun 2026 17:15:31 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/game_extract_04/</guid>
+    <guid>http://localhost:1313/posts/game_extract_04/</guid>
     <description><![CDATA[<p><strong>本章针对口袋侦探第一部在1080P设备上，画面过小只有544px的问题。</strong> <br>
 <strong>希望本文的view欺骗思路，能够给cocos2dx同好修复一些老游戏的分辨率提供参考。</strong></p>]]></description>
 </item>
 <item>
     <title>【转载】意义主义</title>
-    <link>http://example.org/posts/meaninism/</link>
+    <link>http://localhost:1313/posts/meaninism/</link>
     <pubDate>Tue, 26 May 2026 18:07:25 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/meaninism/</guid>
+    <guid>http://localhost:1313/posts/meaninism/</guid>
     <description><![CDATA[<p>转自新浪博客@潘多拉魔盒，2010-04-07编写。</p>
 <h2 id="引论">引论</h2>
 <p> 该不该说自己是个负责任的人呢？还是自己还不够放得开，总是很容易动摇？被LJ说了，虽然自己有一肚子的委屈，可是也不想解释，免得给人一种抱怨的消极态度。也许我也还一直想把自己逼到某个境地，让自己看清楚在如此的客观环境下，怎样做好自己。虽然知道很难。</p>]]></description>
 </item>
 <item>
     <title>[EDK2] 黑盒调试吐槽 - Trace32，你让人着迷</title>
-    <link>http://example.org/posts/the_will/</link>
+    <link>http://localhost:1313/posts/the_will/</link>
     <pubDate>Mon, 25 May 2026 18:07:25 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/the_will/</guid>
+    <guid>http://localhost:1313/posts/the_will/</guid>
     <description><![CDATA[<p>开篇自然是暴论，bootloader系/裸机Bare-Metal的套路无非都是:</p>
 <div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
     <div class="code-header language-c">
@@ -73,10 +73,10 @@
 </item>
 <item>
     <title>[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上</title>
-    <link>http://example.org/posts/game_extract_03/</link>
+    <link>http://localhost:1313/posts/game_extract_03/</link>
     <pubDate>Thu, 14 May 2026 07:15:31 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/game_extract_03/</guid>
+    <guid>http://localhost:1313/posts/game_extract_03/</guid>
     <description><![CDATA[<p><strong>原理分析 见上一篇文章</strong></p>
 <h2 id="核心观点">核心观点</h2>
 <p>安卓5-7作为早期ART限制REF总数&lt;=512，不适用上一篇文章的暴力手段。<br>
@@ -85,10 +85,10 @@
 </item>
 <item>
     <title>[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上</title>
-    <link>http://example.org/posts/game_extract_02/</link>
+    <link>http://localhost:1313/posts/game_extract_02/</link>
     <pubDate>Mon, 11 May 2026 13:45:31 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/game_extract_02/</guid>
+    <guid>http://localhost:1313/posts/game_extract_02/</guid>
     <description><![CDATA[<p>这个古文物游戏，由于dvm转art虚拟机的缘故，只能用旧版本安卓/VMOS虚拟机玩已经是老生常谈了，<br>
 至于IAP的处理思路也被前人写烂了。我来写写闪退修复吧。<br>
 放一下问题表现、分析过程、修复手段，仅此而已。<br>
@@ -96,10 +96,10 @@
 </item>
 <item>
     <title>[C/CPP] 宏技巧收集</title>
-    <link>http://example.org/posts/cpp_macro_usage/</link>
+    <link>http://localhost:1313/posts/cpp_macro_usage/</link>
     <pubDate>Sat, 25 Apr 2026 05:07:25 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/cpp_macro_usage/</guid>
+    <guid>http://localhost:1313/posts/cpp_macro_usage/</guid>
     <description><![CDATA[<h1 id="防止重定义">防止重定义</h1>
 <div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
     <div class="code-header language-c">
@@ -154,10 +154,10 @@
 </item>
 <item>
     <title>[MTK] BringUp 01 - LCM Driver 移植流程</title>
-    <link>http://example.org/posts/mtk_bring_up_01_lcm_porting/</link>
+    <link>http://localhost:1313/posts/mtk_bring_up_01_lcm_porting/</link>
     <pubDate>Mon, 20 Apr 2026 00:00:00 &#43;0000</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/mtk_bring_up_01_lcm_porting/</guid>
+    <guid>http://localhost:1313/posts/mtk_bring_up_01_lcm_porting/</guid>
     <description><![CDATA[<h2 id="1-硬件资源配置从-drvgen-到-dts">1. 硬件资源配置：从 DrvGen 到 DTS</h2>
 <p>在点亮屏幕之前，必须确保电源、复位（RST）及背光（PWM）的通路正确。</p>
 <ul>

@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Adobe AIR - 标签 - 程序小站</title>
-        <link>http://example.org/tags/adobe-air/</link>
+        <link>http://localhost:1313/tags/adobe-air/</link>
         <description>Adobe AIR - 标签 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 25 Apr 2024 13:45:31 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/adobe-air/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 25 Apr 2024 13:45:31 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/adobe-air/" rel="self" type="application/rss+xml" /><item>
     <title>Adobe AIR SQL Database Extract</title>
-    <link>http://example.org/posts/game_extract_01/</link>
+    <link>http://localhost:1313/posts/game_extract_01/</link>
     <pubDate>Thu, 25 Apr 2024 13:45:31 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/game_extract_01/</guid>
+    <guid>http://localhost:1313/posts/game_extract_01/</guid>
     <description><![CDATA[<p>Adobe AIR SQL解密数据库程序，基于Flash CS6。</p>
 <div class="code-block code-line-numbers" style="counter-reset: code-block 0">
     <div class="code-header language-java">

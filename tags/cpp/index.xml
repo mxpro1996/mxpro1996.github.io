@@ -1,70 +1,70 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Cpp - 标签 - 程序小站</title>
-        <link>http://example.org/tags/cpp/</link>
+        <link>http://localhost:1313/tags/cpp/</link>
         <description>Cpp - 标签 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/cpp/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/cpp/" rel="self" type="application/rss+xml" /><item>
     <title>[C/C&#43;&#43;] 运行时装载 - libdl</title>
-    <link>http://example.org/posts/cpp_runtime_lib_dlopen/</link>
+    <link>http://localhost:1313/posts/cpp_runtime_lib_dlopen/</link>
     <pubDate>Mon, 20 Oct 2025 00:00:00 &#43;0000</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/cpp_runtime_lib_dlopen/</guid>
+    <guid>http://localhost:1313/posts/cpp_runtime_lib_dlopen/</guid>
     <description><![CDATA[<h2 id="概述">概述</h2>
 <p><code>&lt;dlfcn.h&gt;</code> 是 C 标准库中用于<strong>动态加载共享库</strong>的头文件，主要用于在运行时加载共享库（如 <code>.so</code> 文件或 <code>.dll</code> 文件），获取符号地址并调用其中的函数。</p>
 <h2 id="核心函数">核心函数</h2>
 <table>
-  <thead>
-      <tr>
-          <th>函数</th>
-          <th>说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>dlopen</code></td>
-          <td>打开共享库文件，返回句柄</td>
-      </tr>
-      <tr>
-          <td><code>dlsym</code></td>
-          <td>从共享库中获取符号（函数/变量）地址</td>
-      </tr>
-      <tr>
-          <td><code>dlclose</code></td>
-          <td>关闭共享库</td>
-      </tr>
-      <tr>
-          <td><code>dlerror</code></td>
-          <td>获取最近一次 dl 函数的错误信息</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>函数</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>dlopen</code></td>
+					<td>打开共享库文件，返回句柄</td>
+			</tr>
+			<tr>
+					<td><code>dlsym</code></td>
+					<td>从共享库中获取符号（函数/变量）地址</td>
+			</tr>
+			<tr>
+					<td><code>dlclose</code></td>
+					<td>关闭共享库</td>
+			</tr>
+			<tr>
+					<td><code>dlerror</code></td>
+					<td>获取最近一次 dl 函数的错误信息</td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 <h2 id="dlopen-模式">dlopen 模式</h2>
 <table>
-  <thead>
-      <tr>
-          <th>模式</th>
-          <th>说明</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>RTLD_LAZY</code></td>
-          <td>懒加载（首次调用时解析符号）</td>
-      </tr>
-      <tr>
-          <td><code>RTLD_NOW</code></td>
-          <td>立即加载（返回前解析所有符号）</td>
-      </tr>
-      <tr>
-          <td><code>RTLD_GLOBAL</code></td>
-          <td>符号可被后续加载的库使用</td>
-      </tr>
-      <tr>
-          <td><code>RTLD_LOCAL</code></td>
-          <td>符号仅当前库可见（默认）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>模式</th>
+					<th>说明</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>RTLD_LAZY</code></td>
+					<td>懒加载（首次调用时解析符号）</td>
+			</tr>
+			<tr>
+					<td><code>RTLD_NOW</code></td>
+					<td>立即加载（返回前解析所有符号）</td>
+			</tr>
+			<tr>
+					<td><code>RTLD_GLOBAL</code></td>
+					<td>符号可被后续加载的库使用</td>
+			</tr>
+			<tr>
+					<td><code>RTLD_LOCAL</code></td>
+					<td>符号仅当前库可见（默认）</td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 <h2 id="关键特性">关键特性</h2>

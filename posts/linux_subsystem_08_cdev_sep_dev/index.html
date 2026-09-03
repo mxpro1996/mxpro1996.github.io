@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Linux 内核架构观察：功能体（cdev）与实体（Device）的分立 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://example.org/posts/linux_subsystem_08_cdev_sep_dev/">
-  <meta property="og:site_name" content="程序小站">
-  <meta property="og:title" content="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立">
-  <meta property="og:description" content="核心论点 在 Linux 设备模型中，驱动程序并不是一个不可分割的整体，而是**功能策略（Functionality）与物理实体（Entity）**的强行耦合。
+        <title>Linux 内核架构观察：功能体（cdev）与实体（Device）的分立 - 程序小站</title><meta name="Description" content="逸一时，误一世。"><meta property="og:url" content="http://localhost:1313/posts/linux_subsystem_08_cdev_sep_dev/">
+	<meta property="og:site_name" content="程序小站">
+	<meta property="og:title" content="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立">
+	<meta property="og:description" content="核心论点 在 Linux 设备模型中，驱动程序并不是一个不可分割的整体，而是**功能策略（Functionality）与物理实体（Entity）**的强行耦合。
 1. cdev：卑微的“会计”与策略表 cdev (Character Device) 并不在内核的硬件拓扑树中占有一席之地。它的本质是一个策略映射器。">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2026-04-07T10:15:00+08:00">
-    <meta property="article:modified_time" content="2026-04-07T10:15:00+08:00">
-    <meta property="article:tag" content="Linux">
-    <meta property="article:tag" content="Pthread">
-    <meta property="article:tag" content="Futex">
-    <meta property="article:tag" content="Syscall">
-    <meta property="article:tag" content="Concurrency">
+	<meta property="og:locale" content="zh_CN">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-04-07T10:15:00+08:00">
+		<meta property="article:modified_time" content="2026-04-07T10:15:00+08:00">
+		<meta property="article:tag" content="Linux">
+		<meta property="article:tag" content="Pthread">
+		<meta property="article:tag" content="Futex">
+		<meta property="article:tag" content="Syscall">
+		<meta property="article:tag" content="Concurrency">
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立">
-  <meta name="twitter:description" content="核心论点 在 Linux 设备模型中，驱动程序并不是一个不可分割的整体，而是**功能策略（Functionality）与物理实体（Entity）**的强行耦合。
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立">
+	<meta name="twitter:description" content="核心论点 在 Linux 设备模型中，驱动程序并不是一个不可分割的整体，而是**功能策略（Functionality）与物理实体（Entity）**的强行耦合。
 1. cdev：卑微的“会计”与策略表 cdev (Character Device) 并不在内核的硬件拓扑树中占有一席之地。它的本质是一个策略映射器。">
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site">
 <meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/linux_subsystem_08_cdev_sep_dev/" /><link rel="prev" href="http://example.org/posts/linux_subsystem_07_futex_libc/" /><link rel="next" href="http://example.org/posts/mtk_bring_up_01_lcm_porting/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/linux_subsystem_08_cdev_sep_dev/" /><link rel="prev" href="http://localhost:1313/posts/linux_subsystem_07_futex_libc/" /><link rel="next" href="http://localhost:1313/posts/mtk_bring_up_01_lcm_porting/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -38,9 +38,9 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/example.org\/posts\/linux_subsystem_08_cdev_sep_dev\/"
+            "@id": "http:\/\/localhost:1313\/posts\/linux_subsystem_08_cdev_sep_dev\/"
         },"genre": "posts","keywords": "Linux, Pthread, Futex, Syscall, Concurrency","wordcount":  1096 ,
-        "url": "http:\/\/example.org\/posts\/linux_subsystem_08_cdev_sep_dev\/","datePublished": "2026-04-07T10:15:00+08:00","dateModified": "2026-04-07T10:15:00+08:00","publisher": {
+        "url": "http:\/\/localhost:1313\/posts\/linux_subsystem_08_cdev_sep_dev\/","datePublished": "2026-04-07T10:15:00+08:00","dateModified": "2026-04-07T10:15:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -152,40 +152,40 @@
 <hr>
 <h3 id="4-架构映射总结表">4. 架构映射总结表</h3>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">维度</th>
-          <th style="text-align: left">功能体 (cdev/fops)</th>
-          <th style="text-align: left">实体 (device/kobj)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left"><strong>本质</strong></td>
-          <td style="text-align: left">业务策略表 / 算法集</td>
-          <td style="text-align: left">物理拓扑节点 / 行政对象</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>所属树</strong></td>
-          <td style="text-align: left">无（存在于全局 Hash 表）</td>
-          <td style="text-align: left"><code>/sys/devices/</code> 实体树</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>核心职责</strong></td>
-          <td style="text-align: left">提供 VFS 读写接口</td>
-          <td style="text-align: left">负责生命周期、PM、热插拔</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>通信能力</strong></td>
-          <td style="text-align: left">静态、被动（等 VFS 来查）</td>
-          <td style="text-align: left">动态、主动（发 uevent）</td>
-      </tr>
-      <tr>
-          <td style="text-align: left"><strong>关联节点</strong></td>
-          <td style="text-align: left">决定节点“能干什么”</td>
-          <td style="text-align: left">决定节点“是否存在”</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">维度</th>
+					<th style="text-align: left">功能体 (cdev/fops)</th>
+					<th style="text-align: left">实体 (device/kobj)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>本质</strong></td>
+					<td style="text-align: left">业务策略表 / 算法集</td>
+					<td style="text-align: left">物理拓扑节点 / 行政对象</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>所属树</strong></td>
+					<td style="text-align: left">无（存在于全局 Hash 表）</td>
+					<td style="text-align: left"><code>/sys/devices/</code> 实体树</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>核心职责</strong></td>
+					<td style="text-align: left">提供 VFS 读写接口</td>
+					<td style="text-align: left">负责生命周期、PM、热插拔</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>通信能力</strong></td>
+					<td style="text-align: left">静态、被动（等 VFS 来查）</td>
+					<td style="text-align: left">动态、主动（发 uevent）</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>关联节点</strong></td>
+					<td style="text-align: left">决定节点“能干什么”</td>
+					<td style="text-align: left">决定节点“是否存在”</td>
+			</tr>
+	</tbody>
 </table>
 <hr>
 <h3 id="5-开发者启示绕开会计的快感">5. 开发者启示：绕开“会计”的快感</h3>
@@ -200,7 +200,7 @@
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://example.org/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立" data-hashtags="Linux,Pthread,Futex,Syscall,Concurrency"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://example.org/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://example.org/posts/linux_subsystem_08_cdev_sep_dev/" data-hashtag="Linux"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://example.org/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@16.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://example.org/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://example.org/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2fexample.org%2fposts%2flinux_subsystem_08_cdev_sep_dev%2f&amp;text=Linux%20%e5%86%85%e6%a0%b8%e6%9e%b6%e6%9e%84%e8%a7%82%e5%af%9f%ef%bc%9a%e5%8a%9f%e8%83%bd%e4%bd%93%ef%bc%88cdev%ef%bc%89%e4%b8%8e%e5%ae%9e%e4%bd%93%ef%bc%88Device%ef%bc%89%e7%9a%84%e5%88%86%e7%ab%8b" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 X" data-sharer="x" data-url="http://localhost:1313/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立" data-hashtags="Linux,Pthread,Futex,Syscall,Concurrency"><i class="fab fa-x-twitter" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Threads" data-sharer="threads" data-url="http://localhost:1313/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立"><i class="fab fa-threads" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/linux_subsystem_08_cdev_sep_dev/" data-hashtag="Linux"><i class="fab fa-facebook-square" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立"><i class="fab fa-hacker-news" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="http://localhost:1313/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立"><i class="fab fa-weibo" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Diaspora" data-sharer="diaspora" data-url="http://localhost:1313/posts/linux_subsystem_08_cdev_sep_dev/" data-title="Linux 内核架构观察：功能体（cdev）与实体（Device）的分立" data-description=""><i class="fab fa-diaspora" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=http%3a%2f%2flocalhost%3a1313%2fposts%2flinux_subsystem_08_cdev_sep_dev%2f&amp;text=Linux%20%e5%86%85%e6%a0%b8%e6%9e%b6%e6%9e%84%e8%a7%82%e5%af%9f%ef%bc%9a%e5%8a%9f%e8%83%bd%e4%bd%93%ef%bc%88cdev%ef%bc%89%e4%b8%8e%e5%ae%9e%e4%bd%93%ef%bc%88Device%ef%bc%89%e7%9a%84%e5%88%86%e7%ab%8b" target="_blank" title="分享到 Telegram"><i class="fab fa-telegram" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -217,7 +217,7 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.160.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden="true"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.165.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 1.0.0"><i class="far fa-kiss-wink-heart" aria-hidden="true"></i> LoveIt</a>
                 </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">lazurite</a></span></div>
         </div>
     </footer>
@@ -246,5 +246,5 @@
         <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="查看评论">
                 <i class="fas fa-comment" aria-hidden="true"></i>
             </a>
-        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script>window.config={"comment":{},"data":{"id-1":"剪纸堆","id-2":"剪纸堆"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
+        </div><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script src="/lib/typeit/index.umd.js"></script><script>window.config={"comment":{},"data":{"id-1":"剪纸堆","id-2":"剪纸堆"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":-1,"speed":100}};</script><script src="/js/theme.js"></script></body>
 </html>

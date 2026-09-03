@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>安卓 - 标签 - 程序小站</title>
-        <link>http://example.org/tags/%E5%AE%89%E5%8D%93/</link>
+        <link>http://localhost:1313/tags/%E5%AE%89%E5%8D%93/</link>
         <description>安卓 - 标签 - 程序小站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 05 Jun 2026 17:15:31 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/%E5%AE%89%E5%8D%93/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 05 Jun 2026 17:15:31 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%AE%89%E5%8D%93/" rel="self" type="application/rss+xml" /><item>
     <title>[JNI查错] 口袋侦探闪退修复（三） - 分辨率缩放与触摸</title>
-    <link>http://example.org/posts/game_extract_04/</link>
+    <link>http://localhost:1313/posts/game_extract_04/</link>
     <pubDate>Fri, 05 Jun 2026 17:15:31 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/game_extract_04/</guid>
+    <guid>http://localhost:1313/posts/game_extract_04/</guid>
     <description><![CDATA[<p><strong>本章针对口袋侦探第一部在1080P设备上，画面过小只有544px的问题。</strong> <br>
 <strong>希望本文的view欺骗思路，能够给cocos2dx同好修复一些老游戏的分辨率提供参考。</strong></p>]]></description>
 </item>
 <item>
     <title>[JNI查错] 口袋侦探闪退修复（二） - 安卓5及以上</title>
-    <link>http://example.org/posts/game_extract_03/</link>
+    <link>http://localhost:1313/posts/game_extract_03/</link>
     <pubDate>Thu, 14 May 2026 07:15:31 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/game_extract_03/</guid>
+    <guid>http://localhost:1313/posts/game_extract_03/</guid>
     <description><![CDATA[<p><strong>原理分析 见上一篇文章</strong></p>
 <h2 id="核心观点">核心观点</h2>
 <p>安卓5-7作为早期ART限制REF总数&lt;=512，不适用上一篇文章的暴力手段。<br>
@@ -26,10 +26,10 @@
 </item>
 <item>
     <title>[JNI查错] 口袋侦探闪退修复（一） - 安卓8及以上</title>
-    <link>http://example.org/posts/game_extract_02/</link>
+    <link>http://localhost:1313/posts/game_extract_02/</link>
     <pubDate>Mon, 11 May 2026 13:45:31 &#43;0800</pubDate>
     <author>lazurite</author>
-    <guid>http://example.org/posts/game_extract_02/</guid>
+    <guid>http://localhost:1313/posts/game_extract_02/</guid>
     <description><![CDATA[<p>这个古文物游戏，由于dvm转art虚拟机的缘故，只能用旧版本安卓/VMOS虚拟机玩已经是老生常谈了，<br>
 至于IAP的处理思路也被前人写烂了。我来写写闪退修复吧。<br>
 放一下问题表现、分析过程、修复手段，仅此而已。<br>
