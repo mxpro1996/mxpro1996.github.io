@@ -1,6 +1,6 @@
 ---
 title: "别了，Legacy QCOM/MSM（初稿）"
-date: 2026-10-21
+date: 2026-10-20
 draft: false
 tags:
   - Qualcomm
