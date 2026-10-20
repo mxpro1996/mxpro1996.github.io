@@ -16,3 +16,5 @@ disqusShortname = "hugo-theme-stack"
 
 [pagination]
     pagerSize = 5
+[params.sidebar]
+    subtitle = "人一能之，己百之；人十能之，己千之。果能此道矣，虽愚必明，虽柔必强。"
