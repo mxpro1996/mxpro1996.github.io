@@ -2,7 +2,6 @@
 title: "别了，Legacy QCOM/MSM（初稿）"
 date: 2026-10-21
 draft: false
-slug: "farewell-legacy-qcom-msm"
 tags:
   - Qualcomm
   - PBL
@@ -10,10 +9,9 @@ tags:
   - CVE-2026-25262
   - 安全启动
   - Legacy MSM
-  - 逆向工程
 categories:
   - 安全研究
-description: "高通 Legacy MSM 信任链的终章：PBL 短签名缺陷与 CVE-2026-25262 如何逐段拆解从 Krait 到 SDM845 的安全启动。"
+description: "高通 Legacy MSM 信任链的终章"
 ---
 
 2026年，高通 Legacy MSM 的信任链，正在经历世纪末一般的告别。
