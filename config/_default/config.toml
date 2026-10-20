@@ -1,7 +1,7 @@
 # Change baseurl before deploy
 baseurl = "https://mxpro1996.github,io"
 locale  = "zh-cn"
-title   = "Stack Messy"
+title   = "剪纸堆"
 
 # Theme i18n support
 # See all available values at https://github.com/CaiJimmy/hugo-theme-stack/tree/master/i18n
