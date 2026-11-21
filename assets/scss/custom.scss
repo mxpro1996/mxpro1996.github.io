@@ -644,26 +644,33 @@ kbd {
   }
 }
 
-// 全屏背景方案：背景挂在 html 根元素上（根元素高度恒等于视口，不受内容高度影响）。
-// 关键：body 必须撑满视口，否则背景按 body 盒子算，内容短时只铺上半部
-// （F12 打开后视口变窄、内容把 body 撑高，背景才正常，正是这个原因）。
+// 背景图：按比例自适应完整显示（contain），不裁切、不拉伸。
+// 图片会保持自身宽高比缩放到刚好放进视口，周围留白用兜底底色填充。
 html {
   min-height: 100%;
   background-color: var(--body-background, #f5f5fa);
-  background-image:
-    linear-gradient(var(--site-bg-veil), var(--site-bg-veil)),
-    var(--site-bg-image),
-    linear-gradient(135deg, #dfe9f3 0%, #eef3f7 45%, #f6eef4 100%);
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
+  background-image: var(--site-bg-image) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  background-attachment: fixed !important;
 }
 
+// 柔光蒙层：独立的 fixed 半透明层，压在图片上、内容之下，保证文字可读。
+// 图片若缺失，html 的渐变兜底底色仍会让控件不突兀。
 body {
   min-height: 100vh;
   min-height: 100dvh;
   background-color: transparent;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--site-bg-veil);
 }
 
 // —— 玻璃材质 mixin ——
