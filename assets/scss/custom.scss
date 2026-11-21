@@ -617,8 +617,9 @@ kbd {
   --tag-border-radius: 10px;
 
   // —— 背景层 ——
-  // 背景图默认取 assets/img/background.jpg 的输出路径；
-  // 若图片尚未输出，会自动回退到下方的渐变，控件依旧不突兀。
+  // 背景图放在 static/img/background.jpg，Hugo 会原样输出到站点根 /img/background.jpg。
+  // 注意：assets/ 下的图片不会被直接发布，只有被模板用 resources.Get 引用的才会输出。
+  // 若图片缺失，会自动回退到下方的渐变，控件依旧不突兀。
   --site-bg-image: url('/img/background.jpg');
   --site-bg-veil: rgba(255, 255, 255, 0.55);
 
