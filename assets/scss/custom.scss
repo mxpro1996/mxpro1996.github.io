@@ -644,13 +644,24 @@ kbd {
   }
 }
 
-// 固定背景层：柔光蒙层保证任意背景图下文字都清晰，渐变作为兜底
+// 全屏固定背景层：用 fixed 定位的伪元素严格铺满视口，与页面内容高度解耦。
+// （不能用 body 的 background-attachment:fixed —— body 高度由内容撑开，
+//   内容较短时 cover 只按 body 盒子算，图片就只铺上半部。）
 body {
+  background-color: transparent;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
   background-image:
     linear-gradient(var(--site-bg-veil), var(--site-bg-veil)),
     var(--site-bg-image),
     linear-gradient(135deg, #dfe9f3 0%, #eef3f7 45%, #f6eef4 100%);
-  background-attachment: fixed;
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
