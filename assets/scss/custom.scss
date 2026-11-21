@@ -603,3 +603,158 @@ kbd {
 .sidebar header .site-avatar .site-logo:hover {
   transform: rotate(360deg); // 旋转角度为360度
 }
+
+/* =====================================================================
+   玻璃方块 · 主题框架美化
+   ---------------------------------------------------------------------
+   仅作用于主题框架层（背景 / 卡片 / 控件），不改动任何文章正文内容。
+   背景图就绪后，所有控件会以毛玻璃形态浮在其上，不会突兀。
+   ===================================================================== */
+
+:root {
+  // —— 方块圆角统一 ——
+  --card-border-radius: 20px;
+  --tag-border-radius: 10px;
+
+  // —— 背景层 ——
+  // 背景图默认取 assets/img/background.jpg 的输出路径；
+  // 若图片尚未输出，会自动回退到下方的渐变，控件依旧不突兀。
+  --site-bg-image: url('/img/background.jpg');
+  --site-bg-veil: rgba(255, 255, 255, 0.55);
+
+  // —— 玻璃材质 ——
+  --glass-bg: rgba(255, 255, 255, 0.58);
+  --glass-bg-strong: rgba(255, 255, 255, 0.74);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --glass-blur: 18px;
+  --glass-shadow: 0 10px 30px rgba(60, 80, 120, 0.1), 0 2px 8px rgba(60, 80, 120, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  --glass-shadow-hover: 0 22px 48px rgba(60, 80, 120, 0.18), 0 6px 16px rgba(60, 80, 120, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --float-ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+
+  &[data-scheme='dark'] {
+    --site-bg-veil: rgba(22, 24, 32, 0.62);
+    --glass-bg: rgba(38, 40, 50, 0.56);
+    --glass-bg-strong: rgba(38, 40, 50, 0.78);
+    --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-highlight: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    --glass-shadow-hover: 0 24px 52px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+}
+
+// 固定背景层：柔光蒙层保证任意背景图下文字都清晰，渐变作为兜底
+body {
+  background-image:
+    linear-gradient(var(--site-bg-veil), var(--site-bg-veil)),
+    var(--site-bg-image),
+    linear-gradient(135deg, #dfe9f3 0%, #eef3f7 45%, #f6eef4 100%);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+// —— 玻璃材质 mixin ——
+@mixin glass-card($strong: false) {
+  @if $strong {
+    background: var(--glass-bg-strong) !important;
+  } @else {
+    background: var(--glass-bg) !important;
+  }
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--card-border-radius) !important;
+  box-shadow: var(--glass-shadow) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.35);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.35);
+}
+
+// —— 悬浮浮动 mixin ——
+@mixin float-on-hover($lift: 6px) {
+  transition:
+    transform 0.35s var(--float-ease),
+    box-shadow 0.35s var(--float-ease),
+    border-color 0.35s var(--float-ease),
+    background 0.35s var(--float-ease);
+  will-change: transform;
+
+  &:hover {
+    transform: translateY(-$lift);
+    box-shadow: var(--glass-shadow-hover) !important;
+    border-color: var(--glass-highlight) !important;
+  }
+}
+
+// 所有控件统一玻璃方块化：侧栏卡片、小组件、文章卡片、菜单、欢迎块、分页
+.card,
+.widget,
+.sidebar header,
+.article-list article,
+.article-list--compact article,
+.article-list--tile article,
+.welcome,
+.menu,
+.pagination a,
+.pagination span {
+  @include glass-card();
+}
+
+// 阅读主体用更实的玻璃，保证正文可读性（只玻璃，不悬浮）
+.main-article {
+  @include glass-card($strong: true);
+}
+
+// 可交互控件叠加浮动感
+.article-list article,
+.article-list--compact article,
+.article-list--tile article,
+.widget,
+.welcome,
+.pagination a {
+  @include float-on-hover(6px);
+}
+
+// 不支持 backdrop-filter 的浏览器回退为更实的底色，避免看不清内容
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .card,
+  .widget,
+  .sidebar header,
+  .article-list article,
+  .article-list--compact article,
+  .article-list--tile article,
+  .welcome,
+  .menu,
+  .pagination a,
+  .pagination span {
+    background: rgba(255, 255, 255, 0.92) !important;
+  }
+
+  [data-scheme='dark'] .card,
+  [data-scheme='dark'] .widget,
+  [data-scheme='dark'] .sidebar header,
+  [data-scheme='dark'] .article-list article,
+  [data-scheme='dark'] .article-list--compact article,
+  [data-scheme='dark'] .article-list--tile article,
+  [data-scheme='dark'] .welcome,
+  [data-scheme='dark'] .menu,
+  [data-scheme='dark'] .pagination a,
+  [data-scheme='dark'] .pagination span {
+    background: rgba(30, 32, 40, 0.92) !important;
+  }
+}
+
+// 尊重系统的“减少动态效果”设置
+@media (prefers-reduced-motion: reduce) {
+  .article-list article,
+  .article-list--compact article,
+  .article-list--tile article,
+  .widget,
+  .welcome,
+  .pagination a {
+    transition: none !important;
+
+    &:hover {
+      transform: none !important;
+    }
+  }
+}
